@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Certificates } from './Certificates';
 import { Courses } from './Courses';
 import { Footer } from './Footer';
+import { Contact } from './Contact';
 
 export default function HomeContent() {
   return (
@@ -167,165 +168,15 @@ export default function HomeContent() {
         </div>
       </section>
 
-      {/* Courses Grid */}
-      <section className="py-20 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#0F172A] mb-4">Explore Our Courses</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Comprehensive tailored curriculums designed to help you smash your target scores.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: 'IELTS Academic', color: 'bg-orange-50', iconColor: 'text-orange-600', desc: 'Expert guidance for reading, writing, listening, and speaking modules.' },
-              { title: 'TOEFL iBT', color: 'bg-blue-50', iconColor: 'text-blue-600', desc: 'Master the internet-based test with our specialized strategies.' },
-              { title: 'PTE', color: 'bg-green-50', iconColor: 'text-green-600', desc: 'Fast-track your english proficiency for study and migration.' },
-              { title: 'GRE', color: 'bg-purple-50', iconColor: 'text-purple-600', desc: 'Ace the verbal and quantitative sections for grad school admission.' },
-              { title: 'GMAT', color: 'bg-indigo-50', iconColor: 'text-indigo-600', desc: 'Top-tier preparation for business school aspirants.' },
-              { title: 'Spoken English', color: 'bg-rose-50', iconColor: 'text-rose-600', desc: 'Build confidence and fluency for personal and professional growth.' },
-            ].map((course, idx) => (
-              <div key={idx} className="group p-8 rounded-2xl border border-gray-100 hover:border-[#1D4ED8]/20 bg-white hover:shadow-xl hover:shadow-blue-900/5 transition-all duration-300 relative overflow-hidden">
-                <div className={`absolute top-0 right-0 w-24 h-24 ${course.color} rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110`}></div>
-                <h3 className="text-2xl font-bold text-[#0F172A] mb-3 relative z-10">{course.title}</h3>
-                <p className="text-gray-600 mb-6 relative z-10">{course.desc}</p>
-                <a href="#" className={`font-semibold ${course.iconColor} flex items-center gap-1 group-hover:translate-x-1 transition-transform`}>
-                  Learn more <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-[#0F172A] text-white relative z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-800/50">
-            <div>
-              <div className="text-4xl md:text-5xl font-bold text-[#FF6B35] mb-2">10k+</div>
-              <div className="text-gray-400">Students Trained</div>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold text-[#2563EB] mb-2">98%</div>
-              <div className="text-gray-400">Success Rate</div>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold text-[#E63946] mb-2">50+</div>
-              <div className="text-gray-400">Expert Trainers</div>
-            </div>
-            <div>
-              <div className="text-4xl md:text-5xl font-bold text-emerald-500 mb-2">4.9</div>
-              <div className="text-gray-400">Average Rating</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-24 relative z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-[#1D4ED8] to-[#1e40af] rounded-3xl p-8 md:p-16 text-center text-white relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 relative z-10">Ready to start your journey?</h2>
-            <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto relative z-10">
-              Join thousands of students who have already achieved their dream scores with Sparkle.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-              <button className="px-8 py-3 bg-white text-[#1D4ED8] font-bold rounded-full hover:bg-gray-50 transition-colors shadow-lg">
-                Book Free Consultation
-              </button>
-              <button className="px-8 py-3 bg-[#E63946] text-white font-bold rounded-full hover:bg-[#d62839] transition-colors shadow-lg">
-                Enroll Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* 3D Visual Experience Section */}
-      <section className="py-24 relative z-10 overflow-hidden">
-        <div className="absolute inset-0 opacity-40 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            {/* 3D Card 1 */}
-            <div className="group relative h-[400px] rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-red-500/20 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#E63946] to-[#FF9E00]"></div>
-              <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-              <div className="relative z-10 h-full flex flex-col items-center justify-center p-8 text-center">
-                <h3 className="text-5xl font-extrabold text-white mb-2 drop-shadow-md">A+</h3>
-                <div className="w-24 h-1 bg-white/50 rounded-full mb-8"></div>
-              </div>
 
-              <div className="absolute bottom-0 left-0 w-full glass p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                <h4 className="text-xl font-bold text-[#0F172A]">Test Prep</h4>
-                <p className="text-sm text-gray-600">IELTS, OET, PTE, TOEFL</p>
-              </div>
-            </div>
 
-            {/* 3D Card 2 */}
-            <div className="group relative h-[400px] rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-blue-500/20 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gray-100"></div>
-              <div className="absolute inset-0 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-700">
-                <div className="relative w-64 h-64">
-                  <Image
-                    src="/assets/3d/languages.png"
-                    alt="Global Languages"
-                    fill
-                    className="object-contain drop-shadow-2xl"
-                  />
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 w-full glass p-6">
-                <h4 className="text-xl font-bold text-[#0F172A]">Foreign Languages</h4>
-                <p className="text-sm text-gray-600">German, French, Spanish, Japanese</p>
-              </div>
-            </div>
 
-            {/* 3D Card 3 */}
-            <div className="group relative h-[400px] rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-purple-500/20 hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-tr from-purple-100 to-white"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                {/* Placeholder for 3rd 3D asset if we had one, recreating simple shapes */}
-                <div className="w-40 h-40 glass rounded-full flex items-center justify-center shadow-inner relative overflow-hidden group-hover:scale-110 transition-all">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 to-transparent"></div>
-                  <Image
-                    src="/assets/3d/test-prep.png"
-                    alt="Test Prep"
-                    width={100}
-                    height={100}
-                    className="object-contain opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-                  />
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 w-full glass p-6">
-                <h4 className="text-xl font-bold text-[#0F172A]">Global Careers</h4>
-                <p className="text-sm text-gray-600">Study & Work Abroad Consultation</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Footer Placeholder */}
-      <footer className="bg-white/80 backdrop-blur-md border-t border-gray-200 pt-16 pb-8 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex items-center gap-2 mb-4 md:mb-0">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#E63946] to-[#FA8072] flex items-center justify-center text-white font-bold text-xs">S</div>
-              <span className="font-bold text-xl text-gray-900">Sparkle</span>
-            </div>
-            <div className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Sparkle Education. All rights reserved.
-            </div>
-          </div>
-        </div>
-      </footer>
 
       {/* Floating Action Buttons */}
       <div className="fixed bottom-8 right-8 flex flex-col gap-4 z-50">
@@ -341,7 +192,8 @@ export default function HomeContent() {
 
       {/* Certificates Section */}
       <Certificates />
-
+      {/* Contact Section */}
+      <Contact />
       {/* Footer */}
       <Footer />
     </div>
