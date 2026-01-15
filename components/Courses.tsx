@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 export function Courses() {
   const testPrep = [
     {
-      name: 'IELTS',
+
       desc: 'Academic and General Training coaching for UK, Canada, Australia.',
       features: ['Band 8+ Strategies', 'Unlimited Mock Tests'],
       modules: ['Reading Comprehension', 'Academic/General Writing', 'Listening Techniques', 'Speaking Practice'],
@@ -18,7 +18,7 @@ export function Courses() {
       color: 'bg-blue-600'
     },
     {
-      name: 'TOEFL',
+
       desc: 'TOEFL iBT coaching for US higher education.',
       features: ['Section-wise practice', 'Speaking templates'],
       modules: ['Reading Sections', 'Listening Conversations', 'Speaking Tasks', 'Integrated Writing'],
@@ -28,7 +28,7 @@ export function Courses() {
       color: 'bg-[#002FA7]'
     },
     {
-      name: 'PTE',
+
       desc: 'Fast-track PTE Academic preparation for quick results.',
       features: ['AI-Scored Mock Tests', 'Tips & Tricks'],
       modules: ['Speaking & Writing', 'Reading', 'Listening', 'AI Scoring Analysis'],
@@ -38,7 +38,7 @@ export function Courses() {
       color: 'bg-green-600'
     },
     {
-      name: 'OET',
+
       desc: 'Occupational English Test training for healthcare professionals.',
       features: ['Nursing/Medicine focus', 'Role-play scenarios'],
       modules: ['Listening (Health)', 'Reading (Clinical)', 'Writing (Referral Letters)', 'Speaking (Role-play)'],
@@ -48,7 +48,7 @@ export function Courses() {
       color: 'bg-purple-600'
     },
     {
-      name: 'GRE',
+
       desc: 'Graduate Record Examination for technical and management masters.',
       features: ['Quant & Verbal Reasoning', 'Analytical Writing'],
       modules: ['Verbal Reasoning', 'Quantitative Reasoning', 'Analytical Writing', 'Vocabulary Building'],
@@ -58,7 +58,7 @@ export function Courses() {
       color: 'bg-indigo-600'
     },
     {
-      name: 'GMAT',
+
       desc: 'Graduate Management Admission Test for top business schools.',
       features: ['Integrated Reasoning', 'Computer Adaptive'],
       modules: ['Quantitative Reasoning', 'Verbal Reasoning', 'Data Insights', 'Adaptive Testing'],
@@ -79,18 +79,33 @@ export function Courses() {
             </span>
             Our Programs
           </div>
-          <h2 className="text-4xl md:text-5xl font-['Montserrat'] font-bold text-[#0F172A] mb-4 tracking-tight">
-            World-Class Training Programs
+          <h2 className="text-4xl md:text-5xl font-extrabold text-[#0F172A] mb-4 tracking-tight">
+            World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave">Training Programs</span>
           </h2>
+          <div className="h-1.5 w-24 bg-gradient-to-r from-[#1D4ED8] to-[#E63946] rounded-full mx-auto mb-6"></div>
           <p className="text-gray-600 font-['Inter'] text-lg md:text-xl max-w-2xl mx-auto">
             Comprehensive courses designed to help you achieve your global education and career goals
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
           {testPrep.map((course, idx) => (
-            <CourseCard key={idx} course={course} index={idx} />
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+            >
+              <CourseCard course={course} index={idx} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

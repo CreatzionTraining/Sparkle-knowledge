@@ -14,11 +14,12 @@ const certificates = [
 
 export function Certificates() {
     return (
-        <section className="py-20 bg-[#F9FAFB] overflow-hidden">
+        <section className="py-20 bg-white overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-['Montserrat'] font-bold text-gray-900 mb-4">
-                    Our Success Stories
+                <h2 className="text-3xl md:text-4xl font-extrabold text-[#0F172A] mb-4 tracking-tight">
+                    Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave">Success Stories</span>
                 </h2>
+                <div className="h-1.5 w-24 bg-gradient-to-r from-[#1D4ED8] to-[#E63946] rounded-full mx-auto mb-6"></div>
                 <p className="text-gray-600 font-['Inter'] max-w-2xl mx-auto">
                     Join our growing list of students who have achieved remarkable results.
                 </p>

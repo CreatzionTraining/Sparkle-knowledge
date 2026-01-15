@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import NewsTicker from './NewsTicker';
 
-// Icon components (inline SVG)
 // Icon components (inline SVG)
 const MapPin = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" stroke="none">
@@ -50,20 +50,20 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Start loading animation
     setIsSubmitting(true);
-    
+
     // Simulate API call (replace with your actual API call)
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     // Handle form submission logic here
     console.log('Form submitted:', formData);
-    
+
     // Stop loading and show success modal
     setIsSubmitting(false);
     setShowSuccessModal(true);
-    
+
     // Reset form
     setFormData({
       fullName: '',
@@ -72,7 +72,7 @@ export function Contact() {
       course: '',
       message: ''
     });
-    
+
     // Auto-close modal after 5 seconds
     setTimeout(() => {
       setShowSuccessModal(false);
@@ -87,17 +87,22 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
+    <section id="contact" className="py-12 sm:py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* News Ticker moved here */}
+        <NewsTicker />
+
         {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12">
+        <div className="text-center mb-8 sm:mb-12 mt-12">
           <div className="inline-flex items-center bg-white rounded-full px-4 py-2 shadow-sm mb-4">
             <MapPin className="w-4 h-4 text-[#1D4ED8] mr-2" />
             <span className="text-xs sm:text-sm font-semibold text-gray-700">Get In Touch</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
-            Visit Our Center
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#0F172A] mb-3 sm:mb-4 px-4 tracking-tight">
+            Visit <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave">Our Center</span>
           </h2>
+          <div className="h-1.5 w-24 bg-gradient-to-r from-[#1D4ED8] to-[#E63946] rounded-full mx-auto mb-6"></div>
           <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
             Come visit us for a free consultation and see why we&apos;re the #1 choice for test prep
           </p>
@@ -185,10 +190,10 @@ export function Contact() {
                   </select>
                   {/* Custom Dropdown Arrow */}
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-300 group-focus-within:rotate-180">
-                    <svg 
-                      className="w-5 h-5 text-gray-600 group-hover:text-[#1D4ED8] transition-colors" 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      className="w-5 h-5 text-gray-600 group-hover:text-[#1D4ED8] transition-colors"
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path>
@@ -225,11 +230,11 @@ export function Contact() {
                     onChange={(e) => setAcceptedTerms(e.target.checked)}
                     className="w-5 h-5 border-2 border-gray-300 rounded focus:ring-blue-500 text-blue-600 transition-all cursor-pointer peer checked:border-blue-600"
                   />
-                  <svg 
-                    className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor" 
+                  <svg
+                    className="absolute w-3.5 h-3.5 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                     strokeWidth="3"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -247,7 +252,7 @@ export function Contact() {
               >
                 {/* Smooth Gradient Background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#E63946] via-[#1D4ED8] to-[#E63946] bg-[length:200%_auto] animate-gradient-smooth"></div>
-                
+
                 {/* Soft Shine Effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:!translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"></div>
 
@@ -279,7 +284,7 @@ export function Contact() {
             {/* Contact Info Cards - Compact 2x2 Grid */}
             <div className="grid grid-cols-2 gap-3">
               {/* Visit Us */}
-              <a 
+              <a
                 href="https://www.google.com/maps/search/Sparkle+Knowledge+Yard,+Perambur,+Chennai/@13.1146754,80.2329381,17z"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -287,7 +292,7 @@ export function Contact() {
               >
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <div className="relative flex flex-col h-full">
                   {/* Icon with glow effect */}
                   <div className="relative w-8 h-8 mb-2.5 flex-shrink-0">
@@ -299,7 +304,7 @@ export function Contact() {
                       </svg>
                     </div>
                   </div>
-                  
+
                   {/* Content */}
                   <div className="flex-1">
                     <div className="flex items-center gap-1.5 mb-1">
@@ -319,7 +324,7 @@ export function Contact() {
               <div className="group relative bg-gradient-to-br from-red-50 via-white to-red-50/30 backdrop-blur-sm p-3.5 rounded-2xl border border-red-200/60 hover:border-red-400 hover:scale-[1.02] shadow-sm hover:shadow-xl hover:shadow-red-500/25 transition-all duration-300 overflow-hidden flex flex-col">
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <div className="relative flex flex-col h-full">
                   {/* Icon with glow effect */}
                   <div className="relative w-8 h-8 mb-2.5 flex-shrink-0">
@@ -330,12 +335,12 @@ export function Contact() {
                       </svg>
                     </div>
                   </div>
-                  
+
                   {/* Content */}
                   <div className="flex-1">
                     <h4 className="font-bold text-gray-900 text-sm mb-1 group-hover:text-red-600 transition-colors">Call Us</h4>
-                    <a 
-                      href="tel:+919710043295" 
+                    <a
+                      href="tel:+919710043295"
                       onClick={(e) => {
                         e.stopPropagation();
                         window.location.href = 'tel:+919710043295';
@@ -353,7 +358,7 @@ export function Contact() {
               <div className="group relative bg-gradient-to-br from-emerald-50 via-white to-emerald-50/30 backdrop-blur-sm p-3.5 rounded-2xl border border-emerald-200/60 hover:border-emerald-400 hover:scale-[1.02] shadow-sm hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 overflow-hidden flex flex-col">
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <div className="relative flex flex-col h-full">
                   {/* Icon with glow effect */}
                   <div className="relative w-8 h-8 mb-2.5 flex-shrink-0">
@@ -364,11 +369,11 @@ export function Contact() {
                       </svg>
                     </div>
                   </div>
-                  
+
                   {/* Content */}
                   <div className="flex-1">
                     <h4 className="font-bold text-gray-900 text-sm mb-1 group-hover:text-emerald-600 transition-colors">Email Us</h4>
-                    <a 
+                    <a
                       href="mailto:info@sparkleacademy.com"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -378,7 +383,7 @@ export function Contact() {
                     >
                       info@sparkleacademy.com
                     </a>
-                    <a 
+                    <a
                       href="mailto:support@sparkleacademy.com"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -396,7 +401,7 @@ export function Contact() {
               <div className="group relative bg-gradient-to-br from-purple-50 via-white to-purple-50/30 backdrop-blur-sm p-3.5 rounded-2xl border border-purple-200/60 hover:border-purple-400 hover:scale-[1.02] shadow-sm hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 overflow-hidden flex flex-col">
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <div className="relative flex flex-col h-full">
                   {/* Icon with glow effect */}
                   <div className="relative w-8 h-8 mb-2.5 flex-shrink-0">
@@ -407,7 +412,7 @@ export function Contact() {
                       </svg>
                     </div>
                   </div>
-                  
+
                   {/* Content */}
                   <div className="flex-1">
                     <h4 className="font-bold text-gray-900 text-sm mb-1.5 group-hover:text-purple-600 transition-colors">Working Hours</h4>
@@ -433,7 +438,7 @@ export function Contact() {
             </div>
 
             {/* Map - Clickable to Open */}
-            <a 
+            <a
               href="https://www.google.com/maps/search/Sparkle+Knowledge+Yard,+Perambur,+Chennai/@13.1146754,80.2329381,17z"
               target="_blank"
               rel="noopener noreferrer"
@@ -443,14 +448,14 @@ export function Contact() {
                 src="https://maps.google.com/maps?q=Sparkle%20Knowledge%20Yard,%20331,%20Paper%20Mills%20Road,%20Bunder%20Garden,%20Perambur,%20Chennai&t=&z=17&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
-                className="pointer-events-none" 
+                className="pointer-events-none"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Sparkle Knowledge Yard Location"
               ></iframe>
-              
+
               {/* Map Overlay Badge */}
               <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors duration-300 z-10 flex items-center justify-center">
                 <div className="bg-white/95 backdrop-blur-md px-5 py-2.5 rounded-full shadow-xl shadow-blue-500/20 transform translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2.5 border border-white/50">
@@ -470,19 +475,19 @@ export function Contact() {
       {showSuccessModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Premium Backdrop */}
-          <div 
+          <div
             className="absolute inset-0 bg-gradient-to-br from-gray-900/80 via-gray-900/70 to-black/80 backdrop-blur-xl"
             onClick={() => setShowSuccessModal(false)}
             style={{ animation: 'fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)' }}
           ></div>
-          
+
           {/* Modal Container */}
-          <div 
+          <div
             className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden"
             style={{ animation: 'modalSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1)' }}
           >
             {/* Close X Button - Modern & Minimal */}
-            <button 
+            <button
               onClick={() => setShowSuccessModal(false)}
               className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-all z-20"
               aria-label="Close modal"
@@ -497,29 +502,29 @@ export function Contact() {
               {/* Soft decorative background blobs */}
               <div className="absolute top-0 left-0 w-32 h-32 bg-blue-100 rounded-full blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
               <div className="absolute bottom-0 right-0 w-32 h-32 bg-red-100 rounded-full blur-3xl opacity-50 translate-x-1/2 translate-y-1/2"></div>
-              
+
               {/* Success Icon - Central & Animated */}
               <div className="relative flex justify-center mb-6 z-10">
                 <div className="relative">
                   {/* Outer Ring */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-[#1D4ED8] to-[#E63946] rounded-full opacity-10 animate-ping"></div>
-                  
+
                   {/* Icon Circle */}
-                  <div 
+                  <div
                     className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-tr from-[#1D4ED8] to-[#E63946] rounded-full flex items-center justify-center shadow-xl shadow-blue-500/20"
                     style={{ animation: 'scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both' }}
                   >
-                    <svg 
-                      className="w-10 h-10 sm:w-12 sm:h-12 text-white" 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      className="w-10 h-10 sm:w-12 sm:h-12 text-white"
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 24"
                       style={{ animation: 'checkDraw 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.3s both' }}
                     >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth="3" 
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="3"
                         d="M5 13l4 4L19 7"
                       ></path>
                     </svg>
@@ -529,21 +534,21 @@ export function Contact() {
 
               {/* Title & Description */}
               <div className="relative z-10 space-y-3">
-                <h3 
+                <h3
                   className="text-2xl sm:text-3xl font-bold text-gray-900"
                   style={{ animation: 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both' }}
                 >
                   Message Sent!
                 </h3>
-                
-                <p 
+
+                <p
                   className="text-gray-500 font-medium"
                   style={{ animation: 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both' }}
                 >
                   We've received your inquiry
                 </p>
 
-                <div 
+                <div
                   className="pt-4"
                   style={{ animation: 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both' }}
                 >
