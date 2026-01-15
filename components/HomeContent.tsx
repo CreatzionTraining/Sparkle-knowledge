@@ -50,10 +50,10 @@ export default function HomeContent() {
       {/* Navbar - Transparent & Seamless */}
       <nav className="absolute top-0 z-50 w-full bg-transparent">
         <div className="max-w-[95%] lg:max-w-[1400px] mx-auto px-8 lg:px-12">
-          <div className="flex justify-between items-center h-32">
+          <div className="flex justify-between items-center h-28">
 
             {/* Logo Section - Placed exactly as reference (Left) */}
-            <div className="flex-shrink-0 flex items-center -ml-4 lg:-ml-12 mt-8">
+            <div className="flex-shrink-0 flex items-center -ml-4 lg:-ml-12 mt-4">
               <div className="relative h-60 w-[550px]">
                 <Image
                   src="/sparkle_logo.png"
