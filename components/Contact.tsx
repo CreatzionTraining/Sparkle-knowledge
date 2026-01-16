@@ -47,6 +47,245 @@ export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [countryCode, setCountryCode] = useState('+91');
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+
+  // Handle keyboard navigation for country dropdown
+  React.useEffect(() => {
+    if (!isCountryDropdownOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key.length === 1 && /[a-zA-Z]/.test(e.key)) {
+        // Find first country starting with the pressed key
+        const char = e.key.toLowerCase();
+        const targetCountry = countryCodes.find(c => c.country.toLowerCase().startsWith(char));
+        
+        if (targetCountry) {
+          const element = document.getElementById(`country-item-${targetCountry.code}`);
+          if (element) {
+            element.scrollIntoView({ block: 'nearest' });
+          }
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isCountryDropdownOpen]);
+
+  // Load form data from localStorage on mount
+  React.useEffect(() => {
+    const savedData = localStorage.getItem('contactFormData');
+    if (savedData) {
+      try {
+        setFormData(JSON.parse(savedData));
+      } catch (e) {
+        // Invalid data, ignore
+      }
+    }
+  }, []);
+
+  // Save form data to localStorage whenever it changes
+  React.useEffect(() => {
+    if (formData.fullName || formData.email || formData.phone || formData.message) {
+      localStorage.setItem('contactFormData', JSON.stringify(formData));
+    }
+  }, [formData]);
+
+  const courseOptions = [
+    { value: 'ielts', label: 'IELTS' },
+    { value: 'toefl', label: 'TOEFL' },
+    { value: 'pte', label: 'PTE' },
+    { value: 'gre', label: 'GRE' },
+    { value: 'gmat', label: 'GMAT' },
+    { value: 'study-abroad', label: 'Study Abroad Counseling' },
+    { value: 'language', label: 'Language Training' }
+  ];
+
+  const countryCodes = [
+    { code: '+93', country: 'Afghanistan', flag: '🇦🇫' },
+    { code: '+355', country: 'Albania', flag: '🇦🇱' },
+    { code: '+213', country: 'Algeria', flag: '🇩🇿' },
+    { code: '+376', country: 'Andorra', flag: '🇦🇩' },
+    { code: '+244', country: 'Angola', flag: '🇦🇴' },
+    { code: '+54', country: 'Argentina', flag: '🇦🇷' },
+    { code: '+374', country: 'Armenia', flag: '🇦🇲' },
+    { code: '+61', country: 'Australia', flag: '🇦🇺' },
+    { code: '+43', country: 'Austria', flag: '🇦🇹' },
+    { code: '+994', country: 'Azerbaijan', flag: '🇦🇿' },
+    { code: '+973', country: 'Bahrain', flag: '🇧🇭' },
+    { code: '+880', country: 'Bangladesh', flag: '🇧🇩' },
+    { code: '+375', country: 'Belarus', flag: '🇧🇾' },
+    { code: '+32', country: 'Belgium', flag: '🇧🇪' },
+    { code: '+501', country: 'Belize', flag: '🇧🇿' },
+    { code: '+229', country: 'Benin', flag: '🇧🇯' },
+    { code: '+975', country: 'Bhutan', flag: '🇧🇹' },
+    { code: '+591', country: 'Bolivia', flag: '🇧🇴' },
+    { code: '+387', country: 'Bosnia', flag: '🇧🇦' },
+    { code: '+267', country: 'Botswana', flag: '🇧🇼' },
+    { code: '+55', country: 'Brazil', flag: '🇧🇷' },
+    { code: '+673', country: 'Brunei', flag: '🇧🇳' },
+    { code: '+359', country: 'Bulgaria', flag: '🇧🇬' },
+    { code: '+226', country: 'Burkina Faso', flag: '🇧🇫' },
+    { code: '+257', country: 'Burundi', flag: '🇧🇮' },
+    { code: '+855', country: 'Cambodia', flag: '🇰🇭' },
+    { code: '+237', country: 'Cameroon', flag: '🇨🇲' },
+    { code: '+1', country: 'Canada', flag: '🇨🇦' },
+    { code: '+238', country: 'Cape Verde', flag: '🇨🇻' },
+    { code: '+236', country: 'Central African Republic', flag: '🇨🇫' },
+    { code: '+235', country: 'Chad', flag: '🇹🇩' },
+    { code: '+56', country: 'Chile', flag: '🇨🇱' },
+    { code: '+86', country: 'China', flag: '🇨🇳' },
+    { code: '+57', country: 'Colombia', flag: '🇨🇴' },
+    { code: '+269', country: 'Comoros', flag: '🇰🇲' },
+    { code: '+242', country: 'Congo', flag: '🇨🇬' },
+    { code: '+506', country: 'Costa Rica', flag: '🇨🇷' },
+    { code: '+385', country: 'Croatia', flag: '🇭🇷' },
+    { code: '+53', country: 'Cuba', flag: '🇨🇺' },
+    { code: '+357', country: 'Cyprus', flag: '🇨🇾' },
+    { code: '+420', country: 'Czech Republic', flag: '🇨🇿' },
+    { code: '+45', country: 'Denmark', flag: '🇩🇰' },
+    { code: '+253', country: 'Djibouti', flag: '🇩🇯' },
+    { code: '+593', country: 'Ecuador', flag: '🇪🇨' },
+    { code: '+20', country: 'Egypt', flag: '🇪🇬' },
+    { code: '+503', country: 'El Salvador', flag: '🇸🇻' },
+    { code: '+240', country: 'Equatorial Guinea', flag: '🇬🇶' },
+    { code: '+291', country: 'Eritrea', flag: '🇪🇷' },
+    { code: '+372', country: 'Estonia', flag: '🇪🇪' },
+    { code: '+251', country: 'Ethiopia', flag: '🇪🇹' },
+    { code: '+679', country: 'Fiji', flag: '🇫🇯' },
+    { code: '+358', country: 'Finland', flag: '🇫🇮' },
+    { code: '+33', country: 'France', flag: '🇫🇷' },
+    { code: '+241', country: 'Gabon', flag: '🇬🇦' },
+    { code: '+220', country: 'Gambia', flag: '🇬🇲' },
+    { code: '+995', country: 'Georgia', flag: '🇬🇪' },
+    { code: '+49', country: 'Germany', flag: '🇩🇪' },
+    { code: '+233', country: 'Ghana', flag: '🇬🇭' },
+    { code: '+30', country: 'Greece', flag: '🇬🇷' },
+    { code: '+502', country: 'Guatemala', flag: '🇬🇹' },
+    { code: '+224', country: 'Guinea', flag: '🇬🇳' },
+    { code: '+245', country: 'Guinea-Bissau', flag: '🇬🇼' },
+    { code: '+592', country: 'Guyana', flag: '🇬🇾' },
+    { code: '+509', country: 'Haiti', flag: '🇭🇹' },
+    { code: '+504', country: 'Honduras', flag: '🇭🇳' },
+    { code: '+852', country: 'Hong Kong', flag: '🇭🇰' },
+    { code: '+36', country: 'Hungary', flag: '🇭🇺' },
+    { code: '+354', country: 'Iceland', flag: '🇮🇸' },
+    { code: '+91', country: 'India', flag: '🇮🇳' },
+    { code: '+62', country: 'Indonesia', flag: '🇮🇩' },
+    { code: '+98', country: 'Iran', flag: '🇮🇷' },
+    { code: '+964', country: 'Iraq', flag: '🇮🇶' },
+    { code: '+353', country: 'Ireland', flag: '🇮🇪' },
+    { code: '+972', country: 'Israel', flag: '🇮🇱' },
+    { code: '+39', country: 'Italy', flag: '🇮🇹' },
+    { code: '+225', country: 'Ivory Coast', flag: '🇨🇮' },
+    { code: '+81', country: 'Japan', flag: '🇯🇵' },
+    { code: '+962', country: 'Jordan', flag: '🇯🇴' },
+    { code: '+7', country: 'Kazakhstan', flag: '🇰🇿' },
+    { code: '+254', country: 'Kenya', flag: '🇰🇪' },
+    { code: '+965', country: 'Kuwait', flag: '🇰🇼' },
+    { code: '+996', country: 'Kyrgyzstan', flag: '🇰🇬' },
+    { code: '+856', country: 'Laos', flag: '🇱🇦' },
+    { code: '+371', country: 'Latvia', flag: '🇱🇻' },
+    { code: '+961', country: 'Lebanon', flag: '🇱🇧' },
+    { code: '+266', country: 'Lesotho', flag: '🇱🇸' },
+    { code: '+231', country: 'Liberia', flag: '🇱🇷' },
+    { code: '+218', country: 'Libya', flag: '🇱🇾' },
+    { code: '+423', country: 'Liechtenstein', flag: '🇱🇮' },
+    { code: '+370', country: 'Lithuania', flag: '🇱🇹' },
+    { code: '+352', country: 'Luxembourg', flag: '🇱🇺' },
+    { code: '+853', country: 'Macau', flag: '🇲🇴' },
+    { code: '+261', country: 'Madagascar', flag: '🇲🇬' },
+    { code: '+265', country: 'Malawi', flag: '🇲🇼' },
+    { code: '+60', country: 'Malaysia', flag: '🇲🇾' },
+    { code: '+960', country: 'Maldives', flag: '🇲🇻' },
+    { code: '+223', country: 'Mali', flag: '🇲🇱' },
+    { code: '+356', country: 'Malta', flag: '🇲🇹' },
+    { code: '+222', country: 'Mauritania', flag: '🇲🇷' },
+    { code: '+230', country: 'Mauritius', flag: '🇲🇺' },
+    { code: '+52', country: 'Mexico', flag: '🇲🇽' },
+    { code: '+373', country: 'Moldova', flag: '🇲🇩' },
+    { code: '+377', country: 'Monaco', flag: '🇲🇨' },
+    { code: '+976', country: 'Mongolia', flag: '🇲🇳' },
+    { code: '+382', country: 'Montenegro', flag: '🇲🇪' },
+    { code: '+212', country: 'Morocco', flag: '🇲🇦' },
+    { code: '+258', country: 'Mozambique', flag: '🇲🇿' },
+    { code: '+95', country: 'Myanmar', flag: '🇲🇲' },
+    { code: '+264', country: 'Namibia', flag: '🇳🇦' },
+    { code: '+977', country: 'Nepal', flag: '🇳🇵' },
+    { code: '+31', country: 'Netherlands', flag: '🇳🇱' },
+    { code: '+64', country: 'New Zealand', flag: '🇳🇿' },
+    { code: '+505', country: 'Nicaragua', flag: '🇳🇮' },
+    { code: '+227', country: 'Niger', flag: '🇳🇪' },
+    { code: '+234', country: 'Nigeria', flag: '🇳🇬' },
+    { code: '+47', country: 'Norway', flag: '🇳🇴' },
+    { code: '+968', country: 'Oman', flag: '🇴🇲' },
+    { code: '+92', country: 'Pakistan', flag: '🇵🇰' },
+    { code: '+970', country: 'Palestine', flag: '🇵🇸' },
+    { code: '+507', country: 'Panama', flag: '🇵🇦' },
+    { code: '+675', country: 'Papua New Guinea', flag: '🇵🇬' },
+    { code: '+595', country: 'Paraguay', flag: '🇵🇾' },
+    { code: '+51', country: 'Peru', flag: '🇵🇪' },
+    { code: '+63', country: 'Philippines', flag: '🇵🇭' },
+    { code: '+48', country: 'Poland', flag: '🇵🇱' },
+    { code: '+351', country: 'Portugal', flag: '🇵🇹' },
+    { code: '+974', country: 'Qatar', flag: '🇶🇦' },
+    { code: '+40', country: 'Romania', flag: '🇷🇴' },
+    { code: '+7', country: 'Russia', flag: '🇷🇺' },
+    { code: '+250', country: 'Rwanda', flag: '🇷🇼' },
+    { code: '+966', country: 'Saudi Arabia', flag: '🇸🇦' },
+    { code: '+221', country: 'Senegal', flag: '🇸🇳' },
+    { code: '+381', country: 'Serbia', flag: '🇷🇸' },
+    { code: '+248', country: 'Seychelles', flag: '🇸🇨' },
+    { code: '+232', country: 'Sierra Leone', flag: '🇸🇱' },
+    { code: '+65', country: 'Singapore', flag: '🇸🇬' },
+    { code: '+421', country: 'Slovakia', flag: '🇸🇰' },
+    { code: '+386', country: 'Slovenia', flag: '🇸🇮' },
+    { code: '+252', country: 'Somalia', flag: '🇸🇴' },
+    { code: '+27', country: 'South Africa', flag: '🇿🇦' },
+    { code: '+82', country: 'South Korea', flag: '🇰🇷' },
+    { code: '+211', country: 'South Sudan', flag: '🇸🇸' },
+    { code: '+34', country: 'Spain', flag: '🇪🇸' },
+    { code: '+94', country: 'Sri Lanka', flag: '🇱🇰' },
+    { code: '+249', country: 'Sudan', flag: '🇸🇩' },
+    { code: '+597', country: 'Suriname', flag: '🇸🇷' },
+    { code: '+268', country: 'Eswatini', flag: '🇸🇿' },
+    { code: '+46', country: 'Sweden', flag: '🇸🇪' },
+    { code: '+41', country: 'Switzerland', flag: '🇨🇭' },
+    { code: '+963', country: 'Syria', flag: '🇸🇾' },
+    { code: '+886', country: 'Taiwan', flag: '🇹🇼' },
+    { code: '+992', country: 'Tajikistan', flag: '🇹🇯' },
+    { code: '+255', country: 'Tanzania', flag: '🇹🇿' },
+    { code: '+66', country: 'Thailand', flag: '🇹🇭' },
+    { code: '+228', country: 'Togo', flag: '🇹🇬' },
+    { code: '+216', country: 'Tunisia', flag: '🇹🇳' },
+    { code: '+90', country: 'Turkey', flag: '🇹🇷' },
+    { code: '+993', country: 'Turkmenistan', flag: '🇹🇲' },
+    { code: '+256', country: 'Uganda', flag: '🇺🇬' },
+    { code: '+380', country: 'Ukraine', flag: '🇺🇦' },
+    { code: '+971', country: 'UAE', flag: '🇦🇪' },
+    { code: '+44', country: 'United Kingdom', flag: '🇬🇧' },
+    { code: '+1', country: 'United States', flag: '🇺🇸' },
+    { code: '+598', country: 'Uruguay', flag: '🇺🇾' },
+    { code: '+998', country: 'Uzbekistan', flag: '🇺🇿' },
+    { code: '+678', country: 'Vanuatu', flag: '🇻🇺' },
+    { code: '+58', country: 'Venezuela', flag: '🇻🇪' },
+    { code: '+84', country: 'Vietnam', flag: '🇻🇳' },
+    { code: '+967', country: 'Yemen', flag: '🇾🇪' },
+    { code: '+260', country: 'Zambia', flag: '🇿🇲' },
+    { code: '+263', country: 'Zimbabwe', flag: '🇿🇼' },
+  ];
+
+  const handleCourseSelect = (value: string) => {
+    setFormData({ ...formData, course: value });
+    setIsDropdownOpen(false);
+  };
+
+  const handleCountryCodeSelect = (code: string) => {
+    setCountryCode(code);
+    setIsCountryDropdownOpen(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,58 +293,131 @@ export function Contact() {
     // Start loading animation
     setIsSubmitting(true);
     
-    // Simulate API call (replace with your actual API call)
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-    
-    // Stop loading and show success modal
-    setIsSubmitting(false);
-    setShowSuccessModal(true);
-    
-    // Reset form
-    setFormData({
-      fullName: '',
-      phone: '',
-      email: '',
-      course: '',
-      message: ''
-    });
-    
-    // Auto-close modal after 5 seconds
-    setTimeout(() => {
-      setShowSuccessModal(false);
-    }, 5000);
+    try {
+      // Call the email API
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.fullName,
+          email: formData.email,
+          phone: `${countryCode} ${formData.phone}`,
+          interestedIn: formData.course ? courseOptions.find(opt => opt.value === formData.course)?.label : '',
+          message: formData.message
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        // Clear localStorage first
+        localStorage.removeItem('contactFormData');
+        
+        // Clear form immediately
+        const emptyForm = {
+          fullName: '',
+          phone: '',
+          email: '',
+          course: '',
+          message: ''
+        };
+        setFormData(emptyForm);
+        setAcceptedTerms(false);
+        
+        // Show success modal
+        setShowSuccessModal(true);
+        
+        // Clear browser's POST history to prevent resubmission on refresh
+        if (typeof window !== 'undefined') {
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        // Auto-close modal after 5 seconds
+        setTimeout(() => {
+          setShowSuccessModal(false);
+        }, 5000);
+      } else {
+        // Handle error silently - just log it
+        console.error('Failed to send email:', result.error);
+        // Don't show alert - user might be refreshing
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Don't show alert - user might be refreshing
+    } finally {
+      // Stop loading
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    
+    // Validate full name - only alphabets and spaces
+    if (name === 'fullName') {
+      const alphabetsOnly = value.replace(/[^a-zA-Z\s]/g, '');
+      setFormData({
+        ...formData,
+        [name]: alphabetsOnly
+      });
+    } else if (name === 'phone') {
+      // Only allow numbers
+      const numbersOnly = value.replace(/[^0-9]/g, '');
+      setFormData({
+        ...formData,
+        [name]: numbersOnly
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-16 lg:py-24 bg-gradient-to-br from-gray-50 to-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12">
-          <div className="inline-flex items-center bg-white rounded-full px-4 py-2 shadow-sm mb-4">
-            <MapPin className="w-4 h-4 text-[#1D4ED8] mr-2" />
-            <span className="text-xs sm:text-sm font-semibold text-gray-700">Get In Touch</span>
+    <section id="contact" className="py-12 sm:py-16 bg-white relative overflow-hidden">
+      {/* Ultra-Premium Background Pattern - Compact */}
+      <div className="absolute inset-0 bg-white">
+       {/* <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwIDE1djEwTTE1IDIwaDEwIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4yIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBmaWxsPSJub25lIi8+PC9zdmc+')]"></div> */}
+        <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[200px] w-[200px] rounded-full bg-[#1D4ED8] opacity-20 blur-[80px]"></div>
+        <div className="absolute right-0 top-0 -z-10 h-[200px] w-[200px] rounded-full bg-[#E63946] opacity-10 blur-[80px]"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header - Compact */}
+        <div className="text-center mb-10 max-w-4xl mx-auto">
+          {/* Elite Label - New Design */}
+          <div className="inline-flex items-center justify-center mb-6">
+            <div className="relative group cursor-default">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-red-600 rounded-full blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
+              <div className="relative flex items-center gap-2 px-4 py-1.5 bg-white rounded-full border border-gray-100 shadow-sm">
+                <MapPin className="w-3.5 h-3.5 text-blue-600" />
+                <span className="text-[11px] font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-red-600 uppercase">Get In Touch</span>
+              </div>
+            </div>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
-            Visit Our Center
+
+          {/* Ultra-Premium Main Heading - Compact Size */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight leading-tight">
+            Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] via-[#1D4ED8] to-[#E63946] animate-gradient-x bg-[length:200%_auto]">Learning Journey</span>
+            <span className="block sm:inline sm:ml-2 text-slate-800">With Sparkle</span>
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4">
-            Come visit us for a free consultation and see why we&apos;re the #1 choice for test prep
+          
+          {/* Sophisticated Subtitle - Compact */}
+          <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
+            Experience world-class guidance. Visit us for a <span className="font-bold text-slate-900">free consultation</span> and see why we are the <span className="inline-block border-b-2 border-[#E63946] text-[#E63946] font-bold">#1 choice</span>.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Contact Form */}
-          <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 order-2 lg:order-1">
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 sm:p-8 order-2 lg:order-1 relative overflow-hidden">
+            {/* Subtle top accent */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-red-500"></div>
+            
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
               Send Us a Message
             </h3>
@@ -124,24 +436,76 @@ export function Contact() {
                     placeholder="John Doe"
                     required
                     suppressHydrationWarning
-                    className="w-full px-4 py-3 sm:py-3.5 border-2 border-gray-200 rounded-lg focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/20 outline-none transition-all text-base text-gray-900 placeholder:text-gray-500"
+                    className="w-full px-4 py-3 sm:py-3.5 border-2 border-gray-200 rounded-lg focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/20 outline-none transition-all text-base text-gray-900 placeholder:text-gray-400 bg-gray-50/50 focus:bg-white"
                   />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                     Phone Number
                   </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="+1 (234) 567-890"
-                    required
-                    suppressHydrationWarning
-                    className="w-full px-4 py-3 sm:py-3.5 border-2 border-gray-200 rounded-lg focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/20 outline-none transition-all text-base text-gray-900 placeholder:text-gray-500"
-                  />
+                  <div className="relative">
+                    {/* Country Code Dropdown Button - Inside Input */}
+                    <button
+                      type="button"
+                      onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 h-[calc(100%-4px)] px-4 flex items-center gap-2 border-r-2 border-gray-200 bg-gray-50/50 hover:bg-gray-100 rounded-l-lg transition-colors z-10"
+                    >
+                      <span className="text-base font-semibold text-gray-900">{countryCode}</span>
+                      <svg 
+                        className={`w-4 h-4 text-gray-500 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    {isCountryDropdownOpen && (
+                      <>
+                        <div 
+                          className="fixed inset-0 z-40 bg-transparent"
+                          onClick={() => setIsCountryDropdownOpen(false)}
+                        ></div>
+                        
+                        <div className="absolute z-50 left-0 top-full w-64 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl max-h-60 overflow-y-auto">
+                          <ul className="py-2">
+                            {countryCodes.map((item, index) => (
+                              <li key={`${item.code}-${item.country}-${index}`} id={`country-item-${item.code}`}>
+                                <button
+                                  type="button"
+                                  onClick={() => handleCountryCodeSelect(item.code)}
+                                  className={`w-full px-4 py-3 text-left flex items-center gap-3 hover:bg-gray-50 transition-colors ${
+                                    countryCode === item.code ? 'bg-blue-50 text-[#1D4ED8] font-semibold' : 'text-gray-700'
+                                  }`}
+                                >
+                                  <span className="text-2xl">{item.flag}</span>
+                                  <span className="font-semibold text-base">{item.code}</span>
+                                  <span className="text-sm text-gray-500">{item.country}</span>
+                                </button>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </>
+                    )}
+
+                    {/* Phone Number Input */}
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="1234567890"
+                      required
+                      maxLength={15}
+                      suppressHydrationWarning
+                      style={{ paddingLeft: '110px' }}
+                      className="w-full px-4 py-3 sm:py-3.5 border-2 border-gray-200 rounded-lg focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/20 outline-none transition-all text-base text-gray-900 placeholder:text-gray-400 bg-gray-50/50 focus:bg-white"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -165,37 +529,64 @@ export function Contact() {
                   Interested In
                 </label>
                 <div className="relative group">
-                  <select
-                    id="course"
-                    name="course"
-                    value={formData.course}
-                    onChange={handleChange}
-                    required
-                    suppressHydrationWarning
-                    className="w-full px-4 py-3 sm:py-3.5 pr-12 border-2 border-gray-200 rounded-lg focus:border-transparent focus:ring-2 focus:ring-[#1D4ED8] outline-none transition-all duration-300 text-base bg-white text-gray-900 appearance-none cursor-pointer hover:border-gray-300 hover:shadow-md font-medium"
+                  <button
+                    type="button"
+                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                    className={`w-full px-4 py-3 sm:py-3.5 border-2 rounded-lg text-left flex items-center justify-between outline-none transition-all duration-300 ${
+                      isDropdownOpen 
+                        ? 'border-[#1D4ED8] ring-2 ring-[#1D4ED8]/20 bg-white' 
+                        : 'border-gray-200 bg-gray-50/50 hover:bg-white hover:border-gray-300'
+                    }`}
                   >
-                    <option value="" disabled className="text-gray-400">Select a course</option>
-                    <option value="ielts" className="text-gray-900 py-2">IELTS</option>
-                    <option value="toefl" className="text-gray-900 py-2">TOEFL</option>
-                    <option value="pte" className="text-gray-900 py-2">PTE</option>
-                    <option value="gre" className="text-gray-900 py-2">GRE</option>
-                    <option value="gmat" className="text-gray-900 py-2">GMAT</option>
-                    <option value="study-abroad" className="text-gray-900 py-2">Study Abroad Counseling</option>
-                    <option value="language" className="text-gray-900 py-2">Language Training</option>
-                  </select>
-                  {/* Custom Dropdown Arrow */}
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none transition-transform duration-300 group-focus-within:rotate-180">
+                    <span className={`text-base font-medium ${formData.course ? 'text-gray-900' : 'text-gray-400'}`}>
+                      {formData.course 
+                        ? courseOptions.find(opt => opt.value === formData.course)?.label 
+                        : 'Select a course'}
+                    </span>
                     <svg 
-                      className="w-5 h-5 text-gray-600 group-hover:text-[#1D4ED8] transition-colors" 
+                      className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180 text-[#1D4ED8]' : ''}`} 
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path>
                     </svg>
-                  </div>
-                  {/* Gradient Border Effect on Focus */}
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#E63946] to-[#1D4ED8] opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {isDropdownOpen && (
+                    <>
+                      {/* Backdrop for mobile to close when clicking outside */}
+                      <div 
+                        className="fixed inset-0 z-40 bg-transparent"
+                        onClick={() => setIsDropdownOpen(false)}
+                      ></div>
+                      
+                      {/* Menu List */}
+                      <div className="absolute z-50 w-full mt-2 bg-white border border-gray-100 rounded-xl shadow-xl max-h-60 sm:max-h-72 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200">
+                        <ul className="py-2">
+                          {courseOptions.map((option) => (
+                            <li key={option.value}>
+                              <button
+                                type="button"
+                                onClick={() => handleCourseSelect(option.value)}
+                                className={`w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 transition-colors ${
+                                  formData.course === option.value ? 'bg-blue-50 text-[#1D4ED8] font-semibold' : 'text-gray-700 font-medium'
+                                }`}
+                              >
+                                <span>{option.label}</span>
+                                {formData.course === option.value && (
+                                  <svg className="w-5 h-5 text-[#1D4ED8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                                  </svg>
+                                )}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
               <div>
@@ -276,39 +667,38 @@ export function Contact() {
 
           {/* Contact Info & Map */}
           <div className="space-y-4 sm:space-y-6 order-1 lg:order-2">
-            {/* Contact Info Cards - Compact 2x2 Grid */}
-            <div className="grid grid-cols-2 gap-3">
+            {/* Contact Info Cards - Compact 1x1 on Mobile, 2x2 on Tablet+ */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {/* Visit Us */}
               <a 
                 href="https://www.google.com/maps/search/Sparkle+Knowledge+Yard,+Perambur,+Chennai/@13.1146754,80.2329381,17z"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative bg-gradient-to-br from-blue-50 via-white to-blue-50/30 backdrop-blur-sm p-3.5 rounded-2xl border border-blue-200/60 hover:border-blue-400 hover:scale-[1.02] shadow-sm hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300 overflow-hidden flex flex-col"
+                className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-blue-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]"
               >
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                <div className="relative flex flex-col h-full">
-                  {/* Icon with glow effect */}
-                  <div className="relative w-8 h-8 mb-2.5 flex-shrink-0">
-                    <div className="absolute inset-0 bg-blue-500/30 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
+                <div className="relative flex flex-col h-full justify-between">
+                  {/* Icon and Title - Horizontal Layout */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="relative w-8 h-8 flex-shrink-0">
+                      <div className="absolute inset-0 bg-blue-500/30 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <h4 className="font-bold text-gray-900 text-sm group-hover:text-blue-600 transition-colors">Visit Us</h4>
                     </div>
                   </div>
                   
                   {/* Content */}
-                  <div className="flex-1">
-                    <div className="flex items-center gap-1.5 mb-1">
-                      <h4 className="font-bold text-gray-900 text-sm group-hover:text-blue-600 transition-colors">Visit Us</h4>
-                      <svg className="w-3 h-3 text-blue-500 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </div>
-                    <p className="text-gray-700 text-xs leading-snug font-medium">
+                  <div className="flex-1 flex items-center">
+                    <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-900 text-[13px] leading-relaxed font-semibold">
                       2nd Floor, 331, Paper Mills Road, Bunder Garden, Perambur, Chennai 600011
                     </p>
                   </div>
@@ -316,65 +706,69 @@ export function Contact() {
               </a>
 
               {/* Call Us */}
-              <div className="group relative bg-gradient-to-br from-red-50 via-white to-red-50/30 backdrop-blur-sm p-3.5 rounded-2xl border border-red-200/60 hover:border-red-400 hover:scale-[1.02] shadow-sm hover:shadow-xl hover:shadow-red-500/25 transition-all duration-300 overflow-hidden flex flex-col">
+              <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-red-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                <div className="relative flex flex-col h-full">
-                  {/* Icon with glow effect */}
-                  <div className="relative w-8 h-8 mb-2.5 flex-shrink-0">
-                    <div className="absolute inset-0 bg-red-500/30 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative w-full h-full bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-500/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                      </svg>
+                <div className="relative flex flex-col h-full justify-between">
+                  {/* Icon and Title - Horizontal Layout */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="relative w-8 h-8 flex-shrink-0">
+                      <div className="absolute inset-0 bg-red-500/30 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative w-full h-full bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-md shadow-red-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                      </div>
                     </div>
+                    <h4 className="font-bold text-gray-900 text-sm group-hover:text-red-600 transition-colors">Call Us</h4>
                   </div>
                   
                   {/* Content */}
-                  <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 text-sm mb-1 group-hover:text-red-600 transition-colors">Call Us</h4>
+                  <div className="flex-1 flex flex-col justify-center">
                     <a 
                       href="tel:+919710043295" 
                       onClick={(e) => {
                         e.stopPropagation();
                         window.location.href = 'tel:+919710043295';
                       }}
-                      className="text-gray-900 text-[15px] font-bold hover:text-red-600 hover:underline transition-all block mb-1 cursor-pointer"
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 text-[15px] font-bold hover:from-red-700 hover:to-red-900 transition-all block mb-1.5 cursor-pointer"
                     >
                       +91 97100 43295
                     </a>
-                    <p className="text-gray-600 text-xs font-medium leading-snug">Monday to Saturday<br />9:00 AM - 8:00 PM</p>
+                    <p className="text-gray-700 text-[11px] font-semibold leading-relaxed">Monday to Saturday<br />9:00 AM - 8:00 PM</p>
                   </div>
                 </div>
               </div>
 
               {/* Email Us */}
-              <div className="group relative bg-gradient-to-br from-emerald-50 via-white to-emerald-50/30 backdrop-blur-sm p-3.5 rounded-2xl border border-emerald-200/60 hover:border-emerald-400 hover:scale-[1.02] shadow-sm hover:shadow-xl hover:shadow-emerald-500/25 transition-all duration-300 overflow-hidden flex flex-col">
+              <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-orange-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
                 {/* Animated gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                <div className="relative flex flex-col h-full">
-                  {/* Icon with glow effect */}
-                  <div className="relative w-8 h-8 mb-2.5 flex-shrink-0">
-                    <div className="absolute inset-0 bg-emerald-500/30 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative w-full h-full bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
+                <div className="relative flex flex-col h-full justify-between">
+                  {/* Icon and Title - Horizontal Layout */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="relative w-8 h-8 flex-shrink-0">
+                      <div className="absolute inset-0 bg-orange-500/30 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative w-full h-full bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-md shadow-orange-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                      </div>
                     </div>
+                    <h4 className="font-bold text-gray-900 text-sm group-hover:text-orange-600 transition-colors">Email Us</h4>
                   </div>
                   
                   {/* Content */}
-                  <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 text-sm mb-1 group-hover:text-emerald-600 transition-colors">Email Us</h4>
+                  <div className="flex-1 flex flex-col justify-center space-y-3">
                     <a 
                       href="mailto:info@sparkleacademy.com"
                       onClick={(e) => {
                         e.stopPropagation();
                         window.location.href = 'mailto:info@sparkleacademy.com';
                       }}
-                      className="text-gray-700 text-xs hover:text-emerald-600 hover:underline transition-all block truncate mb-0.5 font-medium cursor-pointer"
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-800 text-[13px] hover:from-orange-700 hover:to-orange-900 transition-all block truncate font-bold cursor-pointer"
                     >
                       info@sparkleacademy.com
                     </a>
@@ -384,7 +778,7 @@ export function Contact() {
                         e.stopPropagation();
                         window.location.href = 'mailto:support@sparkleacademy.com';
                       }}
-                      className="text-gray-700 text-xs hover:text-emerald-600 hover:underline transition-all block truncate font-medium cursor-pointer"
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-800 text-[13px] hover:from-orange-700 hover:to-orange-900 transition-all block truncate font-bold cursor-pointer"
                     >
                       support@sparkleacademy.com
                     </a>
@@ -393,38 +787,40 @@ export function Contact() {
               </div>
 
               {/* Working Hours */}
-              <div className="group relative bg-gradient-to-br from-purple-50 via-white to-purple-50/30 backdrop-blur-sm p-3.5 rounded-2xl border border-purple-200/60 hover:border-purple-400 hover:scale-[1.02] shadow-sm hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 overflow-hidden flex flex-col">
+              <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-purple-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
-                <div className="relative flex flex-col h-full">
-                  {/* Icon with glow effect */}
-                  <div className="relative w-8 h-8 mb-2.5 flex-shrink-0">
-                    <div className="absolute inset-0 bg-purple-500/30 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <div className="relative w-full h-full bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/30 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                <div className="relative flex flex-col h-full justify-between">
+                  {/* Icon and Title - Horizontal Layout */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="relative w-8 h-8 flex-shrink-0">
+                      <div className="absolute inset-0 bg-purple-500/30 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative w-full h-full bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-md shadow-purple-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
                     </div>
+                    <h4 className="font-bold text-gray-900 text-sm group-hover:text-purple-600 transition-colors">Working Hours</h4>
                   </div>
                   
                   {/* Content */}
-                  <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 text-sm mb-1.5 group-hover:text-purple-600 transition-colors">Working Hours</h4>
-                    <div className="space-y-1.5">
+                  <div className="flex-1 flex flex-col justify-center">
+                    <div className="space-y-2">
                       <div>
                         <div className="flex items-center gap-1.5 mb-0.5">
-                          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full"></div>
-                          <span className="text-gray-700 text-xs font-medium">Monday to Friday</span>
+                          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full animate-pulse"></div>
+                          <span className="text-gray-600 text-[11px] font-semibold">Monday to Friday</span>
                         </div>
-                        <p className="text-gray-900 text-xs font-bold pl-3">9:00 AM - 8:00 PM</p>
+                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-purple-900 text-[13px] font-bold pl-3">9:00 AM - 8:00 PM</p>
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5 mb-0.5">
-                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
-                          <span className="text-gray-700 text-xs font-medium">Saturday to Sunday</span>
+                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse"></div>
+                          <span className="text-gray-600 text-[11px] font-semibold">Saturday to Sunday</span>
                         </div>
-                        <p className="text-gray-900 text-xs font-bold pl-3">10:00 AM - 6:00 PM</p>
+                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-purple-900 text-[13px] font-bold pl-3">10:00 AM - 6:00 PM</p>
                       </div>
                     </div>
                   </div>
@@ -437,7 +833,7 @@ export function Contact() {
               href="https://www.google.com/maps/search/Sparkle+Knowledge+Yard,+Perambur,+Chennai/@13.1146754,80.2329381,17z"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block bg-white rounded-2xl shadow-lg overflow-hidden h-56 sm:h-64 lg:h-72 cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+              className="group relative block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden h-56 sm:h-64 lg:h-72 cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
             >
               <iframe
                 src="https://maps.google.com/maps?q=Sparkle%20Knowledge%20Yard,%20331,%20Paper%20Mills%20Road,%20Bunder%20Garden,%20Perambur,%20Chennai&t=&z=17&ie=UTF8&iwloc=&output=embed"
@@ -606,6 +1002,19 @@ export function Contact() {
             opacity: 1;
             transform: translateY(0);
           }
+        }
+        
+        @keyframes gradient-x {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+        
+        .animate-gradient-x {
+          animation: gradient-x 3s ease infinite;
         }
         
         @keyframes fly {

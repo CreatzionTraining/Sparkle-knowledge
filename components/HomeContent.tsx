@@ -4,6 +4,7 @@ import { Certificates } from './Certificates';
 import { Courses } from './Courses';
 import { Footer } from './Footer';
 import { Contact } from './Contact';
+import NewsTicker from './NewsTicker';
 
 export default function HomeContent() {
   return (
@@ -194,6 +195,8 @@ export default function HomeContent() {
       <Certificates />
       {/* Contact Section */}
       <Contact />
+      {/* News Section */}
+      <NewsTicker />
       {/* Footer */}
       <Footer />
     </div>
