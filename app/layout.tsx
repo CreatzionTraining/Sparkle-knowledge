@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NewsTicker from "@/components/NewsTicker";
 
+import CookieConsent from "@/components/CookieConsent";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,6 +32,7 @@ export default function RootLayout({
       >
         <NewsTicker />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
