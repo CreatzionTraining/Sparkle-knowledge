@@ -9,6 +9,7 @@ import { Contact } from './Contact';
 import { Testimonials } from './Testimonials';
 
 import { useState, useEffect } from 'react';
+import NewsTicker from './NewsTicker';
 
 
 export default function HomeContent() {
@@ -284,6 +285,9 @@ export default function HomeContent() {
       {/* Contact Section */}
       <div>
         < Contact />
+      </div>
+      <div>
+        < NewsTicker />
       </div>
 
       {/* Footer */}
