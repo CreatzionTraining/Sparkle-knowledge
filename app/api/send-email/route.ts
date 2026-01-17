@@ -48,12 +48,20 @@ export async function POST(request: NextRequest) {
     // Function to save to Google Sheets in background (non-blocking)
     const saveToGoogleSheets = async () => {
       try {
-        const privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n');
-        console.log('🔍 Private Key Debug:');
-        console.log('- Has value:', !!process.env.GOOGLE_SHEETS_PRIVATE_KEY);
-        console.log('- First 50 chars:', process.env.GOOGLE_SHEETS_PRIVATE_KEY?.substring(0, 50));
-        console.log('- Contains \\n:', process.env.GOOGLE_SHEETS_PRIVATE_KEY?.includes('\\n'));
-        console.log('- After replace first 50:', privateKey?.substring(0, 50));
+        // Handle private key - works for both local and Vercel
+        let privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY || '';
+        
+        // Replace literal \n with actual newlines
+        if (privateKey.includes('\\n')) {
+          privateKey = privateKey.replace(/\\n/g, '\n');
+        }
+        
+        console.log('🔍 Google Sheets Debug:');
+        console.log('- Private Key exists:', !!process.env.GOOGLE_SHEETS_PRIVATE_KEY);
+        console.log('- Client Email:', process.env.GOOGLE_SHEETS_CLIENT_EMAIL);
+        console.log('- Sheet ID:', process.env.GOOGLE_SHEET_ID);
+        console.log('- Private Key starts with:', privateKey.substring(0, 30));
+        console.log('- Private Key ends with:', privateKey.substring(privateKey.length - 30));
         
         const auth = new google.auth.GoogleAuth({
           credentials: {
