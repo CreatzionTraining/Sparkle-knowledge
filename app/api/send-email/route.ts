@@ -48,10 +48,17 @@ export async function POST(request: NextRequest) {
     // Function to save to Google Sheets in background (non-blocking)
     const saveToGoogleSheets = async () => {
       try {
+        const privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n');
+        console.log('🔍 Private Key Debug:');
+        console.log('- Has value:', !!process.env.GOOGLE_SHEETS_PRIVATE_KEY);
+        console.log('- First 50 chars:', process.env.GOOGLE_SHEETS_PRIVATE_KEY?.substring(0, 50));
+        console.log('- Contains \\n:', process.env.GOOGLE_SHEETS_PRIVATE_KEY?.includes('\\n'));
+        console.log('- After replace first 50:', privateKey?.substring(0, 50));
+        
         const auth = new google.auth.GoogleAuth({
           credentials: {
             client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-            private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+            private_key: privateKey,
           },
           scopes: ['https://www.googleapis.com/auth/spreadsheets'],
         });
@@ -103,9 +110,11 @@ export async function POST(request: NextRequest) {
                       <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                           <!-- Logo Box on Left -->
-                          <td style="width: 110px; vertical-align: middle;">
-                            <div style="background-color: rgba(255, 255, 255, 0.9); padding: 5px; border-radius: 12px; box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15); display: inline-block;">
-                              <img src="https://ibb.co/F4Pydd8J" alt="Sparkle Academy Logo" style="width: 100px; height: 100px; display: block;" />
+                          <td style="width: 140px; vertical-align: middle;">
+                            <div style="background: linear-gradient(135deg, #E63946 0%, #1D4ED8 100%); padding: 3px; border-radius: 14px; display: inline-block;">
+                              <div style="background-color: #ffffff; padding: 12px; border-radius: 12px;">
+                                <img src="https://raw.githubusercontent.com/CreatzionTraining/Sparkle-knowledge/main/public/sparkle-logo.jpg" alt="Sparkle Academy Logo" style="width: 120px; height: auto; display: block; max-width: 100%;" />
+                              </div>
                             </div>
                           </td>
                           
