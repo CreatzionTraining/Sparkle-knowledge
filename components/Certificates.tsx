@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import { motion, useAnimation, useMotionValue } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Star, Quote, Award } from 'lucide-react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Award, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const certificates = [
     { id: 1, name: 'Priya Sharma', score: 'IELTS Band 8.5', image: 'https://randomuser.me/api/portraits/women/63.jpg' },
@@ -16,100 +16,109 @@ const certificates = [
 ];
 
 export function Certificates() {
-    const [width, setWidth] = useState(0);
-    const carouselRef = useRef<HTMLDivElement>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const cardWidth = 280; // Fixed card width
+    const gap = 24; // Gap between cards (6 * 4 = 24px)
 
-    // We want to show 4 items at a time on large screens
-    const itemsToShow = 4;
-    const itemsCount = certificates.length;
-    // Calculate total sets or just simple index sliding
-
-    // Infinite Scroll Logic:
-    // We duplicate the array to allow seamless scrolling
-    // Actually, distinct pages is cleaner for "cards with arrow button".
-    // Let's implement a sliding window.
-
-    const scrollTo = (index: number) => {
-        // Ensure index is within 0 to (itemsCount - itemsToShow)
-        // If we want infinite-like behavior (wrap around), we handle it here.
-        let newIndex = index;
-
-        if (newIndex < 0) {
-            newIndex = itemsCount - itemsToShow;
-        } else if (newIndex > itemsCount - itemsToShow) {
-            newIndex = 0;
+    const handleNext = () => {
+        if (currentIndex < certificates.length - 4) {
+            setCurrentIndex(prev => prev + 1);
+        } else {
+            setCurrentIndex(0);
         }
-
-        setCurrentIndex(newIndex);
     };
 
-    const nextSlide = () => scrollTo(currentIndex + 1);
-    const prevSlide = () => scrollTo(currentIndex - 1);
+    const handlePrev = () => {
+        if (currentIndex > 0) {
+            setCurrentIndex(prev => prev - 1);
+        } else {
+            setCurrentIndex(certificates.length - 4);
+        }
+    };
+
+    // Calculate exact pixel offset
+    const offset = currentIndex * (cardWidth + gap);
 
     return (
-        <section className="py-24 bg-gradient-to-b from-white to-gray-50/50 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-                <h2 className="text-3xl md:text-5xl font-['Montserrat'] font-bold text-gray-900 mb-6 tracking-tight">
-                    Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Global Achievers</span>
-                </h2>
-                <div className="w-20 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full mb-8"></div>
-                <p className="text-gray-600 font-['Inter'] text-lg max-w-2xl mx-auto leading-relaxed">
-                    Celebrating the exceptional scores and verified milestones of our Sparkle Scholars in IELTS, TOEFL, GRE, and beyond.
-                </p>
-            </div>
-
-            {/* Carousel Container */}
-            <div className="relative max-w-[1400px] mx-auto px-12 flex flex-col items-center justify-center">
-
-                {/* Arrow Buttons Container */}
-                <div className="flex items-center justify-between w-full absolute top-1/2 -translate-y-1/2 z-20 pointer-events-none px-2">
-                    <button
-                        onClick={prevSlide}
-                        className="pointer-events-auto w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-100 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group backdrop-blur-sm bg-opacity-90"
-                        aria-label="Previous"
+        <section className="py-20 bg-gradient-to-b from-white to-blue-50/30">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Header */}
+                <div className="text-center mb-16">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5 }}
+                        className="text-4xl md:text-5xl font-black mb-4 text-gray-900 tracking-tight"
                     >
-                        <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" strokeWidth={2} />
-                    </button>
-
-                    <button
-                        onClick={nextSlide}
-                        className="pointer-events-auto w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-100 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group backdrop-blur-sm bg-opacity-90"
-                        aria-label="Next"
-                    >
-                        <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" strokeWidth={2} />
-                    </button>
-                </div>
-
-                {/* Viewport Mask - Strictly 4 items wide (approx 1250px) */}
-                <div className="w-full overflow-hidden py-10" ref={carouselRef}>
+                        Our{' '}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-500 to-pink-600">Global Achievers</span>
+                    </motion.h2>
                     <motion.div
-                        className="flex gap-8"
-                        initial={false}
-                        animate={{ x: -(currentIndex * 312) }} // card (280) + gap (32) = 312
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        initial={{ opacity: 0, scaleX: 0 }}
+                        whileInView={{ opacity: 1, scaleX: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="w-24 h-1 bg-gradient-to-r from-purple-500 via-blue-600 to-blue-700 mx-auto mb-6"
+                    />
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="text-gray-600 font-['Inter'] text-lg max-w-2xl mx-auto leading-relaxed"
                     >
-                        {certificates.map((cert) => (
-                            <motion.div
-                                key={cert.id}
-                                className="flex-shrink-0"
-                            >
-                                <CertificateCard cert={cert} />
-                            </motion.div>
-                        ))}
-                    </motion.div>
+                        Celebrating the exceptional scores and verified milestones of our Sparkle Scholars in IELTS, TOEFL, GRE, and beyond.
+                    </motion.p>
                 </div>
 
-                {/* Dots Navigation for Mobile/Extra Control */}
+                {/* Cards Container with Navigation */}
+                <div className="relative max-w-[1216px] mx-auto">
+                    {/* Left Arrow */}
+                    <button
+                        onClick={handlePrev}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-10 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
+                        aria-label="Previous card"
+                    >
+                        <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" strokeWidth={2.5} />
+                    </button>
+
+                    {/* Right Arrow */}
+                    <button
+                        onClick={handleNext}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-10 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
+                        aria-label="Next card"
+                    >
+                        <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" strokeWidth={2.5} />
+                    </button>
+
+                    {/* Carousel Container */}
+                    <div className="overflow-hidden">
+                        <motion.div
+                            className="flex gap-6"
+                            animate={{ x: -offset }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        >
+                            {certificates.map((cert) => (
+                                <div key={cert.id} className="flex-shrink-0" style={{ width: `${cardWidth}px` }}>
+                                    <CertificateCard cert={cert} />
+                                </div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </div>
+
+                {/* Dots Indicator */}
                 <div className="flex justify-center gap-2 mt-8">
-                    {Array.from({ length: certificates.length - (itemsToShow - 1) }).map((_, idx) => (
-                        // Only show dots for valid start positions if we want, or just verify logic
-                        // Simplified: just show a few dots or none. Let's show active indicator.
+                    {Array.from({ length: 5 }).map((_, idx) => (
                         <button
                             key={idx}
                             onClick={() => setCurrentIndex(idx)}
-                            className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'w-6 bg-blue-600' : 'bg-gray-300 hover:bg-gray-400'}`}
-                            aria-label={`Go to slide ${idx + 1}`}
+                            className={`transition-all duration-300 rounded-full ${idx === currentIndex
+                                ? 'w-8 h-2 bg-gradient-to-r from-blue-600 to-pink-500'
+                                : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                                }`}
+                            aria-label={`Go to position ${idx + 1}`}
                         />
                     ))}
                 </div>
@@ -140,7 +149,7 @@ function CertificateCard({ cert }: { cert: any }) {
 
     return (
         <div
-            className="relative w-[280px] h-[340px] cursor-pointer"
+            className="relative w-full h-[373px] cursor-pointer"
             style={{ perspective: '1000px' }}
             onClick={() => setIsFlipped(!isFlipped)}
         >
@@ -152,87 +161,89 @@ function CertificateCard({ cert }: { cert: any }) {
             >
                 {/* FRONT SIDE */}
                 <div
-                    className="absolute w-full h-full rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 bg-white flex flex-col"
+                    className="absolute w-full h-full rounded-2xl overflow-hidden shadow-lg bg-white flex flex-col"
                     style={{ backfaceVisibility: 'hidden' }}
                 >
-                    {/* Top Area with Gradient Background */}
-                    <div className="relative w-full h-[60%] bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
-                        {/* Decorative Elements */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-200/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-purple-200/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
+                    {/* Top Gradient Bar */}
+                    <div className="h-1.5 bg-gradient-to-r from-blue-600 to-pink-500" />
 
-                        {/* Centered Name Highlight */}
-                        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center z-10">
-                            <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4 opacity-80"></div>
-                            <h3 className="text-2xl md:text-3xl font-black font-['Outfit'] text-gray-900 leading-tight">
+                    {/* Content Area */}
+                    <div className="flex-1 flex flex-col items-center justify-center p-6 relative">
+                        {/* ID Badge */}
+                        <div className="absolute top-4 left-4">
+                            <div className="px-3 py-1 bg-blue-50 rounded-full border border-blue-100">
+                                <span className="text-[10px] font-mono font-bold text-blue-600">#{7231 + cert.id}</span>
+                            </div>
+                        </div>
+
+                        {/* Score Badge */}
+                        <div className="absolute top-4 right-4">
+                            <div className="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-pink-500 rounded-xl shadow-md flex flex-col items-center">
+                                <span className="text-[9px] font-bold uppercase tracking-wider text-white/80">Score</span>
+                                <span className="text-sm font-black text-white">
+                                    {cert.score.replace(/[^0-9.]/g, '')}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Name Section */}
+                        <div className="text-center mt-8">
+                            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-pink-500 rounded-full mx-auto mb-4" />
+                            <h3 className="text-xl font-['Outfit'] font-bold text-gray-900 mb-2">
                                 {cert.name}
                             </h3>
-                            <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mt-2">Sparkle Scholar</p>
+                            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Sparkle Scholar</p>
                         </div>
-                    </div>
 
-                    {/* Score Badge */}
-                    <div className="absolute top-4 right-4 z-20">
-                        <div className="px-3 py-1.5 bg-white/80 backdrop-blur-md rounded-xl shadow-sm border border-white/50 flex flex-col items-center">
-                            <span className="text-[9px] font-bold uppercase tracking-wider text-gray-400">Score</span>
-                            <span className="text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                                {cert.score.replace(/[^0-9.]/g, '')}
-                            </span>
-                        </div>
-                    </div>
-
-                    {/* ID Badge */}
-                    <div className="absolute top-4 left-4 z-20">
-                        <div className="px-2.5 py-1 bg-white/80 backdrop-blur-md rounded-full border border-gray-100">
-                            <span className="text-[9px] font-mono font-bold text-gray-400">#{7231 + cert.id}</span>
-                        </div>
-                    </div>
-
-                    {/* Bottom Info Area */}
-                    <div className="relative h-[40%] bg-white z-10 flex flex-col justify-center px-6 border-t border-gray-50">
-                        <div className="flex flex-col items-center">
-                            <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest mb-2">
+                        {/* Score Display */}
+                        <div className="mt-6">
+                            <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider">
                                 Certified
                             </span>
-                            <p className="text-lg font-bold text-gray-700">
+                            <p className="text-lg font-bold text-gray-700 mt-3 text-center">
                                 {cert.score}
                             </p>
-                            <p className="text-xs text-gray-400 mt-2">Click to see details</p>
                         </div>
+
+                        {/* Click hint */}
+                        <p className="text-xs text-gray-400 mt-4 absolute bottom-4">Click to see details</p>
                     </div>
                 </div>
 
                 {/* BACK SIDE */}
                 <div
-                    className="absolute w-full h-full rounded-[2rem] overflow-hidden shadow-lg border border-gray-100 bg-gradient-to-br from-blue-600 to-indigo-600 flex flex-col p-6"
+                    className="absolute w-full h-full rounded-2xl overflow-hidden shadow-lg bg-white border border-gray-100 flex flex-col p-6"
                     style={{ backfaceVisibility: 'hidden', transform: 'rotateX(180deg)' }}
                 >
+                    {/* Top Gradient Bar */}
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-purple-500 via-blue-600 to-blue-700" />
+
                     {/* Header */}
-                    <div className="text-center mb-6">
-                        <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-3">
-                            <Award className="w-6 h-6 text-white" />
+                    <div className="text-center mb-4 mt-2">
+                        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <Award className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-1">{cert.name}</h3>
-                        <p className="text-xs text-white/70 uppercase tracking-wider">Score Breakdown</p>
+                        <h3 className="text-lg font-bold text-gray-900 mb-1">{cert.name}</h3>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Score Breakdown</p>
                     </div>
 
                     {/* Module Scores */}
-                    <div className="flex-1 flex flex-col justify-center space-y-3">
+                    <div className="flex-1 flex flex-col justify-center space-y-2.5">
                         {modules.map((mod, i) => (
-                            <div key={i} className="bg-white/10 backdrop-blur-sm rounded-xl p-3 flex items-center justify-between border border-white/20">
-                                <span className="text-sm font-semibold text-white">{mod.label}</span>
-                                <span className="text-lg font-black text-white">{mod.score}</span>
+                            <div key={i} className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-2.5 flex items-center justify-between border border-blue-100">
+                                <span className="text-xs font-semibold text-gray-700">{mod.label}</span>
+                                <span className="text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">{mod.score}</span>
                             </div>
                         ))}
                     </div>
 
                     {/* Footer */}
-                    <div className="mt-6 text-center">
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30">
-                            <Star className="w-4 h-4 text-yellow-300 fill-yellow-300" />
-                            <span className="text-sm font-bold text-white">{cert.score}</span>
+                    <div className="mt-4 text-center">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full">
+                            <Star className="w-3.5 h-3.5 text-yellow-300 fill-yellow-300" />
+                            <span className="text-xs font-bold text-white">{cert.score}</span>
                         </div>
-                        <p className="text-xs text-white/60 mt-3">Click to flip back</p>
+                        <p className="text-[10px] text-gray-400 mt-2">Click to flip back</p>
                     </div>
                 </div>
             </motion.div>
