@@ -5,10 +5,17 @@ export const metadata: Metadata = {
   description: 'Discover expert insights, tips, and guides on IELTS, PTE, TOEFL, OET, and language learning from Sparkle Knowledge.',
 };
 
+import { Footer } from '@/components/Footer';
+
 export default function BlogLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <Footer />
+    </>
+  );
 }

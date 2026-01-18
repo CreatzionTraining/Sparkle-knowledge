@@ -1,13 +1,38 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { blogPosts } from '@/lib/blogData';
+
+interface BlogPost {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  author: {
+    name: string;
+    verified: boolean;
+    avatar: string;
+  };
+  date: string;
+
+}
 
 export default function Blog() {
+  const [blogData, setBlogData] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    fetch('/api/posts')
+      .then(res => res.json())
+      .then(data => {
+        if(data.success) setBlogData(data.posts);
+      })
+      .catch(err => console.error(err));
+  }, []);
+
   // Show only first 3 posts on homepage
-  const previewPosts = blogPosts.slice(0, 3);
+  const previewPosts = blogData.slice(0, 3);
 
   return (
     <section id="blog" className="relative py-20 px-4 bg-gradient-to-br from-blue-50 via-white to-red-50 overflow-hidden">
@@ -61,10 +86,7 @@ export default function Blog() {
                         <span className="text-sm text-gray-500">{post.date}</span>
                       </div>
 
-                      {/* Views */}
-                      <p className="text-sm text-gray-500">
-                        {post.views}
-                      </p>
+
                     </div>
 
                     {/* Thumbnail Image */}

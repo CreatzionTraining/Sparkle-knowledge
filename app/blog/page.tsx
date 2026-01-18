@@ -1,13 +1,62 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { blogPosts } from '@/lib/blogData';
+
+interface BlogPost {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  category: string;
+  date: string;
+  readTime: string;
+  author: {
+    name: string;
+    verified: boolean;
+    avatar: string;
+  };
+}
 
 export default function BlogPage() {
-  const featuredPost = blogPosts[0];
-  const recentPosts = blogPosts.slice(1);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch('/api/posts');
+        const data = await res.json();
+        if (data.success && Array.isArray(data.posts)) {
+           setPosts(data.posts);
+        }
+      } catch (error) {
+        console.error('Failed to fetch posts', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  const featuredPost = posts[0];
+  const recentPosts = posts.slice(1);
+
+  if (!featuredPost) return (
+     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <p className="text-gray-500">No posts found.</p>
+     </div>
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50">
@@ -43,13 +92,15 @@ export default function BlogPage() {
                 className="group relative bg-white rounded-2xl md:rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer transform hover:-translate-y-2 block"
               >
                 {/* Image */}
-                <div className="relative h-[220px] md:h-[400px] overflow-hidden">
-                  <Image
-                    src={featuredPost.image}
-                    alt={featuredPost.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                <div className="relative h-[220px] md:h-[400px] overflow-hidden bg-gray-200">
+                  {featuredPost.image && (
+                    <Image
+                      src={featuredPost.image}
+                      alt={featuredPost.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   
                   {/* Category Badge */}
@@ -72,13 +123,15 @@ export default function BlogPage() {
                   {/* Author Info */}
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2.5 md:gap-3 min-w-0 flex-1">
-                      <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden ring-2 ring-blue-600 flex-shrink-0">
-                        <Image
-                          src={featuredPost.author.avatar}
-                          alt={featuredPost.author.name}
-                          fill
-                          className="object-cover"
-                        />
+                      <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden ring-2 ring-blue-600 flex-shrink-0 bg-gray-200">
+                        {featuredPost.author.avatar && (
+                          <Image
+                            src={featuredPost.author.avatar}
+                            alt={featuredPost.author.name}
+                            fill
+                            className="object-cover"
+                          />
+                        )}
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-1.5 md:gap-2">
@@ -120,13 +173,15 @@ export default function BlogPage() {
                   className="group bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:-translate-y-1 block"
                 >
                   {/* Image */}
-                  <div className="relative h-36 md:h-48 overflow-hidden">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
+                  <div className="relative h-36 md:h-48 overflow-hidden bg-gray-200">
+                    {post.image && (
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   </div>
 
@@ -138,13 +193,15 @@ export default function BlogPage() {
                     
                     {/* Author Info */}
                     <div className="flex items-center gap-2.5 mt-3">
-                      <div className="relative w-7 h-7 md:w-8 md:h-8 rounded-full overflow-hidden ring-2 ring-blue-600 flex-shrink-0">
-                        <Image
-                          src={post.author.avatar}
-                          alt={post.author.name}
-                          fill
-                          className="object-cover"
-                        />
+                      <div className="relative w-7 h-7 md:w-8 md:h-8 rounded-full overflow-hidden ring-2 ring-blue-600 flex-shrink-0 bg-gray-200">
+                        {post.author.avatar && (
+                          <Image
+                            src={post.author.avatar}
+                            alt={post.author.name}
+                            fill
+                            className="object-cover"
+                          />
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1 flex-nowrap">
@@ -168,5 +225,6 @@ export default function BlogPage() {
         </div>
       </div>
     </div>
+    
   );
 }

@@ -13,7 +13,7 @@ export interface BlogPost {
   date: string;
   readTime: string;
   category: string;
-  views: string;
+
 }
 
 export const blogPosts: BlogPost[] = [
@@ -58,7 +58,7 @@ export const blogPosts: BlogPost[] = [
     date: "Jan 15, 2026",
     readTime: "5 min read",
     category: "IELTS",
-    views: "12.5K Views"
+
   },
   {
     id: 2,
@@ -101,7 +101,7 @@ export const blogPosts: BlogPost[] = [
     date: "Jan 14, 2026",
     readTime: "6 min read",
     category: "PTE",
-    views: "15.8K Views"
+
   },
   {
     id: 3,
@@ -151,7 +151,7 @@ export const blogPosts: BlogPost[] = [
     date: "Jan 13, 2026",
     readTime: "7 min read",
     category: "TOEFL",
-    views: "18.2K Views"
+
   },
   {
     id: 4,
@@ -198,7 +198,7 @@ export const blogPosts: BlogPost[] = [
     date: "Jan 12, 2026",
     readTime: "5 min read",
     category: "OET",
-    views: "11.3K Views"
+
   },
   {
     id: 5,
@@ -242,7 +242,7 @@ export const blogPosts: BlogPost[] = [
     date: "Jan 11, 2026",
     readTime: "8 min read",
     category: "French",
-    views: "9.7K Views"
+
   }
 ];
 
