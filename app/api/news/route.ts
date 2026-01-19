@@ -1,92 +1,93 @@
 import { NextResponse } from "next/server";
+import Parser from "rss-parser";
 
 export const dynamic = "force-dynamic";
 
+const parser = new Parser();
+
 export async function GET() {
   try {
-    const apiKey = process.env.NEWS_API_KEY;
-    if (!apiKey) {
-      console.error("Missing NEWS_API_KEY");
-      return NextResponse.json({ news: [] });
+    // Google News RSS feeds for educational topics
+    const topics = [
+      "IELTS exam",
+      "TOEFL exam", 
+      "GRE exam",
+      "GMAT exam",
+      "study abroad",
+    ];
+
+    const allNews: any[] = [];
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - 40); // Last 40 days
+
+    // Fetch from Google News RSS for each topic
+    for (const topic of topics) {
+      try {
+        const url = `https://news.google.com/rss/search?q=${encodeURIComponent(topic)}&hl=en-US&gl=US&ceid=US:en`;
+        const feed = await parser.parseURL(url);
+        
+        if (feed.items) {
+          allNews.push(...feed.items);
+        }
+      } catch (err) {
+        console.error(`Failed to fetch news for ${topic}:`, err);
+      }
     }
-
-    // --- DATE RANGE (NewsAPI free plan = 30 days) ---
-    const toDate = new Date();
-    const fromDate = new Date();
-    fromDate.setDate(fromDate.getDate() - 30);
-
-    const from = fromDate.toISOString().split("T")[0];
-    const to = toDate.toISOString().split("T")[0];
-
-    // --- QUERY (general, filtering is done later strictly) ---
-    const query =
-      '(IELTS OR OET OR PTE OR TOEFL OR "French language" OR "Japanese language" OR "Spanish language")';
-
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(
-      query
-    )}&language=en&from=${from}&to=${to}&sortBy=publishedAt&pageSize=100&apiKey=${apiKey}`;
-
-    const response = await fetch(url, { cache: "no-store" });
-    const data = await response.json();
-
-    if (data.status !== "ok") {
-      console.error("NewsAPI Error:", data.message);
-      return NextResponse.json({ news: [] });
-    }
-
-    const items = data.articles || [];
 
     // ======================================================
-    // ❌ HARD BLOCK WORDS (PROMO / COACHING / TECH)
+    // ❌ BLOCK ACADEMY/COACHING PROMOTIONAL CONTENT
     // ======================================================
     const BLOCK_WORDS = [
-      // coaching / sales
-      "coaching",
-      "academy",
-      "institute",
-      "classes",
-      "batch",
-      "course",
-      "training",
-      "consultancy",
-      "agent",
-      "agency",
-      "admission",
+      // Academy/Coaching promotions
+      "coaching center",
+      "coaching classes",
+      "coaching institute",
+      "academy classes",
+      "join our",
+      "enroll now",
       "apply now",
-      "register",
-      "enroll",
-      "offer",
+      "register now",
+      "admission open",
+      "limited seats",
+      "book your seat",
+      "free demo",
+      "demo class",
       "discount",
-      "demo",
-      "fee",
-
-      // technical
-      "software",
-      "developer",
-      "coding",
-      "programming",
-      "ai tool",
-      "api",
-      "framework",
+      "offer",
+      "batch starting",
+      
+      // Completely unrelated
+      "cryptocurrency",
+      "bitcoin",
+      "gaming",
+      "esports",
+      "celebrity",
+      "bollywood",
+      "hollywood",
+      "sports score",
+      "cricket",
+      "football match",
     ];
 
     const seen = new Set<string>();
 
-    const cleanNews = items
+    const cleanNews = allNews
       .filter((item: any) => {
-        if (!item?.title || !item?.url) return false;
+        if (!item?.title || !item?.link) return false;
 
         const title = item.title.toLowerCase();
+        const description = (item.contentSnippet || item.content || "").toLowerCase();
+        const fullText = `${title} ${description}`;
 
-        // 1️⃣ DATE FILTER
-        if (item.publishedAt) {
-          const d = new Date(item.publishedAt);
-          if (d < fromDate) return false;
+        // 1️⃣ DATE FILTER (Last 40 days)
+        if (item.pubDate || item.isoDate) {
+          const pubDate = new Date(item.pubDate || item.isoDate);
+          if (pubDate < cutoffDate) return false;
         }
 
-        // 2️⃣ BLOCK PROMO / TECH WORDS
-        const hasBlockedWord = BLOCK_WORDS.some((w) =>
-          title.includes(w)
+        // 2️⃣ BLOCK ACADEMY/COACHING PROMOTIONS
+        const hasBlockedWord = BLOCK_WORDS.some((word) =>
+          fullText.includes(word)
         );
         if (hasBlockedWord) return false;
 
@@ -95,38 +96,56 @@ export async function GET() {
         if (seen.has(key)) return false;
         seen.add(key);
 
+        // 4️⃣ ENGLISH ONLY
+        if (/[^\x00-\x7F]/.test(title) && !/[a-zA-Z]/.test(title)) return false;
+
         return true;
       })
       .map((item: any) => {
-        let description = item.description || "";
-
-        // Clean NewsAPI truncation text
-        if (item.content) {
-          const cleanContent = item.content.replace(/\[\+\d+ chars\]/, "");
-          if (cleanContent && !description.includes(cleanContent)) {
-            description = `${description}\n\n${cleanContent}`.trim();
+        // Extract source from Google News link
+        let source = "News Source";
+        try {
+          const urlObj = new URL(item.link);
+          const sourceParam = urlObj.searchParams.get("source");
+          if (sourceParam) {
+            source = sourceParam;
+          } else {
+            // Try to extract from link
+            const match = item.link.match(/\/articles\/([^\/]+)/);
+            if (match) {
+              source = match[1].split('-').slice(0, 2).join(' ');
+            }
           }
+        } catch (e) {
+          // Keep default source
         }
 
-        if (description.length > 700) {
-          description = description.substring(0, 700) + "...";
+        let description = item.contentSnippet || item.content || "";
+        
+        // Clean up description
+        if (description.length > 400) {
+          description = description.substring(0, 400) + "...";
         }
 
         return {
           title: item.title,
-          link: item.url,
-          pubDate: item.publishedAt || new Date().toISOString(),
-          source: item.source?.name || "Official Source",
-          description: description || "Read the official update.",
-          imageUrl: item.urlToImage || null,
+          link: item.link,
+          pubDate: item.pubDate || item.isoDate || new Date().toISOString(),
+          source: source,
+          description: description || "Read more about this educational update.",
+          imageUrl: null, // Google News RSS doesn't provide images
         };
       })
-      .slice(0, 25);
+      .sort((a, b) => {
+        // Sort by date, newest first
+        return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
+      })
+      .slice(0, 20); // Limit to 20 most recent news items
 
-    console.log(`Returning ${cleanNews.length} OFFICIAL news items`);
+    console.log(`✅ Returning ${cleanNews.length} educational news items from Google News`);
     return NextResponse.json({ news: cleanNews });
   } catch (err) {
-    console.error("OFFICIAL NEWS API ERROR:", err);
+    console.error("GOOGLE NEWS RSS ERROR:", err);
     return NextResponse.json({ news: [] }, { status: 500 });
   }
 }

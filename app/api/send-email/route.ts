@@ -403,17 +403,82 @@ export async function POST(request: NextRequest) {
       console.warn('Auto-reply failed:', error.message);
     }
 
-    // Save to Google Sheets in background (non-blocking - user doesn't wait)
-    // This runs AFTER we return success to the user
-    saveToGoogleSheets().catch(err => {
-      console.error('Background Sheets save failed:', err);
-      // Silently fail - user already got success, email was sent
+    // 3. Save to Google Sheets in BACKGROUND (user doesn't wait)
+    // But with AGGRESSIVE retries to ensure it saves
+    const backgroundSheetsSave = async () => {
+      let sheetsSaved = false;
+      
+      // Aggressive retry: 10 attempts over 5 minutes
+      for (let attempt = 1; attempt <= 10; attempt++) {
+        try {
+          console.log(`📊 Background: Attempting to save to Google Sheets (Attempt ${attempt}/10)...`);
+          await saveToGoogleSheets();
+          sheetsSaved = true;
+          console.log('✅ SUCCESS! Google Sheets updated successfully!');
+          break; // Success - exit retry loop
+        } catch (error: any) {
+          console.error(`❌ Background: Google Sheets save attempt ${attempt} failed:`, error.message);
+          
+          if (attempt < 10) {
+            // Exponential backoff: 5s, 10s, 15s, 20s, 30s, 30s, 30s, 30s, 30s
+            const waitTime = Math.min(attempt * 5000, 30000);
+            console.log(`⏳ Background: Waiting ${waitTime}ms before retry ${attempt + 1}...`);
+            await new Promise(resolve => setTimeout(resolve, waitTime));
+          } else {
+            // Final attempt failed - send alert email to admin
+            console.error('🚨🚨🚨 CRITICAL ALERT 🚨🚨🚨');
+            console.error('Google Sheets update FAILED after 10 attempts!');
+            console.error('Contact Details NOT SAVED:');
+            console.error('- Name:', name);
+            console.error('- Email:', email);
+            console.error('- Phone:', phone || 'Not provided');
+            console.error('- Interested In:', interestedIn || 'Not specified');
+            console.error('- Message:', message);
+            console.error('- Timestamp:', timestamp);
+            console.error('🚨🚨🚨 CHECK GOOGLE SHEETS CREDENTIALS 🚨🚨🚨');
+            
+            // Send alert email to admin with contact details
+            try {
+              await resend.emails.send({
+                from: 'noreply@sparkleknowledgeyard.com',
+                to: ['bhuvankumar13995@gmail.com'],
+                subject: '🚨 URGENT: Google Sheets Save Failed - Manual Entry Required',
+                html: `
+                  <h2 style="color: red;">⚠️ Google Sheets Update Failed</h2>
+                  <p>The following contact form submission could not be saved to Google Sheets after 10 attempts.</p>
+                  <p><strong>Please manually add this to the spreadsheet:</strong></p>
+                  <ul>
+                    <li><strong>Date:</strong> ${date}</li>
+                    <li><strong>Time:</strong> ${time}</li>
+                    <li><strong>Name:</strong> ${name}</li>
+                    <li><strong>Email:</strong> ${email}</li>
+                    <li><strong>Phone:</strong> ${phone || 'Not provided'}</li>
+                    <li><strong>Interested In:</strong> ${interestedIn || 'Not specified'}</li>
+                    <li><strong>Message:</strong> ${message}</li>
+                  </ul>
+                  <p style="color: red;"><strong>Action Required:</strong> Add this entry to Google Sheets manually.</p>
+                `
+              });
+              console.log('📧 Alert email sent to admin with contact details');
+            } catch (emailError) {
+              console.error('Failed to send alert email:', emailError);
+            }
+          }
+        }
+      }
+    };
+
+    // Start background save (non-blocking - user doesn't wait)
+    backgroundSheetsSave().catch(err => {
+      console.error('Background sheets save process failed:', err);
     });
 
+    // Return success to user IMMEDIATELY (fast response)
     return NextResponse.json(
       {
         success: true,
-        message: 'Form submitted successfully',
+        message: 'Form submitted successfully. We will contact you soon!',
+        emailsSent: true
       },
       { status: 200 }
     );

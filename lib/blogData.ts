@@ -96,7 +96,7 @@ export const blogPosts: BlogPost[] = [
     author: {
       name: "Prof. Michael Chen",
       verified: true,
-      avatar: "/hero.png"
+      avatar: ""
     },
     date: "Jan 14, 2026",
     readTime: "6 min read",
@@ -146,7 +146,7 @@ export const blogPosts: BlogPost[] = [
     author: {
       name: "Dr. Emily Rodriguez",
       verified: true,
-      avatar: "/hero.png"
+      avatar: ""
     },
     date: "Jan 13, 2026",
     readTime: "7 min read",
@@ -193,7 +193,7 @@ export const blogPosts: BlogPost[] = [
     author: {
       name: "Dr. Priya Sharma",
       verified: true,
-      avatar: "/hero.png"
+      avatar: ""
     },
     date: "Jan 12, 2026",
     readTime: "5 min read",
@@ -237,7 +237,7 @@ export const blogPosts: BlogPost[] = [
     author: {
       name: "Marie Dubois",
       verified: true,
-      avatar: "/hero.png"
+      avatar: ""
     },
     date: "Jan 11, 2026",
     readTime: "8 min read",

@@ -33,7 +33,9 @@ export default function BlogPostPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/api/posts');
+        const res = await fetch('/api/posts', {
+          next: { revalidate: 60 } // Cache for 60 seconds
+        });
         const data = await res.json();
         
         if (data.success && Array.isArray(data.posts)) {
@@ -88,8 +90,47 @@ export default function BlogPostPage() {
 
   if (loading) {
      return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-red-50 relative overflow-hidden">
+          {/* Animated Background Blobs */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600 rounded-full filter blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-600 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-600 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+          </div>
+
+          {/* Loading Content */}
+          <div className="relative z-10 text-center">
+            {/* Sparkle Logo/Icon */}
+            <div className="mb-8 flex justify-center">
+              <div className="relative">
+                {/* Outer rotating ring */}
+                <div className="w-24 h-24 rounded-full border-4 border-transparent border-t-blue-600 border-r-red-600 animate-spin"></div>
+                {/* Inner pulsing circle */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-600 to-red-600 animate-pulse flex items-center justify-center">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Loading Text */}
+            <h2 className="text-2xl md:text-3xl font-bold mb-3 text-gradient">
+              Loading Article
+            </h2>
+            <p className="text-gray-600 text-sm md:text-base mb-6">
+              Preparing your content...
+            </p>
+
+            {/* Animated Dots */}
+            <div className="flex justify-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-blue-600 animate-bounce"></div>
+              <div className="w-3 h-3 rounded-full bg-purple-600 animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+              <div className="w-3 h-3 rounded-full bg-red-600 animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+            </div>
+          </div>
         </div>
      );
   }
@@ -118,19 +159,21 @@ export default function BlogPostPage() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-600 rounded-full filter blur-3xl"></div>
       </div>
 
-      <div className="relative z-10 py-6 md:py-8 px-4 md:px-4">
+      <div className="relative z-10 py-12 md:py-20 px-4 md:px-4">
         <div className="max-w-7xl mx-auto">
-          {/* Back Button */}
-          <div className="mb-5 md:mb-6">
-            <Link
-              href="/#blog"
-              className="group inline-flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 font-semibold text-sm md:text-base"
-            >
-              <svg className="w-5 h-5 md:w-6 md:h-6 transform group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-              <span>Back to all articles</span>
-            </Link>
+          {/* Header */}
+          <div className="text-center mb-8 md:mb-12">
+            <div className="inline-block mb-4">
+              <span className="px-5 py-2 md:px-6 md:py-2 bg-gradient-to-r from-blue-600 to-red-600 text-white text-xs md:text-sm font-semibold rounded-full shadow-lg">
+                BLOG
+              </span>
+            </div>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 text-gradient px-4">
+              Latest Insights
+            </h1>
+            <p className="text-gray-600 text-sm md:text-lg max-w-2xl mx-auto px-4">
+              Discover stories, tips, and insights from our experts
+            </p>
           </div>
 
           {/* Two Column Layout */}
@@ -159,12 +202,12 @@ export default function BlogPostPage() {
                   {/* Meta Info */}
                   <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8 pb-6 md:pb-8 border-b border-gray-200">
                     {/* Avatar - Letter */}
-                    <div className="relative w-11 h-11 md:w-14 md:h-14 rounded-full ring-2 md:ring-4 ring-blue-600 flex-shrink-0 overflow-hidden">
-                      {post.author.avatar ? (
+                    <div className="relative w-11 h-11 md:w-14 md:h-14 rounded-full ring-2 md:ring-4 ring-blue-200 flex-shrink-0 overflow-hidden">
+                      {post.author.avatar && post.author.avatar.trim() !== '' && post.author.avatar !== '/hero.png' ? (
                         <Image src={post.author.avatar} alt={post.author.name} fill className="object-cover" />
                       ) : (
-                        <div className={`w-full h-full rounded-full bg-gradient-to-br ${getAvatarColor(getInitial(post.author.name))} flex items-center justify-center`}>
-                          <span className="font-extrabold text-white text-lg md:text-2xl">
+                        <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                          <span className="font-extrabold text-blue-700 text-lg md:text-2xl">
                             {getInitial(post.author.name)}
                           </span>
                         </div>
@@ -292,12 +335,12 @@ export default function BlogPostPage() {
                     {/* Author Info */}
                     <div className="flex items-center gap-2.5 mt-3">
                       {/* Avatar - Letter */}
-                      <div className="relative w-7 h-7 md:w-8 md:h-8 rounded-full ring-2 ring-blue-600 flex-shrink-0 overflow-hidden">
-                        {otherPost.author.avatar ? (
+                      <div className="relative w-7 h-7 md:w-8 md:h-8 rounded-full ring-2 ring-blue-200 flex-shrink-0 overflow-hidden">
+                        {otherPost.author.avatar && otherPost.author.avatar.trim() !== '' && otherPost.author.avatar !== '/hero.png' ? (
                           <Image src={otherPost.author.avatar} alt={otherPost.author.name} fill className="object-cover" />
                         ) : (
-                          <div className={`w-full h-full rounded-full bg-gradient-to-br ${getAvatarColor(getInitial(otherPost.author.name))} flex items-center justify-center`}>
-                            <span className="font-extrabold text-white text-xs md:text-sm">
+                          <div className="w-full h-full rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                            <span className="font-extrabold text-blue-700 text-xs md:text-sm">
                               {getInitial(otherPost.author.name)}
                             </span>
                           </div>
