@@ -8,7 +8,7 @@ import { Footer } from './Footer';
 import { Contact } from './Contact';
 import { Testimonials } from './Testimonials';
 import Blog from '@/components/Blog';
-
+import NewsScrollBar from '@/components/NewsScrollBar';
 import { useState, useEffect } from 'react';
 import NewsTicker from './NewsTicker';
 
@@ -264,6 +264,9 @@ export default function HomeContent() {
         </a>
       </div >
       {/* Courses Grid */}
+      <div>
+       <NewsScrollBar />
+      </div>
       <div>
         < Courses />
       </div>
