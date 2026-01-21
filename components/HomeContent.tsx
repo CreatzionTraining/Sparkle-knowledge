@@ -112,15 +112,17 @@ export default function HomeContent() {
       {/* Hero Section */}
       <section className="relative z-10 pt-32 pb-8 lg:pt-36 lg:pb-12 overflow-hidden">
         {/* Background Image scoped to Hero Section */}
-        <div className="absolute inset-0 -z-20">
+       {/* <div className="absolute inset-0 -z-20">
           <Image
-            src="/assets/backgrounds/new.png"
+             // src="/assets/backgrounds/new2.png" // This line is the previous background
+            // src="/assets/backgrounds/education_bg.png"
+            // src="/assets/backgrounds/education_3d_bg.png"
             alt="Geometric Background"
             fill
-            className="object-cover opacity-30"
+           // className="object-cover opacity-100"
             priority
           />
-        </div>
+        </div> */}
 
         <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#1D4ED8]/10 to-[#2563EB]/5 blur-3xl animate-float -z-10"></div>
         <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#E63946]/10 to-[#FA8072]/5 blur-3xl animate-float-delayed -z-10"></div>

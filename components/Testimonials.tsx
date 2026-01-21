@@ -1,61 +1,55 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Real-time Testimonial Data
 const testimonials = [
     {
         id: 1,
-        name: "Arun Kumar",
-        role: "IELTS Academic",
-        score: "Band 8.0",
-        image: "/assets/people/student1.jpg", // Placeholder - you might need to update paths
+        name: "Pooja Saravanan",
+        role: "IELTS Student",
+        score: "Success",
         rating: 5,
-        text: "Sparkle Knowledge Yard completely changed my approach to IELTS. The strategies for the Reading module were a game-changer.",
-        location: "Anna Nagar"
+        text: "I didn't have enough time for my exam so I just joined Sparkle Knowledge Yard because it's closer to my home. Shanthini ma'am guided me and helped me within this short time. She was really supportive which made the students feel at ease. The teaching here is very effective and well-structured. Highly recommended for anyone preparing for IELTS!",
+        location: "Student"
     },
     {
         id: 2,
-        name: "Deepika R.",
-        role: "OET Nursing",
-        score: "Grade B",
-        image: "/assets/people/student2.jpg",
+        name: "Shania Joseph",
+        role: "IELTS Academic",
+        score: "Band 8.0",
         rating: 5,
-        text: "As a nurse, finding time to study was hard. The flexible batch timings and personalized attention helped me crack OET.",
-        location: "Perambur"
+        text: "I recently scored an overall Band 8 in IELTS in my first attempt... she provides the right study materials, focuses on our weak areas, and shares simple tips that really make a big difference. Her teaching style makes the IELTS preparation journey less stressful and more approachable.",
+        location: "Student"
     },
     {
         id: 3,
-        name: "Mohammed Fazil",
-        role: "PTE Academic",
-        score: "Score 82",
-        image: "/assets/people/student3.jpg",
+        name: "Pranesh Sam G",
+        role: "IELTS Student",
+        score: "Band 7.0",
         rating: 5,
-        text: "The mock tests are exactly like the real exam. The feedback on my speaking gave me the confidence I needed.",
-        location: "Kilpauk"
+        text: "One of the best IELTS coaching classes I ever experienced. Although I had a short period of time, Ma'am taught me everything in a brilliant way such that I could score the required band. Such a positive coaching. Thanks a lot ma'am.",
+        location: "Student"
     },
     {
         id: 4,
-        name: "Sarah Williams",
-        role: "Study Abroad",
-        score: "UK Visa",
-        image: "/assets/people/student4.jpg",
+        name: "Logi",
+        role: "Spoken English",
+        score: "Confident Speaker",
         rating: 5,
-        text: "From university shortlisting to visa counseling, the team stood by me. I'm now pursuing my Masters in the UK.",
-        location: "Avadi"
+        text: "I joined Sparkle to improve my English communication skills. The classes were very engaging and interesting. The teaching methods really helped me gain confidence in speaking English. Truly appreciate the effort and guidance.",
+        location: "Student"
     },
     {
         id: 5,
-        name: "Karthik S.",
-        role: "TOEFL iBT",
-        score: "Score 108",
-        image: "/assets/people/student5.jpg",
-        rating: 4,
-        text: "The faculty is extremely knowledgeable. They focused on my weak areas in Listening and helped me improve drastically.",
-        location: "Perambur"
+        name: "Vijaya Ramachandran",
+        role: "Parent",
+        score: "Visa Interview",
+        rating: 5,
+        text: "Excellent coaching by Shanthini ma'am. It has been a wonderful and memorable journey. She gave personal attention to my son and helped him with IELTS and Visa interview. Her dedication is a class apart from usual coaching centers.",
+        location: "Parent"
     }
 ];
 
@@ -64,7 +58,7 @@ export function Testimonials() {
     const [isHovered, setIsHovered] = useState(false);
 
     // Fallback images if specific files don't exist
-    const getAvatar = (id: number) => `https://randomuser.me/api/portraits/${id % 2 === 0 ? 'women' : 'men'}/${id * 10}.jpg`;
+
 
     useEffect(() => {
         if (isHovered) return;
@@ -127,7 +121,7 @@ export function Testimonials() {
 
                 {/* 3D Carousel Stage */}
                 <div
-                    className="relative h-[400px] md:h-[450px] -mt-8 flex items-center justify-center perspective-1000"
+                    className="relative h-[600px] md:h-[700px] -mt-8 flex items-center justify-center perspective-1000"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
@@ -150,13 +144,10 @@ export function Testimonials() {
                                 {/* Top Profile */}
                                 <div className="flex items-center gap-6 mb-8">
                                     <div className={`relative w-20 h-20 rounded-full p-1 ${isCenter ? 'bg-gradient-to-tr from-blue-600 to-pink-500' : 'bg-gray-200'} transition-colors duration-500`}>
-                                        <div className="w-full h-full rounded-full overflow-hidden relative border-4 border-white">
-                                            <Image
-                                                src={item.image.startsWith('/') ? getAvatar(item.id) : item.image}
-                                                alt={item.name}
-                                                fill
-                                                className="object-cover"
-                                            />
+                                        <div className="w-full h-full rounded-full overflow-hidden relative border-4 border-white flex items-center justify-center bg-blue-100">
+                                            <span className="text-3xl font-bold text-blue-600">
+                                                {item.name.charAt(0)}
+                                            </span>
                                         </div>
                                     </div>
                                     <div>
@@ -176,13 +167,13 @@ export function Testimonials() {
                                 </p>
 
                                 {/* Bottom Footer */}
+                                {/* Bottom Footer */}
                                 <div className="pt-6 border-t border-gray-50 flex justify-between items-center">
                                     <div>
-                                        <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">MEMBER</p>
-                                        <p className="text-sm font-semibold text-gray-700">{item.location}</p>
-                                    </div>
-                                    <div className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-bold shadow-sm">
-                                        {item.score}
+                                        <p className="text-sm font-semibold text-gray-700 flex items-center gap-2">
+                                            <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                            {item.location}
+                                        </p>
                                     </div>
                                 </div>
                             </motion.div>
@@ -191,7 +182,7 @@ export function Testimonials() {
                 </div>
 
                 {/* Controls */}
-                <div className="flex items-center justify-center gap-6 mt-8">
+                <div className="flex items-center justify-center gap-6 mt-16">
                     <button
                         onClick={handlePrev}
                         className="w-12 h-12 rounded-full bg-white shadow-lg text-gray-700 flex items-center justify-center hover:bg-[#1D4ED8] hover:text-white transition-all duration-300"
