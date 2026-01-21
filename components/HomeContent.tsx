@@ -112,7 +112,7 @@ export default function HomeContent() {
       {/* Hero Section */}
       <section className="relative z-10 pt-32 pb-8 lg:pt-36 lg:pb-12 overflow-hidden">
         {/* Background Image scoped to Hero Section */}
-       {/* <div className="absolute inset-0 -z-20">
+        {/* <div className="absolute inset-0 -z-20">
           <Image
              // src="/assets/backgrounds/new2.png" // This line is the previous background
             // src="/assets/backgrounds/education_bg.png"
@@ -124,8 +124,8 @@ export default function HomeContent() {
           />
         </div> */}
 
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#1D4ED8]/10 to-[#2563EB]/5 blur-3xl animate-float -z-10"></div>
-        <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#E63946]/10 to-[#FA8072]/5 blur-3xl animate-float-delayed -z-10"></div>
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#1D4ED8]/30 to-[#2563EB]/20 blur-3xl animate-float -z-10"></div>
+        <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#E63946]/30 to-[#FA8072]/20 blur-3xl animate-float-delayed -z-10"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
