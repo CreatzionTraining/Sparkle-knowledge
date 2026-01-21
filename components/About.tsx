@@ -63,7 +63,9 @@ export function About() {
     const visionFull = (
         <div className="space-y-6 text-[#333333] leading-relaxed">
             <div className="flex items-center gap-4 mb-2">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-2xl">👁️</div>
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
                 <h3 className="text-3xl font-bold text-[#0F172A]">Our Vision</h3>
             </div>
 
@@ -80,7 +82,9 @@ export function About() {
     const missionFull = (
         <div className="space-y-6 text-[#333333] leading-relaxed">
             <div className="flex items-center gap-4 mb-2">
-                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-2xl">🚀</div>
+                <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
                 <h3 className="text-3xl font-bold text-[#0F172A]">Our Mission</h3>
             </div>
 
@@ -178,45 +182,61 @@ export function About() {
                 {/* 2. VISION & MISSION CARDS */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
-                    {/* Vision Card */}
+                    {/* Vision Card - Innovative Design */}
                     <div
-                        className="group relative bg-white p-10 rounded-[2rem] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-gray-100 hover:border-blue-200 hover:shadow-[0_20px_50px_-12px_rgba(29,78,216,0.15)] transition-all duration-300 cursor-pointer overflow-hidden"
+                        className="group relative p-[2px] rounded-[2rem] bg-gradient-to-br from-[#1D4ED8] to-transparent hover:to-[#1D4ED8] transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20"
                         onClick={() => setActiveModal('vision')}
                     >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-[100px] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-10 overflow-hidden">
+                            {/* Abstract Decorative Elements */}
+                            <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-100/50 rounded-full blur-3xl group-hover:bg-blue-200/50 transition-colors"></div>
+                            <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-indigo-100/50 rounded-full blur-3xl group-hover:bg-indigo-200/50 transition-colors"></div>
 
-                        <div className="relative z-10">
-                            <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-8 text-3xl shadow-sm group-hover:bg-[#1D4ED8] group-hover:text-white transition-colors duration-300">
-                                👁️
+                            {/* Watermark Text Removed */}
+
+
+                            <div className="relative z-10 flex flex-col h-full">
+                                <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#1D4ED8] to-blue-600">Our Vision</h3>
+                                <div className="w-12 h-1 bg-[#1D4ED8] mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
+
+                                <p className="text-gray-600 mb-8 leading-relaxed flex-grow text-lg">
+                                    {visionSummary}
+                                </p>
+
+                                <div className="flex items-center text-[#1D4ED8] font-bold group-hover:gap-3 transition-all mt-auto">
+                                    <span className="uppercase tracking-wider text-sm">Explore Vision</span>
+                                    <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </div>
                             </div>
-                            <h3 className="text-2xl font-bold text-[#0F172A] mb-4">Our Vision</h3>
-                            <p className="text-gray-600 mb-8 leading-relaxed line-clamp-3">
-                                {visionSummary}
-                            </p>
-                            <span className="inline-flex items-center gap-2 text-[#1D4ED8] font-bold uppercase tracking-wider text-sm group-hover:gap-4 transition-all duration-300">
-                                View Vision <span className="text-lg">→</span>
-                            </span>
                         </div>
                     </div>
 
-                    {/* Mission Card */}
+                    {/* Mission Card - Innovative Design */}
                     <div
-                        className="group relative bg-white p-10 rounded-[2rem] shadow-[0_10px_40px_-10px_rgba(0,0,0,0.08)] border border-gray-100 hover:border-red-200 hover:shadow-[0_20px_50px_-12px_rgba(230,57,70,0.15)] transition-all duration-300 cursor-pointer overflow-hidden"
+                        className="group relative p-[2px] rounded-[2rem] bg-gradient-to-br from-[#E63946] to-transparent hover:to-[#E63946] transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/20"
                         onClick={() => setActiveModal('mission')}
                     >
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-red-50 rounded-bl-[100px] -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
+                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-10 overflow-hidden">
+                            {/* Abstract Decorative Elements */}
+                            <div className="absolute -right-10 -top-10 w-40 h-40 bg-red-100/50 rounded-full blur-3xl group-hover:bg-red-200/50 transition-colors"></div>
+                            <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-orange-100/50 rounded-full blur-3xl group-hover:bg-orange-200/50 transition-colors"></div>
 
-                        <div className="relative z-10">
-                            <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-8 text-3xl shadow-sm group-hover:bg-[#E63946] group-hover:text-white transition-colors duration-300">
-                                🚀
+                            {/* Watermark Text Removed */}
+
+
+                            <div className="relative z-10 flex flex-col h-full">
+                                <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#E63946] to-red-600">Our Mission</h3>
+                                <div className="w-12 h-1 bg-[#E63946] mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
+
+                                <p className="text-gray-600 mb-8 leading-relaxed flex-grow text-lg">
+                                    {missionSummary}
+                                </p>
+
+                                <div className="flex items-center text-[#E63946] font-bold group-hover:gap-3 transition-all mt-auto">
+                                    <span className="uppercase tracking-wider text-sm">Explore Mission</span>
+                                    <svg className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </div>
                             </div>
-                            <h3 className="text-2xl font-bold text-[#0F172A] mb-4">Our Mission</h3>
-                            <p className="text-gray-600 mb-8 leading-relaxed line-clamp-3">
-                                {missionSummary}
-                            </p>
-                            <span className="inline-flex items-center gap-2 text-[#E63946] font-bold uppercase tracking-wider text-sm group-hover:gap-4 transition-all duration-300">
-                                View Mission <span className="text-lg">→</span>
-                            </span>
                         </div>
                     </div>
                 </div>
