@@ -1,132 +1,166 @@
-import { NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
+import { v2 as cloudinary } from 'cloudinary';
 
-export const dynamic = "force-dynamic";
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
+const NEWS_FILE = 'sparkle-knowledge/news.json';
+
+// Cache news data
+let cachedNews: any[] | null = null;
+let lastFetchTime = 0;
+const CACHE_DURATION = 30000; // 30 seconds cache
+
+interface NewsItem {
+  id: number;
+  badge: string;
+  title: string;
+  icon: string;
+  link: string;
+  gradient: string;
+  lightGradient: string;
+  createdAt: string;
+}
+
+// Helper to fetch news from Cloudinary with caching
+async function fetchNews(): Promise<NewsItem[]> {
+  // Return cached data if still valid
+  const now = Date.now();
+  if (cachedNews && (now - lastFetchTime) < CACHE_DURATION) {
+    return cachedNews;
+  }
+
+  try {
+    const result = await cloudinary.api.resource(NEWS_FILE, {
+      resource_type: 'raw',
+    });
+    const response = await fetch(result.secure_url + `?t=${now}`);
+    const data = await response.json();
+    
+    // Update cache
+    cachedNews = data.news || [];
+    lastFetchTime = now;
+    
+    return cachedNews as NewsItem[];
+  } catch (error) {
+    console.log('No news file found, returning cached or empty array');
+    return cachedNews || [];
+  }
+}
+
+// Helper to save news to Cloudinary
+async function saveNews(news: NewsItem[]) {
+  const buffer = Buffer.from(JSON.stringify({ news }, null, 2));
+  
+  // Invalidate cache
+  cachedNews = null;
+  lastFetchTime = 0;
+  
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        resource_type: 'raw',
+        public_id: NEWS_FILE,
+        overwrite: true,
+      },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      }
+    );
+    uploadStream.end(buffer);
+  });
+}
+
+// GET - Fetch all news
 export async function GET() {
   try {
-    const apiKey = process.env.NEWS_API_KEY;
-    if (!apiKey) {
-      console.error("Missing NEWS_API_KEY");
-      return NextResponse.json({ news: [] });
+    const news = await fetchNews();
+    return NextResponse.json({ success: true, news });
+  } catch (error) {
+    console.error('Error fetching news:', error);
+    return NextResponse.json({ success: false, news: [] }, { status: 500 });
+  }
+}
+
+// POST - Create new news item
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const news = await fetchNews();
+    
+    const newItem: NewsItem = {
+      id: body.id || Date.now(),
+      badge: body.badge,
+      title: body.title,
+      icon: body.icon,
+      link: body.link || '#',
+      gradient: body.gradient,
+      lightGradient: body.lightGradient,
+      createdAt: new Date().toISOString(),
+    };
+    
+    news.unshift(newItem);
+    await saveNews(news);
+    
+    return NextResponse.json({ success: true, news: newItem });
+  } catch (error) {
+    console.error('Error creating news:', error);
+    return NextResponse.json({ success: false, error: 'Failed to create news' }, { status: 500 });
+  }
+}
+
+// PUT - Update existing news item
+export async function PUT(request: Request) {
+  try {
+    const body = await request.json();
+    const news = await fetchNews();
+    
+    const index = news.findIndex(item => item.id === body.id);
+    if (index === -1) {
+      return NextResponse.json({ success: false, error: 'News not found' }, { status: 404 });
     }
+    
+    news[index] = {
+      ...news[index],
+      badge: body.badge,
+      title: body.title,
+      icon: body.icon,
+      link: body.link,
+      gradient: body.gradient,
+      lightGradient: body.lightGradient,
+    };
+    
+    await saveNews(news);
+    
+    return NextResponse.json({ success: true, news: news[index] });
+  } catch (error) {
+    console.error('Error updating news:', error);
+    return NextResponse.json({ success: false, error: 'Failed to update news' }, { status: 500 });
+  }
+}
 
-    // --- DATE RANGE (NewsAPI free plan = 30 days) ---
-    const toDate = new Date();
-    const fromDate = new Date();
-    fromDate.setDate(fromDate.getDate() - 30);
-
-    const from = fromDate.toISOString().split("T")[0];
-    const to = toDate.toISOString().split("T")[0];
-
-    // --- QUERY (general, filtering is done later strictly) ---
-    const query =
-      '(IELTS OR OET OR PTE OR TOEFL OR "French language" OR "Japanese language" OR "Spanish language")';
-
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(
-      query
-    )}&language=en&from=${from}&to=${to}&sortBy=publishedAt&pageSize=100&apiKey=${apiKey}`;
-
-    const response = await fetch(url, { cache: "no-store" });
-    const data = await response.json();
-
-    if (data.status !== "ok") {
-      console.error("NewsAPI Error:", data.message);
-      return NextResponse.json({ news: [] });
+// DELETE - Delete news item
+export async function DELETE(request: Request) {
+  try {
+    const { id } = await request.json();
+    const news = await fetchNews();
+    
+    const filteredNews = news.filter(item => item.id !== id);
+    
+    if (filteredNews.length === news.length) {
+      return NextResponse.json({ success: false, error: 'News not found' }, { status: 404 });
     }
-
-    const items = data.articles || [];
-
-    // ======================================================
-    // ❌ HARD BLOCK WORDS (PROMO / COACHING / TECH)
-    // ======================================================
-    const BLOCK_WORDS = [
-      // coaching / sales
-      "coaching",
-      "academy",
-      "institute",
-      "classes",
-      "batch",
-      "course",
-      "training",
-      "consultancy",
-      "agent",
-      "agency",
-      "admission",
-      "apply now",
-      "register",
-      "enroll",
-      "offer",
-      "discount",
-      "demo",
-      "fee",
-
-      // technical
-      "software",
-      "developer",
-      "coding",
-      "programming",
-      "ai tool",
-      "api",
-      "framework",
-    ];
-
-    const seen = new Set<string>();
-
-    const cleanNews = items
-      .filter((item: any) => {
-        if (!item?.title || !item?.url) return false;
-
-        const title = item.title.toLowerCase();
-
-        // 1️⃣ DATE FILTER
-        if (item.publishedAt) {
-          const d = new Date(item.publishedAt);
-          if (d < fromDate) return false;
-        }
-
-        // 2️⃣ BLOCK PROMO / TECH WORDS
-        const hasBlockedWord = BLOCK_WORDS.some((w) =>
-          title.includes(w)
-        );
-        if (hasBlockedWord) return false;
-
-        // 3️⃣ REMOVE DUPLICATES
-        const key = title.replace(/[^a-z0-9]/g, "");
-        if (seen.has(key)) return false;
-        seen.add(key);
-
-        return true;
-      })
-      .map((item: any) => {
-        let description = item.description || "";
-
-        // Clean NewsAPI truncation text
-        if (item.content) {
-          const cleanContent = item.content.replace(/\[\+\d+ chars\]/, "");
-          if (cleanContent && !description.includes(cleanContent)) {
-            description = `${description}\n\n${cleanContent}`.trim();
-          }
-        }
-
-        if (description.length > 700) {
-          description = description.substring(0, 700) + "...";
-        }
-
-        return {
-          title: item.title,
-          link: item.url,
-          pubDate: item.publishedAt || new Date().toISOString(),
-          source: item.source?.name || "Official Source",
-          description: description || "Read the official update.",
-          imageUrl: item.urlToImage || null,
-        };
-      })
-      .slice(0, 25);
-
-    console.log(`Returning ${cleanNews.length} OFFICIAL news items`);
-    return NextResponse.json({ news: cleanNews });
-  } catch (err) {
-    console.error("OFFICIAL NEWS API ERROR:", err);
-    return NextResponse.json({ news: [] }, { status: 500 });
+    
+    await saveNews(filteredNews);
+    
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting news:', error);
+    return NextResponse.json({ success: false, error: 'Failed to delete news' }, { status: 500 });
   }
 }

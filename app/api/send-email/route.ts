@@ -48,10 +48,25 @@ export async function POST(request: NextRequest) {
     // Function to save to Google Sheets in background (non-blocking)
     const saveToGoogleSheets = async () => {
       try {
+        // Handle private key - works for both local and Vercel
+        let privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY || '';
+        
+        // Replace literal \n with actual newlines
+        if (privateKey.includes('\\n')) {
+          privateKey = privateKey.replace(/\\n/g, '\n');
+        }
+        
+        console.log('🔍 Google Sheets Debug:');
+        console.log('- Private Key exists:', !!process.env.GOOGLE_SHEETS_PRIVATE_KEY);
+        console.log('- Client Email:', process.env.GOOGLE_SHEETS_CLIENT_EMAIL);
+        console.log('- Sheet ID:', process.env.GOOGLE_SHEET_ID);
+        console.log('- Private Key starts with:', privateKey.substring(0, 30));
+        console.log('- Private Key ends with:', privateKey.substring(privateKey.length - 30));
+        
         const auth = new google.auth.GoogleAuth({
           credentials: {
             client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-            private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+            private_key: privateKey,
           },
           scopes: ['https://www.googleapis.com/auth/spreadsheets'],
         });
@@ -103,9 +118,11 @@ export async function POST(request: NextRequest) {
                       <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                           <!-- Logo Box on Left -->
-                          <td style="width: 110px; vertical-align: middle;">
-                            <div style="background-color: rgba(255, 255, 255, 0.9); padding: 5px; border-radius: 12px; box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15); display: inline-block;">
-                              <img src="https://ibb.co/F4Pydd8J" alt="Sparkle Academy Logo" style="width: 100px; height: 100px; display: block;" />
+                          <td style="width: 140px; vertical-align: middle;">
+                            <div style="background: linear-gradient(135deg, #E63946 0%, #1D4ED8 100%); padding: 3px; border-radius: 14px; display: inline-block;">
+                              <div style="background-color: #ffffff; padding: 12px; border-radius: 12px;">
+                                <img src="https://raw.githubusercontent.com/CreatzionTraining/Sparkle-knowledge/main/public/sparkle-logo.jpg" alt="Sparkle Academy Logo" style="width: 120px; height: auto; display: block; max-width: 100%;" />
+                              </div>
                             </div>
                           </td>
                           
@@ -386,17 +403,82 @@ export async function POST(request: NextRequest) {
       console.warn('Auto-reply failed:', error.message);
     }
 
-    // Save to Google Sheets in background (non-blocking - user doesn't wait)
-    // This runs AFTER we return success to the user
-    saveToGoogleSheets().catch(err => {
-      console.error('Background Sheets save failed:', err);
-      // Silently fail - user already got success, email was sent
+    // 3. Save to Google Sheets in BACKGROUND (user doesn't wait)
+    // But with AGGRESSIVE retries to ensure it saves
+    const backgroundSheetsSave = async () => {
+      let sheetsSaved = false;
+      
+      // Aggressive retry: 10 attempts over 5 minutes
+      for (let attempt = 1; attempt <= 10; attempt++) {
+        try {
+          console.log(`📊 Background: Attempting to save to Google Sheets (Attempt ${attempt}/10)...`);
+          await saveToGoogleSheets();
+          sheetsSaved = true;
+          console.log('✅ SUCCESS! Google Sheets updated successfully!');
+          break; // Success - exit retry loop
+        } catch (error: any) {
+          console.error(`❌ Background: Google Sheets save attempt ${attempt} failed:`, error.message);
+          
+          if (attempt < 10) {
+            // Exponential backoff: 5s, 10s, 15s, 20s, 30s, 30s, 30s, 30s, 30s
+            const waitTime = Math.min(attempt * 5000, 30000);
+            console.log(`⏳ Background: Waiting ${waitTime}ms before retry ${attempt + 1}...`);
+            await new Promise(resolve => setTimeout(resolve, waitTime));
+          } else {
+            // Final attempt failed - send alert email to admin
+            console.error('🚨🚨🚨 CRITICAL ALERT 🚨🚨🚨');
+            console.error('Google Sheets update FAILED after 10 attempts!');
+            console.error('Contact Details NOT SAVED:');
+            console.error('- Name:', name);
+            console.error('- Email:', email);
+            console.error('- Phone:', phone || 'Not provided');
+            console.error('- Interested In:', interestedIn || 'Not specified');
+            console.error('- Message:', message);
+            console.error('- Timestamp:', timestamp);
+            console.error('🚨🚨🚨 CHECK GOOGLE SHEETS CREDENTIALS 🚨🚨🚨');
+            
+            // Send alert email to admin with contact details
+            try {
+              await resend.emails.send({
+                from: 'noreply@sparkleknowledgeyard.com',
+                to: ['bhuvankumar13995@gmail.com'],
+                subject: '🚨 URGENT: Google Sheets Save Failed - Manual Entry Required',
+                html: `
+                  <h2 style="color: red;">⚠️ Google Sheets Update Failed</h2>
+                  <p>The following contact form submission could not be saved to Google Sheets after 10 attempts.</p>
+                  <p><strong>Please manually add this to the spreadsheet:</strong></p>
+                  <ul>
+                    <li><strong>Date:</strong> ${date}</li>
+                    <li><strong>Time:</strong> ${time}</li>
+                    <li><strong>Name:</strong> ${name}</li>
+                    <li><strong>Email:</strong> ${email}</li>
+                    <li><strong>Phone:</strong> ${phone || 'Not provided'}</li>
+                    <li><strong>Interested In:</strong> ${interestedIn || 'Not specified'}</li>
+                    <li><strong>Message:</strong> ${message}</li>
+                  </ul>
+                  <p style="color: red;"><strong>Action Required:</strong> Add this entry to Google Sheets manually.</p>
+                `
+              });
+              console.log('📧 Alert email sent to admin with contact details');
+            } catch (emailError) {
+              console.error('Failed to send alert email:', emailError);
+            }
+          }
+        }
+      }
+    };
+
+    // Start background save (non-blocking - user doesn't wait)
+    backgroundSheetsSave().catch(err => {
+      console.error('Background sheets save process failed:', err);
     });
 
+    // Return success to user IMMEDIATELY (fast response)
     return NextResponse.json(
       {
         success: true,
-        message: 'Form submitted successfully',
+        message: 'Form submitted successfully. We will contact you soon!',
+        emailsSent: true
       },
       { status: 200 }
     );

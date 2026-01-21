@@ -7,7 +7,8 @@ import { About } from './About';
 import { Footer } from './Footer';
 import { Contact } from './Contact';
 import { Testimonials } from './Testimonials';
-
+import Blog from '@/components/Blog';
+import NewsScrollBar from '@/components/NewsScrollBar';
 import { useState, useEffect } from 'react';
 import NewsTicker from './NewsTicker';
 
@@ -114,7 +115,7 @@ export default function HomeContent() {
         {/* Background Image scoped to Hero Section */}
         <div className="absolute inset-0 -z-20">
           <Image
-            src="/assets/backgrounds/new.png"
+            src="/23964.jp "
             alt="Geometric Background"
             fill
             className="object-cover opacity-30"
@@ -264,6 +265,9 @@ export default function HomeContent() {
       </div >
       {/* Courses Grid */}
       <div>
+       <NewsScrollBar />
+      </div>
+      <div>
         < Courses />
       </div>
 
@@ -281,7 +285,9 @@ export default function HomeContent() {
       <div>
         <Testimonials />
       </div>
-
+<div>
+        <Blog />
+      </div>
       {/* Contact Section */}
       <div>
         < Contact />

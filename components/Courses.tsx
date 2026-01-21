@@ -53,23 +53,23 @@ export function Courses() {
     },
     {
 
-      desc: 'Graduate Record Examination for technical and management masters.',
-      features: ['Quant & Verbal Reasoning', 'Analytical Writing', 'Score 320+ Guarantee', 'Math Foundations'],
-      modules: ['Verbal Reasoning', 'Quantitative Reasoning', 'Analytical Writing', 'Vocabulary Building'],
-      duration: '3-4 months',
+      desc: 'Expert interview coaching for university admissions and job placements.',
+      features: ['Mock Interviews', 'Profile Building', 'Confidence Training', 'Visa Interview Prep'],
+      modules: ['One-on-One Sessions', 'University Specifics', 'Body Language', 'Resume Review'],
+      duration: '2-4 weeks',
       type: 'image',
-      image: '/courses/gre.png',
+      image: '/courses/interview.png',
       color: 'from-emerald-500 to-teal-600',
       badge: 'bg-emerald-50 text-emerald-600'
     },
     {
 
-      desc: 'Graduate Management Admission Test for top business schools.',
-      features: ['Integrated Reasoning', 'Computer Adaptive', 'Official Guide Practice', 'Time Management'],
-      modules: ['Quantitative Reasoning', 'Verbal Reasoning', 'Data Insights', 'Adaptive Testing'],
-      duration: '3-4 months',
+      desc: 'Master foreign languages for global career and education opportunities.',
+      features: ['German / French', 'Native Trainers', 'Certification Prep', 'Cultural Immersion'],
+      modules: ['A1-B2 Levels', 'Speaking Practice', 'Grammar Mastery', 'Listening Skills'],
+      duration: '3-6 months',
       type: 'image',
-      image: '/courses/gmat.png',
+      image: '/courses/languages.png',
       color: 'from-cyan-500 to-blue-600',
       badge: 'bg-cyan-50 text-cyan-600'
     },
