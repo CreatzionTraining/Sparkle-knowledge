@@ -20,7 +20,7 @@ export default function NewsTicker() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const res = await fetch('/api/news');
+        const res = await fetch('/api/google-news');
         const data = await res.json();
         console.log('News data:', data);
         setNews(data.news || []);

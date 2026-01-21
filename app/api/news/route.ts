@@ -1,151 +1,166 @@
-import { NextResponse } from "next/server";
-import Parser from "rss-parser";
+import { NextResponse } from 'next/server';
+import { v2 as cloudinary } from 'cloudinary';
 
-export const dynamic = "force-dynamic";
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-const parser = new Parser();
+const NEWS_FILE = 'sparkle-knowledge/news.json';
 
+// Cache news data
+let cachedNews: any[] | null = null;
+let lastFetchTime = 0;
+const CACHE_DURATION = 30000; // 30 seconds cache
+
+interface NewsItem {
+  id: number;
+  badge: string;
+  title: string;
+  icon: string;
+  link: string;
+  gradient: string;
+  lightGradient: string;
+  createdAt: string;
+}
+
+// Helper to fetch news from Cloudinary with caching
+async function fetchNews(): Promise<NewsItem[]> {
+  // Return cached data if still valid
+  const now = Date.now();
+  if (cachedNews && (now - lastFetchTime) < CACHE_DURATION) {
+    return cachedNews;
+  }
+
+  try {
+    const result = await cloudinary.api.resource(NEWS_FILE, {
+      resource_type: 'raw',
+    });
+    const response = await fetch(result.secure_url + `?t=${now}`);
+    const data = await response.json();
+    
+    // Update cache
+    cachedNews = data.news || [];
+    lastFetchTime = now;
+    
+    return cachedNews as NewsItem[];
+  } catch (error) {
+    console.log('No news file found, returning cached or empty array');
+    return cachedNews || [];
+  }
+}
+
+// Helper to save news to Cloudinary
+async function saveNews(news: NewsItem[]) {
+  const buffer = Buffer.from(JSON.stringify({ news }, null, 2));
+  
+  // Invalidate cache
+  cachedNews = null;
+  lastFetchTime = 0;
+  
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        resource_type: 'raw',
+        public_id: NEWS_FILE,
+        overwrite: true,
+      },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      }
+    );
+    uploadStream.end(buffer);
+  });
+}
+
+// GET - Fetch all news
 export async function GET() {
   try {
-    // Google News RSS feeds for educational topics
-    const topics = [
-      "IELTS exam",
-      "TOEFL exam", 
-      "GRE exam",
-      "GMAT exam",
-      "study abroad",
-    ];
+    const news = await fetchNews();
+    return NextResponse.json({ success: true, news });
+  } catch (error) {
+    console.error('Error fetching news:', error);
+    return NextResponse.json({ success: false, news: [] }, { status: 500 });
+  }
+}
 
-    const allNews: any[] = [];
-    const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.getDate() - 40); // Last 40 days
+// POST - Create new news item
+export async function POST(request: Request) {
+  try {
+    const body = await request.json();
+    const news = await fetchNews();
+    
+    const newItem: NewsItem = {
+      id: body.id || Date.now(),
+      badge: body.badge,
+      title: body.title,
+      icon: body.icon,
+      link: body.link || '#',
+      gradient: body.gradient,
+      lightGradient: body.lightGradient,
+      createdAt: new Date().toISOString(),
+    };
+    
+    news.unshift(newItem);
+    await saveNews(news);
+    
+    return NextResponse.json({ success: true, news: newItem });
+  } catch (error) {
+    console.error('Error creating news:', error);
+    return NextResponse.json({ success: false, error: 'Failed to create news' }, { status: 500 });
+  }
+}
 
-    // Fetch from Google News RSS for each topic
-    for (const topic of topics) {
-      try {
-        const url = `https://news.google.com/rss/search?q=${encodeURIComponent(topic)}&hl=en-US&gl=US&ceid=US:en`;
-        const feed = await parser.parseURL(url);
-        
-        if (feed.items) {
-          allNews.push(...feed.items);
-        }
-      } catch (err) {
-        console.error(`Failed to fetch news for ${topic}:`, err);
-      }
+// PUT - Update existing news item
+export async function PUT(request: Request) {
+  try {
+    const body = await request.json();
+    const news = await fetchNews();
+    
+    const index = news.findIndex(item => item.id === body.id);
+    if (index === -1) {
+      return NextResponse.json({ success: false, error: 'News not found' }, { status: 404 });
     }
+    
+    news[index] = {
+      ...news[index],
+      badge: body.badge,
+      title: body.title,
+      icon: body.icon,
+      link: body.link,
+      gradient: body.gradient,
+      lightGradient: body.lightGradient,
+    };
+    
+    await saveNews(news);
+    
+    return NextResponse.json({ success: true, news: news[index] });
+  } catch (error) {
+    console.error('Error updating news:', error);
+    return NextResponse.json({ success: false, error: 'Failed to update news' }, { status: 500 });
+  }
+}
 
-    // ======================================================
-    // ❌ BLOCK ACADEMY/COACHING PROMOTIONAL CONTENT
-    // ======================================================
-    const BLOCK_WORDS = [
-      // Academy/Coaching promotions
-      "coaching center",
-      "coaching classes",
-      "coaching institute",
-      "academy classes",
-      "join our",
-      "enroll now",
-      "apply now",
-      "register now",
-      "admission open",
-      "limited seats",
-      "book your seat",
-      "free demo",
-      "demo class",
-      "discount",
-      "offer",
-      "batch starting",
-      
-      // Completely unrelated
-      "cryptocurrency",
-      "bitcoin",
-      "gaming",
-      "esports",
-      "celebrity",
-      "bollywood",
-      "hollywood",
-      "sports score",
-      "cricket",
-      "football match",
-    ];
-
-    const seen = new Set<string>();
-
-    const cleanNews = allNews
-      .filter((item: any) => {
-        if (!item?.title || !item?.link) return false;
-
-        const title = item.title.toLowerCase();
-        const description = (item.contentSnippet || item.content || "").toLowerCase();
-        const fullText = `${title} ${description}`;
-
-        // 1️⃣ DATE FILTER (Last 40 days)
-        if (item.pubDate || item.isoDate) {
-          const pubDate = new Date(item.pubDate || item.isoDate);
-          if (pubDate < cutoffDate) return false;
-        }
-
-        // 2️⃣ BLOCK ACADEMY/COACHING PROMOTIONS
-        const hasBlockedWord = BLOCK_WORDS.some((word) =>
-          fullText.includes(word)
-        );
-        if (hasBlockedWord) return false;
-
-        // 3️⃣ REMOVE DUPLICATES
-        const key = title.replace(/[^a-z0-9]/g, "");
-        if (seen.has(key)) return false;
-        seen.add(key);
-
-        // 4️⃣ ENGLISH ONLY
-        if (/[^\x00-\x7F]/.test(title) && !/[a-zA-Z]/.test(title)) return false;
-
-        return true;
-      })
-      .map((item: any) => {
-        // Extract source from Google News link
-        let source = "News Source";
-        try {
-          const urlObj = new URL(item.link);
-          const sourceParam = urlObj.searchParams.get("source");
-          if (sourceParam) {
-            source = sourceParam;
-          } else {
-            // Try to extract from link
-            const match = item.link.match(/\/articles\/([^\/]+)/);
-            if (match) {
-              source = match[1].split('-').slice(0, 2).join(' ');
-            }
-          }
-        } catch (e) {
-          // Keep default source
-        }
-
-        let description = item.contentSnippet || item.content || "";
-        
-        // Clean up description
-        if (description.length > 400) {
-          description = description.substring(0, 400) + "...";
-        }
-
-        return {
-          title: item.title,
-          link: item.link,
-          pubDate: item.pubDate || item.isoDate || new Date().toISOString(),
-          source: source,
-          description: description || "Read more about this educational update.",
-          imageUrl: null, // Google News RSS doesn't provide images
-        };
-      })
-      .sort((a, b) => {
-        // Sort by date, newest first
-        return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
-      })
-      .slice(0, 20); // Limit to 20 most recent news items
-
-    console.log(`✅ Returning ${cleanNews.length} educational news items from Google News`);
-    return NextResponse.json({ news: cleanNews });
-  } catch (err) {
-    console.error("GOOGLE NEWS RSS ERROR:", err);
-    return NextResponse.json({ news: [] }, { status: 500 });
+// DELETE - Delete news item
+export async function DELETE(request: Request) {
+  try {
+    const { id } = await request.json();
+    const news = await fetchNews();
+    
+    const filteredNews = news.filter(item => item.id !== id);
+    
+    if (filteredNews.length === news.length) {
+      return NextResponse.json({ success: false, error: 'News not found' }, { status: 404 });
+    }
+    
+    await saveNews(filteredNews);
+    
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Error deleting news:', error);
+    return NextResponse.json({ success: false, error: 'Failed to delete news' }, { status: 500 });
   }
 }

@@ -372,31 +372,42 @@ export default function AdminPage() {
   // --- DASHBOARD LIST VIEW ---
   if (view === 'list') {
     return (
-      <div className="min-h-screen bg-gray-50 flex justify-center font-sans text-gray-900">
-        <div className="w-full max-w-5xl p-6 md:p-10">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-10 border-b border-gray-200 pb-6 gap-4">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
+      <div className="min-h-screen bg-gray-50 flex justify-center font-sans text-gray-900 overflow-x-hidden">
+        <div className="w-full max-w-5xl p-4 md:p-6 lg:p-10">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 md:mb-6 lg:mb-10 border-b border-gray-200 pb-4 md:pb-6 gap-3 md:gap-4">
+            <div className="w-full md:w-auto">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">
                 Admin Dashboard
               </h1>
-              <p className="text-gray-500 font-medium mt-2 text-sm md:text-base">Manage your blog content professionally</p>
+              <p className="text-gray-500 font-medium mt-1 md:mt-2 text-xs md:text-sm lg:text-base">Manage your blog content professionally</p>
             </div>
-            <button 
-              onClick={() => {
-                setEditContent('');
-                setEditingId(null);
-                setAuthorName('');
-                setTitle('');
-                if (contentRef.current) contentRef.current.innerHTML = '';
-                setView('create');
-                // Reset other fields if needed to ensure clean slate
-                setCategory('');
-                setFeaturedImage('');
-              }}
-              className="w-full md:w-auto bg-gradient-to-r from-blue-600 to-red-600 hover:opacity-90 text-white px-6 md:px-8 py-3 rounded-full font-bold shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2"
-            >
-              <span>＋</span> Create New Post
-            </button>
+            <div className="flex flex-col sm:flex-row gap-2 md:gap-3 w-full md:w-auto">
+              <a
+                href="/admin/news"
+                className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white px-4 md:px-5 lg:px-6 py-2 md:py-2.5 rounded-full font-bold text-sm md:text-base shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2"
+              >
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <span>Manage News</span>
+              </a>
+              <button 
+                onClick={() => {
+                  setEditContent('');
+                  setEditingId(null);
+                  setAuthorName('');
+                  setTitle('');
+                  if (contentRef.current) contentRef.current.innerHTML = '';
+                  setView('create');
+                  // Reset other fields if needed to ensure clean slate
+                  setCategory('');
+                  setFeaturedImage('');
+                }}
+                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-red-600 hover:opacity-90 text-white px-5 md:px-6 lg:px-8 py-2.5 md:py-3 rounded-full font-bold text-sm md:text-base shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2"
+              >
+                <span className="text-lg">＋</span> <span>Create New Post</span>
+              </button>
+            </div>
           </div>
 
           <div className="grid gap-4">
@@ -407,44 +418,48 @@ export default function AdminPage() {
               </div>
             ) : (
               posts.map(post => (
-                <div key={post.id} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between group hover:shadow-md transition-all">
-                  <div className="flex items-center gap-6">
-                    <div className="w-20 h-20 bg-gray-100 rounded-xl overflow-hidden relative flex-shrink-0 border border-gray-200 shadow-sm">
-                      {post.image ? (
-                        <Image src={post.image} alt="" fill className="object-cover" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">Img</div>
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-gray-900 text-xl mb-1 group-hover:text-blue-600 transition-colors">{post.title}</h3>
-                      <div className="flex items-center gap-3 text-sm text-gray-500">
-                        <span className="px-3 py-1 rounded-full bg-blue-50 text-blue-700 font-bold text-xs uppercase tracking-wide">
-                          {post.category}
-                        </span>
-                        <span>{post.date}</span>
+                <div key={post.id} className="bg-white p-3 md:p-4 lg:p-5 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 group hover:shadow-md transition-all overflow-hidden">
+                  <div className="flex flex-col gap-3 md:gap-4">
+                    {/* Post Info */}
+                    <div className="flex items-start gap-2.5 md:gap-3 lg:gap-4 min-w-0">
+                      <div className="w-14 h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gray-100 rounded-lg md:rounded-xl overflow-hidden relative flex-shrink-0 border border-gray-200 shadow-sm">
+                        {post.image ? (
+                          <Image src={post.image} alt="" fill className="object-cover" />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">Img</div>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0 overflow-hidden">
+                        <h3 className="font-bold text-gray-900 text-sm md:text-base lg:text-lg mb-1 group-hover:text-blue-600 transition-colors line-clamp-2">{post.title}</h3>
+                        <div className="flex items-center gap-2 text-xs text-gray-500 flex-wrap">
+                          <span className="px-2 py-0.5 md:py-1 rounded-full bg-blue-50 text-blue-700 font-bold text-[10px] md:text-xs uppercase tracking-wide whitespace-nowrap">
+                            {post.category}
+                          </span>
+                          <span className="text-[10px] md:text-xs whitespace-nowrap">{post.date}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <button 
-                      onClick={() => handleEdit(post)}
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 text-gray-600 font-bold text-sm hover:bg-gray-50 hover:text-blue-600 transition-all"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
-                      Edit
-                    </button>
-                    <button 
-                      onClick={() => handleDelete(post.id)} 
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg border border-red-100 text-red-600 bg-red-50 font-bold text-sm hover:bg-red-100 transition-all"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
-                      Delete
-                    </button>
+                    {/* Action Buttons */}
+                    <div className="flex items-center gap-2 w-full">
+                      <button 
+                        onClick={() => handleEdit(post)}
+                        className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 text-gray-600 font-bold text-xs hover:bg-gray-50 hover:text-blue-600 transition-all"
+                      >
+                        <svg className="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        </svg>
+                        <span className="truncate">Edit</span>
+                      </button>
+                      <button 
+                        onClick={() => handleDelete(post.id)} 
+                        className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-red-100 text-red-600 bg-red-50 font-bold text-xs hover:bg-red-100 transition-all"
+                      >
+                        <svg className="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                        <span className="truncate">Delete</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))
@@ -480,89 +495,89 @@ export default function AdminPage() {
   // --- CREATE POST VIEW ---
   return (
     <>
-    <div className="min-h-screen bg-gray-50 pb-20 font-sans text-gray-900">
+    <div className="min-h-screen bg-gray-50 pb-20 font-sans text-gray-900 overflow-x-hidden">
       {/* Top Navigation Bar */}
-      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 px-4 py-3 md:px-8 md:py-4 flex justify-between items-center shadow-sm">
+      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 px-3 md:px-6 lg:px-8 py-2.5 md:py-3 lg:py-4 flex justify-between items-center shadow-sm">
         <button 
           onClick={() => setView('list')}
-          className="bg-white border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-500 w-10 h-10 md:w-auto md:h-auto md:px-5 md:py-2 rounded-full font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
+          className="bg-white border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-500 w-9 h-9 md:w-auto md:h-auto md:px-4 lg:px-5 md:py-2 rounded-full font-bold text-xs md:text-sm flex items-center justify-center gap-1.5 md:gap-2 transition-all shadow-sm flex-shrink-0"
           title="Back to Dashboard"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
           <span className="hidden md:inline">Back to Dashboard</span>
         </button>
-        <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex items-center gap-1.5 md:gap-3 lg:gap-4">
           <button 
             onClick={() => setIsPreviewOpen(true)}
-            className="border border-gray-200 bg-white text-gray-700 hover:border-blue-500 hover:text-blue-600 px-4 md:px-6 py-2 md:py-2.5 rounded-full text-sm font-bold transition-all shadow-sm hover:shadow-md flex items-center gap-2"
+            className="border border-gray-200 bg-white text-gray-700 hover:border-blue-500 hover:text-blue-600 px-3 md:px-5 lg:px-6 py-1.5 md:py-2 lg:py-2.5 rounded-full text-xs md:text-sm font-bold transition-all shadow-sm hover:shadow-md flex items-center gap-1 md:gap-2 whitespace-nowrap"
           >
              Preview
           </button>
           <button 
             onClick={handlePublish}
             disabled={isSubmitting}
-            className="bg-gradient-to-r from-blue-600 to-red-600 text-white px-5 md:px-8 py-2 md:py-2.5 rounded-full text-sm font-bold transition-all shadow-lg hover:shadow-xl hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 transform active:scale-95"
+            className="bg-gradient-to-r from-blue-600 to-red-600 text-white px-4 md:px-6 lg:px-8 py-1.5 md:py-2 lg:py-2.5 rounded-full text-xs md:text-sm font-bold transition-all shadow-lg hover:shadow-xl hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1 md:gap-2 transform active:scale-95 whitespace-nowrap"
           >
             {isSubmitting ? '🚀' : (
               <>
-                <span className="hidden md:inline">{editingId ? 'Update Post' : 'Publish Post'}</span>
-                <span className="md:hidden">{editingId ? 'Update' : 'Publish'}</span>
+                <span className="hidden sm:inline">{editingId ? 'Update Post' : 'Publish Post'}</span>
+                <span className="sm:hidden">{editingId ? 'Update' : 'Publish'}</span>
               </>
             )}
           </button>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 py-10">
+      <div className="max-w-6xl mx-auto px-3 md:px-4 lg:px-6 py-4 md:py-6 lg:py-10">
         
         {/* Main Form Area */}
-        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+        <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
           
           {/* Header Banner */}
           <div className="bg-gradient-to-r from-blue-600 to-red-600 h-2 w-full"></div>
 
-          <div className="p-8 md:p-12 space-y-10">
+          <div className="p-3 md:p-6 lg:p-10 xl:p-12 space-y-5 md:space-y-8 lg:space-y-10">
             
             {/* 1. Title Input */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="space-y-4 md:space-y-0 md:grid md:grid-cols-4 md:gap-6">
               <div className="md:col-span-3">
-                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3">Blog Title <span className="text-red-500">*</span></label>
+                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">Blog Title <span className="text-red-500">*</span></label>
                 <input 
                   type="text" 
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
-                  className="w-full text-4xl md:text-5xl font-bold placeholder-gray-300 border-none focus:ring-0 p-0 outline-none text-gray-900 leading-tight"
+                  className="w-full text-2xl md:text-4xl lg:text-5xl font-bold placeholder-gray-300 border-none focus:ring-0 p-0 outline-none text-gray-900 leading-tight"
                   placeholder="Enter an engaging title..."
                 />
               </div>
               <div>
-                 <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3">Publish Date</label>
+                 <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">Publish Date</label>
                  <input 
                     type="date"
                     value={postDate}
                     onChange={(e) => setPostDate(e.target.value)}
                     max={new Date().toISOString().split('T')[0]}
-                    className="w-full bg-gray-50 px-4 py-3 rounded-xl border-none font-bold text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full bg-gray-50 px-3 md:px-4 py-2.5 md:py-3 rounded-xl border-none font-bold text-sm md:text-base text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
                  />
               </div>
             </div>
 
             {/* 2. Metadata Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 pt-6 md:pt-8 border-t border-gray-100">
               {/* Category */}
               <div>
-                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3">Category <span className="text-red-500">*</span></label>
+                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">Category <span className="text-red-500">*</span></label>
                 <div className="relative group">
                   <select 
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full bg-gray-50 hover:bg-gray-100 cursor-pointer px-4 py-3 rounded-xl border border-transparent focus:border-blue-500 font-bold text-gray-700 outline-none focus:ring-2 focus:ring-blue-100 transition-all appearance-none"
+                    className="w-full bg-gray-50 hover:bg-gray-100 cursor-pointer px-3 md:px-4 py-2.5 md:py-3 rounded-xl border border-transparent focus:border-blue-500 font-bold text-sm md:text-base text-gray-700 outline-none focus:ring-2 focus:ring-blue-100 transition-all appearance-none"
                   >
                     <option value="">Select...</option>
                     {predefinedCategories.map(c => <option key={c} value={c}>{c}</option>)}
                     <option value="Other">Other...</option>
                   </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none transition-transform group-hover:translate-y-0">
+                  <div className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 pointer-events-none transition-transform group-hover:translate-y-0">
                     <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                   </div>
                 </div>
@@ -572,20 +587,20 @@ export default function AdminPage() {
                     placeholder="Type category name"
                     value={customCategory}
                     onChange={(e) => setCustomCategory(e.target.value)}
-                    className="mt-3 w-full px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg text-sm font-bold text-blue-800 placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="mt-2 md:mt-3 w-full px-3 md:px-4 py-2 bg-blue-50 border border-blue-200 rounded-lg text-sm font-bold text-blue-800 placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 )}
               </div>
 
               {/* Author */}
               <div>
-                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3">Author <span className="text-red-500">*</span></label>
+                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">Author <span className="text-red-500">*</span></label>
                 <div className="flex gap-2">
                    <div className="relative w-1/3">
                       <select 
                         value={authorTitle}
                         onChange={(e) => setAuthorTitle(e.target.value)}
-                        className="w-full bg-gray-50 px-2 py-3 rounded-xl border-none font-bold text-gray-700 outline-none focus:ring-2 focus:ring-blue-500 appearance-none text-center"
+                        className="w-full bg-gray-50 px-1 md:px-2 py-2.5 md:py-3 rounded-xl border-none font-bold text-xs md:text-base text-gray-700 outline-none focus:ring-2 focus:ring-blue-500 appearance-none text-center"
                       >
                         {authorTitles.map(t => <option key={t} value={t}>{t}</option>)}
                       </select>
@@ -594,7 +609,7 @@ export default function AdminPage() {
                     type="text" 
                     value={authorName}
                     onChange={(e) => setAuthorName(e.target.value)}
-                    className="w-2/3 bg-gray-50 px-4 py-3 rounded-xl border-none font-bold text-gray-700 outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                    className="w-2/3 bg-gray-50 px-3 md:px-4 py-2.5 md:py-3 rounded-xl border-none font-bold text-sm md:text-base text-gray-700 outline-none focus:ring-2 focus:ring-blue-500 transition-all"
                     placeholder="Name"
                   />
                 </div>
@@ -602,8 +617,8 @@ export default function AdminPage() {
             </div>
 
             {/* Featured Image - Full Width Row */}
-            <div className="pt-8 border-t border-gray-100">
-              <div className="flex items-center gap-2 mb-3">
+            <div className="pt-6 md:pt-8 border-t border-gray-100">
+              <div className="flex items-center gap-2 mb-2 md:mb-3">
                 <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest">Cover Image <span className="text-red-500">*</span></label>
                 <div className="relative group/tooltip">
                   <span className="cursor-help flex items-center justify-center w-4 h-4 rounded-full bg-blue-100 text-blue-600 text-[10px] font-bold">?</span>
@@ -620,29 +635,29 @@ export default function AdminPage() {
                   onChange={handleImageUpload}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                 />
-                <div className={`flex items-center gap-3 p-4 rounded-xl border-2 border-dashed transition-all ${featuredImage ? 'border-green-500 bg-green-50' : 'border-gray-300 bg-gray-50 hover:border-blue-500 hover:bg-blue-50'}`}>
+                <div className={`flex items-center gap-3 p-3 md:p-4 rounded-xl border-2 border-dashed transition-all ${featuredImage ? 'border-green-500 bg-green-50' : 'border-gray-300 bg-gray-50 hover:border-blue-500 hover:bg-blue-50'}`}>
                   {featuredImage ? (
                     <>
-                      <div className="w-16 h-16 rounded-lg overflow-hidden relative shadow-sm flex-shrink-0">
+                      <div className="w-12 h-12 md:w-16 md:h-16 rounded-lg overflow-hidden relative shadow-sm flex-shrink-0">
                         <Image src={featuredImage} alt="Preview" fill className="object-cover" />
                       </div>
-                      <span className="text-sm font-bold text-green-700 flex-1">Image Loaded!</span>
+                      <span className="text-xs md:text-sm font-bold text-green-700 flex-1">Image Loaded!</span>
                       <button
                         type="button"
                         onClick={(e) => { e.stopPropagation(); setFeaturedImage(''); }}
-                        className="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors z-20"
+                        className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors z-20 flex-shrink-0"
                       >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
                     </>
                   ) : (
                     <>
-                       <div className="w-12 h-12 rounded-lg bg-gray-200 flex items-center justify-center text-gray-400 text-2xl">📷</div>
-                       <div className="flex flex-col">
-                          <span className="text-sm font-bold text-gray-700 group-hover:text-blue-600">Click to Upload Cover Image</span>
-                          <span className="text-xs text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</span>
+                       <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-gray-200 flex items-center justify-center text-gray-400 text-xl md:text-2xl flex-shrink-0">📷</div>
+                       <div className="flex flex-col flex-1 min-w-0">
+                          <span className="text-xs md:text-sm font-bold text-gray-700 group-hover:text-blue-600">Click to Upload Cover Image</span>
+                          <span className="text-[10px] md:text-xs text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</span>
                        </div>
                     </>
                   )}
@@ -651,10 +666,10 @@ export default function AdminPage() {
             </div>
 
             {/* 2.5 Avatar & Image Gallery Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 pt-6 md:pt-8 border-t border-gray-100">
               {/* Author Avatar */}
               <div>
-                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3">Author Avatar (Optional)</label>
+                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">Author Avatar (Optional)</label>
                 <div className="relative group">
                   <input 
                     type="file" 
@@ -665,24 +680,24 @@ export default function AdminPage() {
                   <div className={`flex items-center gap-3 p-3 rounded-xl border-2 border-dashed transition-all ${authorAvatar ? 'border-green-500 bg-green-50' : 'border-gray-300 bg-gray-50 hover:border-blue-500 hover:bg-blue-50'}`}>
                     {authorAvatar ? (
                       <>
-                        <div className="w-12 h-12 rounded-full overflow-hidden relative shadow-sm ring-2 ring-blue-600">
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden relative shadow-sm ring-2 ring-blue-600 flex-shrink-0">
                           <Image src={authorAvatar} alt="Avatar" fill className="object-cover" />
                         </div>
-                        <span className="text-sm font-bold text-green-700 flex-1">Avatar Uploaded!</span>
+                        <span className="text-xs md:text-sm font-bold text-green-700 flex-1">Avatar Uploaded!</span>
                         <button
                           type="button"
                           onClick={(e) => { e.stopPropagation(); setAuthorAvatar(''); }}
-                          className="w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors z-20"
+                          className="w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition-colors z-20 flex-shrink-0"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
+                        </svg>
                         </button>
                       </>
                     ) : (
                       <>
-                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-xl font-bold">👤</div>
-                         <span className="text-sm font-bold text-gray-500 group-hover:text-blue-600">Click to Upload Avatar</span>
+                         <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-lg md:text-xl font-bold flex-shrink-0">👤</div>
+                         <span className="text-xs md:text-sm font-bold text-gray-500 group-hover:text-blue-600 flex-1">Click to Upload Avatar</span>
                       </>
                     )}
                   </div>
@@ -691,62 +706,62 @@ export default function AdminPage() {
 
               {/* Image Gallery Button */}
               <div>
-                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3">Image Library</label>
+                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">Image Library</label>
                 <button
                   type="button"
                   onClick={() => setIsImageGalleryOpen(true)}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-4 rounded-xl font-bold text-sm hover:opacity-90 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 md:px-6 py-3 md:py-4 rounded-xl font-bold text-xs md:text-sm hover:opacity-90 transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 md:gap-3"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                  View Uploaded Images ({uploadedImages.length})
+                  <span className="truncate">View Uploaded Images ({uploadedImages.length})</span>
                 </button>
               </div>
             </div>
 
             {/* 3. Editor */}
-            <div className="pt-8 border-t border-gray-100">
-              <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-4">Content <span className="text-red-500">*</span></label>
+            <div className="pt-6 md:pt-8 border-t border-gray-100">
+              <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3 md:mb-4">Content <span className="text-red-500">*</span></label>
               
-              <div className="border-2 border-gray-200 rounded-2xl overflow-hidden focus-within:border-blue-500 focus-within:ring-4 focus-within:ring-blue-50 transition-all">
+              <div className="border-2 border-gray-200 rounded-xl md:rounded-2xl overflow-hidden focus-within:border-blue-500 focus-within:ring-2 md:focus-within:ring-4 focus-within:ring-blue-50 transition-all">
                 {/* Toolbar */}
-                <div className="bg-gray-50 border-b border-gray-200 px-4 py-3 flex flex-wrap gap-2 sticky top-0 z-10">
+                <div className="bg-gray-50 border-b border-gray-200 px-2 md:px-4 py-2 md:py-3 flex flex-wrap gap-1.5 md:gap-2 sticky top-0 z-10">
                   <button 
                     onClick={() => execCommand('bold')} 
-                    className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${activeFormats.includes('bold') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
+                    className={`px-2.5 md:px-4 py-1.5 md:py-2 rounded-lg font-bold text-xs md:text-sm transition-all ${activeFormats.includes('bold') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
                   >
                     Bold
                   </button>
                   <button 
                     onClick={() => execCommand('italic')} 
-                    className={`px-4 py-2 rounded-lg italic text-sm transition-all ${activeFormats.includes('italic') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
+                    className={`px-2.5 md:px-4 py-1.5 md:py-2 rounded-lg italic text-xs md:text-sm transition-all ${activeFormats.includes('italic') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
                   >
                     Italic
                   </button>
-                  <div className="w-px h-6 bg-gray-300 mx-2 self-center"></div>
+                  <div className="w-px h-5 md:h-6 bg-gray-300 mx-1 md:mx-2 self-center"></div>
                   <button 
                     onClick={() => execCommand('formatBlock', 'h2')} 
-                    className={`px-4 py-2 rounded-lg font-extrabold text-sm transition-all ${activeFormats.includes('h2') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
+                    className={`px-2.5 md:px-4 py-1.5 md:py-2 rounded-lg font-extrabold text-xs md:text-sm transition-all ${activeFormats.includes('h2') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
                   >
-                    Heading 1
+                    H1
                   </button>
                   <button 
                     onClick={() => execCommand('formatBlock', 'h3')} 
-                    className={`px-4 py-2 rounded-lg font-bold text-xs transition-all ${activeFormats.includes('h3') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
+                    className={`px-2.5 md:px-4 py-1.5 md:py-2 rounded-lg font-bold text-xs transition-all ${activeFormats.includes('h3') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
                   >
-                    Heading 2
+                    H2
                   </button>
-                  <div className="w-px h-6 bg-gray-300 mx-2 self-center"></div>
+                  <div className="w-px h-5 md:h-6 bg-gray-300 mx-1 md:mx-2 self-center"></div>
                   <button 
                     onClick={() => execCommand('insertUnorderedList')} 
-                    className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${activeFormats.includes('ul') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
+                    className={`px-2.5 md:px-4 py-1.5 md:py-2 rounded-lg font-bold text-xs md:text-sm transition-all ${activeFormats.includes('ul') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
                   >
                     • List
                   </button>
                   <button 
                     onClick={() => execCommand('insertOrderedList')} 
-                    className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${activeFormats.includes('ol') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
+                    className={`px-2.5 md:px-4 py-1.5 md:py-2 rounded-lg font-bold text-xs md:text-sm transition-all ${activeFormats.includes('ol') ? 'bg-gradient-to-r from-blue-600 to-red-600 text-white shadow-md' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
                   >
                     1. List
                   </button>
@@ -759,7 +774,7 @@ export default function AdminPage() {
                   onKeyUp={checkFormats}
                   onMouseUp={checkFormats}
                   data-placeholder="Paste or write your article content here..."
-                  className="p-8 md:p-12 focus:outline-none prose prose-lg max-w-none text-gray-800 leading-relaxed min-h-[500px] empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400 block"
+                  className="p-4 md:p-8 lg:p-12 focus:outline-none prose prose-sm md:prose-lg max-w-none text-gray-800 leading-relaxed min-h-[300px] md:min-h-[500px] empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400 block"
                 />
               </div>
             </div>

@@ -115,7 +115,7 @@ export default function HomeContent() {
         {/* Background Image scoped to Hero Section */}
         <div className="absolute inset-0 -z-20">
           <Image
-            src="/assets/backgrounds/new.png"
+            src="/23964.jp "
             alt="Geometric Background"
             fill
             className="object-cover opacity-30"

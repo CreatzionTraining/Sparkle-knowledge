@@ -1,66 +1,6 @@
 "use client";
 
-import React from 'react';
-
-// ----------------------------------------------------------------------
-// 📝 EDIT YOUR ACADEMY NEWS HERE
-// ----------------------------------------------------------------------
-const ACADEMY_UPDATES = [
-  {
-    id: 1,
-    badge: "New Batch",
-    title: "IELTS Intensive Batch Starting Jan 25th",
-    icon: "graduation",
-    link: "/contact",
-    gradient: "from-orange-500 via-red-500 to-pink-600",
-    lightGradient: "from-orange-400/10 to-red-500/10"
-  },
-  {
-    id: 2,
-    badge: "Achievement",
-    title: "Priya Scored 8.5 Bands in IELTS",
-    icon: "trophy",
-    link: "/success-stories",
-    gradient: "from-emerald-500 via-green-500 to-teal-600",
-    lightGradient: "from-emerald-400/10 to-green-500/10"
-  },
-  {
-    id: 3,
-    badge: "Admissions Open",
-    title: "UK September 2026 Intake - Apply Now",
-    icon: "plane",
-    link: "/study-abroad",
-    gradient: "from-blue-500 via-indigo-500 to-purple-600",
-    lightGradient: "from-blue-400/10 to-indigo-500/10"
-  },
-  {
-    id: 4,
-    badge: "Free Webinar",
-    title: "Study Abroad Seminar This Saturday",
-    icon: "calendar",
-    link: "/events",
-    gradient: "from-purple-500 via-pink-500 to-rose-600",
-    lightGradient: "from-purple-400/10 to-pink-500/10"
-  },
-  {
-    id: 5,
-    badge: "Limited Offer",
-    title: "20% OFF on GRE + TOEFL Combo",
-    icon: "sparkles",
-    link: "/courses",
-    gradient: "from-cyan-500 via-blue-500 to-indigo-600",
-    lightGradient: "from-cyan-400/10 to-blue-500/10"
-  },
-  {
-    id: 6,
-    badge: "Success Story",
-    title: "Rahul Admitted to Oxford University",
-    icon: "star",
-    link: "/success-stories",
-    gradient: "from-amber-500 via-orange-500 to-red-600",
-    lightGradient: "from-amber-400/10 to-orange-500/10"
-  }
-];
+import React, { useEffect, useState } from 'react';
 
 // Icon Components
 const Icons = {
@@ -93,21 +33,103 @@ const Icons = {
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
     </svg>
-  )
+  ),
+  megaphone: () => (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+    </svg>
+  ),
+  bell: () => (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+    </svg>
+  ),
+  gift: () => (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+    </svg>
+  ),
 };
 
+interface NewsItem {
+  id: number;
+  badge: string;
+  title: string;
+  icon: string;
+  link: string;
+  gradient: string;
+  lightGradient: string;
+}
+
 export default function NewsScrollBar() {
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+  const fetchNews = async () => {
+    try {
+      const res = await fetch('/api/news');
+      const data = await res.json();
+      if (data.success && data.news.length > 0) {
+        setNews(data.news);
+      } else {
+        // Fallback to default news if none exist
+        setNews([
+          {
+            id: 1,
+            badge: "Welcome",
+            title: "Welcome to Sparkle Knowledge - Your Gateway to Global Education",
+            icon: "sparkles",
+            link: "/contact",
+            gradient: "from-blue-500 via-indigo-500 to-purple-600",
+            lightGradient: "from-blue-400/10 to-indigo-500/10"
+          }
+        ]);
+      }
+    } catch (error) {
+      console.error('Error fetching news:', error);
+      // Fallback news
+      setNews([
+        {
+          id: 1,
+          badge: "Welcome",
+          title: "Welcome to Sparkle Knowledge - Your Gateway to Global Education",
+          icon: "sparkles",
+          link: "/contact",
+          gradient: "from-blue-500 via-indigo-500 to-purple-600",
+          lightGradient: "from-blue-400/10 to-indigo-500/10"
+        }
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="relative w-full py-4 md:py-5 overflow-hidden">
+        <div className="flex items-center justify-center">
+          <div className="animate-pulse text-slate-400 text-sm">Loading news...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (news.length === 0) {
+    return null;
+  }
+
   return (
-    <div className="relative w-full bg-white py-4 md:py-5 overflow-hidden border-y border-slate-200/80 shadow-sm">
+    <div className="relative w-full py-4 md:py-5 overflow-hidden">
       
       {/* Subtle Grid Background */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: `linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)`,
-        backgroundSize: '32px 32px'
-      }}></div>
+
 
       {/* LIVE Badge - Compact & Professional */}
-      <div className="absolute left-0 top-0 bottom-0 z-30 flex items-center pl-4 md:pl-8 pr-6 bg-gradient-to-r from-white via-white/95 to-transparent">
+      <div className="absolute left-0 top-0 bottom-0 z-30 flex items-center pl-4 md:pl-8 pr-6">
         <div className="relative group/badge">
           {/* Subtle Glow */}
           <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-orange-500 rounded-xl blur opacity-20 group-hover/badge:opacity-30 transition-opacity"></div>
@@ -129,22 +151,20 @@ export default function NewsScrollBar() {
       <div className="flex gap-3 md:gap-4 pl-24 md:pl-40">
         {/* First Set */}
         <div className="flex animate-scroll-infinite hover:pause-scroll items-center gap-3 md:gap-4">
-          {ACADEMY_UPDATES.map((item, index) => (
+          {news.map((item, index) => (
             <NewsCard key={`set1-${item.id}-${index}`} item={item} />
           ))}
         </div>
         
         {/* Second Set - Duplicate for seamless loop */}
         <div className="flex animate-scroll-infinite hover:pause-scroll items-center gap-3 md:gap-4">
-          {ACADEMY_UPDATES.map((item, index) => (
+          {news.map((item, index) => (
             <NewsCard key={`set2-${item.id}-${index}`} item={item} />
           ))}
         </div>
       </div>
 
-      {/* Fade Gradients */}
-      <div className="absolute top-0 bottom-0 left-0 w-32 md:w-48 bg-gradient-to-r from-white via-white to-transparent z-20 pointer-events-none"></div>
-      <div className="absolute top-0 bottom-0 right-0 w-24 md:w-32 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none"></div>
+
 
       {/* Animation */}
       <style jsx>{`
@@ -176,8 +196,8 @@ export default function NewsScrollBar() {
 }
 
 // News Card Component
-function NewsCard({ item }: { item: typeof ACADEMY_UPDATES[0] }) {
-  const IconComponent = Icons[item.icon as keyof typeof Icons];
+function NewsCard({ item }: { item: NewsItem }) {
+  const IconComponent = Icons[item.icon as keyof typeof Icons] || Icons.sparkles;
   
   return (
     <div className="group/card flex-shrink-0 relative w-[280px] md:w-[340px] cursor-default">
@@ -197,7 +217,7 @@ function NewsCard({ item }: { item: typeof ACADEMY_UPDATES[0] }) {
         <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 group-hover/card:opacity-5 transition-opacity duration-500 rounded-xl md:rounded-2xl`}></div>
         
         {/* Card Content */}
-        <div className="relative bg-white/80 backdrop-blur-md rounded-xl md:rounded-2xl p-3 md:p-4">
+        <div className="relative rounded-xl md:rounded-2xl p-3 md:p-4">
           <div className="flex items-center gap-3">
             
             {/* Icon */}
