@@ -63,6 +63,12 @@ export function Footer() {
                             </li>
                             <li>
                                 <a href="#" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                    Blog
+                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     Contact
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </a>
@@ -95,10 +101,21 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="border-t border-gray-200 pt-6 text-center">
-                    <p className="text-sm text-gray-400">
-                        © {new Date().getFullYear()} Sparkle Knowledge Yard. All rights reserved.
-                    </p>
+                <div className="border-t border-gray-200 pt-6">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+                        <p className="text-sm text-gray-400">
+                            © {new Date().getFullYear()} Sparkle Knowledge Yard. All rights reserved.
+                        </p>
+                        <div className="flex items-center gap-4 text-xs">
+                            <a href="/terms" className="text-gray-500 hover:text-blue-600 transition-colors">
+                                Terms and Conditions
+                            </a>
+                            <span className="text-gray-300">|</span>
+                            <a href="/privacy" className="text-gray-500 hover:text-blue-600 transition-colors">
+                                Privacy Policy
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </footer>

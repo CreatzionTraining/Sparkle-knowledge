@@ -16,23 +16,27 @@ const certificates = [
 ];
 
 export function Certificates() {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(certificates.length); // Start at first real set
     const cardWidth = 280; // Fixed card width
     const gap = 24; // Gap between cards (6 * 4 = 24px)
 
+    // Create infinite loop by triplicating the array
+    const infiniteCards = [...certificates, ...certificates, ...certificates];
+
     const handleNext = () => {
-        if (currentIndex < certificates.length - 4) {
-            setCurrentIndex(prev => prev + 1);
-        } else {
-            setCurrentIndex(0);
-        }
+        setCurrentIndex(prev => prev + 1);
     };
 
     const handlePrev = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(prev => prev - 1);
-        } else {
-            setCurrentIndex(certificates.length - 4);
+        setCurrentIndex(prev => prev - 1);
+    };
+
+    // Reset position when reaching clone boundaries (seamless loop)
+    const handleTransitionEnd = () => {
+        if (currentIndex >= certificates.length * 2) {
+            setCurrentIndex(certificates.length);
+        } else if (currentIndex < certificates.length) {
+            setCurrentIndex(certificates.length * 2 - 1);
         }
     };
 
@@ -96,11 +100,29 @@ export function Certificates() {
                     <div className="overflow-hidden">
                         <motion.div
                             className="flex gap-6"
+                            drag="x"
+                            dragConstraints={{ left: -(infiniteCards.length - 4) * (cardWidth + gap), right: 0 }}
+                            dragElastic={0.1}
+                            onDragEnd={(e, { offset, velocity }) => {
+                                const swipe = offset.x * velocity.x;
+                                const threshold = 50; // Minimum drag distance to trigger navigation
+
+                                // If dragged more than threshold to the left, go next
+                                if (offset.x < -threshold) {
+                                    handleNext();
+                                }
+                                // If dragged more than threshold to the right, go prev
+                                else if (offset.x > threshold) {
+                                    handlePrev();
+                                }
+                                // Otherwise, snap back to current position (handled by animate prop)
+                            }}
                             animate={{ x: -offset }}
+                            onAnimationComplete={handleTransitionEnd}
                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                         >
-                            {certificates.map((cert) => (
-                                <div key={cert.id} className="flex-shrink-0" style={{ width: `${cardWidth}px` }}>
+                            {infiniteCards.map((cert, index) => (
+                                <div key={`${cert.id}-${index}`} className="flex-shrink-0" style={{ width: `${cardWidth}px` }}>
                                     <CertificateCard cert={cert} />
                                 </div>
                             ))}
@@ -122,8 +144,8 @@ export function Certificates() {
                         />
                     ))}
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }
 
@@ -169,13 +191,6 @@ function CertificateCard({ cert }: { cert: any }) {
 
                     {/* Content Area */}
                     <div className="flex-1 flex flex-col items-center justify-center p-6 relative">
-                        {/* ID Badge */}
-                        <div className="absolute top-4 left-4">
-                            <div className="px-3 py-1 bg-blue-50 rounded-full border border-blue-100">
-                                <span className="text-[10px] font-mono font-bold text-blue-600">#{7231 + cert.id}</span>
-                            </div>
-                        </div>
-
                         {/* Score Badge */}
                         <div className="absolute top-4 right-4">
                             <div className="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-pink-500 rounded-xl shadow-md flex flex-col items-center">
