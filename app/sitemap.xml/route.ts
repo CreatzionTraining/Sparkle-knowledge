@@ -1,16 +1,51 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+
+// Dynamic route configuration
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidate every hour
 
 export async function GET() {
   try {
-    // Read blog posts from posts.json
-    const postsPath = path.join(process.cwd(), 'data', 'posts.json');
-    const postsData = fs.readFileSync(postsPath, 'utf-8');
-    const posts = JSON.parse(postsData);
+    // Import posts data dynamically
+    let posts: any[] = [];
+    
+    try {
+      // Try to import posts.json
+      const postsModule = await import('@/data/posts.json');
+      posts = postsModule.default || [];
+    } catch (error) {
+      console.warn('Could not load posts.json, generating sitemap without blog posts');
+      posts = [];
+    }
 
     // Base URL
     const baseUrl = 'https://sparkleknowledgeyard.com';
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    // Generate blog post URLs
+    const blogPostUrls = posts
+      .filter((post: any) => post.slug && post.slug !== 'sakthi-weds-navyaaa')
+      .map((post: any) => {
+        let lastmod = currentDate;
+        if (post.date) {
+          try {
+            const dateObj = new Date(post.date);
+            if (!isNaN(dateObj.getTime())) {
+              lastmod = dateObj.toISOString().split('T')[0];
+            }
+          } catch (e) {
+            // Use current date if parsing fails
+          }
+        }
+
+        return `  <url>
+    <loc>${baseUrl}/blog/${post.slug}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+      })
+      .join('\n');
 
     // Generate sitemap XML
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -24,7 +59,7 @@ export async function GET() {
   <!-- Homepage -->
   <url>
     <loc>${baseUrl}/</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -32,41 +67,18 @@ export async function GET() {
   <!-- Blog Main Page -->
   <url>
     <loc>${baseUrl}/blog</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Individual Blog Posts (Auto-generated from posts.json) -->
-${posts
-  .filter((post: any) => post.slug && post.slug !== 'sakthi-weds-navyaaa') // Filter out test posts
-  .map((post: any) => {
-    // Parse date or use current date
-    let lastmod = new Date().toISOString().split('T')[0];
-    if (post.date) {
-      try {
-        const dateObj = new Date(post.date);
-        if (!isNaN(dateObj.getTime())) {
-          lastmod = dateObj.toISOString().split('T')[0];
-        }
-      } catch (e) {
-        // Use current date if parsing fails
-      }
-    }
-
-    return `  <url>
-    <loc>${baseUrl}/blog/${post.slug}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>`;
-  })
-  .join('\n')}
+  <!-- Individual Blog Posts -->
+${blogPostUrls}
 
   <!-- Admin Panel -->
   <url>
     <loc>${baseUrl}/admin</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -74,7 +86,7 @@ ${posts
   <!-- Privacy Policy -->
   <url>
     <loc>${baseUrl}/privacy</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -82,7 +94,7 @@ ${posts
   <!-- Terms and Conditions -->
   <url>
     <loc>${baseUrl}/terms</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <lastmod>${currentDate}</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -93,12 +105,35 @@ ${posts
     return new NextResponse(sitemap, {
       status: 200,
       headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600', // Cache for 1 hour
+        'Content-Type': 'application/xml; charset=utf-8',
+        'X-Robots-Tag': 'noindex',
+        'Cache-Control': 'public, max-age=0, must-revalidate',
       },
     });
   } catch (error) {
     console.error('Error generating sitemap:', error);
-    return new NextResponse('Error generating sitemap', { status: 500 });
+    
+    // Return a minimal valid sitemap on error
+    const baseUrl = 'https://sparkleknowledgeyard.com';
+    const currentDate = new Date().toISOString().split('T')[0];
+    
+    const fallbackSitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>${baseUrl}/</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>`;
+
+    return new NextResponse(fallbackSitemap, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'X-Robots-Tag': 'noindex',
+        'Cache-Control': 'public, max-age=0, must-revalidate',
+      },
+    });
   }
 }
