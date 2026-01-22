@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/generate-sitemap.js",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed-news": "tsx scripts/seed-news.ts"
+    "seed-news": "tsx scripts/seed-news.ts",
+    "generate-sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "cloudinary": "^2.9.0",
