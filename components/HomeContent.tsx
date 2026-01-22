@@ -59,7 +59,7 @@ export default function HomeContent() {
               <div className="relative h-60 w-[550px]">
                 <Image
                   src="/sparkle_logo.png"
-                  alt="Sparkle Logo"
+                  alt="Sparkle Knowledge Yard - Best IELTS & Language Training Institute in Chennai"
                   fill
                   className="object-contain object-left"
                   priority
@@ -118,7 +118,7 @@ export default function HomeContent() {
              // src="/assets/backgrounds/new2.png" // This line is the previous background
             // src="/assets/backgrounds/education_bg.png"
             // src="/assets/backgrounds/education_3d_bg.png"
-            alt="Geometric Background"
+            alt="Study Abroad and Test Prep Background - Sparkle Knowledge Yard"
             fill
            // className="object-cover opacity-100"
             priority
@@ -136,20 +136,23 @@ export default function HomeContent() {
 
 
               <div className="relative h-[160px] md:h-[200px] mb-6 md:mb-8">
-                {textContent.map((item, index) => (
-                  <h1
-                    key={index}
-                    className={`absolute top-0 left-0 w-full text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-[#0F172A] leading-[1.1] transition-all duration-[3000ms] transform ${textIndex === index
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-4 pointer-events-none'
-                      }`}
-                  >
-                    {item.text} <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave">
-                      {item.highlight}
-                    </span>
-                  </h1>
-                ))}
+                {textContent.map((item, index) => {
+                  const Tag = index === 0 ? 'h1' : 'div';
+                  return (
+                    <Tag
+                      key={index}
+                      className={`absolute top-0 left-0 w-full text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-[#0F172A] leading-[1.1] transition-all duration-[3000ms] transform ${textIndex === index
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 translate-y-4 pointer-events-none'
+                        }`}
+                    >
+                      {item.text} <br />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave">
+                        {item.highlight}
+                      </span>
+                    </Tag>
+                  );
+                })}
               </div>
 
               <p className="text-base md:text-xl text-gray-800 mb-8 md:mb-10 mt-12 md:mt-20 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium px-4 lg:px-0">
@@ -224,7 +227,7 @@ export default function HomeContent() {
                       >
                         <Image
                           src={img}
-                          alt={`Hero Image ${index + 1}`}
+                          alt={`Student Success Story - Sparkle Knowledge Yard Chennai ${index + 1}`}
                           fill
                           className="object-contain p-2 hover:scale-105 transition-transform duration-[3000ms] rounded-2xl"
                           priority={index === 0}

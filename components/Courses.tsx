@@ -150,7 +150,7 @@ function CourseCard({ course, index }: { course: any; index: number }) {
               <div className="relative w-28 h-11">
                 <Image
                   src={course.image}
-                  alt={`${course.name} logo`}
+                  alt={`${course.name} Coaching Chennai - Sparkle Knowledge Yard`}
                   fill
                   className="object-contain object-left"
                 />
