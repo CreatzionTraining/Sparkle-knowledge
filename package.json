@@ -12,6 +12,7 @@
     "generate-sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
+    "@upstash/redis": "^1.34.3",
     "cloudinary": "^2.9.0",
     "fast-xml-parser": "^5.3.3",
     "framer-motion": "^12.26.1",

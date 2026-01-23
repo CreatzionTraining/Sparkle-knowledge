@@ -32,32 +32,57 @@ export default function RegistrationPopup() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Show "Processing..." for 1 second
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        try {
+            // Call the registration API
+            const response = await fetch('/api/register-popup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: fullName,
+                    email: email,
+                    phone: `${countryCode}${phoneNumber}`,
+                }),
+            });
 
-        // Store registration data
-        localStorage.setItem('user-registered', 'true');
-        localStorage.setItem('user-name', fullName);
-        localStorage.setItem('user-email', email);
-        localStorage.setItem('user-phone', `${countryCode}${phoneNumber}`);
+            const result = await response.json();
 
-        // Show "Thank you" message
-        setShowThankYou(true);
+            if (result.success) {
+                // Store registration data in localStorage
+                localStorage.setItem('user-registered', 'true');
+                localStorage.setItem('user-name', fullName);
+                localStorage.setItem('user-email', email);
+                localStorage.setItem('user-phone', `${countryCode}${phoneNumber}`);
 
-        // Wait 1 second to show "Thank you" message
-        await new Promise(resolve => setTimeout(resolve, 1000));
+                // Show "Thank you" message
+                setShowThankYou(true);
 
-        // Trigger fade-out animation
-        setIsClosing(true);
+                // Wait 1 second to show "Thank you" message
+                await new Promise(resolve => setTimeout(resolve, 1000));
 
-        // Wait for animation to complete (500ms)
-        await new Promise(resolve => setTimeout(resolve, 500));
+                // Trigger fade-out animation
+                setIsClosing(true);
 
-        // Close popup
-        setIsVisible(false);
-        setIsSubmitting(false);
-        setShowThankYou(false);
-        setIsClosing(false);
+                // Wait for animation to complete (500ms)
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                // Close popup
+                setIsVisible(false);
+                setIsSubmitting(false);
+                setShowThankYou(false);
+                setIsClosing(false);
+            } else {
+                // Handle error
+                console.error('Registration failed:', result.error);
+                setIsSubmitting(false);
+                alert('Registration failed. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error submitting registration:', error);
+            setIsSubmitting(false);
+            alert('An error occurred. Please try again.');
+        }
     };
 
     const handleClose = async () => {
