@@ -43,11 +43,5 @@
       "destination": "https://sparkleknowledgeyard.com/:path*",
       "permanent": true
     }
-  ],
-  "crons": [
-    {
-      "path": "/api/cron/process-queue",
-      "schedule": "* * * * *"
-    }
   ]
 }
