@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description: "Join Chennai's top-rated institute for IELTS, PTE, TOEFL, OET, GRE, GMAT, and foreign language training (German, French, Spanish). Expert coaching with 95% success rate.",
   keywords: ["IELTS coaching Chennai", "TOEFL preparation", "PTE training", "German classes", "French language course", "Study abroad consultants", "Sparkle Knowledge Yard"],
   alternates: {
-    canonical: "https://sparkleknowledgeyard.com",
+    canonical: "./",
   },
   robots: {
     index: true,
