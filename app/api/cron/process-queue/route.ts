@@ -11,6 +11,20 @@ const redis = new Redis({
 // This runs every minute via Vercel Cron
 export async function GET(request: NextRequest) {
   try {
+    // 🔒 Locking Mechanism: Prevent double-execution
+    // Set a lock key 'cron_processing_lock' with 30s expiry
+    // 'nx: true' means "only set if Not Exists"
+    const acquiredLock = await redis.set('cron_processing_lock', 'true', { ex: 30, nx: true });
+
+    if (!acquiredLock) {
+      console.log('🔒 Cron job already running (locked), skipping execution.');
+      return NextResponse.json({ 
+        success: true, 
+        message: 'Locked - Job already running (deduplicated)',
+        skipped: true 
+      });
+    }
+
     console.log('🔄 Cron job started - Processing pending submissions...');
     
     // Get all pending keys (both submissions and registrations)
@@ -20,6 +34,8 @@ export async function GET(request: NextRequest) {
     
     if (allKeys.length === 0) {
       console.log('✅ No pending items to process');
+      // Release lock early since we are done
+      await redis.del('cron_processing_lock');
       return NextResponse.json({ 
         success: true, 
         message: 'No pending items',
@@ -83,6 +99,9 @@ export async function GET(request: NextRequest) {
 
     console.log(`✅ Cron job completed - Success: ${successCount}, Failed: ${failCount}`);
 
+    // 🔓 Release the lock
+    await redis.del('cron_processing_lock');
+
     return NextResponse.json({
       success: true,
       processed: allKeys.length,
@@ -94,6 +113,9 @@ export async function GET(request: NextRequest) {
 
   } catch (error: any) {
     console.error('❌ Cron job error:', error);
+    // Attempt to release lock even on error so we don't block for full 30s
+    await redis.del('cron_processing_lock');
+    
     return NextResponse.json(
       { error: 'Cron job failed', details: error.message },
       { status: 500 }
