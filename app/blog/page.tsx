@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Navbar } from '../../components/Navbar';
 
 interface BlogPost {
   id: number;
@@ -131,20 +132,22 @@ export default function BlogPage() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-600 rounded-full filter blur-3xl"></div>
       </div>
 
-      <div className="relative z-10 py-12 md:py-20 px-4 md:px-4">
+      <div className="hidden md:block">
+        <Navbar />
+      </div>
+      <div className="relative z-10 pt-12 pb-12 md:pt-40 md:pb-20 px-4 md:px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-10 md:mb-16">
-            <div className="inline-block mb-4">
-              <span className="px-5 py-2 md:px-6 md:py-2 bg-gradient-to-r from-blue-600 to-red-600 text-white text-xs md:text-sm font-semibold rounded-full shadow-lg">
-                BLOG
-              </span>
-            </div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 text-gradient px-4">
-              Latest Insights
+          {/* Header - Professional Redesign */}
+          <div className="text-center mb-12 md:mb-20">
+            {/* Main Title - Split Color Animation */}
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 text-slate-900 tracking-tight leading-tight">
+              Sparkle <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] via-[#1D4ED8] to-[#E63946] animate-gradient-x bg-[length:200%_auto]">Blog</span>
             </h1>
-            <p className="text-gray-600 text-sm md:text-lg max-w-2xl mx-auto px-4">
-              Discover stories, tips, and insights from our experts
+            
+            {/* Subtitle */}
+            <p className="text-slate-600 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed px-4">
+              Expert insights, success stories, and comprehensive guides for your global education journey.
             </p>
           </div>
 

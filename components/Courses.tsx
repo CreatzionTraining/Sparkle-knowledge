@@ -160,7 +160,7 @@ function CourseCard({ course, index }: { course: any; index: number }) {
                 }`}>
                 <Image
                   src={course.image}
-                  alt={`${course.name} logo`}
+                  alt={`${course.name} Coaching Chennai - Sparkle Knowledge Yard`}
                   fill
                   className="object-contain object-left-top"
                 />

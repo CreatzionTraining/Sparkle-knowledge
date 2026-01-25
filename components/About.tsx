@@ -170,7 +170,7 @@ export function About() {
                         <div className="relative w-full aspect-[4/3] flex items-center justify-center animate-float-delayed">
                             <Image
                                 src="/assets/people/about_us_custom.png"
-                                alt="Sparkle Knowledge Team"
+                                alt="Sparkle Knowledge Yard Team - Expert IELTS Trainers in Chennai"
                                 fill
                                 className="object-contain"
                                 priority

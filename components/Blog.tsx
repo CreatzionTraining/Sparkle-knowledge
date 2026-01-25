@@ -45,11 +45,11 @@ export default function Blog() {
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="mb-12 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-3 text-gradient">
-            Latest Articles
+          <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 tracking-tight">
+            Global <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] via-[#1D4ED8] to-[#E63946] animate-gradient-x bg-[length:200%_auto]">Success Stories</span>
           </h2>
-          <p className="text-gray-600 text-lg">
-            Insights and tips from our language experts
+          <p className="text-slate-600 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+            Celebrating achievements, academy updates, and expert study abroad guidance.
           </p>
         </div>
 

@@ -1,0 +1,126 @@
+# ============================================
+# SPARKLE KNOWLEDGE YARD - ROBOTS.TXT
+# Educational Content for IELTS, TOEFL, PTE, GRE, GMAT
+# ============================================
+
+# Allow all search engines and AI crawlers
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# ============================================
+# AI MODEL CRAWLERS - EXPLICITLY ALLOWED
+# ============================================
+
+# ChatGPT (OpenAI)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# ChatGPT User (OpenAI browsing)
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Google Gemini / Bard
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Claude (Anthropic)
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Common Crawl (used by many AI models)
+User-agent: CCBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Meta AI (Facebook/Instagram AI)
+User-agent: FacebookBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Bing AI / Copilot
+User-agent: bingbot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Yandex AI
+User-agent: YandexBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Baidu AI (Chinese search)
+User-agent: Baiduspider
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Amazon Alexa
+User-agent: ia_archiver
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# DuckDuckGo AI
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# ============================================
+# SITEMAP LOCATION
+# ============================================
+Sitemap: https://sparkleknowledgeyard.com/sitemap.xml
+
+# ============================================
+# CRAWL SETTINGS
+# ============================================
+# Crawl-delay: 1
+
+# ============================================
+# WEBSITE INFO
+# ============================================
+# Website: Sparkle Knowledge Yard
+# Domain: sparkleknowledgeyard.com
+# Content: IELTS, TOEFL, PTE, GRE, GMAT, Language Training
+# Purpose: Educational resources for test preparation and study abroad

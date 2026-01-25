@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import path from 'path';
-import fs from 'fs';
-import { google } from 'googleapis';
+import { Redis } from '@upstash/redis';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Initialize Redis client for queue
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL!,
+  token: process.env.KV_REST_API_TOKEN!,
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -44,58 +48,6 @@ export async function POST(request: NextRequest) {
       second: '2-digit'
     });
     const timestamp = `${date} ${time}`;
-
-    // Function to save to Google Sheets in background (non-blocking)
-    const saveToGoogleSheets = async () => {
-      try {
-        // Handle private key - works for both local and Vercel
-        let privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY || '';
-        
-        // Replace literal \n with actual newlines
-        if (privateKey.includes('\\n')) {
-          privateKey = privateKey.replace(/\\n/g, '\n');
-        }
-        
-        console.log('🔍 Google Sheets Debug:');
-        console.log('- Private Key exists:', !!process.env.GOOGLE_SHEETS_PRIVATE_KEY);
-        console.log('- Client Email:', process.env.GOOGLE_SHEETS_CLIENT_EMAIL);
-        console.log('- Sheet ID:', process.env.GOOGLE_SHEET_ID);
-        console.log('- Private Key starts with:', privateKey.substring(0, 30));
-        console.log('- Private Key ends with:', privateKey.substring(privateKey.length - 30));
-        
-        const auth = new google.auth.GoogleAuth({
-          credentials: {
-            client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-            private_key: privateKey,
-          },
-          scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-        });
-
-        const sheets = google.sheets({ version: 'v4', auth });
-        
-        await sheets.spreadsheets.values.append({
-          spreadsheetId: process.env.GOOGLE_SHEET_ID,
-          range: 'Sheet1!A:G',
-          valueInputOption: 'RAW',
-          requestBody: {
-            values: [[
-              date,
-              time,
-              name,
-              email,
-              phone || 'Not provided',
-              interestedIn || 'Not specified',
-              message
-            ]],
-          },
-        });
-        
-        console.log('✅ Data saved to Google Sheets successfully');
-      } catch (sheetError: any) {
-        console.error('⚠️ Failed to save to Google Sheets:', sheetError.message);
-        // Silently fail - email was already sent successfully
-      }
-    };
 
     // Auto-reply HTML - Simple Professional Design
     const autoReplyHtml = `
@@ -403,75 +355,33 @@ export async function POST(request: NextRequest) {
       console.warn('Auto-reply failed:', error.message);
     }
 
-    // 3. Save to Google Sheets in BACKGROUND (user doesn't wait)
-    // But with AGGRESSIVE retries to ensure it saves
-    const backgroundSheetsSave = async () => {
-      let sheetsSaved = false;
+    // 3. Save to Redis Queue (INSTANT - 0.1 second)
+    // Cron job will process and save to Google Sheets
+    try {
+      // Generate unique submission ID
+      const submissionId = `SUB-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
       
-      // Aggressive retry: 10 attempts over 5 minutes
-      for (let attempt = 1; attempt <= 10; attempt++) {
-        try {
-          console.log(`📊 Background: Attempting to save to Google Sheets (Attempt ${attempt}/10)...`);
-          await saveToGoogleSheets();
-          sheetsSaved = true;
-          console.log('✅ SUCCESS! Google Sheets updated successfully!');
-          break; // Success - exit retry loop
-        } catch (error: any) {
-          console.error(`❌ Background: Google Sheets save attempt ${attempt} failed:`, error.message);
-          
-          if (attempt < 10) {
-            // Exponential backoff: 5s, 10s, 15s, 20s, 30s, 30s, 30s, 30s, 30s
-            const waitTime = Math.min(attempt * 5000, 30000);
-            console.log(`⏳ Background: Waiting ${waitTime}ms before retry ${attempt + 1}...`);
-            await new Promise(resolve => setTimeout(resolve, waitTime));
-          } else {
-            // Final attempt failed - send alert email to admin
-            console.error('🚨🚨🚨 CRITICAL ALERT 🚨🚨🚨');
-            console.error('Google Sheets update FAILED after 10 attempts!');
-            console.error('Contact Details NOT SAVED:');
-            console.error('- Name:', name);
-            console.error('- Email:', email);
-            console.error('- Phone:', phone || 'Not provided');
-            console.error('- Interested In:', interestedIn || 'Not specified');
-            console.error('- Message:', message);
-            console.error('- Timestamp:', timestamp);
-            console.error('🚨🚨🚨 CHECK GOOGLE SHEETS CREDENTIALS 🚨🚨🚨');
-            
-            // Send alert email to admin with contact details
-            try {
-              await resend.emails.send({
-                from: 'noreply@sparkleknowledgeyard.com',
-                to: ['bhuvankumar13995@gmail.com'],
-                subject: '🚨 URGENT: Google Sheets Save Failed - Manual Entry Required',
-                html: `
-                  <h2 style="color: red;">⚠️ Google Sheets Update Failed</h2>
-                  <p>The following contact form submission could not be saved to Google Sheets after 10 attempts.</p>
-                  <p><strong>Please manually add this to the spreadsheet:</strong></p>
-                  <ul>
-                    <li><strong>Date:</strong> ${date}</li>
-                    <li><strong>Time:</strong> ${time}</li>
-                    <li><strong>Name:</strong> ${name}</li>
-                    <li><strong>Email:</strong> ${email}</li>
-                    <li><strong>Phone:</strong> ${phone || 'Not provided'}</li>
-                    <li><strong>Interested In:</strong> ${interestedIn || 'Not specified'}</li>
-                    <li><strong>Message:</strong> ${message}</li>
-                  </ul>
-                  <p style="color: red;"><strong>Action Required:</strong> Add this entry to Google Sheets manually.</p>
-                `
-              });
-              console.log('📧 Alert email sent to admin with contact details');
-            } catch (emailError) {
-              console.error('Failed to send alert email:', emailError);
-            }
-          }
-        }
-      }
-    };
+      const submissionData = {
+        id: submissionId,
+        date,
+        time,
+        name,
+        email,
+        phone: phone || 'Not provided',
+        interestedIn: interestedIn || 'Not specified',
+        message,
+        attempts: 0,
+        createdAt: new Date().toISOString(),
+      };
 
-    // Start background save (non-blocking - user doesn't wait)
-    backgroundSheetsSave().catch(err => {
-      console.error('Background sheets save process failed:', err);
-    });
+      // Save to Redis queue (instant!)
+      await redis.set(`submission:${submissionId}`, submissionData);
+      
+      console.log(`✅ Submission ${submissionId} added to queue successfully`);
+    } catch (queueError: any) {
+      console.error('⚠️ Failed to add to queue:', queueError.message);
+      // Even if queue fails, user still gets email confirmation
+    }
 
     // Return success to user IMMEDIATELY (fast response)
     return NextResponse.json(

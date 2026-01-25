@@ -43,7 +43,7 @@ export function Footer() {
 
                     {/* Quick Links */}
                     <div className="md:pl-20">
-                        <h3 className="font-['Outfit'] font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Quick Links</h3>
+                        <p className="font-['Outfit'] font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Quick Links</p>
                         <ul className="space-y-3.5">
                             <li>
                                 <a href="#courses" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
@@ -80,7 +80,7 @@ export function Footer() {
 
                     {/* Contact Info */}
                     <div>
-                        <h3 className="font-['Outfit'] font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Contact Us</h3>
+                        <p className="font-['Outfit'] font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Contact Us</p>
                         <ul className="space-y-5">
                             <li className="flex items-start gap-3">
                                 <MapPin className="w-6 h-6 text-pink-500 shrink-0 mt-0.5" />
