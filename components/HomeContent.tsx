@@ -113,7 +113,7 @@ export default function HomeContent() {
       {/* Hero Section */}
       <section className="relative z-10 pt-32 pb-8 lg:pt-36 lg:pb-12 overflow-hidden">
         {/* Background Image scoped to Hero Section */}
-       {/* <div className="absolute inset-0 -z-20">
+        {/* <div className="absolute inset-0 -z-20">
           <Image
              // src="/assets/backgrounds/new2.png" // This line is the previous background
             // src="/assets/backgrounds/education_bg.png"
@@ -267,7 +267,7 @@ export default function HomeContent() {
       </div >
       {/* Courses Grid */}
       <div>
-       <NewsScrollBar />
+        <NewsScrollBar />
       </div>
       <div>
         < Courses />
@@ -287,7 +287,7 @@ export default function HomeContent() {
       <div>
         <Testimonials />
       </div>
-<div>
+      <div id="blog">
         <Blog />
       </div>
       {/* Contact Section */}

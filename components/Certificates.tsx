@@ -5,14 +5,84 @@ import { motion } from 'framer-motion';
 import { Award, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const certificates = [
-    { id: 1, name: 'Priya Sharma', score: 'IELTS Band 8.5', image: 'https://randomuser.me/api/portraits/women/63.jpg' },
-    { id: 2, name: 'Rahul Verma', score: 'TOEFL 112', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
-    { id: 3, name: 'Anjali Gupta', score: 'GRE 328', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
-    { id: 4, name: 'Vikram Singh', score: 'PTE 88', image: 'https://randomuser.me/api/portraits/men/86.jpg' },
-    { id: 5, name: 'Sneha Patel', score: 'OET Grade B', image: 'https://randomuser.me/api/portraits/women/65.jpg' },
-    { id: 6, name: 'Arjun Kumar', score: 'GMAT 740', image: 'https://randomuser.me/api/portraits/men/15.jpg' },
-    { id: 7, name: 'Kavya Reddy', score: 'IELTS Band 8.0', image: 'https://randomuser.me/api/portraits/women/33.jpg' },
-    { id: 8, name: 'Rohan Mehta', score: 'SAT 1500', image: 'https://randomuser.me/api/portraits/men/42.jpg' },
+    {
+        id: 1,
+        name: 'SAIGURU SEKARAN',
+        role: 'IELTS Academic',
+        score: 'IELTS Band 8.0',
+        image: '',
+        breakdown: [
+            { label: 'Listening', score: '9.0' },
+            { label: 'Reading', score: '9.0' },
+            { label: 'Speaking', score: '7.0' },
+            { label: 'Writing', score: '7.0' }
+        ]
+    },
+    {
+        id: 2,
+        name: 'SHANIA JOSEPH',
+        role: 'IELTS Academic',
+        score: 'IELTS Band 8.0',
+        image: '',
+        breakdown: [
+            { label: 'Listening', score: '8.5' },
+            { label: 'Reading', score: '8.0' },
+            { label: 'Speaking', score: '8.0' },
+            { label: 'Writing', score: '7.0' }
+        ]
+    },
+    {
+        id: 3,
+        name: 'Shantanu Accha',
+        role: 'IELTS Academic',
+        score: 'IELTS Band 7.5',
+        image: '',
+        breakdown: [
+            { label: 'Listening', score: '8.0' },
+            { label: 'Reading', score: '8.0' },
+            { label: 'Speaking', score: '7.5' },
+            { label: 'Writing', score: '7.0' }
+        ]
+    },
+    {
+        id: 4,
+        name: 'Aakaash M',
+        role: 'IELTS Academic',
+        score: 'IELTS Band 7.5',
+        image: '',
+        breakdown: [
+            { label: 'Listening', score: '8.5' },
+            { label: 'Reading', score: '8.5' },
+            { label: 'Speaking', score: '6.5' },
+            { label: 'Writing', score: '7.0' }
+        ]
+    },
+    {
+        id: 5,
+        name: 'Evangeline Libertus',
+        role: 'IELTS Academic',
+        score: 'IELTS Band 7.5',
+        image: '',
+        breakdown: [
+            { label: 'Listening', score: '8.5' },
+            { label: 'Reading', score: '7.0' },
+            { label: 'Speaking', score: '7.5' },
+            { label: 'Writing', score: '6.5' }
+        ]
+    },
+    {
+        id: 6,
+        name: 'Jeeva S',
+        role: 'IELTS General',
+        score: 'IELTS Band 7.5',
+        image: '',
+        breakdown: [
+            { label: 'Listening', score: '8.5' },
+            { label: 'Reading', score: '6.5' },
+            { label: 'Speaking', score: '7.5' },
+            { label: 'Writing', score: '6.5' }
+        ]
+    },
 ];
 
 export function Certificates() {
@@ -167,7 +237,7 @@ function CertificateCard({ cert }: { cert: any }) {
             { label: 'IR', score: '8' }
         ];
     };
-    const modules = getModules(cert.score);
+    const modules = cert.breakdown || getModules(cert.score);
 
     return (
         <div
@@ -204,10 +274,10 @@ function CertificateCard({ cert }: { cert: any }) {
                         {/* Name Section */}
                         <div className="text-center mt-8">
                             <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-pink-500 rounded-full mx-auto mb-4" />
-                            <h3 className="text-xl font-['Outfit'] font-bold text-gray-900 mb-2">
+                            <h3 className="text-xl font-['Outfit'] font-bold text-gray-900 mb-2 uppercase">
                                 {cert.name}
                             </h3>
-                            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Sparkle Scholar</p>
+                            <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{cert.role || 'Sparkle Scholar'}</p>
                         </div>
 
                         {/* Score Display */}
@@ -221,7 +291,7 @@ function CertificateCard({ cert }: { cert: any }) {
                         </div>
 
                         {/* Click hint */}
-                        <p className="text-xs text-gray-400 mt-4 absolute bottom-4">Click to see details</p>
+                        <p className="text-xs text-gray-400 mt-4 absolute bottom-4">Tap to Reveal</p>
                     </div>
                 </div>
 
@@ -238,13 +308,13 @@ function CertificateCard({ cert }: { cert: any }) {
                         <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
                             <Award className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-lg font-bold text-gray-900 mb-1">{cert.name}</h3>
+                        <h3 className="text-lg font-bold text-gray-900 mb-1 uppercase">{cert.name}</h3>
                         <p className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Score Breakdown</p>
                     </div>
 
                     {/* Module Scores */}
                     <div className="flex-1 flex flex-col justify-center space-y-2.5">
-                        {modules.map((mod, i) => (
+                        {modules.map((mod: { label: string; score: string }, i: number) => (
                             <div key={i} className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-2.5 flex items-center justify-between border border-blue-100">
                                 <span className="text-xs font-semibold text-gray-700">{mod.label}</span>
                                 <span className="text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">{mod.score}</span>

@@ -20,21 +20,23 @@ export function Footer() {
                             Trusted language training and test preparation institute in Perambur, Chennai. Helping students achieve global academic and career goals since 2018.
                         </p>
                         <div className="flex gap-3 pt-2">
-                            <a href="#" className="group relative w-12 h-12 bg-white rounded-full flex justify-center items-center overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="group relative w-12 h-12 bg-white rounded-full flex justify-center items-center overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                                 <span className="absolute w-full h-full bg-[#3b5999] top-full left-0 transition-all duration-500 group-hover:top-0 z-10"></span>
                                 <Facebook className="relative z-20 w-5 h-5 text-gray-800 transition-all duration-500 group-hover:text-white group-hover:rotate-[360deg] fill-current" />
                             </a>
-                            <a href="#" className="group relative w-12 h-12 bg-white rounded-full flex justify-center items-center overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="group relative w-12 h-12 bg-white rounded-full flex justify-center items-center overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                                 <span className="absolute w-full h-full bg-[#e4405f] top-full left-0 transition-all duration-500 group-hover:top-0 z-10"></span>
                                 <Instagram className="relative z-20 w-5 h-5 text-gray-800 transition-all duration-500 group-hover:text-white group-hover:rotate-[360deg]" />
                             </a>
-                            <a href="#" className="group relative w-12 h-12 bg-white rounded-full flex justify-center items-center overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="group relative w-12 h-12 bg-white rounded-full flex justify-center items-center overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                                 <span className="absolute w-full h-full bg-[#0077b5] top-full left-0 transition-all duration-500 group-hover:top-0 z-10"></span>
                                 <Linkedin className="relative z-20 w-5 h-5 text-gray-800 transition-all duration-500 group-hover:text-white group-hover:rotate-[360deg] fill-current" />
                             </a>
-                            <a href="#" className="group relative w-12 h-12 bg-white rounded-full flex justify-center items-center overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                                <span className="absolute w-full h-full bg-[#55acee] top-full left-0 transition-all duration-500 group-hover:top-0 z-10"></span>
-                                <Twitter className="relative z-20 w-5 h-5 text-gray-800 transition-all duration-500 group-hover:text-white group-hover:rotate-[360deg] fill-current" />
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="group relative w-12 h-12 bg-white rounded-full flex justify-center items-center overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                                <span className="absolute w-full h-full bg-[#000000] top-full left-0 transition-all duration-500 group-hover:top-0 z-10"></span>
+                                <svg viewBox="0 0 24 24" fill="currentColor" className="relative z-20 w-5 h-5 text-gray-800 transition-all duration-500 group-hover:text-white group-hover:rotate-[360deg]">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
                             </a>
                         </div>
                     </div>
@@ -44,31 +46,31 @@ export function Footer() {
                         <h3 className="font-['Outfit'] font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Quick Links</h3>
                         <ul className="space-y-3.5">
                             <li>
-                                <a href="#" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <a href="#courses" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     Courses
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <a href="#about" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     About
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <a href="#news" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     News
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <a href="#blog" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     Blog
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <a href="#contact" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     Contact
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </a>
