@@ -3,12 +3,23 @@ import Parser from "rss-parser";
 
 export const dynamic = "force-dynamic";
 
+// Helper to unwrap Google News links (get real publisher URL)
+function unwrapGoogleLink(link: string): string {
+  if (!link) return "";
+  try {
+    const url = new URL(link);
+    return url.searchParams.get("url") || link;
+  } catch {
+    return link;
+  }
+}
+
 const parser = new Parser();
 
 // Cache Google News
 let cachedNews: any[] | null = null;
 let lastFetchTime = 0;
-const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes cache
+const CACHE_DURATION = 0; // Cache disabled to force refresh
 
 export async function GET() {
   const now = Date.now();
@@ -112,38 +123,50 @@ export async function GET() {
         return true;
       })
       .map((item: any) => {
-        // Extract source from Google News link
+        // Extract source
         let source = "News Source";
-        try {
-          const urlObj = new URL(item.link);
-          const sourceParam = urlObj.searchParams.get("source");
-          if (sourceParam) {
-            source = sourceParam;
-          } else {
-            // Try to extract from link
-            const match = item.link.match(/\/articles\/([^\/]+)/);
-            if (match) {
-              source = match[1].split('-').slice(0, 2).join(' ');
-            }
-          }
-        } catch (e) {
-          // Keep default source
+        // Prefer item.source as string if parser gives it, or extract from url
+        if (item.source?.trim()) {
+           source = item.source;
+        } else {
+             try {
+                const urlObj = new URL(item.link);
+                const sourceParam = urlObj.searchParams.get("source");
+                 if (sourceParam) source = sourceParam;
+             } catch(e) {}
         }
-
+        
         let description = item.contentSnippet || item.content || "";
         
-        // Clean up description
+        // 🧼 CLEANUP: Remove CBM tracking and params from description
+        description = description.replace(/CBM[a-zA-Z0-9+/=._\-]+/g, "");
+        description = description.replace(/oc=\d+/g, "");
+        
+        // If description looks like a URL or is empty after clean, clear it
+        if (description.trim().startsWith("http") || description.includes("news.google.com")) {
+            description = "";
+        }
+
+        // Length limit
         if (description.length > 400) {
           description = description.substring(0, 400) + "...";
         }
 
+        // If description is just the title
+        if (description.trim().toLowerCase() === item.title.trim().toLowerCase()) {
+           description = "";
+        }
+
+        // ✅ GET REAL URL (unwrap Google redirect)
+        const realUrl = unwrapGoogleLink(item.link);
+
         return {
           title: item.title,
-          link: item.link,
+          link: realUrl, // Return the real URL
           pubDate: item.pubDate || item.isoDate || new Date().toISOString(),
           source: source,
-          description: description || "Read more about this educational update.",
-          imageUrl: null, // Google News RSS doesn't provide images
+          description: description.trim(),
+          imageUrl: null,
         };
       })
       .sort((a, b) => {

@@ -123,44 +123,29 @@ export default function NewsScrollBar() {
   }
 
   return (
-    <div className="relative w-full py-4 md:py-5 overflow-hidden">
+    <div className="relative w-full py-2 md:py-4 overflow-hidden">
       
       {/* Subtle Grid Background */}
 
 
-      {/* LIVE Badge - Compact & Professional */}
-      <div className="absolute left-0 top-0 bottom-0 z-30 flex items-center pl-4 md:pl-8 pr-6">
-        <div className="relative group/badge">
-          {/* Subtle Glow */}
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-orange-500 rounded-xl blur opacity-20 group-hover/badge:opacity-30 transition-opacity"></div>
-          
-          {/* Badge */}
-          <div className="relative flex items-center gap-2 bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl px-3 md:px-4 py-1.5 md:py-2 shadow-lg">
-            <div className="relative flex h-1.5 w-1.5 md:h-2 md:w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-full w-full bg-red-500"></span>
-            </div>
-            <span className="text-[10px] md:text-xs font-bold tracking-widest text-white uppercase">
-              Sparkle News
-            </span>
-          </div>
-        </div>
-      </div>
 
-      {/* Scrolling Container - True Infinite Loop */}
-      <div className="flex gap-3 md:gap-4 pl-24 md:pl-40">
-        {/* First Set */}
-        <div className="flex animate-scroll-infinite hover:pause-scroll items-center gap-3 md:gap-4">
-          {news.map((item, index) => (
-            <NewsCard key={`set1-${item.id}-${index}`} item={item} />
-          ))}
-        </div>
-        
-        {/* Second Set - Duplicate for seamless loop */}
-        <div className="flex animate-scroll-infinite hover:pause-scroll items-center gap-3 md:gap-4">
-          {news.map((item, index) => (
-            <NewsCard key={`set2-${item.id}-${index}`} item={item} />
-          ))}
+
+      {/* Scrolling Container - Full Width & Clean */}
+      <div className="flex-1 w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_20px,black_95%,transparent)]">
+        <div className="flex gap-3 md:gap-4 pl-4 md:pl-0">
+          {/* First Set */}
+          <div className="flex animate-scroll-infinite hover:pause-scroll items-center gap-3 md:gap-4">
+            {news.map((item, index) => (
+              <NewsCard key={`set1-${item.id}-${index}`} item={item} />
+            ))}
+          </div>
+          
+          {/* Second Set - Duplicate for seamless loop */}
+          <div className="flex animate-scroll-infinite hover:pause-scroll items-center gap-3 md:gap-4">
+            {news.map((item, index) => (
+              <NewsCard key={`set2-${item.id}-${index}`} item={item} />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -178,7 +163,7 @@ export default function NewsScrollBar() {
         }
         
         .animate-scroll-infinite {
-          animation: scroll-infinite 60s linear infinite;
+          animation: scroll-infinite 15s linear infinite;
         }
         
         .pause-scroll {
@@ -187,7 +172,7 @@ export default function NewsScrollBar() {
         
         @media (max-width: 768px) {
           .animate-scroll-infinite {
-            animation-duration: 40s;
+            animation-duration: 15s;
           }
         }
       `}</style>
