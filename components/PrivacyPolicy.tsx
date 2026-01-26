@@ -323,8 +323,8 @@ export function PrivacyPolicy() {
                     If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 mt-6">
-                    <a href="mailto:privacy@sparkleacademy.com" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-[#E63946] to-[#1D4ED8] hover:opacity-90 transition-all shadow-lg shadow-blue-500/20 hover:shadow-red-500/30">
-                      privacy@sparkleacademy.com
+                    <a href="mailto:contact@sparkleknowledgeyard.com" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-[#E63946] to-[#1D4ED8] hover:opacity-90 transition-all shadow-lg shadow-blue-500/20 hover:shadow-red-500/30">
+                       contact@sparkleknowledgeyard.com
                     </a>
                     <button onClick={() => router.push('/#contact')} className="inline-flex items-center justify-center px-6 py-3 border border-gray-200 text-base font-medium rounded-lg text-slate-700 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
                       Visit Contact Page
