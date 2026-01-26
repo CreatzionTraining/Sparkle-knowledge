@@ -60,7 +60,7 @@ export function Contact() {
         // Find first country starting with the pressed key
         const char = e.key.toLowerCase();
         const targetCountry = countryCodes.find(c => c.country.toLowerCase().startsWith(char));
-        
+
         if (targetCountry) {
           const element = document.getElementById(`country-item-${targetCountry.code}`);
           if (element) {
@@ -292,7 +292,7 @@ export function Contact() {
 
     // Start loading animation
     setIsSubmitting(true);
-    
+
     try {
       // Call the email API
       const response = await fetch('/api/send-email', {
@@ -314,7 +314,7 @@ export function Contact() {
       if (result.success) {
         // Clear localStorage first
         localStorage.removeItem('contactFormData');
-        
+
         // Clear form immediately
         const emptyForm = {
           fullName: '',
@@ -325,15 +325,15 @@ export function Contact() {
         };
         setFormData(emptyForm);
         setAcceptedTerms(false);
-        
+
         // Show success modal
         setShowSuccessModal(true);
-        
+
         // Clear browser's POST history to prevent resubmission on refresh
         if (typeof window !== 'undefined') {
           window.history.replaceState({}, document.title, window.location.pathname);
         }
-        
+
         // Auto-close modal after 5 seconds
         setTimeout(() => {
           setShowSuccessModal(false);
@@ -354,7 +354,7 @@ export function Contact() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    
+
     // Validate full name - only alphabets and spaces
     if (name === 'fullName') {
       const alphabetsOnly = value.replace(/[^a-zA-Z\s]/g, '');
@@ -381,11 +381,11 @@ export function Contact() {
     <section id="contact" className="py-12 sm:py-16 bg-white relative overflow-hidden">
       {/* Ultra-Premium Background Pattern - Compact */}
       <div className="absolute inset-0 bg-white">
-       {/* <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwIDE1djEwTTE1IDIwaDEwIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4yIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBmaWxsPSJub25lIi8+PC9zdmc+')]"></div> */}
+        {/* <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwIDE1djEwTTE1IDIwaDEwIiBzdHJva2U9IiMzMzQxNTUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2Utb3BhY2l0eT0iMC4yIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIiBmaWxsPSJub25lIi8+PC9zdmc+')]"></div> */}
         <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[200px] w-[200px] rounded-full bg-[#1D4ED8] opacity-20 blur-[80px]"></div>
         <div className="absolute right-0 top-0 -z-10 h-[200px] w-[200px] rounded-full bg-[#E63946] opacity-10 blur-[80px]"></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header - Compact */}
         <div className="text-center mb-10 max-w-4xl mx-auto">
@@ -405,7 +405,7 @@ export function Contact() {
             Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] via-[#1D4ED8] to-[#E63946] animate-gradient-x bg-[length:200%_auto]">Learning Journey</span>
             <span className="block sm:inline sm:ml-2 text-slate-800">With Sparkle</span>
           </h2>
-          
+
           {/* Sophisticated Subtitle - Compact */}
           <p className="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
             Experience world-class guidance. Visit us for a <span className="font-bold text-slate-900">free consultation</span> and see why we are the <span className="inline-block border-b-2 border-[#E63946] text-[#E63946] font-bold">#1 choice</span>.
@@ -417,7 +417,7 @@ export function Contact() {
           <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 sm:p-8 order-2 lg:order-1 relative overflow-hidden">
             {/* Subtle top accent */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-red-500"></div>
-            
+
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
               Send Us a Message
             </h3>
@@ -436,6 +436,7 @@ export function Contact() {
                     placeholder="John Doe"
                     required
                     suppressHydrationWarning
+                    autoComplete="name"
                     className="w-full px-4 py-3 sm:py-3.5 border-2 border-gray-200 rounded-lg focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/20 outline-none transition-all text-base text-gray-900 placeholder:text-gray-400 bg-gray-50/50 focus:bg-white"
                   />
                 </div>
@@ -451,10 +452,10 @@ export function Contact() {
                       className="absolute left-0 top-1/2 -translate-y-1/2 h-[calc(100%-4px)] px-4 flex items-center gap-2 border-r-2 border-gray-200 bg-gray-50/50 hover:bg-gray-100 rounded-l-lg transition-colors z-10"
                     >
                       <span className="text-base font-semibold text-gray-900">{countryCode}</span>
-                      <svg 
-                        className={`w-4 h-4 text-gray-500 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`} 
-                        fill="none" 
-                        stroke="currentColor" 
+                      <svg
+                        className={`w-4 h-4 text-gray-500 transition-transform ${isCountryDropdownOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path>
@@ -464,11 +465,11 @@ export function Contact() {
                     {/* Dropdown Menu */}
                     {isCountryDropdownOpen && (
                       <>
-                        <div 
+                        <div
                           className="fixed inset-0 z-40 bg-transparent"
                           onClick={() => setIsCountryDropdownOpen(false)}
                         ></div>
-                        
+
                         <div className="absolute z-50 left-0 top-full w-64 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl max-h-60 overflow-y-auto">
                           <ul className="py-2">
                             {countryCodes.map((item, index) => (
@@ -476,9 +477,8 @@ export function Contact() {
                                 <button
                                   type="button"
                                   onClick={() => handleCountryCodeSelect(item.code)}
-                                  className={`w-full px-4 py-3 text-left flex items-center gap-3 hover:bg-gray-50 transition-colors ${
-                                    countryCode === item.code ? 'bg-blue-50 text-[#1D4ED8] font-semibold' : 'text-gray-700'
-                                  }`}
+                                  className={`w-full px-4 py-3 text-left flex items-center gap-3 hover:bg-gray-50 transition-colors ${countryCode === item.code ? 'bg-blue-50 text-[#1D4ED8] font-semibold' : 'text-gray-700'
+                                    }`}
                                 >
                                   <span className="text-2xl">{item.flag}</span>
                                   <span className="font-semibold text-base">{item.code}</span>
@@ -502,6 +502,7 @@ export function Contact() {
                       required
                       maxLength={15}
                       suppressHydrationWarning
+                      autoComplete="tel"
                       style={{ paddingLeft: '110px' }}
                       className="w-full px-4 py-3 sm:py-3.5 border-2 border-gray-200 rounded-lg focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/20 outline-none transition-all text-base text-gray-900 placeholder:text-gray-400 bg-gray-50/50 focus:bg-white"
                     />
@@ -521,6 +522,7 @@ export function Contact() {
                   placeholder="john@example.com"
                   required
                   suppressHydrationWarning
+                  autoComplete="email"
                   className="w-full px-4 py-3 sm:py-3.5 border-2 border-gray-200 rounded-lg focus:border-[#1D4ED8] focus:ring-2 focus:ring-[#1D4ED8]/20 outline-none transition-all text-base text-gray-900 placeholder:text-gray-500"
                 />
               </div>
@@ -532,21 +534,20 @@ export function Contact() {
                   <button
                     type="button"
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className={`w-full px-4 py-3 sm:py-3.5 border-2 rounded-lg text-left flex items-center justify-between outline-none transition-all duration-300 ${
-                      isDropdownOpen 
-                        ? 'border-[#1D4ED8] ring-2 ring-[#1D4ED8]/20 bg-white' 
+                    className={`w-full px-4 py-3 sm:py-3.5 border-2 rounded-lg text-left flex items-center justify-between outline-none transition-all duration-300 ${isDropdownOpen
+                        ? 'border-[#1D4ED8] ring-2 ring-[#1D4ED8]/20 bg-white'
                         : 'border-gray-200 bg-gray-50/50 hover:bg-white hover:border-gray-300'
-                    }`}
+                      }`}
                   >
                     <span className={`text-base font-medium ${formData.course ? 'text-gray-900' : 'text-gray-400'}`}>
-                      {formData.course 
-                        ? courseOptions.find(opt => opt.value === formData.course)?.label 
+                      {formData.course
+                        ? courseOptions.find(opt => opt.value === formData.course)?.label
                         : 'Select a course'}
                     </span>
-                    <svg 
-                      className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180 text-[#1D4ED8]' : ''}`} 
-                      fill="none" 
-                      stroke="currentColor" 
+                    <svg
+                      className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180 text-[#1D4ED8]' : ''}`}
+                      fill="none"
+                      stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path>
@@ -557,11 +558,11 @@ export function Contact() {
                   {isDropdownOpen && (
                     <>
                       {/* Backdrop for mobile to close when clicking outside */}
-                      <div 
+                      <div
                         className="fixed inset-0 z-40 bg-transparent"
                         onClick={() => setIsDropdownOpen(false)}
                       ></div>
-                      
+
                       {/* Menu List */}
                       <div className="absolute z-50 w-full mt-2 bg-white border border-gray-100 rounded-xl shadow-xl max-h-60 sm:max-h-72 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200">
                         <ul className="py-2">
@@ -570,9 +571,8 @@ export function Contact() {
                               <button
                                 type="button"
                                 onClick={() => handleCourseSelect(option.value)}
-                                className={`w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 transition-colors ${
-                                  formData.course === option.value ? 'bg-blue-50 text-[#1D4ED8] font-semibold' : 'text-gray-700 font-medium'
-                                }`}
+                                className={`w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 transition-colors ${formData.course === option.value ? 'bg-blue-50 text-[#1D4ED8] font-semibold' : 'text-gray-700 font-medium'
+                                  }`}
                               >
                                 <span>{option.label}</span>
                                 {formData.course === option.value && (
@@ -678,7 +678,7 @@ export function Contact() {
               >
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <div className="relative flex flex-col h-full justify-between">
                   {/* Icon and Title - Horizontal Layout */}
                   <div className="flex items-center gap-3 mb-3">
@@ -695,7 +695,7 @@ export function Contact() {
                       <h4 className="font-bold text-gray-900 text-sm group-hover:text-blue-600 transition-colors">Visit Us</h4>
                     </div>
                   </div>
-                  
+
                   {/* Content */}
                   <div className="flex-1 flex items-center">
                     <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-900 text-[13px] leading-relaxed font-semibold">
@@ -709,7 +709,7 @@ export function Contact() {
               <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-red-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <div className="relative flex flex-col h-full justify-between">
                   {/* Icon and Title - Horizontal Layout */}
                   <div className="flex items-center gap-3 mb-3">
@@ -726,8 +726,8 @@ export function Contact() {
 
                   {/* Content */}
                   <div className="flex-1 flex flex-col justify-center">
-                    <a 
-                      href="tel:+919710043295" 
+                    <a
+                      href="tel:+919710043295"
                       onClick={(e) => {
                         e.stopPropagation();
                         window.location.href = 'tel:+919710043295';
@@ -745,7 +745,7 @@ export function Contact() {
               <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-orange-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <div className="relative flex flex-col h-full justify-between">
                   {/* Icon and Title - Horizontal Layout */}
                   <div className="flex items-center gap-3 mb-3">
@@ -762,7 +762,7 @@ export function Contact() {
 
                   {/* Content */}
                   <div className="flex-1 flex flex-col justify-center space-y-3">
-                    <a 
+                    <a
                       href="mailto:info@sparkleacademy.com"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -790,7 +790,7 @@ export function Contact() {
               <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-purple-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
                 {/* Animated gradient background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 <div className="relative flex flex-col h-full justify-between">
                   {/* Icon and Title - Horizontal Layout */}
                   <div className="flex items-center gap-3 mb-3">
