@@ -90,7 +90,7 @@ export default function HomeContent() {
                         }`}
                     >
                       {item.text} <br />
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave">
+                      <span className="text-transparent bg-clip-text animate-rainbow-text font-bold">
                         {item.highlight}
                       </span>
                     </Tag>
@@ -150,10 +150,10 @@ export default function HomeContent() {
               </div>
 
               <div className="mt-10 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start hidden-btn">
-                <button className="px-8 py-4 bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave hover:from-[#E63946] hover:to-[#D62839] text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-blue-500/25 hover:shadow-red-500/40 hover:-translate-y-1 flex items-center justify-center gap-3">
+                <a href="#contact" className="px-8 py-4 bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave hover:from-[#E63946] hover:to-[#D62839] text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-blue-500/25 hover:shadow-red-500/40 hover:-translate-y-1 flex items-center justify-center gap-3">
                   Book Free Demo
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </button>
+                </a>
                 <a
                   href="https://wa.me/919710043295"
                   target="_blank"
