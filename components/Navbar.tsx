@@ -67,7 +67,7 @@ export function Navbar() {
   const navLinks = [
     { name: 'Home', link: '/' },
     { name: 'Services', link: '/#courses' },
-    { name: 'Work', link: '/#certificates' },
+    { name: 'Blog', link: '/blog' },
     { name: 'About', link: '/#about' },
     { name: 'Contact', link: '/#contact' }
   ];
@@ -92,7 +92,7 @@ export function Navbar() {
                   : 'lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto'
               }`}
             >
-              <Link href="/" className="relative h-20 w-[60vw] sm:h-24 sm:w-72 lg:h-40 lg:w-[240px] block transition-transform duration-300">
+              <Link href="/" className="relative h-24 w-[70vw] sm:h-24 sm:w-72 lg:h-40 lg:w-[240px] block transition-transform duration-300">
                 <Image
                   src="/sparkle_logo.png"
                   alt="Sparkle Knowledge Yard"
@@ -103,16 +103,17 @@ export function Navbar() {
               </Link>
             </div>
 
-            {/* Desktop Navigation - Centered Pill (Always Visible on Desktop) */}
+            {/* Desktop Navigation - Glass Pill */}
             <div className="hidden lg:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
-              <div className="flex items-center gap-8 px-14 py-4 bg-white/90 border border-gray-100 rounded-full backdrop-blur-md shadow-lg transition-all duration-300 hover:bg-white hover:shadow-xl hover:scale-[1.02]">
+              <div className="flex items-center gap-2 px-3 py-2 bg-white/70 border border-white/40 rounded-full backdrop-blur-xl shadow-xl transition-all duration-300 hover:bg-white/80 hover:shadow-2xl hover:scale-[1.01]">
                 {navLinks.map((item) => (
                   <Link
                     key={item.name}
                     href={item.link}
-                    className="font-medium text-[#333333] hover:text-[#1D4ED8] text-[15px] transition-colors"
+                    className="relative px-5 py-2.5 rounded-full text-[15px] font-semibold transition-all duration-300 group overflow-hidden text-slate-600 hover:text-white hover:shadow-lg hover:shadow-blue-500/30"
                   >
-                    {item.name}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#1D4ED8] via-[#8B44AC] to-[#E63946] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative z-10">{item.name}</span>
                   </Link>
                 ))}
               </div>
@@ -142,7 +143,7 @@ export function Navbar() {
               <div className="lg:hidden">
                 <button 
                   onClick={() => setIsMobileMenuOpen(true)}
-                  className="p-2 text-gray-800 transition-colors rounded-full"
+                  className="p-2 text-gray-800 transition-colors rounded-full -mt-2"
                   aria-label="Open Menu"
                 >
                   <Menu className="w-7 h-7" />

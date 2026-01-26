@@ -293,7 +293,7 @@ export default function NewsManagementPage() {
                     {previewItem.badge}
                   </div>
 
-                  <h3 className="text-slate-800 font-semibold text-sm leading-tight line-clamp-2">
+                  <h3 className="text-slate-800 font-semibold text-sm leading-tight">
                     {previewItem.title}
                   </h3>
                 </div>

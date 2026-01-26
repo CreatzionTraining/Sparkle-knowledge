@@ -132,9 +132,7 @@ export default function BlogPage() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-600 rounded-full filter blur-3xl"></div>
       </div>
 
-      <div className="hidden md:block">
-        <Navbar />
-      </div>
+      <Navbar />
       <div className="relative z-10 pt-12 pb-12 md:pt-40 md:pb-20 px-4 md:px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}

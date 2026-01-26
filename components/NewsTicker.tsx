@@ -96,7 +96,7 @@ export default function NewsTicker() {
             <div className="text-center">
               {hasMore ? (
                 <button
-                  onClick={() => setVisibleCount(prev => prev + 6)}
+                  onClick={() => setVisibleCount(news.length)}
                   className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
                 >
                   <span>View All Updates</span>

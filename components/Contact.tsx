@@ -732,9 +732,19 @@ export function Contact() {
                         e.stopPropagation();
                         window.location.href = 'tel:+919710043295';
                       }}
-                      className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 text-[15px] font-bold hover:from-red-700 hover:to-red-900 transition-all block mb-1.5 cursor-pointer"
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 text-[15px] font-bold hover:from-red-700 hover:to-red-900 transition-all block mb-1 cursor-pointer"
                     >
                       +91 97100 43295
+                    </a>
+                    <a 
+                      href="tel:+919791740664" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.location.href = 'tel:+919791740664';
+                      }}
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 text-[15px] font-bold hover:from-red-700 hover:to-red-900 transition-all block mb-1.5 cursor-pointer"
+                    >
+                      +91 97917 40664
                     </a>
                     <p className="text-gray-700 text-[11px] font-semibold leading-relaxed">Monday to Saturday<br />9:00 AM - 8:00 PM</p>
                   </div>
@@ -763,24 +773,14 @@ export function Contact() {
                   {/* Content */}
                   <div className="flex-1 flex flex-col justify-center space-y-3">
                     <a 
-                      href="mailto:info@sparkleacademy.com"
+                      href="mailto:contact@sparkleknowledgeyard.com"
                       onClick={(e) => {
                         e.stopPropagation();
-                        window.location.href = 'mailto:info@sparkleacademy.com';
+                        window.location.href = 'mailto:contact@sparkleknowledgeyard.com';
                       }}
                       className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-800 text-[13px] hover:from-orange-700 hover:to-orange-900 transition-all block truncate font-bold cursor-pointer"
                     >
-                      info@sparkleacademy.com
-                    </a>
-                    <a
-                      href="mailto:support@sparkleacademy.com"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        window.location.href = 'mailto:support@sparkleacademy.com';
-                      }}
-                      className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-800 text-[13px] hover:from-orange-700 hover:to-orange-900 transition-all block truncate font-bold cursor-pointer"
-                    >
-                      support@sparkleacademy.com
+                      contact@sparkleknowledgeyard.com
                     </a>
                   </div>
                 </div>

@@ -233,7 +233,7 @@ function NewsCard({ item }: { item: NewsItem }) {
               </div>
 
               {/* Title */}
-              <h3 className="text-slate-800 font-semibold text-xs md:text-sm leading-tight line-clamp-2 group-hover/card:text-slate-900 transition-colors">
+              <h3 className="text-slate-800 font-semibold text-xs md:text-sm leading-tight group-hover/card:text-slate-900 transition-colors">
                 {item.title}
               </h3>
             </div>
