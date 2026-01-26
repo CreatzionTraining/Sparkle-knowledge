@@ -1,0 +1,1323 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e5]:
+        - link "Sparkle Knowledge Yard - Best IELTS & Language Training Institute in Chennai" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img "Sparkle Knowledge Yard - Best IELTS & Language Training Institute in Chennai" [ref=e8]
+        - button [ref=e10]:
+          - img [ref=e11]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - heading "Master Global Exams & Languages" [level=1]:
+          - text: Master Global
+          - text: Exams & Languages
+        - generic [ref=e20]:
+          - text: Unlock Your
+          - text: Global Potential
+        - generic:
+          - text: Achieve Your
+          - text: Study Abroad Dreams
+      - paragraph [ref=e21]: Expert coaching for IELTS, TOEFL, GRE, GMAT & language training. Your gateway to study abroad success and global career opportunities.
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - img [ref=e24]
+          - text: Test Prep
+        - generic [ref=e26]:
+          - img [ref=e27]
+          - text: Study Abroad
+        - generic [ref=e29]:
+          - img [ref=e30]
+          - text: Languages
+      - generic [ref=e32]:
+        - button "Book Free Demo" [ref=e33]:
+          - text: Book Free Demo
+          - img [ref=e34]
+        - link "WhatsApp Us" [ref=e36] [cursor=pointer]:
+          - /url: https://wa.me/919710043295
+          - img [ref=e37]
+          - text: WhatsApp Us
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - paragraph [ref=e41]: 50K+
+          - paragraph [ref=e42]: Students Trained
+        - generic [ref=e43]:
+          - paragraph [ref=e44]: 95%
+          - paragraph [ref=e45]: Success Rate
+        - generic [ref=e46]:
+          - paragraph [ref=e47]: 15+
+          - paragraph [ref=e48]: Years Experience
+    - generic [ref=e49]:
+      - link [ref=e50] [cursor=pointer]:
+        - /url: tel:+919710043295
+        - img [ref=e51]
+      - link [ref=e53] [cursor=pointer]:
+        - /url: https://wa.me/919710043295
+        - img [ref=e54]
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e65]:
+          - img [ref=e67]
+          - generic [ref=e69]:
+            - generic [ref=e70]: New at Sparkle
+            - heading "French for Beginners & Advanced — for study, travel, and career fluency." [level=3] [ref=e72]
+        - generic [ref=e77]:
+          - img [ref=e79]
+          - generic [ref=e81]:
+            - generic [ref=e82]: Quality Assurance
+            - heading "Sparkle training modules aligned with current IELTS, PTE & TOEFL evaluation criteria." [level=3] [ref=e84]
+        - generic [ref=e89]:
+          - img [ref=e91]
+          - generic [ref=e93]:
+            - generic [ref=e94]: Faculty Development Update
+            - heading "Sparkle trainers certified at IELTS Master Trainer workshop (Andrew Steele)." [level=3] [ref=e96]
+        - generic [ref=e101]:
+          - img [ref=e103]
+          - generic [ref=e105]:
+            - generic [ref=e106]: New at Sparkle
+            - heading "German Language Program launched for beginners and career-oriented learners." [level=3] [ref=e108]
+      - generic [ref=e109]:
+        - generic [ref=e114]:
+          - img [ref=e116]
+          - generic [ref=e118]:
+            - generic [ref=e119]: New at Sparkle
+            - heading "French for Beginners & Advanced — for study, travel, and career fluency." [level=3] [ref=e121]
+        - generic [ref=e126]:
+          - img [ref=e128]
+          - generic [ref=e130]:
+            - generic [ref=e131]: Quality Assurance
+            - heading "Sparkle training modules aligned with current IELTS, PTE & TOEFL evaluation criteria." [level=3] [ref=e133]
+        - generic [ref=e138]:
+          - img [ref=e140]
+          - generic [ref=e142]:
+            - generic [ref=e143]: Faculty Development Update
+            - heading "Sparkle trainers certified at IELTS Master Trainer workshop (Andrew Steele)." [level=3] [ref=e145]
+        - generic [ref=e150]:
+          - img [ref=e152]
+          - generic [ref=e154]:
+            - generic [ref=e155]: New at Sparkle
+            - heading "German Language Program launched for beginners and career-oriented learners." [level=3] [ref=e157]
+    - generic [ref=e160]:
+      - generic [ref=e161]:
+        - generic [ref=e162]: World-Class Programs
+        - heading "Expert Training for Global Success" [level=2] [ref=e164]
+        - paragraph [ref=e165]: Comprehensive, result-oriented courses designed to fast-track your admission into top international universities.
+      - generic [ref=e166]:
+        - generic [ref=e169] [cursor=pointer]:
+          - generic [ref=e171]:
+            - generic [ref=e173]:
+              - img "IELTS Preparation Coaching Chennai - Sparkle Knowledge Yard" [ref=e175]
+              - generic [ref=e176]: 6 – 8 weeks
+            - paragraph [ref=e177]: Academic and General Training coaching for UK, Canada, Australia.
+            - generic [ref=e178]:
+              - generic [ref=e181]: Band-focused strategy
+              - generic [ref=e184]: Writing & Speaking mastery
+              - generic [ref=e187]: Real exam practice
+              - generic [ref=e190]: Personalised feedback
+            - generic [ref=e191]:
+              - generic [ref=e192]: View Curriculum
+              - button [ref=e193]:
+                - img [ref=e194]
+          - generic [ref=e197]:
+            - heading "Course Details" [level=3] [ref=e199]
+            - paragraph [ref=e202]: Our IELTS programme trains candidates to understand how the exam is evaluated and how to respond with precision. Each module focuses on exam logic, structured practice, and targeted correction to ensure consistent band improvement across all four skills.
+            - generic [ref=e203]:
+              - button "Book Free Demo" [ref=e204]
+              - button [ref=e205]:
+                - img [ref=e206]
+        - generic [ref=e210] [cursor=pointer]:
+          - generic [ref=e212]:
+            - generic [ref=e214]:
+              - img "TOEFL iBT Coaching Chennai - Sparkle Knowledge Yard" [ref=e216]
+              - generic [ref=e217]: 6 – 8 weeks
+            - paragraph [ref=e218]: TOEFL iBT coaching for US higher education with personalized plans.
+            - generic [ref=e219]:
+              - generic [ref=e222]: Academic communication
+              - generic [ref=e225]: Integrated task training
+              - generic [ref=e228]: Structured responses
+              - generic [ref=e231]: Rubric-based feedback
+            - generic [ref=e232]:
+              - generic [ref=e233]: View Curriculum
+              - button [ref=e234]:
+                - img [ref=e235]
+          - generic [ref=e238]:
+            - heading "Course Details" [level=3] [ref=e240]
+            - paragraph [ref=e243]: Our TOEFL training builds academic readiness through listening, speaking, reading, and writing frameworks aligned with university expectations. Candidates learn to organise ideas clearly and respond confidently under timed conditions.
+            - generic [ref=e244]:
+              - button "Book Free Demo" [ref=e245]
+              - button [ref=e246]:
+                - img [ref=e247]
+        - generic [ref=e251] [cursor=pointer]:
+          - generic [ref=e253]:
+            - generic [ref=e255]:
+              - img "PTE Academic Coaching Chennai - Sparkle Knowledge Yard" [ref=e257]
+              - generic [ref=e258]: 6 – 8 weeks
+            - paragraph [ref=e259]: Fast-track PTE Academic preparation for quick results.
+            - generic [ref=e260]:
+              - generic [ref=e263]: Algorithm-based training
+              - generic [ref=e266]: Speed & accuracy drills
+              - generic [ref=e269]: High-score task focus
+              - generic [ref=e272]: Performance tracking
+            - generic [ref=e273]:
+              - generic [ref=e274]: View Curriculum
+              - button [ref=e275]:
+                - img [ref=e276]
+          - generic [ref=e279]:
+            - heading "Course Details" [level=3] [ref=e281]
+            - paragraph [ref=e284]: PTE is a system-driven exam. We train candidates to optimise scoring by mastering task weightage, time management, pronunciation, and fluency. Mock tests and analytics-based feedback ensure faster, measurable results.
+            - generic [ref=e285]:
+              - button "Book Free Demo" [ref=e286]
+              - button [ref=e287]:
+                - img [ref=e288]
+        - generic [ref=e292] [cursor=pointer]:
+          - generic [ref=e294]:
+            - generic [ref=e296]:
+              - img "OET Coaching Chennai - Sparkle Knowledge Yard" [ref=e298]
+              - generic [ref=e299]: 8 – 12 weeks
+            - paragraph [ref=e300]: Occupational English Test training for healthcare professionals.
+            - generic [ref=e301]:
+              - generic [ref=e304]: Healthcare-specific English
+              - generic [ref=e307]: Role-play mastery
+              - generic [ref=e310]: Professional writing tasks
+              - generic [ref=e313]: Workplace communication
+            - generic [ref=e314]:
+              - generic [ref=e315]: View Curriculum
+              - button [ref=e316]:
+                - img [ref=e317]
+          - generic [ref=e320]:
+            - heading "Course Details" [level=3] [ref=e322]
+            - paragraph [ref=e325]: Designed for healthcare professionals, our OET programme focuses on real clinical scenarios, profession-specific writing, and role-based speaking practice—ensuring exam success with workplace relevance.
+            - generic [ref=e326]:
+              - button "Book Free Demo" [ref=e327]
+              - button [ref=e328]:
+                - img [ref=e329]
+        - generic [ref=e333] [cursor=pointer]:
+          - generic [ref=e335]:
+            - generic [ref=e337]:
+              - img "Communicative English & Interview Preparation Coaching Chennai - Sparkle Knowledge Yard" [ref=e339]
+              - generic [ref=e340]: 6 – 12 weeks
+            - paragraph [ref=e341]: Expert interview coaching for university admissions and job placements.
+            - generic [ref=e342]:
+              - generic [ref=e345]: Confidence-first communication
+              - generic [ref=e348]: Fluency & clarity building
+              - generic [ref=e351]: Structured interview answers
+              - generic [ref=e354]: Mock practice & body language
+            - generic [ref=e355]:
+              - generic [ref=e356]: View Curriculum
+              - button [ref=e357]:
+                - img [ref=e358]
+          - generic [ref=e361]:
+            - heading "Course Details" [level=3] [ref=e363]
+            - paragraph [ref=e366]: This integrated programme helps learners move from understanding English to using it confidently in real-life and professional situations. Through guided speaking systems, practical conversations, and structured interview frameworks, candidates build fluency, presence, and clarity. Realistic mock interviews, body language training, and personalised feedback ensure participants communicate with confidence—both in everyday interactions and high-stakes interview environments.
+            - generic [ref=e367]:
+              - button "Book Free Demo" [ref=e368]
+              - button [ref=e369]:
+                - img [ref=e370]
+        - generic [ref=e374] [cursor=pointer]:
+          - generic [ref=e376]:
+            - generic [ref=e378]:
+              - img "Foreign Languages Coaching Chennai - Sparkle Knowledge Yard" [ref=e380]
+              - generic [ref=e381]: 3 – 6 months
+            - paragraph [ref=e382]: Master foreign languages for global career and education opportunities.
+            - generic [ref=e383]:
+              - generic [ref=e386]: Practical conversation
+              - generic [ref=e389]: Correct pronunciation
+              - generic [ref=e392]: Cultural context
+              - generic [ref=e395]: Everyday usage
+            - generic [ref=e396]:
+              - generic [ref=e397]: View Curriculum
+              - button [ref=e398]:
+                - img [ref=e399]
+          - generic [ref=e402]:
+            - heading "Course Details" [level=3] [ref=e404]
+            - paragraph [ref=e407]: Our foreign language courses focus on real-world communication rather than rote learning. Learners build conversational ability, accurate sentence patterns, and cultural awareness for academic and career mobility.
+            - generic [ref=e408]:
+              - button "Book Free Demo" [ref=e409]
+              - button [ref=e410]:
+                - img [ref=e411]
+    - generic [ref=e416]:
+      - generic [ref=e417]:
+        - generic [ref=e418]:
+          - heading "Who We Are" [level=2] [ref=e420]
+          - generic [ref=e422]:
+            - paragraph [ref=e423]: Sparkle Knowledge Yard is a leading study abroad consultancy and test preparation center located in Perambur, Chennai. We specialize in coaching for IELTS, PTE, TOEFL, and OET, helping students gain the confidence required to succeed globally.
+            - paragraph [ref=e424]: We believe success is about strategy, clarity, and confidence. Our training combines practical exam techniques, personalized mentoring, and real-time feedback. With experienced faculty and structured plans, we create a supportive environment for growth.
+            - paragraph [ref=e425]: Beyond test preparation, we provide comprehensive study abroad guidance—from course selection to visa readiness. We build not just high scorers, but confident individuals ready to thrive abroad.
+          - button "Learn More" [ref=e427]
+        - generic [ref=e428]:
+          - img [ref=e430]
+          - img "Sparkle Knowledge Yard Team - Expert IELTS Trainers in Chennai" [ref=e433]
+      - generic [ref=e434]:
+        - generic [ref=e439] [cursor=pointer]:
+          - heading "Our Vision" [level=3] [ref=e440]
+          - paragraph [ref=e442]: To become a trusted global education and skill-development ecosystem that empowers learners to communicate confidently, compete globally, and build meaningful careers.
+          - generic [ref=e443]:
+            - generic [ref=e444]: Explore Vision
+            - img [ref=e445]
+        - generic [ref=e451] [cursor=pointer]:
+          - heading "Our Mission" [level=3] [ref=e452]
+          - paragraph [ref=e454]: Our mission is to provide high-quality, result-oriented education and training that bridges the gap between academic learning and real-world expectations.
+          - generic [ref=e455]:
+            - generic [ref=e456]: Explore Mission
+            - img [ref=e457]
+    - generic [ref=e461]:
+      - generic [ref=e462]:
+        - heading "Our Global Achievers" [level=2] [ref=e463]
+        - paragraph [ref=e464]: Celebrating the exceptional scores and verified milestones of our Sparkle Scholars in IELTS, TOEFL, GRE, and beyond.
+      - generic [ref=e465]:
+        - button "Previous card" [ref=e466]:
+          - img [ref=e467]
+        - button "Next card" [ref=e469]:
+          - img [ref=e470]
+        - generic [ref=e473]:
+          - generic [ref=e476] [cursor=pointer]:
+            - generic [ref=e479]:
+              - generic [ref=e481]:
+                - generic [ref=e482]: Score
+                - generic [ref=e483]: "8.0"
+              - generic [ref=e484]:
+                - heading "SAIGURU SEKARAN" [level=3] [ref=e486]
+                - paragraph [ref=e487]: IELTS Academic
+              - generic [ref=e488]:
+                - generic [ref=e489]: Certified
+                - paragraph [ref=e490]: IELTS Band 8.0
+              - paragraph [ref=e491]: Tap to Reveal
+            - generic [ref=e492]:
+              - generic [ref=e494]:
+                - img [ref=e496]
+                - heading "SAIGURU SEKARAN" [level=3] [ref=e499]
+                - paragraph [ref=e500]: Score Breakdown
+              - generic [ref=e501]:
+                - generic [ref=e502]:
+                  - generic [ref=e503]: Listening
+                  - generic [ref=e504]: "9.0"
+                - generic [ref=e505]:
+                  - generic [ref=e506]: Reading
+                  - generic [ref=e507]: "9.0"
+                - generic [ref=e508]:
+                  - generic [ref=e509]: Speaking
+                  - generic [ref=e510]: "7.0"
+                - generic [ref=e511]:
+                  - generic [ref=e512]: Writing
+                  - generic [ref=e513]: "7.0"
+              - generic [ref=e514]:
+                - generic [ref=e515]:
+                  - img [ref=e516]
+                  - generic [ref=e518]: IELTS Band 8.0
+                - paragraph [ref=e519]: Click to flip back
+          - generic [ref=e522] [cursor=pointer]:
+            - generic [ref=e525]:
+              - generic [ref=e527]:
+                - generic [ref=e528]: Score
+                - generic [ref=e529]: "8.0"
+              - generic [ref=e530]:
+                - heading "SHANIA JOSEPH" [level=3] [ref=e532]
+                - paragraph [ref=e533]: IELTS Academic
+              - generic [ref=e534]:
+                - generic [ref=e535]: Certified
+                - paragraph [ref=e536]: IELTS Band 8.0
+              - paragraph [ref=e537]: Tap to Reveal
+            - generic [ref=e538]:
+              - generic [ref=e540]:
+                - img [ref=e542]
+                - heading "SHANIA JOSEPH" [level=3] [ref=e545]
+                - paragraph [ref=e546]: Score Breakdown
+              - generic [ref=e547]:
+                - generic [ref=e548]:
+                  - generic [ref=e549]: Listening
+                  - generic [ref=e550]: "8.5"
+                - generic [ref=e551]:
+                  - generic [ref=e552]: Reading
+                  - generic [ref=e553]: "8.0"
+                - generic [ref=e554]:
+                  - generic [ref=e555]: Speaking
+                  - generic [ref=e556]: "8.0"
+                - generic [ref=e557]:
+                  - generic [ref=e558]: Writing
+                  - generic [ref=e559]: "7.0"
+              - generic [ref=e560]:
+                - generic [ref=e561]:
+                  - img [ref=e562]
+                  - generic [ref=e564]: IELTS Band 8.0
+                - paragraph [ref=e565]: Click to flip back
+          - generic [ref=e568] [cursor=pointer]:
+            - generic [ref=e571]:
+              - generic [ref=e573]:
+                - generic [ref=e574]: Score
+                - generic [ref=e575]: "7.5"
+              - generic [ref=e576]:
+                - heading "Shantanu Accha" [level=3] [ref=e578]
+                - paragraph [ref=e579]: IELTS Academic
+              - generic [ref=e580]:
+                - generic [ref=e581]: Certified
+                - paragraph [ref=e582]: IELTS Band 7.5
+              - paragraph [ref=e583]: Tap to Reveal
+            - generic [ref=e584]:
+              - generic [ref=e586]:
+                - img [ref=e588]
+                - heading "Shantanu Accha" [level=3] [ref=e591]
+                - paragraph [ref=e592]: Score Breakdown
+              - generic [ref=e593]:
+                - generic [ref=e594]:
+                  - generic [ref=e595]: Listening
+                  - generic [ref=e596]: "8.0"
+                - generic [ref=e597]:
+                  - generic [ref=e598]: Reading
+                  - generic [ref=e599]: "8.0"
+                - generic [ref=e600]:
+                  - generic [ref=e601]: Speaking
+                  - generic [ref=e602]: "7.5"
+                - generic [ref=e603]:
+                  - generic [ref=e604]: Writing
+                  - generic [ref=e605]: "7.0"
+              - generic [ref=e606]:
+                - generic [ref=e607]:
+                  - img [ref=e608]
+                  - generic [ref=e610]: IELTS Band 7.5
+                - paragraph [ref=e611]: Click to flip back
+          - generic [ref=e614] [cursor=pointer]:
+            - generic [ref=e617]:
+              - generic [ref=e619]:
+                - generic [ref=e620]: Score
+                - generic [ref=e621]: "7.5"
+              - generic [ref=e622]:
+                - heading "Aakaash M" [level=3] [ref=e624]
+                - paragraph [ref=e625]: IELTS Academic
+              - generic [ref=e626]:
+                - generic [ref=e627]: Certified
+                - paragraph [ref=e628]: IELTS Band 7.5
+              - paragraph [ref=e629]: Tap to Reveal
+            - generic [ref=e630]:
+              - generic [ref=e632]:
+                - img [ref=e634]
+                - heading "Aakaash M" [level=3] [ref=e637]
+                - paragraph [ref=e638]: Score Breakdown
+              - generic [ref=e639]:
+                - generic [ref=e640]:
+                  - generic [ref=e641]: Listening
+                  - generic [ref=e642]: "8.5"
+                - generic [ref=e643]:
+                  - generic [ref=e644]: Reading
+                  - generic [ref=e645]: "8.5"
+                - generic [ref=e646]:
+                  - generic [ref=e647]: Speaking
+                  - generic [ref=e648]: "6.5"
+                - generic [ref=e649]:
+                  - generic [ref=e650]: Writing
+                  - generic [ref=e651]: "7.0"
+              - generic [ref=e652]:
+                - generic [ref=e653]:
+                  - img [ref=e654]
+                  - generic [ref=e656]: IELTS Band 7.5
+                - paragraph [ref=e657]: Click to flip back
+          - generic [ref=e660] [cursor=pointer]:
+            - generic [ref=e663]:
+              - generic [ref=e665]:
+                - generic [ref=e666]: Score
+                - generic [ref=e667]: "7.5"
+              - generic [ref=e668]:
+                - heading "Evangeline Libertus" [level=3] [ref=e670]
+                - paragraph [ref=e671]: IELTS Academic
+              - generic [ref=e672]:
+                - generic [ref=e673]: Certified
+                - paragraph [ref=e674]: IELTS Band 7.5
+              - paragraph [ref=e675]: Tap to Reveal
+            - generic [ref=e676]:
+              - generic [ref=e678]:
+                - img [ref=e680]
+                - heading "Evangeline Libertus" [level=3] [ref=e683]
+                - paragraph [ref=e684]: Score Breakdown
+              - generic [ref=e685]:
+                - generic [ref=e686]:
+                  - generic [ref=e687]: Listening
+                  - generic [ref=e688]: "8.5"
+                - generic [ref=e689]:
+                  - generic [ref=e690]: Reading
+                  - generic [ref=e691]: "7.0"
+                - generic [ref=e692]:
+                  - generic [ref=e693]: Speaking
+                  - generic [ref=e694]: "7.5"
+                - generic [ref=e695]:
+                  - generic [ref=e696]: Writing
+                  - generic [ref=e697]: "6.5"
+              - generic [ref=e698]:
+                - generic [ref=e699]:
+                  - img [ref=e700]
+                  - generic [ref=e702]: IELTS Band 7.5
+                - paragraph [ref=e703]: Click to flip back
+          - generic [ref=e706] [cursor=pointer]:
+            - generic [ref=e709]:
+              - generic [ref=e711]:
+                - generic [ref=e712]: Score
+                - generic [ref=e713]: "7.5"
+              - generic [ref=e714]:
+                - heading "Jeeva S" [level=3] [ref=e716]
+                - paragraph [ref=e717]: IELTS General
+              - generic [ref=e718]:
+                - generic [ref=e719]: Certified
+                - paragraph [ref=e720]: IELTS Band 7.5
+              - paragraph [ref=e721]: Tap to Reveal
+            - generic [ref=e722]:
+              - generic [ref=e724]:
+                - img [ref=e726]
+                - heading "Jeeva S" [level=3] [ref=e729]
+                - paragraph [ref=e730]: Score Breakdown
+              - generic [ref=e731]:
+                - generic [ref=e732]:
+                  - generic [ref=e733]: Listening
+                  - generic [ref=e734]: "8.5"
+                - generic [ref=e735]:
+                  - generic [ref=e736]: Reading
+                  - generic [ref=e737]: "6.5"
+                - generic [ref=e738]:
+                  - generic [ref=e739]: Speaking
+                  - generic [ref=e740]: "7.5"
+                - generic [ref=e741]:
+                  - generic [ref=e742]: Writing
+                  - generic [ref=e743]: "6.5"
+              - generic [ref=e744]:
+                - generic [ref=e745]:
+                  - img [ref=e746]
+                  - generic [ref=e748]: IELTS Band 7.5
+                - paragraph [ref=e749]: Click to flip back
+          - generic [ref=e752] [cursor=pointer]:
+            - generic [ref=e755]:
+              - generic [ref=e757]:
+                - generic [ref=e758]: Score
+                - generic [ref=e759]: "8.0"
+              - generic [ref=e760]:
+                - heading "SAIGURU SEKARAN" [level=3] [ref=e762]
+                - paragraph [ref=e763]: IELTS Academic
+              - generic [ref=e764]:
+                - generic [ref=e765]: Certified
+                - paragraph [ref=e766]: IELTS Band 8.0
+              - paragraph [ref=e767]: Tap to Reveal
+            - generic [ref=e768]:
+              - generic [ref=e770]:
+                - img [ref=e772]
+                - heading "SAIGURU SEKARAN" [level=3] [ref=e775]
+                - paragraph [ref=e776]: Score Breakdown
+              - generic [ref=e777]:
+                - generic [ref=e778]:
+                  - generic [ref=e779]: Listening
+                  - generic [ref=e780]: "9.0"
+                - generic [ref=e781]:
+                  - generic [ref=e782]: Reading
+                  - generic [ref=e783]: "9.0"
+                - generic [ref=e784]:
+                  - generic [ref=e785]: Speaking
+                  - generic [ref=e786]: "7.0"
+                - generic [ref=e787]:
+                  - generic [ref=e788]: Writing
+                  - generic [ref=e789]: "7.0"
+              - generic [ref=e790]:
+                - generic [ref=e791]:
+                  - img [ref=e792]
+                  - generic [ref=e794]: IELTS Band 8.0
+                - paragraph [ref=e795]: Click to flip back
+          - generic [ref=e798] [cursor=pointer]:
+            - generic [ref=e801]:
+              - generic [ref=e803]:
+                - generic [ref=e804]: Score
+                - generic [ref=e805]: "8.0"
+              - generic [ref=e806]:
+                - heading "SHANIA JOSEPH" [level=3] [ref=e808]
+                - paragraph [ref=e809]: IELTS Academic
+              - generic [ref=e810]:
+                - generic [ref=e811]: Certified
+                - paragraph [ref=e812]: IELTS Band 8.0
+              - paragraph [ref=e813]: Tap to Reveal
+            - generic [ref=e814]:
+              - generic [ref=e816]:
+                - img [ref=e818]
+                - heading "SHANIA JOSEPH" [level=3] [ref=e821]
+                - paragraph [ref=e822]: Score Breakdown
+              - generic [ref=e823]:
+                - generic [ref=e824]:
+                  - generic [ref=e825]: Listening
+                  - generic [ref=e826]: "8.5"
+                - generic [ref=e827]:
+                  - generic [ref=e828]: Reading
+                  - generic [ref=e829]: "8.0"
+                - generic [ref=e830]:
+                  - generic [ref=e831]: Speaking
+                  - generic [ref=e832]: "8.0"
+                - generic [ref=e833]:
+                  - generic [ref=e834]: Writing
+                  - generic [ref=e835]: "7.0"
+              - generic [ref=e836]:
+                - generic [ref=e837]:
+                  - img [ref=e838]
+                  - generic [ref=e840]: IELTS Band 8.0
+                - paragraph [ref=e841]: Click to flip back
+          - generic [ref=e844] [cursor=pointer]:
+            - generic [ref=e847]:
+              - generic [ref=e849]:
+                - generic [ref=e850]: Score
+                - generic [ref=e851]: "7.5"
+              - generic [ref=e852]:
+                - heading "Shantanu Accha" [level=3] [ref=e854]
+                - paragraph [ref=e855]: IELTS Academic
+              - generic [ref=e856]:
+                - generic [ref=e857]: Certified
+                - paragraph [ref=e858]: IELTS Band 7.5
+              - paragraph [ref=e859]: Tap to Reveal
+            - generic [ref=e860]:
+              - generic [ref=e862]:
+                - img [ref=e864]
+                - heading "Shantanu Accha" [level=3] [ref=e867]
+                - paragraph [ref=e868]: Score Breakdown
+              - generic [ref=e869]:
+                - generic [ref=e870]:
+                  - generic [ref=e871]: Listening
+                  - generic [ref=e872]: "8.0"
+                - generic [ref=e873]:
+                  - generic [ref=e874]: Reading
+                  - generic [ref=e875]: "8.0"
+                - generic [ref=e876]:
+                  - generic [ref=e877]: Speaking
+                  - generic [ref=e878]: "7.5"
+                - generic [ref=e879]:
+                  - generic [ref=e880]: Writing
+                  - generic [ref=e881]: "7.0"
+              - generic [ref=e882]:
+                - generic [ref=e883]:
+                  - img [ref=e884]
+                  - generic [ref=e886]: IELTS Band 7.5
+                - paragraph [ref=e887]: Click to flip back
+          - generic [ref=e890] [cursor=pointer]:
+            - generic [ref=e893]:
+              - generic [ref=e895]:
+                - generic [ref=e896]: Score
+                - generic [ref=e897]: "7.5"
+              - generic [ref=e898]:
+                - heading "Aakaash M" [level=3] [ref=e900]
+                - paragraph [ref=e901]: IELTS Academic
+              - generic [ref=e902]:
+                - generic [ref=e903]: Certified
+                - paragraph [ref=e904]: IELTS Band 7.5
+              - paragraph [ref=e905]: Tap to Reveal
+            - generic [ref=e906]:
+              - generic [ref=e908]:
+                - img [ref=e910]
+                - heading "Aakaash M" [level=3] [ref=e913]
+                - paragraph [ref=e914]: Score Breakdown
+              - generic [ref=e915]:
+                - generic [ref=e916]:
+                  - generic [ref=e917]: Listening
+                  - generic [ref=e918]: "8.5"
+                - generic [ref=e919]:
+                  - generic [ref=e920]: Reading
+                  - generic [ref=e921]: "8.5"
+                - generic [ref=e922]:
+                  - generic [ref=e923]: Speaking
+                  - generic [ref=e924]: "6.5"
+                - generic [ref=e925]:
+                  - generic [ref=e926]: Writing
+                  - generic [ref=e927]: "7.0"
+              - generic [ref=e928]:
+                - generic [ref=e929]:
+                  - img [ref=e930]
+                  - generic [ref=e932]: IELTS Band 7.5
+                - paragraph [ref=e933]: Click to flip back
+          - generic [ref=e936] [cursor=pointer]:
+            - generic [ref=e939]:
+              - generic [ref=e941]:
+                - generic [ref=e942]: Score
+                - generic [ref=e943]: "7.5"
+              - generic [ref=e944]:
+                - heading "Evangeline Libertus" [level=3] [ref=e946]
+                - paragraph [ref=e947]: IELTS Academic
+              - generic [ref=e948]:
+                - generic [ref=e949]: Certified
+                - paragraph [ref=e950]: IELTS Band 7.5
+              - paragraph [ref=e951]: Tap to Reveal
+            - generic [ref=e952]:
+              - generic [ref=e954]:
+                - img [ref=e956]
+                - heading "Evangeline Libertus" [level=3] [ref=e959]
+                - paragraph [ref=e960]: Score Breakdown
+              - generic [ref=e961]:
+                - generic [ref=e962]:
+                  - generic [ref=e963]: Listening
+                  - generic [ref=e964]: "8.5"
+                - generic [ref=e965]:
+                  - generic [ref=e966]: Reading
+                  - generic [ref=e967]: "7.0"
+                - generic [ref=e968]:
+                  - generic [ref=e969]: Speaking
+                  - generic [ref=e970]: "7.5"
+                - generic [ref=e971]:
+                  - generic [ref=e972]: Writing
+                  - generic [ref=e973]: "6.5"
+              - generic [ref=e974]:
+                - generic [ref=e975]:
+                  - img [ref=e976]
+                  - generic [ref=e978]: IELTS Band 7.5
+                - paragraph [ref=e979]: Click to flip back
+          - generic [ref=e982] [cursor=pointer]:
+            - generic [ref=e985]:
+              - generic [ref=e987]:
+                - generic [ref=e988]: Score
+                - generic [ref=e989]: "7.5"
+              - generic [ref=e990]:
+                - heading "Jeeva S" [level=3] [ref=e992]
+                - paragraph [ref=e993]: IELTS General
+              - generic [ref=e994]:
+                - generic [ref=e995]: Certified
+                - paragraph [ref=e996]: IELTS Band 7.5
+              - paragraph [ref=e997]: Tap to Reveal
+            - generic [ref=e998]:
+              - generic [ref=e1000]:
+                - img [ref=e1002]
+                - heading "Jeeva S" [level=3] [ref=e1005]
+                - paragraph [ref=e1006]: Score Breakdown
+              - generic [ref=e1007]:
+                - generic [ref=e1008]:
+                  - generic [ref=e1009]: Listening
+                  - generic [ref=e1010]: "8.5"
+                - generic [ref=e1011]:
+                  - generic [ref=e1012]: Reading
+                  - generic [ref=e1013]: "6.5"
+                - generic [ref=e1014]:
+                  - generic [ref=e1015]: Speaking
+                  - generic [ref=e1016]: "7.5"
+                - generic [ref=e1017]:
+                  - generic [ref=e1018]: Writing
+                  - generic [ref=e1019]: "6.5"
+              - generic [ref=e1020]:
+                - generic [ref=e1021]:
+                  - img [ref=e1022]
+                  - generic [ref=e1024]: IELTS Band 7.5
+                - paragraph [ref=e1025]: Click to flip back
+          - generic [ref=e1028] [cursor=pointer]:
+            - generic [ref=e1031]:
+              - generic [ref=e1033]:
+                - generic [ref=e1034]: Score
+                - generic [ref=e1035]: "8.0"
+              - generic [ref=e1036]:
+                - heading "SAIGURU SEKARAN" [level=3] [ref=e1038]
+                - paragraph [ref=e1039]: IELTS Academic
+              - generic [ref=e1040]:
+                - generic [ref=e1041]: Certified
+                - paragraph [ref=e1042]: IELTS Band 8.0
+              - paragraph [ref=e1043]: Tap to Reveal
+            - generic [ref=e1044]:
+              - generic [ref=e1046]:
+                - img [ref=e1048]
+                - heading "SAIGURU SEKARAN" [level=3] [ref=e1051]
+                - paragraph [ref=e1052]: Score Breakdown
+              - generic [ref=e1053]:
+                - generic [ref=e1054]:
+                  - generic [ref=e1055]: Listening
+                  - generic [ref=e1056]: "9.0"
+                - generic [ref=e1057]:
+                  - generic [ref=e1058]: Reading
+                  - generic [ref=e1059]: "9.0"
+                - generic [ref=e1060]:
+                  - generic [ref=e1061]: Speaking
+                  - generic [ref=e1062]: "7.0"
+                - generic [ref=e1063]:
+                  - generic [ref=e1064]: Writing
+                  - generic [ref=e1065]: "7.0"
+              - generic [ref=e1066]:
+                - generic [ref=e1067]:
+                  - img [ref=e1068]
+                  - generic [ref=e1070]: IELTS Band 8.0
+                - paragraph [ref=e1071]: Click to flip back
+          - generic [ref=e1074] [cursor=pointer]:
+            - generic [ref=e1077]:
+              - generic [ref=e1079]:
+                - generic [ref=e1080]: Score
+                - generic [ref=e1081]: "8.0"
+              - generic [ref=e1082]:
+                - heading "SHANIA JOSEPH" [level=3] [ref=e1084]
+                - paragraph [ref=e1085]: IELTS Academic
+              - generic [ref=e1086]:
+                - generic [ref=e1087]: Certified
+                - paragraph [ref=e1088]: IELTS Band 8.0
+              - paragraph [ref=e1089]: Tap to Reveal
+            - generic [ref=e1090]:
+              - generic [ref=e1092]:
+                - img [ref=e1094]
+                - heading "SHANIA JOSEPH" [level=3] [ref=e1097]
+                - paragraph [ref=e1098]: Score Breakdown
+              - generic [ref=e1099]:
+                - generic [ref=e1100]:
+                  - generic [ref=e1101]: Listening
+                  - generic [ref=e1102]: "8.5"
+                - generic [ref=e1103]:
+                  - generic [ref=e1104]: Reading
+                  - generic [ref=e1105]: "8.0"
+                - generic [ref=e1106]:
+                  - generic [ref=e1107]: Speaking
+                  - generic [ref=e1108]: "8.0"
+                - generic [ref=e1109]:
+                  - generic [ref=e1110]: Writing
+                  - generic [ref=e1111]: "7.0"
+              - generic [ref=e1112]:
+                - generic [ref=e1113]:
+                  - img [ref=e1114]
+                  - generic [ref=e1116]: IELTS Band 8.0
+                - paragraph [ref=e1117]: Click to flip back
+          - generic [ref=e1120] [cursor=pointer]:
+            - generic [ref=e1123]:
+              - generic [ref=e1125]:
+                - generic [ref=e1126]: Score
+                - generic [ref=e1127]: "7.5"
+              - generic [ref=e1128]:
+                - heading "Shantanu Accha" [level=3] [ref=e1130]
+                - paragraph [ref=e1131]: IELTS Academic
+              - generic [ref=e1132]:
+                - generic [ref=e1133]: Certified
+                - paragraph [ref=e1134]: IELTS Band 7.5
+              - paragraph [ref=e1135]: Tap to Reveal
+            - generic [ref=e1136]:
+              - generic [ref=e1138]:
+                - img [ref=e1140]
+                - heading "Shantanu Accha" [level=3] [ref=e1143]
+                - paragraph [ref=e1144]: Score Breakdown
+              - generic [ref=e1145]:
+                - generic [ref=e1146]:
+                  - generic [ref=e1147]: Listening
+                  - generic [ref=e1148]: "8.0"
+                - generic [ref=e1149]:
+                  - generic [ref=e1150]: Reading
+                  - generic [ref=e1151]: "8.0"
+                - generic [ref=e1152]:
+                  - generic [ref=e1153]: Speaking
+                  - generic [ref=e1154]: "7.5"
+                - generic [ref=e1155]:
+                  - generic [ref=e1156]: Writing
+                  - generic [ref=e1157]: "7.0"
+              - generic [ref=e1158]:
+                - generic [ref=e1159]:
+                  - img [ref=e1160]
+                  - generic [ref=e1162]: IELTS Band 7.5
+                - paragraph [ref=e1163]: Click to flip back
+          - generic [ref=e1166] [cursor=pointer]:
+            - generic [ref=e1169]:
+              - generic [ref=e1171]:
+                - generic [ref=e1172]: Score
+                - generic [ref=e1173]: "7.5"
+              - generic [ref=e1174]:
+                - heading "Aakaash M" [level=3] [ref=e1176]
+                - paragraph [ref=e1177]: IELTS Academic
+              - generic [ref=e1178]:
+                - generic [ref=e1179]: Certified
+                - paragraph [ref=e1180]: IELTS Band 7.5
+              - paragraph [ref=e1181]: Tap to Reveal
+            - generic [ref=e1182]:
+              - generic [ref=e1184]:
+                - img [ref=e1186]
+                - heading "Aakaash M" [level=3] [ref=e1189]
+                - paragraph [ref=e1190]: Score Breakdown
+              - generic [ref=e1191]:
+                - generic [ref=e1192]:
+                  - generic [ref=e1193]: Listening
+                  - generic [ref=e1194]: "8.5"
+                - generic [ref=e1195]:
+                  - generic [ref=e1196]: Reading
+                  - generic [ref=e1197]: "8.5"
+                - generic [ref=e1198]:
+                  - generic [ref=e1199]: Speaking
+                  - generic [ref=e1200]: "6.5"
+                - generic [ref=e1201]:
+                  - generic [ref=e1202]: Writing
+                  - generic [ref=e1203]: "7.0"
+              - generic [ref=e1204]:
+                - generic [ref=e1205]:
+                  - img [ref=e1206]
+                  - generic [ref=e1208]: IELTS Band 7.5
+                - paragraph [ref=e1209]: Click to flip back
+          - generic [ref=e1212] [cursor=pointer]:
+            - generic [ref=e1215]:
+              - generic [ref=e1217]:
+                - generic [ref=e1218]: Score
+                - generic [ref=e1219]: "7.5"
+              - generic [ref=e1220]:
+                - heading "Evangeline Libertus" [level=3] [ref=e1222]
+                - paragraph [ref=e1223]: IELTS Academic
+              - generic [ref=e1224]:
+                - generic [ref=e1225]: Certified
+                - paragraph [ref=e1226]: IELTS Band 7.5
+              - paragraph [ref=e1227]: Tap to Reveal
+            - generic [ref=e1228]:
+              - generic [ref=e1230]:
+                - img [ref=e1232]
+                - heading "Evangeline Libertus" [level=3] [ref=e1235]
+                - paragraph [ref=e1236]: Score Breakdown
+              - generic [ref=e1237]:
+                - generic [ref=e1238]:
+                  - generic [ref=e1239]: Listening
+                  - generic [ref=e1240]: "8.5"
+                - generic [ref=e1241]:
+                  - generic [ref=e1242]: Reading
+                  - generic [ref=e1243]: "7.0"
+                - generic [ref=e1244]:
+                  - generic [ref=e1245]: Speaking
+                  - generic [ref=e1246]: "7.5"
+                - generic [ref=e1247]:
+                  - generic [ref=e1248]: Writing
+                  - generic [ref=e1249]: "6.5"
+              - generic [ref=e1250]:
+                - generic [ref=e1251]:
+                  - img [ref=e1252]
+                  - generic [ref=e1254]: IELTS Band 7.5
+                - paragraph [ref=e1255]: Click to flip back
+          - generic [ref=e1258] [cursor=pointer]:
+            - generic [ref=e1261]:
+              - generic [ref=e1263]:
+                - generic [ref=e1264]: Score
+                - generic [ref=e1265]: "7.5"
+              - generic [ref=e1266]:
+                - heading "Jeeva S" [level=3] [ref=e1268]
+                - paragraph [ref=e1269]: IELTS General
+              - generic [ref=e1270]:
+                - generic [ref=e1271]: Certified
+                - paragraph [ref=e1272]: IELTS Band 7.5
+              - paragraph [ref=e1273]: Tap to Reveal
+            - generic [ref=e1274]:
+              - generic [ref=e1276]:
+                - img [ref=e1278]
+                - heading "Jeeva S" [level=3] [ref=e1281]
+                - paragraph [ref=e1282]: Score Breakdown
+              - generic [ref=e1283]:
+                - generic [ref=e1284]:
+                  - generic [ref=e1285]: Listening
+                  - generic [ref=e1286]: "8.5"
+                - generic [ref=e1287]:
+                  - generic [ref=e1288]: Reading
+                  - generic [ref=e1289]: "6.5"
+                - generic [ref=e1290]:
+                  - generic [ref=e1291]: Speaking
+                  - generic [ref=e1292]: "7.5"
+                - generic [ref=e1293]:
+                  - generic [ref=e1294]: Writing
+                  - generic [ref=e1295]: "6.5"
+              - generic [ref=e1296]:
+                - generic [ref=e1297]:
+                  - img [ref=e1298]
+                  - generic [ref=e1300]: IELTS Band 7.5
+                - paragraph [ref=e1301]: Click to flip back
+      - generic [ref=e1302]:
+        - button "Go to position 1" [ref=e1303]
+        - button "Go to position 2" [ref=e1304]
+        - button "Go to position 3" [ref=e1305]
+        - button "Go to position 4" [ref=e1306]
+        - button "Go to position 5" [ref=e1307]
+    - generic [ref=e1310]:
+      - generic [ref=e1311]:
+        - generic [ref=e1312]:
+          - generic [ref=e1313]:
+            - img [ref=e1314]
+            - img [ref=e1316]
+            - img [ref=e1318]
+            - img [ref=e1320]
+            - img [ref=e1322]
+          - generic [ref=e1324]: 4.9/5 from 85+ reviews
+        - heading "Student Success Stories" [level=2] [ref=e1325]
+      - generic [ref=e1327]:
+        - generic [ref=e1328]:
+          - img [ref=e1329]
+          - generic [ref=e1332]:
+            - generic [ref=e1335]: P
+            - generic [ref=e1336]:
+              - heading "Pooja Saravanan" [level=3] [ref=e1337]
+              - paragraph [ref=e1338]: IELTS Student
+              - generic [ref=e1339]:
+                - img [ref=e1340]
+                - img [ref=e1342]
+                - img [ref=e1344]
+                - img [ref=e1346]
+                - img [ref=e1348]
+          - paragraph [ref=e1350]: "\"I didn't have enough time for my exam so I just joined Sparkle Knowledge Yard because it's closer to my home. Shanthini ma'am guided me and helped me within this short time. She was really supportive which made the students feel at ease. The teaching here is very effective and well-structured. Highly recommended for anyone preparing for IELTS!\""
+          - paragraph [ref=e1353]:
+            - img [ref=e1354]
+            - text: Student
+        - generic [ref=e1357]:
+          - img [ref=e1358]
+          - generic [ref=e1361]:
+            - generic [ref=e1364]: S
+            - generic [ref=e1365]:
+              - heading "Shania Joseph" [level=3] [ref=e1366]
+              - paragraph [ref=e1367]: IELTS Academic
+              - generic [ref=e1368]:
+                - img [ref=e1369]
+                - img [ref=e1371]
+                - img [ref=e1373]
+                - img [ref=e1375]
+                - img [ref=e1377]
+          - paragraph [ref=e1379]: "\"I recently scored an overall Band 8 in IELTS in my first attempt... she provides the right study materials, focuses on our weak areas, and shares simple tips that really make a big difference. Her teaching style makes the IELTS preparation journey less stressful and more approachable.\""
+          - paragraph [ref=e1382]:
+            - img [ref=e1383]
+            - text: Student
+        - generic [ref=e1386]:
+          - img [ref=e1387]
+          - generic [ref=e1390]:
+            - generic [ref=e1393]: P
+            - generic [ref=e1394]:
+              - heading "Pranesh Sam G" [level=3] [ref=e1395]
+              - paragraph [ref=e1396]: IELTS Student
+              - generic [ref=e1397]:
+                - img [ref=e1398]
+                - img [ref=e1400]
+                - img [ref=e1402]
+                - img [ref=e1404]
+                - img [ref=e1406]
+          - paragraph [ref=e1408]: "\"One of the best IELTS coaching classes I ever experienced. Although I had a short period of time, Ma'am taught me everything in a brilliant way such that I could score the required band. Such a positive coaching. Thanks a lot ma'am.\""
+          - paragraph [ref=e1411]:
+            - img [ref=e1412]
+            - text: Student
+        - generic [ref=e1415]:
+          - img [ref=e1416]
+          - generic [ref=e1419]:
+            - generic [ref=e1422]: L
+            - generic [ref=e1423]:
+              - heading "Logi" [level=3] [ref=e1424]
+              - paragraph [ref=e1425]: Spoken English
+              - generic [ref=e1426]:
+                - img [ref=e1427]
+                - img [ref=e1429]
+                - img [ref=e1431]
+                - img [ref=e1433]
+                - img [ref=e1435]
+          - paragraph [ref=e1437]: "\"I joined Sparkle to improve my English communication skills. The classes were very engaging and interesting. The teaching methods really helped me gain confidence in speaking English. Truly appreciate the effort and guidance.\""
+          - paragraph [ref=e1440]:
+            - img [ref=e1441]
+            - text: Student
+        - generic [ref=e1444]:
+          - img [ref=e1445]
+          - generic [ref=e1448]:
+            - generic [ref=e1451]: V
+            - generic [ref=e1452]:
+              - heading "Vijaya Ramachandran" [level=3] [ref=e1453]
+              - paragraph [ref=e1454]: Parent
+              - generic [ref=e1455]:
+                - img [ref=e1456]
+                - img [ref=e1458]
+                - img [ref=e1460]
+                - img [ref=e1462]
+                - img [ref=e1464]
+          - paragraph [ref=e1466]: "\"Excellent coaching by Shanthini ma'am. It has been a wonderful and memorable journey. She gave personal attention to my son and helped him with IELTS and Visa interview. Her dedication is a class apart from usual coaching centers.\""
+          - paragraph [ref=e1469]:
+            - img [ref=e1470]
+            - text: Parent
+      - generic [ref=e1473]:
+        - button [ref=e1474]:
+          - img [ref=e1475]
+        - button [ref=e1483]:
+          - img [ref=e1484]
+    - generic [ref=e1491]:
+      - generic [ref=e1492]:
+        - heading "Global Success Stories" [level=2] [ref=e1493]
+        - paragraph [ref=e1494]: Celebrating achievements, academy updates, and expert study abroad guidance.
+      - generic [ref=e1496]:
+        - link "People think taking IELTS is simple An insightful perspective Mrs. Shanthini Williams • Jan 6, 2026 People think taking IELTS is simple An insightful perspective" [ref=e1498] [cursor=pointer]:
+          - /url: /blog/people-think-taking-ielts-is-simple-an-insightful-perspective
+          - generic [ref=e1499]:
+            - generic [ref=e1500]:
+              - heading "People think taking IELTS is simple An insightful perspective" [level=3] [ref=e1501]
+              - generic [ref=e1502]:
+                - generic [ref=e1503]:
+                  - generic [ref=e1504]: Mrs. Shanthini Williams
+                  - img [ref=e1505]
+                - generic [ref=e1507]: •
+                - generic [ref=e1508]: Jan 6, 2026
+            - img "People think taking IELTS is simple An insightful perspective" [ref=e1510]
+        - link "Why you should plan to study in Canada. Mrs. Shanthini Williams • Jan 20, 2026 Why you should plan to study in Canada." [ref=e1513] [cursor=pointer]:
+          - /url: /blog/why-you-should-plan-to-study-in-canada-
+          - generic [ref=e1514]:
+            - generic [ref=e1515]:
+              - heading "Why you should plan to study in Canada." [level=3] [ref=e1516]
+              - generic [ref=e1517]:
+                - generic [ref=e1518]:
+                  - generic [ref=e1519]: Mrs. Shanthini Williams
+                  - img [ref=e1520]
+                - generic [ref=e1522]: •
+                - generic [ref=e1523]: Jan 20, 2026
+            - img "Why you should plan to study in Canada." [ref=e1525]
+      - link "View All Articles" [ref=e1527] [cursor=pointer]:
+        - /url: /blog
+        - generic [ref=e1528]: View All Articles
+        - img [ref=e1529]
+    - generic [ref=e1536]:
+      - generic [ref=e1537]:
+        - generic [ref=e1541]:
+          - img [ref=e1542]
+          - generic [ref=e1544]: Get In Touch
+        - heading "Start Your Learning Journey With Sparkle" [level=2] [ref=e1545]:
+          - text: Start Your Learning Journey
+          - generic [ref=e1546]: With Sparkle
+        - paragraph [ref=e1547]:
+          - text: Experience world-class guidance. Visit us for a free consultation and see why we are the
+          - generic [ref=e1548]: "#1 choice"
+          - text: .
+      - generic [ref=e1549]:
+        - generic [ref=e1550]:
+          - heading "Send Us a Message" [level=3] [ref=e1552]
+          - generic [ref=e1553]:
+            - generic [ref=e1554]:
+              - generic [ref=e1555]:
+                - generic [ref=e1556]: Full Name
+                - textbox "Full Name Full Name" [ref=e1557]:
+                  - /placeholder: John Doe
+              - generic [ref=e1558]:
+                - generic [ref=e1559]: Phone Number
+                - generic [ref=e1560]:
+                  - button "+91" [ref=e1561]:
+                    - generic [ref=e1562]: "+91"
+                    - img [ref=e1563]
+                  - textbox "Phone Number" [ref=e1565]:
+                    - /placeholder: "1234567890"
+            - generic [ref=e1566]:
+              - generic [ref=e1567]: Email Address
+              - textbox "Email Address Email Address" [ref=e1568]:
+                - /placeholder: john@example.com
+            - generic [ref=e1569]:
+              - generic [ref=e1570]: Interested In
+              - button "Select a course" [ref=e1572]:
+                - generic [ref=e1573]: Select a course
+                - img [ref=e1574]
+            - generic [ref=e1576]:
+              - generic [ref=e1577]: Message
+              - textbox "Message" [ref=e1578]:
+                - /placeholder: Tell us about your goals...
+            - generic [ref=e1579]:
+              - generic [ref=e1580]:
+                - checkbox "I agree to the Terms & Conditions and Privacy Policy" [ref=e1581] [cursor=pointer]
+                - img
+              - generic [ref=e1582] [cursor=pointer]:
+                - text: I agree to the
+                - link "Terms & Conditions" [ref=e1583]:
+                  - /url: /terms
+                - text: and
+                - link "Privacy Policy" [ref=e1584]:
+                  - /url: /privacy
+            - button "Start Your Journey Here" [disabled] [ref=e1585]:
+              - generic [ref=e1588]:
+                - generic [ref=e1589]: Start Your Journey Here
+                - img [ref=e1590]
+        - generic [ref=e1592]:
+          - generic [ref=e1593]:
+            - link "Visit Us 2nd Floor, 331, Paper Mills Road, Bunder Garden, Perambur, Chennai 600011" [ref=e1594] [cursor=pointer]:
+              - /url: https://www.google.com/maps/search/Sparkle+Knowledge+Yard,+Perambur,+Chennai/@13.1146754,80.2329381,17z
+              - generic [ref=e1596]:
+                - generic [ref=e1597]:
+                  - img [ref=e1601]
+                  - heading "Visit Us" [level=4] [ref=e1605]
+                - paragraph [ref=e1607]: 2nd Floor, 331, Paper Mills Road, Bunder Garden, Perambur, Chennai 600011
+            - generic [ref=e1610]:
+              - generic [ref=e1611]:
+                - img [ref=e1615]
+                - heading "Call Us" [level=4] [ref=e1617]
+              - generic [ref=e1618]:
+                - link "+91 97100 43295" [ref=e1619] [cursor=pointer]:
+                  - /url: tel:+919710043295
+                - paragraph [ref=e1620]:
+                  - text: Monday to Saturday
+                  - text: 9:00 AM - 8:00 PM
+            - generic [ref=e1623]:
+              - generic [ref=e1624]:
+                - img [ref=e1628]
+                - heading "Email Us" [level=4] [ref=e1630]
+              - generic [ref=e1631]:
+                - link "info@sparkleacademy.com" [ref=e1632] [cursor=pointer]:
+                  - /url: mailto:info@sparkleacademy.com
+                - link "support@sparkleacademy.com" [ref=e1633] [cursor=pointer]:
+                  - /url: mailto:support@sparkleacademy.com
+            - generic [ref=e1636]:
+              - generic [ref=e1637]:
+                - img [ref=e1641]
+                - heading "Working Hours" [level=4] [ref=e1643]
+              - generic [ref=e1645]:
+                - generic [ref=e1646]:
+                  - generic [ref=e1649]: Monday to Friday
+                  - paragraph [ref=e1650]: 9:00 AM - 8:00 PM
+                - generic [ref=e1651]:
+                  - generic [ref=e1654]: Saturday to Sunday
+                  - paragraph [ref=e1655]: 10:00 AM - 6:00 PM
+          - link "Sparkle Knowledge Yard Location Open Location" [ref=e1656] [cursor=pointer]:
+            - /url: https://www.google.com/maps/search/Sparkle+Knowledge+Yard,+Perambur,+Chennai/@13.1146754,80.2329381,17z
+            - iframe [ref=e1657]
+            - generic [ref=e1659]:
+              - img [ref=e1660]
+              - generic [ref=e1662]: Open Location
+              - img [ref=e1663]
+    - generic [ref=e1668]:
+      - generic [ref=e1669]:
+        - generic [ref=e1677]: Latest Updates
+        - heading "Latest News & Articles" [level=2] [ref=e1678]
+        - paragraph [ref=e1679]: Stay updated with the latest educational news, exam updates, and study abroad opportunities
+      - generic [ref=e1680]:
+        - 'link "Live Jan 26, 2026 When worlds collide: International student studies abroad - East Tennessee State University When worlds collide: International student studies abroad East Tennessee State University News Source" [ref=e1681] [cursor=pointer]':
+          - /url: https://news.google.com/rss/articles/CBMilgFBVV95cUxOZ1hadnEwX2d4Z1dLbkxMcTJab3l0TF83X19Ud1R1a28xeVZiUWRLZUwwZFg1U1ozWVBLTEhCcWVuakRwLTQ1UzdrNTZqMGZ3UzUxOWZzYWxQZHM3THRCRnhZXzlNTU5PN0FSNkR5TW90clRRLXRHR2JnNmtLV2hXWlNvSVM2SEFGY2RnbjNUanhBUXd4OHc?oc=5
+          - generic [ref=e1683]:
+            - generic [ref=e1684]:
+              - generic [ref=e1685]: Live
+              - generic [ref=e1689]: Jan 26, 2026
+            - 'heading "When worlds collide: International student studies abroad - East Tennessee State University" [level=3] [ref=e1690]'
+            - paragraph [ref=e1691]: "When worlds collide: International student studies abroad East Tennessee State University"
+            - generic [ref=e1692]:
+              - generic [ref=e1693]: News Source
+              - img [ref=e1694]
+        - 'link "Live Jan 26, 2026 Studying Abroad in 2026: What students and parents need to know - GhanaWeb Studying Abroad in 2026: What students and parents need to know GhanaWeb News Source" [ref=e1696] [cursor=pointer]':
+          - /url: https://news.google.com/rss/articles/CBMiwAFBVV95cUxQMG84TzhDMXZUeGFjRWZiV1JqSWJ1cFduUi01MGNyTHBkVF85d2FEdTlHeGZtRFdQV0JCTFJ6T2VhOUprUmNmTVM3UWhWb0p2eDlqV3hKMXNKUE84c3Y1WENSZnRUWmpCNk9IekJTSC1HdHEtSWk1NnIwWlVYTl9KT0dpUEx4U1c3elpzNmlQQzJNUFBpNm8zY21kWEtZZHZDb1JqU3FoX2tKblpQSG1STUl6NmxGVnk4UWNlcTBteFY?oc=5
+          - generic [ref=e1698]:
+            - generic [ref=e1699]:
+              - generic [ref=e1700]: Live
+              - generic [ref=e1704]: Jan 26, 2026
+            - 'heading "Studying Abroad in 2026: What students and parents need to know - GhanaWeb" [level=3] [ref=e1705]'
+            - paragraph [ref=e1706]: "Studying Abroad in 2026: What students and parents need to know GhanaWeb"
+            - generic [ref=e1707]:
+              - generic [ref=e1708]: News Source
+              - img [ref=e1709]
+        - link "Live Jan 26, 2026 Mourning my Study Abroad - Her Campus Mourning my Study Abroad Her Campus News Source" [ref=e1711] [cursor=pointer]:
+          - /url: https://news.google.com/rss/articles/CBMickFVX3lxTFBUV01OejRPVUVGNlpHMG5vZ2RIbTlHamlramNtdDFDUjUwR2dFWjdzby13dHUtWXpER0ZWMzFEZzVnNGdCR21yOGJkUkVZVHdSRnAwcVZ1YWRTS291ZloyV0F2Qjd1enVpMVZxVzRmUW9ZQQ?oc=5
+          - generic [ref=e1713]:
+            - generic [ref=e1714]:
+              - generic [ref=e1715]: Live
+              - generic [ref=e1719]: Jan 26, 2026
+            - heading "Mourning my Study Abroad - Her Campus" [level=3] [ref=e1720]
+            - paragraph [ref=e1721]: Mourning my Study Abroad Her Campus
+            - generic [ref=e1722]:
+              - generic [ref=e1723]: News Source
+              - img [ref=e1724]
+        - 'link "Live Jan 26, 2026 India’s study-abroad corridor: Why Andhra Pradesh, Punjab and only a few other states go global - Times of India India’s study-abroad corridor: Why Andhra Pradesh, Punjab and only a few other states go global Times of India News Source" [ref=e1726] [cursor=pointer]':
+          - /url: https://news.google.com/rss/articles/CBMiiAJBVV95cUxNeS03dGtIVngyZE9fbzJ1Vk9KWjBxV2dpcTg1VTdpQ3BDY19RdlE5ZzhIejZzVUcyUWpIaFBHZHh2alk1Um1aRFlGbEN5TzB0WTBNcFpQNXozREtWVzl2cWFvbmp5dTNCR0VHb29OYTNtaEQxQ2ZodERDUkpjaDVNUlNJaVdnekJJNnBBektrMUN4ZlBGcVpoaG9fV3BvdGRhTlJlZEJVUG1sZ0hVanhPdEk1em5pWUg5YmRfYWJ2UzZzdTVuUnphaVBtNjJDQVAxQzl6eUl0NEpFMXZ5M1dvSy1faHVkcTFkbW1adHNQektlVGNaYTBtMUJHM1UxR1RkTF9tR0pSRVjSAY4CQVVfeXFMUEhSTlBGNDB6RnVENGNUSGh0ZVFPdThiZTlSeXh0cUJTQWpwY25zdXNLZjBfNmdGeXpGNlRjUWN2QkEwSkJoakZvaElfR2pmMVFuT0VuUC1mYVdITWhPY3ZtYVhFTjdVbmdIWTM5UU90Y2VnMlRDZGhtUXhZZTBrbTVjMWZzU1FlZlJyR2ZoQWd6UGpUai1EVVdwMk5TUktmX080T0VRZ1o1b2tpMzZiRlBLbzQ1bC1ZbXNqX0daakI4XzFXU09CZk15U3RyRXZMZ19yaW92TF9lblNUNjZrYkt4b2lyVGR5WEU2T1MxY2VyZ3BqN1R3aURXN09ZUnpxWFZEUDhTU21TdjBjZ0pB?oc=5
+          - generic [ref=e1728]:
+            - generic [ref=e1729]:
+              - generic [ref=e1730]: Live
+              - generic [ref=e1734]: Jan 26, 2026
+            - 'heading "India’s study-abroad corridor: Why Andhra Pradesh, Punjab and only a few other states go global - Times of India" [level=3] [ref=e1735]'
+            - paragraph [ref=e1736]: "India’s study-abroad corridor: Why Andhra Pradesh, Punjab and only a few other states go global Times of India"
+            - generic [ref=e1737]:
+              - generic [ref=e1738]: News Source
+              - img [ref=e1739]
+        - 'link "Live Jan 26, 2026 “Rich” Diversity: Study abroad doesn’t have to be expensive - dailycampus.com “Rich” Diversity: Study abroad doesn’t have to be expensive dailycampus.com News Source" [ref=e1741] [cursor=pointer]':
+          - /url: https://news.google.com/rss/articles/CBMilgFBVV95cUxPN19pbHI5LTBCaW1KYTJHZ1FKNzdCTGFmSUtQd3dCeVljWVAwdkJnSlEwYzlIUXRfZHlkXzhoMDdLNVNNaTZrYWp4MlUyUzhOZFRCRjAzMHl4eUxSeFlUWVNXZFlLWTM5eHZ1eUtPZ2RNMjRyRzdjS0I2SV9BbE5sUzVMU1dUMFZyQjJ0LTdPSVhlRjExemc?oc=5
+          - generic [ref=e1743]:
+            - generic [ref=e1744]:
+              - generic [ref=e1745]: Live
+              - generic [ref=e1749]: Jan 26, 2026
+            - 'heading "“Rich” Diversity: Study abroad doesn’t have to be expensive - dailycampus.com" [level=3] [ref=e1750]'
+            - paragraph [ref=e1751]: "“Rich” Diversity: Study abroad doesn’t have to be expensive dailycampus.com"
+            - generic [ref=e1752]:
+              - generic [ref=e1753]: News Source
+              - img [ref=e1754]
+        - link "Live Jan 26, 2026 African and Latin American Students Face Mounting Study Abroad Barriers - News Ghana African and Latin American Students Face Mounting Study Abroad Barriers News Ghana News Source" [ref=e1756] [cursor=pointer]:
+          - /url: https://news.google.com/rss/articles/CBMiowFBVV95cUxNUGtWa1pKNHFCMzI2cDkzbVFOM3BUSVhqdUVsSFl5enJnWWw1djk3VzdKWnhKVUpMdmprMHctVGhPbE9jcmhnb21fRXFjZE9CeVowcDFqbFRzWEhKeUo4TGVGcHFIMHI4bGVueG02RG1Uejl5UVVDcnRZdThnODlrLU1qdFYtd2QtMUxibVlxUm9fZ2txRzlYNTljdHN4T0dKblNJ?oc=5
+          - generic [ref=e1758]:
+            - generic [ref=e1759]:
+              - generic [ref=e1760]: Live
+              - generic [ref=e1764]: Jan 26, 2026
+            - heading "African and Latin American Students Face Mounting Study Abroad Barriers - News Ghana" [level=3] [ref=e1765]
+            - paragraph [ref=e1766]: African and Latin American Students Face Mounting Study Abroad Barriers News Ghana
+            - generic [ref=e1767]:
+              - generic [ref=e1768]: News Source
+              - img [ref=e1769]
+      - button "View All Updates" [ref=e1772]:
+        - generic [ref=e1773]: View All Updates
+        - img [ref=e1774]
+    - contentinfo [ref=e1777]:
+      - generic [ref=e1778]:
+        - generic [ref=e1779]:
+          - generic [ref=e1780]:
+            - img "Sparkle Academy" [ref=e1782]
+            - paragraph [ref=e1783]: Trusted language training and test preparation institute in Perambur, Chennai. Helping students achieve global academic and career goals since 2018.
+            - generic [ref=e1784]:
+              - link [ref=e1785] [cursor=pointer]:
+                - /url: https://www.facebook.com
+                - img [ref=e1787]
+              - link [ref=e1789] [cursor=pointer]:
+                - /url: https://www.instagram.com
+                - img [ref=e1791]
+              - link [ref=e1794] [cursor=pointer]:
+                - /url: https://www.linkedin.com
+                - img [ref=e1796]
+              - link [ref=e1800] [cursor=pointer]:
+                - /url: https://twitter.com
+                - img [ref=e1802]
+          - generic [ref=e1804]:
+            - paragraph [ref=e1805]: Quick Links
+            - list [ref=e1806]:
+              - listitem [ref=e1807]:
+                - link "Courses" [ref=e1808] [cursor=pointer]:
+                  - /url: "#courses"
+                  - text: Courses
+              - listitem [ref=e1809]:
+                - link "About" [ref=e1810] [cursor=pointer]:
+                  - /url: "#about"
+                  - text: About
+              - listitem [ref=e1811]:
+                - link "News" [ref=e1812] [cursor=pointer]:
+                  - /url: "#news"
+                  - text: News
+              - listitem [ref=e1813]:
+                - link "Blog" [ref=e1814] [cursor=pointer]:
+                  - /url: "#blog"
+                  - text: Blog
+              - listitem [ref=e1815]:
+                - link "Contact" [ref=e1816] [cursor=pointer]:
+                  - /url: "#contact"
+                  - text: Contact
+          - generic [ref=e1817]:
+            - paragraph [ref=e1818]: Contact Us
+            - list [ref=e1819]:
+              - listitem [ref=e1820]:
+                - img [ref=e1821]
+                - generic [ref=e1824]:
+                  - text: 2nd Floor, 331, Paper Mills Road,
+                  - text: Bunder Garden, Perambur, Chennai,
+                  - text: Tamil Nadu 600011
+              - listitem [ref=e1825]:
+                - img [ref=e1826]
+                - generic [ref=e1828]: 097100 43295
+              - listitem [ref=e1829]:
+                - img [ref=e1830]
+                - generic [ref=e1833]: info@sparkleacademy.com
+        - generic [ref=e1835]:
+          - paragraph [ref=e1836]: © 2026 Sparkle Knowledge Yard. All rights reserved.
+          - generic [ref=e1837]:
+            - link "Terms and Conditions" [ref=e1838] [cursor=pointer]:
+              - /url: /terms
+            - generic [ref=e1839]: "|"
+            - link "Privacy Policy" [ref=e1840] [cursor=pointer]:
+              - /url: /privacy
+  - alert [ref=e1841]
+  - generic [ref=e1843]:
+    - button "Close" [ref=e1844]:
+      - img [ref=e1845]
+    - heading "Empower Your Academic Future" [level=2] [ref=e1849]
+    - generic [ref=e1850]:
+      - generic [ref=e1851]:
+        - generic [ref=e1852]: Full Name
+        - textbox "John Doe" [ref=e1853]
+      - generic [ref=e1854]:
+        - generic [ref=e1855]: Mobile Number
+        - generic [ref=e1856]:
+          - generic [ref=e1857]:
+            - combobox [ref=e1858] [cursor=pointer]:
+              - option "🇮🇳 +91" [selected]
+              - option "🇺🇸 +1"
+              - option "🇬🇧 +44"
+              - option "🇦🇺 +61"
+              - option "🇦🇪 +971"
+              - option "🇫🇷 +33"
+              - option "🇩🇪 +49"
+              - option "🇯🇵 +81"
+              - option "🇨🇳 +86"
+              - option "🇸🇬 +65"
+              - option "🇲🇾 +60"
+              - option "🇨🇦 +1"
+            - img
+          - textbox "Mobile Number" [ref=e1859]:
+            - /placeholder: Phone No.
+      - generic [ref=e1860]:
+        - generic [ref=e1861]: Email Address
+        - textbox "john.doe@example.com" [ref=e1862]
+      - button "Take the First Step" [ref=e1863]
+```

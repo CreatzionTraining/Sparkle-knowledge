@@ -15,48 +15,33 @@ export function About() {
             </div>
 
             <p className="text-lg text-gray-700">
-                <span className="font-bold text-[#1D4ED8]">Sparkle Knowledge Yard</span> is a leading study abroad consultancy and test preparation center located in Perambur, Chennai, dedicated to empowering students to achieve their international education and career goals. We specialize in coaching for IELTS, PTE, TOEFL, and OET, along with communication skills training, helping students gain the confidence and competence required to succeed globally.
+                <span className="font-bold text-[#1D4ED8]">Sparkle Knowledge Yard</span> was built on a simple but powerful realisation: learning does not always translate into performance.
+            </p>
+
+            <p>
+                Over twenty years of working closely with students, aspirants, and candidates revealed a persistent gap between learning and true potential. Too often, capability is judged through limited language tools and one-sided evaluations, causing real talent to be mistaken for lack of knowledge. This insight led to the creation of Sparkle Knowledge Yard—where training bridges the gap between preparation and real-world performance.
             </p>
 
             <div className="p-6 bg-gray-50 rounded-2xl border-l-4 border-[#1D4ED8]">
                 <p className="italic text-gray-700">
-                    "At Sparkle Knowledge Yard, we believe that success in international exams and overseas education is not just about scores—it’s about strategy, clarity, and confidence."
+                    Based in Perambur, Chennai, <span className="font-bold text-[#1D4ED8]">Sparkle Knowledge Yard</span> is a focused study abroad consultancy and skill-based training centre.
                 </p>
             </div>
 
             <p>
-                Our training approach combines practical exam techniques, personalized mentoring, and real-time feedback, ensuring that every student receives focused attention and measurable progress.
+                We specialise in IELTS, PTE, TOEFL, and OET, along with Communicative English, interview preparation, employability skills, and foreign language training in French, German, Spanish, and Japanese. Our programmes serve students, job seekers, and working professionals preparing for global opportunities.
             </p>
 
             <div className="space-y-4">
-                <h4 className="font-bold text-[#0F172A] text-lg">What Sets Us Apart?</h4>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {[
-                        'Online & Offline Flexible Classes',
-                        'Experienced Faculty',
-                        'Structured Learning Plans',
-                        'Regular Doubt-Clearing Sessions',
-                        'Comprehensive Study Abroad Guidance',
-                        'Interview Readiness & Application Support'
-                    ].map((item, index) => (
-                        <li key={index} className="flex gap-2 items-center text-gray-700">
-                            <span className="w-2 h-2 bg-[#E63946] rounded-full"></span>
-                            {item}
-                        </li>
-                    ))}
-                </ul>
+                <h4 className="font-bold text-[#0F172A] text-lg">Core Pillars</h4>
+                <p>
+                    All our programmes are built on three core pillars: <span className="font-bold text-[#1D4ED8]">Structure, Practice, and Outcome</span>. Through practical strategies, personalised mentoring, and continuous feedback, we ensure learners don’t just complete courses—but perform with confidence.
+                </p>
             </div>
 
             <p>
-                Beyond test preparation, we assist students at every stage—from choosing the right course and country to interview readiness and application support. Our mission is to simplify the overseas education journey and help students turn their aspirations into achievements.
+                In addition, we offer end-to-end study abroad guidance, covering course selection, applications, documentation, and visa interview readiness—helping learners adapt, communicate, and thrive in international academic and professional environments.
             </p>
-
-            <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                <span className="font-bold text-[#0F172A]">Trusted by students for:</span>
-                <span className="text-sm bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">Expert Faculty</span>
-                <span className="text-sm bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">Holistic Training</span>
-                <span className="text-sm bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium">Student-Centric</span>
-            </div>
         </div>
     );
 
@@ -70,11 +55,11 @@ export function About() {
             </div>
 
             <div className="p-6 bg-blue-50/50 rounded-2xl border border-blue-100 italic text-blue-800 font-medium">
-                "To become a trusted global education and skill-development ecosystem that empowers learners to communicate confidently, compete globally, and build meaningful careers—regardless of their background or starting point."
+                "To create learning environments where capability is recognised, developed, and expressed with confidence."
             </div>
 
             <p>
-                Sparkle Knowledge Yard envisions a future where education is accessible, practical, and transformative, enabling individuals to unlock opportunities across borders through language, skills, and clarity of direction.
+                We envision a system of training that goes beyond marks and certificates, enabling learners to perform effectively in academic, professional, and global settings through clarity, structure, and consistent practice.
             </p>
         </div>
     );
@@ -89,17 +74,16 @@ export function About() {
             </div>
 
             <p className="text-lg font-medium">
-                Our mission is to provide high-quality, result-oriented education and training that bridges the gap between academic learning and real-world expectations.
+                Our mission is to bridge the gap between learning and performance through structured, skill-based, and outcome-driven training.
             </p>
 
             <div className="space-y-4">
-                <p className="font-bold text-[#E63946] border-b border-gray-200 pb-2">We are committed to:</p>
+                <p className="font-bold text-[#E63946] border-b border-gray-200 pb-2">We aim to support students, job seekers, and professionals by providing:</p>
                 <ul className="space-y-3">
                     {[
-                        'Delivering structured and practical coaching for international exams, communication skills, and career readiness',
-                        'Offering ethical, transparent guidance for overseas education and career decisions',
-                        'Nurturing confidence, clarity, and competence in every learner',
-                        'Continuously evolving our methods using modern tools, expert insight, and learner feedback'
+                        'Clear learning frameworks that remove confusion',
+                        'Practical training that builds real-world competence',
+                        'Personalised guidance that strengthens confidence and direction'
                     ].map((item, index) => (
                         <li key={index} className="flex gap-3">
                             <span className="text-[#E63946] font-bold mt-1">✓</span>
@@ -107,12 +91,15 @@ export function About() {
                         </li>
                     ))}
                 </ul>
+                <p className="pt-2 text-gray-700">
+                    Through focused preparation, continuous feedback, and realistic practice, Sparkle Knowledge Yard is committed to developing individuals who are not just prepared to qualify, but ready to communicate, adapt, and succeed.
+                </p>
             </div>
         </div>
     );
 
-    const visionSummary = "To become a trusted global education and skill-development ecosystem that empowers learners to communicate confidently, compete globally, and build meaningful careers.";
-    const missionSummary = "Our mission is to provide high-quality, result-oriented education and training that bridges the gap between academic learning and real-world expectations.";
+    const visionSummary = "To create learning environments where capability is recognised, developed, and expressed with confidence.";
+    const missionSummary = "Our mission is to bridge the gap between learning and performance through structured, skill-based, and outcome-driven training.";
 
     return (
         <section id="about" className="relative py-24 bg-gradient-to-br from-blue-100 via-white to-red-100 overflow-hidden">
@@ -130,20 +117,20 @@ export function About() {
                     <div className="order-2 lg:order-1 flex flex-col justify-center">
                         <div className="mb-8">
                             <h2 className="text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-4">
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave">Who We Are</span>
+                                <span className="text-transparent bg-clip-text animate-rainbow-text font-bold">Who We Are</span>
                             </h2>
                             <div className="h-1.5 w-24 bg-gradient-to-r from-[#1D4ED8] to-[#E63946] rounded-full"></div>
                         </div>
 
                         <div className="space-y-4 text-[15px] text-gray-500 leading-relaxed font-medium mb-8 text-justify">
                             <p>
-                                <span className="font-bold text-[#0F172A]">Sparkle Knowledge Yard</span> is a leading study abroad consultancy and test preparation center located in Perambur, Chennai. We specialize in coaching for IELTS, PTE, TOEFL, and OET, helping students gain the confidence required to succeed globally.
+                                <span className="font-bold text-[#0F172A]">Sparkle Knowledge Yard</span> was built on a powerful realisation: learning does not always translate into performance. Over twenty years of experience revealed a gap between potential and capability, often due to one-sided evaluations.
                             </p>
                             <p>
-                                We believe success is about <span className="italic text-[#1D4ED8]">strategy, clarity, and confidence</span>. Our training combines practical exam techniques, personalized mentoring, and real-time feedback. With experienced faculty and structured plans, we create a supportive environment for growth.
+                                Based in Perambur, Chennai, we define ourselves through <span className="italic text-[#1D4ED8]">Structure, Practice, and Outcome</span>. We specialize in IELTS, PTE, TOEFL, and OET coaching, along with foreign language training and employability skills.
                             </p>
                             <p>
-                                Beyond test preparation, we provide comprehensive study abroad guidance—from course selection to visa readiness. We build not just high scorers, but confident individuals ready to thrive abroad.
+                                Our mission goes beyond just scores—we offer end-to-end study abroad guidance to help learners adapt, communicate, and thrive in international environments.
                             </p>
                         </div>
 
@@ -187,19 +174,19 @@ export function About() {
                         className="group relative p-[2px] rounded-[2rem] bg-gradient-to-br from-[#1D4ED8] to-transparent hover:to-[#1D4ED8] transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20"
                         onClick={() => setActiveModal('vision')}
                     >
-                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-10 overflow-hidden">
+                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-6 lg:p-10 overflow-hidden">
                             {/* Abstract Decorative Elements */}
-                            <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-100/50 rounded-full blur-3xl group-hover:bg-blue-200/50 transition-colors"></div>
-                            <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-indigo-100/50 rounded-full blur-3xl group-hover:bg-indigo-200/50 transition-colors"></div>
+                            <div className="absolute -right-10 -top-10 w-24 h-24 lg:w-40 lg:h-40 bg-blue-100/50 rounded-full blur-3xl group-hover:bg-blue-200/50 transition-colors"></div>
+                            <div className="absolute -left-10 -bottom-10 w-24 h-24 lg:w-40 lg:h-40 bg-indigo-100/50 rounded-full blur-3xl group-hover:bg-indigo-200/50 transition-colors"></div>
 
                             {/* Watermark Text Removed */}
 
 
                             <div className="relative z-10 flex flex-col h-full">
-                                <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#1D4ED8] to-blue-600">Our Vision</h3>
-                                <div className="w-12 h-1 bg-[#1D4ED8] mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
+                                <h3 className="text-2xl lg:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#1D4ED8] to-blue-600">Our Vision</h3>
+                                <div className="w-12 h-1 bg-[#1D4ED8] mb-4 lg:mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
 
-                                <p className="text-gray-600 mb-8 leading-relaxed flex-grow text-lg">
+                                <p className="text-gray-600 mb-4 lg:mb-8 leading-relaxed flex-grow text-base lg:text-lg">
                                     {visionSummary}
                                 </p>
 
@@ -216,19 +203,19 @@ export function About() {
                         className="group relative p-[2px] rounded-[2rem] bg-gradient-to-br from-[#E63946] to-transparent hover:to-[#E63946] transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/20"
                         onClick={() => setActiveModal('mission')}
                     >
-                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-10 overflow-hidden">
+                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-6 lg:p-10 overflow-hidden">
                             {/* Abstract Decorative Elements */}
-                            <div className="absolute -right-10 -top-10 w-40 h-40 bg-red-100/50 rounded-full blur-3xl group-hover:bg-red-200/50 transition-colors"></div>
-                            <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-orange-100/50 rounded-full blur-3xl group-hover:bg-orange-200/50 transition-colors"></div>
+                            <div className="absolute -right-10 -top-10 w-24 h-24 lg:w-40 lg:h-40 bg-red-100/50 rounded-full blur-3xl group-hover:bg-red-200/50 transition-colors"></div>
+                            <div className="absolute -left-10 -bottom-10 w-24 h-24 lg:w-40 lg:h-40 bg-orange-100/50 rounded-full blur-3xl group-hover:bg-orange-200/50 transition-colors"></div>
 
                             {/* Watermark Text Removed */}
 
 
                             <div className="relative z-10 flex flex-col h-full">
-                                <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#E63946] to-red-600">Our Mission</h3>
-                                <div className="w-12 h-1 bg-[#E63946] mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
+                                <h3 className="text-2xl lg:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#E63946] to-red-600">Our Mission</h3>
+                                <div className="w-12 h-1 bg-[#E63946] mb-4 lg:mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
 
-                                <p className="text-gray-600 mb-8 leading-relaxed flex-grow text-lg">
+                                <p className="text-gray-600 mb-4 lg:mb-8 leading-relaxed flex-grow text-base lg:text-lg">
                                     {missionSummary}
                                 </p>
 

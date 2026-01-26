@@ -149,6 +149,7 @@ export default function RegistrationPopup() {
                                 }}
                                 placeholder="John Doe"
                                 required
+                                autoComplete="name"
                                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm md:text-base"
                             />
                         </div>
@@ -194,6 +195,7 @@ export default function RegistrationPopup() {
                                     placeholder="Phone No."
                                     required
                                     maxLength={15}
+                                    autoComplete="tel"
                                     className="flex-1 px-3 md:px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 font-medium text-sm md:text-base"
                                 />
                             </div>
@@ -214,6 +216,7 @@ export default function RegistrationPopup() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="john.doe@example.com"
                                 required
+                                autoComplete="email"
                                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm md:text-base"
                             />
                         </div>

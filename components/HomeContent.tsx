@@ -68,8 +68,8 @@ export default function HomeContent() {
           />
         </div> */}
 
-        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#1D4ED8]/10 to-[#2563EB]/5 blur-3xl animate-float -z-10"></div>
-        <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#E63946]/10 to-[#FA8072]/5 blur-3xl animate-float-delayed -z-10"></div>
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#1D4ED8]/30 to-[#2563EB]/20 blur-3xl animate-float -z-10"></div>
+        <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#E63946]/30 to-[#FA8072]/20 blur-3xl animate-float-delayed -z-10"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -78,7 +78,7 @@ export default function HomeContent() {
             <div className="text-center lg:text-left z-10 lg:pl-4">
 
 
-              <div className="relative h-[160px] md:h-[200px] mb-6 md:mb-8">
+              <div className="relative h-[140px] md:h-[200px] mb-2 md:mb-8">
                 {textContent.map((item, index) => {
                   const Tag = index === 0 ? 'h1' : 'div';
                   return (
@@ -90,7 +90,7 @@ export default function HomeContent() {
                         }`}
                     >
                       {item.text} <br />
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave">
+                      <span className="text-transparent bg-clip-text animate-rainbow-text font-bold">
                         {item.highlight}
                       </span>
                     </Tag>
@@ -98,7 +98,38 @@ export default function HomeContent() {
                 })}
               </div>
 
-              <p className="text-base md:text-xl text-gray-800 mb-8 md:mb-10 mt-12 md:mt-20 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium px-4 lg:px-0">
+              {/* Hero Visual - Mobile/Tablet Only */}
+              <div className="relative z-10 block lg:hidden perspective-1000 mb-8 mt-2">
+                <div className="relative w-full aspect-square max-w-[300px] md:max-w-[400px] mx-auto animate-float">
+                  {/* Main Glass Card with Red/Blue Gradient Border */}
+                  <div className="absolute inset-4 z-10 p-[0.5px] rounded-3xl bg-gradient-to-r from-[#E63946] to-[#1D4ED8] shadow-2xl overflow-hidden transform rotate-2 hover:rotate-0 transition-all duration-700">
+                    <div className="relative w-full h-full bg-white/10 backdrop-blur-sm rounded-[20px] overflow-hidden">
+                      {[
+                        '/assets/people/students.png',
+                        '/assets/people/graduate.png',
+                        '/assets/people/study_abroad.png',
+                        '/assets/people/tutor.png',
+                        '/assets/people/learner.png'
+                      ].map((img, index) => (
+                        <div
+                          key={img}
+                          className={`absolute inset-0 transition-opacity duration-[3000ms] ease-in-out ${currentImageIndex === index ? 'opacity-100' : 'opacity-0'}`}
+                        >
+                          <Image
+                            src={img}
+                            alt={`Student Success Story - Sparkle Knowledge Yard Chennai ${index + 1}`}
+                            fill
+                            className="object-contain p-2 hover:scale-105 transition-transform duration-[3000ms] rounded-2xl"
+                            priority={index === 0}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-base md:text-xl text-gray-800 mb-8 md:mb-10 lg:mt-20 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium px-4 lg:px-0">
                 Expert coaching for IELTS, TOEFL, GRE, GMAT & language training.
                 Your gateway to study abroad success and global career opportunities.
               </p>
@@ -119,10 +150,10 @@ export default function HomeContent() {
               </div>
 
               <div className="mt-10 flex flex-col sm:flex-row gap-5 justify-center lg:justify-start hidden-btn">
-                <button className="px-8 py-4 bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave hover:from-[#E63946] hover:to-[#D62839] text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-blue-500/25 hover:shadow-red-500/40 hover:-translate-y-1 flex items-center justify-center gap-3">
+                <a href="#contact" className="px-8 py-4 bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave hover:from-[#E63946] hover:to-[#D62839] text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-blue-500/25 hover:shadow-red-500/40 hover:-translate-y-1 flex items-center justify-center gap-3">
                   Book Free Demo
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </button>
+                </a>
                 <a
                   href="https://wa.me/919710043295"
                   target="_blank"
@@ -151,7 +182,7 @@ export default function HomeContent() {
 
             </div>
 
-            {/* Hero Visual */}
+            {/* Hero Visual - Desktop Only */}
             <div className="relative z-10 hidden lg:block perspective-1000 -mt-12">
               <div className="relative w-full aspect-square max-w-[600px] mx-auto animate-float">
                 {/* Main Glass Card with Red/Blue Gradient Border */}

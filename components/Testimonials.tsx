@@ -114,14 +114,14 @@ export function Testimonials() {
                         <span>4.9/5 from 85+ reviews</span>
                     </div>
                     <h2 className="text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight mb-4">
-                        Student <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave">Success Stories</span>
+                        Student <span className="text-transparent bg-clip-text animate-rainbow-text font-bold">Success Stories</span>
                     </h2>
                     <div className="h-1.5 w-24 bg-gradient-to-r from-[#1D4ED8] to-[#E63946] rounded-full mx-auto"></div>
                 </div>
 
                 {/* 3D Carousel Stage */}
                 <div
-                    className="relative h-[600px] md:h-[700px] -mt-8 flex items-center justify-center perspective-1000"
+                    className="relative h-[550px] md:h-[620px] -mt-8 flex items-center justify-center perspective-1000"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
@@ -136,14 +136,25 @@ export function Testimonials() {
                                 initial="hidden"
                                 animate={position}
                                 transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
-                                className="absolute w-[90%] md:w-[600px] bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-gray-100 flex flex-col justify-between h-auto min-h-[350px]"
+                                drag={isCenter ? "x" : false}
+                                dragConstraints={{ left: 0, right: 0 }}
+                                dragElastic={0.2}
+                                onDragEnd={(e, { offset, velocity }) => {
+                                    const swipeThreshold = 50;
+                                    if (offset.x < -swipeThreshold) {
+                                        handleNext();
+                                    } else if (offset.x > swipeThreshold) {
+                                        handlePrev();
+                                    }
+                                }}
+                                className="absolute w-[90%] md:w-[600px] h-[500px] md:h-[550px] bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-gray-100 flex flex-col justify-between overflow-y-auto custom-scrollbar touch-pan-y"
                             >
                                 {/* Quote Icon Background */}
                                 <Quote className="absolute top-8 right-8 w-20 h-20 text-gray-100/50 fill-current -z-10" />
 
                                 {/* Top Profile */}
                                 <div className="flex items-center gap-6 mb-8">
-                                    <div className={`relative w-20 h-20 rounded-full p-1 ${isCenter ? 'bg-gradient-to-tr from-blue-600 to-pink-500' : 'bg-gray-200'} transition-colors duration-500`}>
+                                    <div className={`relative w-20 h-20 rounded-full p-1 flex-shrink-0 ${isCenter ? 'bg-gradient-to-tr from-blue-600 to-pink-500' : 'bg-gray-200'} transition-colors duration-500`}>
                                         <div className="w-full h-full rounded-full overflow-hidden relative border-4 border-white flex items-center justify-center bg-blue-100">
                                             <span className="text-3xl font-bold text-blue-600">
                                                 {item.name.charAt(0)}
@@ -182,7 +193,7 @@ export function Testimonials() {
                 </div>
 
                 {/* Controls */}
-                <div className="flex items-center justify-center gap-6 mt-16">
+                <div className="flex items-center justify-center gap-6 mt-6">
                     <button
                         onClick={handlePrev}
                         className="w-12 h-12 rounded-full bg-white shadow-lg text-gray-700 flex items-center justify-center hover:bg-[#1D4ED8] hover:text-white transition-all duration-300"
