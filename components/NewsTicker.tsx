@@ -14,13 +14,12 @@ interface NewsItem {
 export default function NewsTicker() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedArticle, setSelectedArticle] = useState<NewsItem | null>(null);
   const [visibleCount, setVisibleCount] = useState(6);
 
   useEffect(() => {
     async function fetchNews() {
       try {
-        const res = await fetch('/api/news');
+        const res = await fetch('/api/google-news');
         const data = await res.json();
         console.log('News data:', data);
         setNews(data.news || []);
@@ -88,105 +87,46 @@ export default function NewsTicker() {
           {/* News Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {visibleNews.map((item, index) => (
-              <NewsCard key={index} item={item} onClick={() => setSelectedArticle(item)} />
+              <NewsCard key={index} item={item} />
             ))}
           </div>
 
-          {/* View All Button */}
-          {hasMore && (
+          {/* View All / Back to Top Button */}
+          {news.length > 6 && (
             <div className="text-center">
-              <button
-                onClick={() => setVisibleCount(prev => prev + 6)}
-                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <span>View All Updates</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
+              {hasMore ? (
+                <button
+                  onClick={() => setVisibleCount(prev => prev + 6)}
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <span>View All Updates</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    setVisibleCount(6);
+                    document.getElementById('news')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <span>Back to Top</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7"></path>
+                  </svg>
+                </button>
+              )}
             </div>
           )}
         </div>
       </section>
-
-      {/* Article Modal */}
-      {selectedArticle && (
-        <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
-          onClick={() => setSelectedArticle(null)}
-        >
-          <div
-            className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-2xl z-10">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <h2 className="text-2xl font-bold leading-tight mb-2">{selectedArticle.title}</h2>
-                  <p className="text-sm text-white/90">
-                    {new Date(selectedArticle.pubDate).toLocaleDateString('en-US', {
-                      month: 'long',
-                      day: 'numeric',
-                      year: 'numeric'
-                    })} • <span className="font-semibold">{selectedArticle.source}</span>
-                  </p>
-                </div>
-                <button
-                  onClick={() => setSelectedArticle(null)}
-                  className="text-white/80 hover:text-white text-3xl leading-none flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors"
-                >
-                  ×
-                </button>
-              </div>
-            </div>
-
-            {/* Article Image */}
-            {selectedArticle.imageUrl && (
-              <div className="w-full h-64 overflow-hidden bg-gray-100">
-                <img
-                  src={selectedArticle.imageUrl}
-                  alt={selectedArticle.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLElement).style.display = 'none';
-                  }}
-                />
-              </div>
-            )}
-
-            {/* Article Content */}
-            <div className="p-8">
-              <div className="prose prose-lg max-w-none">
-                {selectedArticle.description && (
-                  <div className="text-gray-700 leading-relaxed whitespace-pre-line mb-6">
-                    {selectedArticle.description}
-                  </div>
-                )}
-
-                <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
-                  <p className="text-sm text-gray-700 mb-4">
-                    📰 This is a preview from <span className="font-bold">{selectedArticle.source}</span>
-                  </p>
-                  <a
-                    href={selectedArticle.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors shadow-md hover:shadow-lg"
-                  >
-                    Read Full Article on {selectedArticle.source} →
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
 
-function NewsCard({ item, onClick }: { item: NewsItem; onClick: () => void }) {
+function NewsCard({ item }: { item: NewsItem }) {
   const dateStr = new Date(item.pubDate).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
@@ -196,10 +136,24 @@ function NewsCard({ item, onClick }: { item: NewsItem; onClick: () => void }) {
   // Check if news is within last 24 hours
   const isLive = (new Date().getTime() - new Date(item.pubDate).getTime()) < 24 * 60 * 60 * 1000;
 
+  // Helper to validate description
+  const isValidDescription = (desc?: string) => {
+    if (!desc) return false;
+    // Reject if contains tracking ID pattern
+    if (desc.includes('CBM')) return false;
+    // Reject if contains Google params
+    if (desc.includes('oc=')) return false;
+    // Reject if it's one very long word (base64/encoded)
+    if (desc.length > 40 && !desc.includes(' ')) return false;
+    return true;
+  };
+
   return (
-    <div
-      onClick={onClick}
-      className="group bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer"
+    <a
+      href={item.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer block"
     >
       <div className="p-5 flex gap-4">
         {/* Content */}
@@ -223,8 +177,8 @@ function NewsCard({ item, onClick }: { item: NewsItem; onClick: () => void }) {
             {item.title}
           </h3>
 
-          {/* Description */}
-          {item.description && (
+          {/* Description - Filtered to remove raw links */}
+          {isValidDescription(item.description) && (
             <p className="text-sm text-gray-600 line-clamp-2 mb-3">
               {item.description}
             </p>
@@ -253,6 +207,6 @@ function NewsCard({ item, onClick }: { item: NewsItem; onClick: () => void }) {
           </div>
         )}
       </div>
-    </div>
+    </a>
   );
 }

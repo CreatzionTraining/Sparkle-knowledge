@@ -8,68 +8,74 @@ import { motion } from 'framer-motion';
 export function Courses() {
   const testPrep = [
     {
-
+      name: 'IELTS Preparation',
       desc: 'Academic and General Training coaching for UK, Canada, Australia.',
-      features: ['Band 8+ Strategies', 'Unlimited Mock Tests', 'Grammar & Vocabulary', 'Individual Feedback'],
+      features: ['Band-focused strategy', 'Writing & Speaking mastery', 'Real exam practice', 'Personalised feedback'],
+      details: 'Our IELTS programme trains candidates to understand how the exam is evaluated and how to respond with precision. Each module focuses on exam logic, structured practice, and targeted correction to ensure consistent band improvement across all four skills.',
       modules: ['Reading Comprehension', 'Academic/General Writing', 'Listening Techniques', 'Speaking Practice'],
-      duration: '2-3 months',
+      duration: '6 – 8 weeks',
       type: 'image',
       image: '/courses/ielts.png',
       color: 'from-red-500 to-rose-600',
       badge: 'bg-red-50 text-red-600'
     },
     {
-      name: 'TOEFL',
+      name: 'TOEFL iBT',
       desc: 'TOEFL iBT coaching for US higher education with personalized plans.',
-      features: ['Section-wise Practice', 'Speaking Templates', 'Essay Correction', 'Accent Neutralization'],
+      features: ['Academic communication', 'Integrated task training', 'Structured responses', 'Rubric-based feedback'],
+      details: 'Our TOEFL training builds academic readiness through listening, speaking, reading, and writing frameworks aligned with university expectations. Candidates learn to organise ideas clearly and respond confidently under timed conditions.',
       modules: ['Reading Sections', 'Listening Conversations', 'Speaking Tasks', 'Integrated Writing'],
-      duration: '2-3 months',
+      duration: '6 – 8 weeks',
       type: 'image',
       image: '/courses/toefl.png',
       color: 'from-blue-500 to-indigo-600',
       badge: 'bg-blue-50 text-blue-600'
     },
     {
-
+      name: 'PTE Academic',
       desc: 'Fast-track PTE Academic preparation for quick results.',
-      features: ['AI-Scored Mock Tests', 'Tips & Tricks', 'Real Exam Questions', 'One-on-One Sessions'],
+      features: ['Algorithm-based training', 'Speed & accuracy drills', 'High-score task focus', 'Performance tracking'],
+      details: 'PTE is a system-driven exam. We train candidates to optimise scoring by mastering task weightage, time management, pronunciation, and fluency. Mock tests and analytics-based feedback ensure faster, measurable results.',
       modules: ['Speaking & Writing', 'Reading', 'Listening', 'AI Scoring Analysis'],
-      duration: '2 months',
+      duration: '6 – 8 weeks',
       type: 'image',
       image: '/courses/pte.png',
       color: 'from-orange-500 to-amber-600',
       badge: 'bg-orange-50 text-orange-600'
     },
     {
-
+      name: 'OET',
       desc: 'Occupational English Test training for healthcare professionals.',
-      features: ['Nursing/Medicine Focus', 'Role-play Scenarios', 'Grade A/B Guarantee', 'Clinical Writing'],
+      features: ['Healthcare-specific English', 'Role-play mastery', 'Professional writing tasks', 'Workplace communication'],
+      details: 'Designed for healthcare professionals, our OET programme focuses on real clinical scenarios, profession-specific writing, and role-based speaking practice—ensuring exam success with workplace relevance.',
       modules: ['Listening (Health)', 'Reading (Clinical)', 'Writing (Referral Letters)', 'Speaking (Role-play)'],
-      duration: '2-3 months',
+      duration: '8 – 12 weeks',
       type: 'image',
       image: '/courses/oet.png',
       color: 'from-purple-500 to-violet-600',
       badge: 'bg-purple-50 text-purple-600'
     },
     {
-
-      desc: 'Graduate Record Examination for technical and management masters.',
-      features: ['Quant & Verbal Reasoning', 'Analytical Writing', 'Score 320+ Guarantee', 'Math Foundations'],
-      modules: ['Verbal Reasoning', 'Quantitative Reasoning', 'Analytical Writing', 'Vocabulary Building'],
-      duration: '3-4 months',
+      name: 'Communicative English & Interview Preparation',
+      desc: 'Expert interview coaching for university admissions and job placements.',
+      features: ['Confidence-first communication', 'Fluency & clarity building', 'Structured interview answers', 'Mock practice & body language'],
+      details: 'This integrated programme helps learners move from understanding English to using it confidently in real-life and professional situations. Through guided speaking systems, practical conversations, and structured interview frameworks, candidates build fluency, presence, and clarity. Realistic mock interviews, body language training, and personalised feedback ensure participants communicate with confidence—both in everyday interactions and high-stakes interview environments.',
+      modules: ['One-on-One Sessions', 'University Specifics', 'Body Language', 'Resume Review'],
+      duration: '6 – 12 weeks',
       type: 'image',
-      image: '/courses/gre.png',
+      image: '/courses/interview_fix.png',
       color: 'from-emerald-500 to-teal-600',
       badge: 'bg-emerald-50 text-emerald-600'
     },
     {
-
-      desc: 'Graduate Management Admission Test for top business schools.',
-      features: ['Integrated Reasoning', 'Computer Adaptive', 'Official Guide Practice', 'Time Management'],
-      modules: ['Quantitative Reasoning', 'Verbal Reasoning', 'Data Insights', 'Adaptive Testing'],
-      duration: '3-4 months',
+      name: 'Foreign Languages',
+      desc: 'Master foreign languages for global career and education opportunities.',
+      features: ['Practical conversation', 'Correct pronunciation', 'Cultural context', 'Everyday usage'],
+      details: 'Our foreign language courses focus on real-world communication rather than rote learning. Learners build conversational ability, accurate sentence patterns, and cultural awareness for academic and career mobility.',
+      modules: ['A1-B2 Levels', 'Speaking Practice', 'Grammar Mastery', 'Listening Skills'],
+      duration: '3 – 6 months',
       type: 'image',
-      image: '/courses/gmat.png',
+      image: '/courses/languages_fix.png',
       color: 'from-cyan-500 to-blue-600',
       badge: 'bg-cyan-50 text-cyan-600'
     },
@@ -133,9 +139,10 @@ function CourseCard({ course, index }: { course: any; index: number }) {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.3, delay: index * 0.1 }}
-        className="w-full h-full relative transition-all duration-300 preserve-3d"
+        transition={{ duration: 0.3, delay: index * 0.1, rotateY: { duration: 0.15 } }}
+        className="w-full h-full relative transition-all duration-300 preserve-3d cursor-pointer"
         animate={{ rotateY: isFlipped ? 180 : 0 }}
+        onClick={() => setIsFlipped(!isFlipped)}
       >
         {/* ================= FRONT FACE ================= */}
         <div className="absolute inset-0 backface-hidden">
@@ -147,12 +154,15 @@ function CourseCard({ course, index }: { course: any; index: number }) {
 
             {/* Header */}
             <div className="flex justify-between items-start mb-3 mt-1">
-              <div className="relative w-28 h-11">
+              <div className={`relative ${course.image.includes('languages') ? 'w-52 h-20 -mt-2 -ml-2' :
+                course.image.includes('interview') ? 'w-48 h-16 -mt-2 -ml-2' :
+                  'w-28 h-11'
+                }`}>
                 <Image
                   src={course.image}
-                  alt={`${course.name} logo`}
+                  alt={`${course.name} Coaching Chennai - Sparkle Knowledge Yard`}
                   fill
-                  className="object-contain object-left"
+                  className="object-contain object-left-top"
                 />
               </div>
               <div className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${course.badge}`}>
@@ -202,15 +212,18 @@ function CourseCard({ course, index }: { course: any; index: number }) {
             {/* Relatable Details Content */}
             <div className="space-y-3 relative z-10 flex-1">
               <div className="p-4 rounded-xl bg-gray-50 border border-gray-100">
-                <p className="text-[11px] text-gray-500 leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <p className={`${course.details.length > 300 ? 'text-[9.5px]' : 'text-[11px]'} text-gray-500 leading-relaxed`}>
+                  {course.details}
                 </p>
               </div>
             </div>
 
             {/* Bottom Action */}
             <div className="mt-auto relative z-10 flex items-center gap-3">
-              <button className={`flex-1 py-2.5 rounded-lg bg-gradient-to-r ${course.color} text-white font-bold text-[9px] uppercase tracking-widest shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300`}>
+              <button
+                onClick={(e) => e.stopPropagation()}
+                className={`flex-1 py-2.5 rounded-lg bg-gradient-to-r ${course.color} text-white font-bold text-[9px] uppercase tracking-widest shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300`}
+              >
                 Book Free Demo
               </button>
               <button

@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import path from 'path';
-import fs from 'fs';
-import { google } from 'googleapis';
+import { Redis } from '@upstash/redis';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Initialize Redis client for queue
+const redis = new Redis({
+  url: process.env.KV_REST_API_URL!,
+  token: process.env.KV_REST_API_TOKEN!,
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -45,43 +49,6 @@ export async function POST(request: NextRequest) {
     });
     const timestamp = `${date} ${time}`;
 
-    // Function to save to Google Sheets in background (non-blocking)
-    const saveToGoogleSheets = async () => {
-      try {
-        const auth = new google.auth.GoogleAuth({
-          credentials: {
-            client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-            private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-          },
-          scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-        });
-
-        const sheets = google.sheets({ version: 'v4', auth });
-        
-        await sheets.spreadsheets.values.append({
-          spreadsheetId: process.env.GOOGLE_SHEET_ID,
-          range: 'Sheet1!A:G',
-          valueInputOption: 'RAW',
-          requestBody: {
-            values: [[
-              date,
-              time,
-              name,
-              email,
-              phone || 'Not provided',
-              interestedIn || 'Not specified',
-              message
-            ]],
-          },
-        });
-        
-        console.log('✅ Data saved to Google Sheets successfully');
-      } catch (sheetError: any) {
-        console.error('⚠️ Failed to save to Google Sheets:', sheetError.message);
-        // Silently fail - email was already sent successfully
-      }
-    };
-
     // Auto-reply HTML - Simple Professional Design
     const autoReplyHtml = `
       <!DOCTYPE html>
@@ -103,9 +70,11 @@ export async function POST(request: NextRequest) {
                       <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                           <!-- Logo Box on Left -->
-                          <td style="width: 110px; vertical-align: middle;">
-                            <div style="background-color: rgba(255, 255, 255, 0.9); padding: 5px; border-radius: 12px; box-shadow: 0 4px 12px rgba(29, 78, 216, 0.15); display: inline-block;">
-                              <img src="https://ibb.co/F4Pydd8J" alt="Sparkle Academy Logo" style="width: 100px; height: 100px; display: block;" />
+                          <td style="width: 140px; vertical-align: middle;">
+                            <div style="background: linear-gradient(135deg, #E63946 0%, #1D4ED8 100%); padding: 3px; border-radius: 14px; display: inline-block;">
+                              <div style="background-color: #ffffff; padding: 12px; border-radius: 12px;">
+                                <img src="https://raw.githubusercontent.com/CreatzionTraining/Sparkle-knowledge/main/public/sparkle-logo.jpg" alt="Sparkle Academy Logo" style="width: 120px; height: auto; display: block; max-width: 100%;" />
+                              </div>
                             </div>
                           </td>
                           
@@ -386,17 +355,40 @@ export async function POST(request: NextRequest) {
       console.warn('Auto-reply failed:', error.message);
     }
 
-    // Save to Google Sheets in background (non-blocking - user doesn't wait)
-    // This runs AFTER we return success to the user
-    saveToGoogleSheets().catch(err => {
-      console.error('Background Sheets save failed:', err);
-      // Silently fail - user already got success, email was sent
-    });
+    // 3. Save to Redis Queue (INSTANT - 0.1 second)
+    // Cron job will process and save to Google Sheets
+    try {
+      // Generate unique submission ID
+      const submissionId = `SUB-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+      
+      const submissionData = {
+        id: submissionId,
+        date,
+        time,
+        name,
+        email,
+        phone: phone || 'Not provided',
+        interestedIn: interestedIn || 'Not specified',
+        message,
+        attempts: 0,
+        createdAt: new Date().toISOString(),
+      };
 
+      // Save to Redis queue (instant!)
+      await redis.set(`submission:${submissionId}`, submissionData);
+      
+      console.log(`✅ Submission ${submissionId} added to queue successfully`);
+    } catch (queueError: any) {
+      console.error('⚠️ Failed to add to queue:', queueError.message);
+      // Even if queue fails, user still gets email confirmation
+    }
+
+    // Return success to user IMMEDIATELY (fast response)
     return NextResponse.json(
       {
         success: true,
-        message: 'Form submitted successfully',
+        message: 'Form submitted successfully. We will contact you soon!',
+        emailsSent: true
       },
       { status: 200 }
     );
