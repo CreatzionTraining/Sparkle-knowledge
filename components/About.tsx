@@ -187,19 +187,19 @@ export function About() {
                         className="group relative p-[2px] rounded-[2rem] bg-gradient-to-br from-[#1D4ED8] to-transparent hover:to-[#1D4ED8] transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20"
                         onClick={() => setActiveModal('vision')}
                     >
-                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-10 overflow-hidden">
+                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-6 lg:p-10 overflow-hidden">
                             {/* Abstract Decorative Elements */}
-                            <div className="absolute -right-10 -top-10 w-40 h-40 bg-blue-100/50 rounded-full blur-3xl group-hover:bg-blue-200/50 transition-colors"></div>
-                            <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-indigo-100/50 rounded-full blur-3xl group-hover:bg-indigo-200/50 transition-colors"></div>
+                            <div className="absolute -right-10 -top-10 w-24 h-24 lg:w-40 lg:h-40 bg-blue-100/50 rounded-full blur-3xl group-hover:bg-blue-200/50 transition-colors"></div>
+                            <div className="absolute -left-10 -bottom-10 w-24 h-24 lg:w-40 lg:h-40 bg-indigo-100/50 rounded-full blur-3xl group-hover:bg-indigo-200/50 transition-colors"></div>
 
                             {/* Watermark Text Removed */}
 
 
                             <div className="relative z-10 flex flex-col h-full">
-                                <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#1D4ED8] to-blue-600">Our Vision</h3>
-                                <div className="w-12 h-1 bg-[#1D4ED8] mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
+                                <h3 className="text-2xl lg:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#1D4ED8] to-blue-600">Our Vision</h3>
+                                <div className="w-12 h-1 bg-[#1D4ED8] mb-4 lg:mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
 
-                                <p className="text-gray-600 mb-8 leading-relaxed flex-grow text-lg">
+                                <p className="text-gray-600 mb-4 lg:mb-8 leading-relaxed flex-grow text-base lg:text-lg">
                                     {visionSummary}
                                 </p>
 
@@ -216,19 +216,19 @@ export function About() {
                         className="group relative p-[2px] rounded-[2rem] bg-gradient-to-br from-[#E63946] to-transparent hover:to-[#E63946] transition-all duration-500 cursor-pointer hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-500/20"
                         onClick={() => setActiveModal('mission')}
                     >
-                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-10 overflow-hidden">
+                        <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-6 lg:p-10 overflow-hidden">
                             {/* Abstract Decorative Elements */}
-                            <div className="absolute -right-10 -top-10 w-40 h-40 bg-red-100/50 rounded-full blur-3xl group-hover:bg-red-200/50 transition-colors"></div>
-                            <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-orange-100/50 rounded-full blur-3xl group-hover:bg-orange-200/50 transition-colors"></div>
+                            <div className="absolute -right-10 -top-10 w-24 h-24 lg:w-40 lg:h-40 bg-red-100/50 rounded-full blur-3xl group-hover:bg-red-200/50 transition-colors"></div>
+                            <div className="absolute -left-10 -bottom-10 w-24 h-24 lg:w-40 lg:h-40 bg-orange-100/50 rounded-full blur-3xl group-hover:bg-orange-200/50 transition-colors"></div>
 
                             {/* Watermark Text Removed */}
 
 
                             <div className="relative z-10 flex flex-col h-full">
-                                <h3 className="text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#E63946] to-red-600">Our Mission</h3>
-                                <div className="w-12 h-1 bg-[#E63946] mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
+                                <h3 className="text-2xl lg:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#E63946] to-red-600">Our Mission</h3>
+                                <div className="w-12 h-1 bg-[#E63946] mb-4 lg:mb-6 rounded-full group-hover:w-24 transition-all duration-300"></div>
 
-                                <p className="text-gray-600 mb-8 leading-relaxed flex-grow text-lg">
+                                <p className="text-gray-600 mb-4 lg:mb-8 leading-relaxed flex-grow text-base lg:text-lg">
                                     {missionSummary}
                                 </p>
 

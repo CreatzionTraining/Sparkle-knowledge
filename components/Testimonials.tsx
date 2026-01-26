@@ -136,7 +136,7 @@ export function Testimonials() {
                                 initial="hidden"
                                 animate={position}
                                 transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
-                                className="absolute w-[90%] md:w-[600px] bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-gray-100 flex flex-col justify-between h-auto min-h-[350px]"
+                                className="absolute w-[90%] md:w-[600px] h-[500px] bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-gray-100 flex flex-col justify-between overflow-y-auto custom-scrollbar"
                             >
                                 {/* Quote Icon Background */}
                                 <Quote className="absolute top-8 right-8 w-20 h-20 text-gray-100/50 fill-current -z-10" />

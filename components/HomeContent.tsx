@@ -78,7 +78,7 @@ export default function HomeContent() {
             <div className="text-center lg:text-left z-10 lg:pl-4">
 
 
-              <div className="relative h-[160px] md:h-[200px] mb-6 md:mb-8">
+              <div className="relative h-[140px] md:h-[200px] mb-2 md:mb-8">
                 {textContent.map((item, index) => {
                   const Tag = index === 0 ? 'h1' : 'div';
                   return (
@@ -98,7 +98,38 @@ export default function HomeContent() {
                 })}
               </div>
 
-              <p className="text-base md:text-xl text-gray-800 mb-8 md:mb-10 mt-12 md:mt-20 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium px-4 lg:px-0">
+              {/* Hero Visual - Mobile/Tablet Only */}
+              <div className="relative z-10 block lg:hidden perspective-1000 mb-8 mt-2">
+                <div className="relative w-full aspect-square max-w-[300px] md:max-w-[400px] mx-auto animate-float">
+                  {/* Main Glass Card with Red/Blue Gradient Border */}
+                  <div className="absolute inset-4 z-10 p-[0.5px] rounded-3xl bg-gradient-to-r from-[#E63946] to-[#1D4ED8] shadow-2xl overflow-hidden transform rotate-2 hover:rotate-0 transition-all duration-700">
+                    <div className="relative w-full h-full bg-white/10 backdrop-blur-sm rounded-[20px] overflow-hidden">
+                      {[
+                        '/assets/people/students.png',
+                        '/assets/people/graduate.png',
+                        '/assets/people/study_abroad.png',
+                        '/assets/people/tutor.png',
+                        '/assets/people/learner.png'
+                      ].map((img, index) => (
+                        <div
+                          key={img}
+                          className={`absolute inset-0 transition-opacity duration-[3000ms] ease-in-out ${currentImageIndex === index ? 'opacity-100' : 'opacity-0'}`}
+                        >
+                          <Image
+                            src={img}
+                            alt={`Student Success Story - Sparkle Knowledge Yard Chennai ${index + 1}`}
+                            fill
+                            className="object-contain p-2 hover:scale-105 transition-transform duration-[3000ms] rounded-2xl"
+                            priority={index === 0}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-base md:text-xl text-gray-800 mb-8 md:mb-10 lg:mt-20 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium px-4 lg:px-0">
                 Expert coaching for IELTS, TOEFL, GRE, GMAT & language training.
                 Your gateway to study abroad success and global career opportunities.
               </p>
@@ -151,7 +182,7 @@ export default function HomeContent() {
 
             </div>
 
-            {/* Hero Visual */}
+            {/* Hero Visual - Desktop Only */}
             <div className="relative z-10 hidden lg:block perspective-1000 -mt-12">
               <div className="relative w-full aspect-square max-w-[600px] mx-auto animate-float">
                 {/* Main Glass Card with Red/Blue Gradient Border */}
