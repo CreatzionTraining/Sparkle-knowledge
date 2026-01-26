@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Award, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -87,8 +87,26 @@ const certificates = [
 
 export function Certificates() {
     const [currentIndex, setCurrentIndex] = useState(certificates.length); // Start at first real set
-    const cardWidth = 280; // Fixed card width
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [cardWidth, setCardWidth] = useState(280);
     const gap = 24; // Gap between cards (6 * 4 = 24px)
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (containerRef.current) {
+                // On mobile/tablet (<768px), make card full width of container
+                if (window.innerWidth < 768) {
+                    setCardWidth(containerRef.current.offsetWidth);
+                } else {
+                    setCardWidth(280);
+                }
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Create infinite loop by triplicating the array
     const infiniteCards = [...certificates, ...certificates, ...certificates];
@@ -112,6 +130,9 @@ export function Certificates() {
 
     // Calculate exact pixel offset
     const offset = currentIndex * (cardWidth + gap);
+
+    // Determine how many cards are visible for drag constraints
+    const visibleCards = cardWidth === 280 ? 4 : 1;
 
     return (
         <section className="py-20 bg-gradient-to-b from-white to-blue-50/30">
@@ -167,11 +188,11 @@ export function Certificates() {
                     </button>
 
                     {/* Carousel Container */}
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden" ref={containerRef}>
                         <motion.div
                             className="flex gap-6"
                             drag="x"
-                            dragConstraints={{ left: -(infiniteCards.length - 4) * (cardWidth + gap), right: 0 }}
+                            dragConstraints={{ left: -(infiniteCards.length - visibleCards) * (cardWidth + gap), right: 0 }}
                             dragElastic={0.1}
                             onDragEnd={(e, { offset, velocity }) => {
                                 const swipe = offset.x * velocity.x;

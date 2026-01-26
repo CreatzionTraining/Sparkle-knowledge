@@ -75,7 +75,8 @@ export function Courses() {
       modules: ['A1-B2 Levels', 'Speaking Practice', 'Grammar Mastery', 'Listening Skills'],
       duration: '3 – 6 months',
       type: 'image',
-      image: '/courses/languages_fix.png',
+      image: '/courses/languages-removebg-preview _1.png',
+      textImage: '/courses/languages_text.png',
       color: 'from-cyan-500 to-blue-600',
       badge: 'bg-cyan-50 text-cyan-600'
     },
@@ -153,18 +154,39 @@ function CourseCard({ course, index }: { course: any; index: number }) {
             <div className={`absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r ${course.color} z-10`}></div>
 
             {/* Header */}
-            <div className="flex justify-between items-start mb-3 mt-1">
-              <div className={`relative ${course.image.includes('languages') ? 'w-52 h-20 -mt-2 -ml-2' :
-                course.image.includes('interview') ? 'w-48 h-16 -mt-2 -ml-2' :
-                  'w-28 h-11'
-                }`}>
-                <Image
-                  src={course.image}
-                  alt={`${course.name} Coaching Chennai - Sparkle Knowledge Yard`}
-                  fill
-                  className="object-contain object-left-top"
-                />
-              </div>
+            <div className="flex justify-between items-start mb-1 mt-0">
+              {course.textImage ? (
+                <div className="flex items-center gap-2 ml-0">
+                  <div className="relative w-20 h-15">
+                    <Image
+                      src={course.image}
+                      alt={`${course.name} Logo`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <div className="relative w-28 h-9">
+                    <Image
+                      src={course.textImage}
+                      alt={`${course.name} Text`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className={`relative ${course.image.includes('languages') ? 'w-15 h-15 -mt-2 -ml-2' :
+                  course.image.includes('interview') ? 'w-50 h-15 -mt-2 -ml-2' :
+                    'w-28 h-11'
+                  }`}>
+                  <Image
+                    src={course.image}
+                    alt={`${course.name} Coaching Chennai - Sparkle Knowledge Yard`}
+                    fill
+                    className="object-contain object-left-top"
+                  />
+                </div>
+              )}
               <div className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${course.badge}`}>
                 {course.duration}
               </div>
