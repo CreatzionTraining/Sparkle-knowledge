@@ -1,18 +1,20 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { type Metadata } from "next";
 import "./globals.css";
 import NewsTicker from "@/components/NewsTicker";
 import RegistrationPopup from "@/components/RegistrationPopup";
 import ClientLayout from "./ClientLayout";
+import { Outfit, Inter } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
   subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter", 
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -99,13 +101,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        className={`${outfit.variable} ${inter.variable} antialiased overflow-x-hidden font-sans`}
       >
         <ClientLayout>
           {children}

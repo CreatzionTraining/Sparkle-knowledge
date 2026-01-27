@@ -98,7 +98,7 @@ export function Courses() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-['Montserrat'] font-black text-gray-900 mb-4 tracking-tight"
+            className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight"
           >
             Expert Training for <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Global Success</span>
           </motion.h2>
@@ -106,7 +106,7 @@ export function Courses() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-gray-500 font-['Inter'] text-base max-w-2xl mx-auto leading-relaxed"
+            className="text-gray-500 text-base max-w-2xl mx-auto leading-relaxed"
           >
             Comprehensive, result-oriented courses designed to fast-track your admission into top international universities.
           </motion.p>
@@ -175,7 +175,7 @@ function CourseCard({ course, index }: { course: any; index: number }) {
             </div>
 
             {/* Content */}
-            <p className="text-gray-600 text-xs leading-snug mb-4 font-['Inter'] line-clamp-2 min-h-[2.5em]">
+            <p className="text-gray-600 text-xs leading-snug mb-4 line-clamp-2 min-h-[2.5em]">
               {course.desc}
             </p>
 
@@ -210,7 +210,7 @@ function CourseCard({ course, index }: { course: any; index: number }) {
           <div className="h-full w-full bg-white p-6 flex flex-col relative border border-gray-100">
             {/* Header */}
             <div className="flex justify-between items-center mb-6 relative z-10">
-              <h3 className="text-gray-900 text-sm font-bold font-['Montserrat'] uppercase tracking-wide">Course Details</h3>
+              <h3 className="text-gray-900 text-sm font-bold uppercase tracking-wide">Course Details</h3>
             </div>
 
             {/* Relatable Details Content */}

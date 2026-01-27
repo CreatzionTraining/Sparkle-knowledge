@@ -27,7 +27,7 @@ export function Footer() {
         window.location.href = `/#${hash}`;
     };
     return (
-        <footer className="bg-[#F5F5F7] text-gray-600 font-['Outfit']">
+        <footer className="bg-[#F5F5F7] text-gray-600">
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-16 pb-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                     {/* Brand Column */}
@@ -63,7 +63,7 @@ export function Footer() {
 
                     {/* Quick Links */}
                     <div className="md:pl-20">
-                        <p className="font-['Outfit'] font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Quick Links</p>
+                        <h4 className="font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Quick Links</h4>
                         <ul className="space-y-3.5">
                             <li>
                                 <Link href="/#courses" onClick={(e) => handleAnchorClick(e, 'courses')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
@@ -100,7 +100,7 @@ export function Footer() {
 
                     {/* Contact Info */}
                     <div>
-                        <p className="font-['Outfit'] font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Contact Us</p>
+                        <h4 className="font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Contact Us</h4>
                         <ul className="space-y-5">
                             <li className="flex items-start gap-4">
                                 <div className="w-6 h-6 shrink-0 mt-0.5 relative">
