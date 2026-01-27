@@ -11,6 +11,8 @@ export function Navbar() {
   const lastScrollY = useRef(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  
+
   const hideTimer = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -81,23 +83,23 @@ export function Navbar() {
           lg:bg-transparent bg-transparent
           h-28 pointer-events-none`}
       >
-        <div className="max-w-[95%] lg:max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 h-full">
+        <div className="w-full lg:max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 h-full">
           <div className="flex justify-between items-center h-full">
 
             {/* Logo Section */}
             <div 
-              className={`flex-shrink-0 flex items-center -ml-5 lg:ml-0 lg:mt-4 pointer-events-auto transition-all duration-300 ${
+              className={`flex-shrink-0 flex items-center ml-0 lg:ml-0 lg:mt-4 pointer-events-auto transition-all duration-300 ${
                 isScrolled 
                   ? 'lg:opacity-0 lg:-translate-y-4 lg:pointer-events-none' 
                   : 'lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto'
               }`}
             >
-              <Link href="/" className="relative h-24 w-[70vw] sm:h-24 sm:w-72 lg:h-40 lg:w-[240px] block transition-transform duration-300">
+              <Link href="/" className="relative h-24 w-52 sm:h-32 sm:w-80 md:h-36 md:w-[360px] lg:h-48 lg:w-[280px] block transition-transform duration-300">
                 <Image
                   src="/sparkle_logo.png"
                   alt="Sparkle Knowledge Yard"
                   fill
-                  className="object-contain object-left scale-[1.75] origin-left"
+                  className="object-contain object-left scale-150 origin-left"
                   priority
                 />
               </Link>

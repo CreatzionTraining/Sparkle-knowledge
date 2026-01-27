@@ -100,7 +100,7 @@ export function Courses() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl md:text-4xl font-['Montserrat'] font-black text-gray-900 mb-4 tracking-tight"
           >
-            Expert Training for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Global Success</span>
+            Expert Training for <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Global Success</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

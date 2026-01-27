@@ -6,6 +6,7 @@ export const metadata: Metadata = {
 };
 
 import { Footer } from '@/components/Footer';
+import { Navbar } from '@/components/Navbar';
 
 export default function BlogLayout({
   children,
@@ -14,7 +15,10 @@ export default function BlogLayout({
 }) {
   return (
     <>
-      {children}
+      <Navbar />
+      <main className="pt-20 sm:pt-24 md:pt-28">
+        {children}
+      </main>
       <Footer />
     </>
   );

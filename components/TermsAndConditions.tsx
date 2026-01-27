@@ -60,10 +60,10 @@ export function TermsAndConditions() {
       {/* Hero Header - Split Screen Design */}
       <div className="bg-white border-b border-gray-200 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 items-center min-h-[500px]">
+          <div className="grid lg:grid-cols-2 items-start lg:items-center">
             
             {/* Left Side - Content */}
-            <div className="px-6 sm:px-12 lg:px-16 py-16 sm:py-20 text-left order-2 lg:order-1 flex flex-col justify-center">
+            <div className="px-6 sm:px-12 lg:px-16 py-8 sm:py-20 text-left order-2 lg:order-1 flex flex-col justify-center">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
                 Terms & <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">Conditions</span>
               </h1>
@@ -76,7 +76,7 @@ export function TermsAndConditions() {
             </div>
 
             {/* Right Side - Image (Fully Visible) */}
-            <div className="relative h-full min-h-[400px] lg:min-h-[500px] order-1 lg:order-2 overflow-hidden bg-gray-100">
+            <div className="relative h-[300px] sm:h-[400px] lg:h-full lg:min-h-[500px] order-1 lg:order-2 overflow-hidden bg-gray-100">
               <Image 
                 src="/terms-hero-girl.png" 
                 alt="Professional female student in educational setting with books" 
@@ -241,11 +241,11 @@ export function TermsAndConditions() {
                   <p>
                     If you have any questions about these Terms, please contact us at:
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 mt-6">
-                    <a href="mailto:contact@sparkleknowledgeyard.com" className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-gradient-to-r from-[#E63946] to-[#1D4ED8] hover:opacity-90 transition-all shadow-lg shadow-blue-500/20 hover:shadow-red-500/30">
+                  <div className="flex flex-col sm:flex-row gap-4 mt-6 min-w-0">
+                    <a href="mailto:contact@sparkleknowledgeyard.com" className="inline-flex w-full sm:w-auto break-all items-center justify-center px-4 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-[#E63946] to-[#1D4ED8] hover:opacity-90 transition-all shadow-lg shadow-blue-500/20 hover:shadow-red-500/30">
                       contact@sparkleknowledgeyard.com
                     </a>
-                    <button onClick={() => router.push('/#contact')} className="inline-flex items-center justify-center px-6 py-3 border border-gray-200 text-base font-medium rounded-lg text-slate-700 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
+                    <button onClick={() => router.push('/#contact')} className="inline-flex w-full sm:w-auto items-center justify-center px-4 py-3 border border-gray-200 text-sm font-medium rounded-lg text-slate-700 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
                       Visit Contact Page
                     </button>
                   </div>

@@ -1,7 +1,31 @@
+"use client";
+import React from 'react';
 import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin, Sparkles } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function Footer() {
+    const handleAnchorClick = (e: React.MouseEvent, hash: string) => {
+        if (typeof window === 'undefined') return;
+        e.preventDefault();
+
+        // If we're already on the homepage, smoothly scroll to the element
+        if (window.location.pathname === '/') {
+            const el = document.getElementById(hash);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                return;
+            }
+            // fallback: set hash so browser attempts to jump
+            window.location.hash = `#${hash}`;
+            return;
+        }
+
+        // From other pages (blog, terms, privacy, etc.) perform a full navigation
+        // to the home with the hash so the browser will land and scroll to the target.
+        // Using window.location.href ensures the native browser behavior for anchors.
+        window.location.href = `/#${hash}`;
+    };
     return (
         <footer className="bg-[#F5F5F7] text-gray-600 font-['Outfit']">
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-16 pb-8">
@@ -42,34 +66,34 @@ export function Footer() {
                         <p className="font-['Outfit'] font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Quick Links</p>
                         <ul className="space-y-3.5">
                             <li>
-                                <a href="#courses" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#courses" onClick={(e) => handleAnchorClick(e, 'courses')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     Courses
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#about" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#about" onClick={(e) => handleAnchorClick(e, 'about')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     About
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#news" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#news" onClick={(e) => handleAnchorClick(e, 'news')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     News
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#blog" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#blog" onClick={(e) => handleAnchorClick(e, 'blog')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     Blog
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="#contact" className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#contact" onClick={(e) => handleAnchorClick(e, 'contact')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
                                     Contact
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>

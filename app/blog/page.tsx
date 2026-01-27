@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Navbar } from '../../components/Navbar';
 
 interface BlogPost {
   id: number;
@@ -132,7 +131,6 @@ export default function BlogPage() {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-600 rounded-full filter blur-3xl"></div>
       </div>
 
-      <Navbar />
       <div className="relative z-10 pt-4 pb-12 md:pt-40 md:pb-20 px-4 md:px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
