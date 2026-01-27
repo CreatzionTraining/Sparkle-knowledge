@@ -27,7 +27,7 @@ export function Footer() {
         window.location.href = `/#${hash}`;
     };
     return (
-        <footer className="bg-[#F5F5F7] text-gray-600">
+        <footer className="bg-[#F5F5F7] text-gray-600 [font-family:var(--font-inter)]">
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-16 pb-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                     {/* Brand Column */}
@@ -40,7 +40,7 @@ export function Footer() {
                                 className="object-contain object-left"
                             />
                         </div>
-                        <p className="text-sm leading-relaxed max-w-sm text-gray-500">
+                        <p className="text-sm leading-relaxed max-w-sm text-gray-700 font-medium">
                             Trusted language training and test preparation institute in Perambur, Chennai. Helping students achieve global academic and career goals since 2018.
                         </p>
                         <div className="flex gap-3 pt-2">
@@ -63,34 +63,34 @@ export function Footer() {
 
                     {/* Quick Links */}
                     <div className="md:pl-20">
-                        <h4 className="font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Quick Links</h4>
+                        <h4 className="font-bold text-gray-900 text-base uppercase tracking-wider mb-6 [font-family:var(--font-outfit)]">Quick Links</h4>
                         <ul className="space-y-3.5">
                             <li>
-                                <Link href="/#courses" onClick={(e) => handleAnchorClick(e, 'courses')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#courses" onClick={(e) => handleAnchorClick(e, 'courses')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     Courses
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/#about" onClick={(e) => handleAnchorClick(e, 'about')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#about" onClick={(e) => handleAnchorClick(e, 'about')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     About
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/#news" onClick={(e) => handleAnchorClick(e, 'news')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#news" onClick={(e) => handleAnchorClick(e, 'news')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     News
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/#blog" onClick={(e) => handleAnchorClick(e, 'blog')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#blog" onClick={(e) => handleAnchorClick(e, 'blog')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     Blog
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/#contact" onClick={(e) => handleAnchorClick(e, 'contact')} className="relative text-gray-600 hover:text-blue-600 transition-colors text-base group">
+                                <Link href="/#contact" onClick={(e) => handleAnchorClick(e, 'contact')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     Contact
                                     <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
@@ -100,7 +100,7 @@ export function Footer() {
 
                     {/* Contact Info */}
                     <div>
-                        <h4 className="font-bold text-gray-900 text-base uppercase tracking-wider mb-6">Contact Us</h4>
+                        <h4 className="font-bold text-gray-900 text-base uppercase tracking-wider mb-6 [font-family:var(--font-outfit)]">Contact Us</h4>
                         <ul className="space-y-5">
                             <li className="flex items-start gap-4">
                                 <div className="w-6 h-6 shrink-0 mt-0.5 relative">
@@ -111,7 +111,7 @@ export function Footer() {
                                         className="object-contain"
                                     />
                                 </div>
-                                <span className="text-base text-gray-800 font-semibold leading-relaxed">
+                                <span className="text-base text-gray-900 font-bold leading-relaxed">
                                     2nd Floor, 331, Paper Mills Road,<br />
                                     Bunder Garden, Perambur, Chennai,<br />
                                     Tamil Nadu 600011
@@ -126,7 +126,7 @@ export function Footer() {
                                         className="object-contain"
                                     />
                                 </div>
-                                <span className="text-sm text-gray-800 font-bold">+91 97100 43295 , +91 97917 40664</span>
+                                <span className="text-sm text-gray-900 font-bold">+91 97100 43295 , +91 97917 40664</span>
                             </li>
                             <li className="flex items-center gap-4">
                                 <div className="w-5 h-5 shrink-0 relative">
@@ -137,7 +137,7 @@ export function Footer() {
                                         className="object-contain"
                                     />
                                 </div>
-                                <span className="text-sm text-gray-800 font-bold">contact@sparkleknowledgeyard.com</span>
+                                <span className="text-sm text-gray-900 font-bold">contact@sparkleknowledgeyard.com</span>
                             </li>
                         </ul>
                     </div>
