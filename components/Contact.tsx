@@ -415,7 +415,7 @@ export function Contact() {
           {/* Contact Form */}
           <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 sm:p-8 order-2 lg:order-1 relative overflow-hidden">
             {/* Subtle top accent */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-red-500"></div>
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-red-400 to-red-500"></div>
 
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
               Send Us a Message
@@ -534,8 +534,8 @@ export function Contact() {
                     type="button"
                     onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                     className={`w-full px-4 py-3 sm:py-3.5 border-2 rounded-lg text-left flex items-center justify-between outline-none transition-all duration-300 ${isDropdownOpen
-                        ? 'border-[#1D4ED8] ring-2 ring-[#1D4ED8]/20 bg-white'
-                        : 'border-gray-200 bg-gray-50/50 hover:bg-white hover:border-gray-300'
+                      ? 'border-[#1D4ED8] ring-2 ring-[#1D4ED8]/20 bg-white'
+                      : 'border-gray-200 bg-gray-50/50 hover:bg-white hover:border-gray-300'
                       }`}
                   >
                     <span className={`text-base font-medium ${formData.course ? 'text-gray-900' : 'text-gray-400'}`}>
@@ -735,8 +735,8 @@ export function Contact() {
                     >
                       +91 97100 43295
                     </a>
-                    <a 
-                      href="tel:+919791740664" 
+                    <a
+                      href="tel:+919791740664"
                       onClick={(e) => {
                         e.stopPropagation();
                         window.location.href = 'tel:+919791740664';
@@ -751,33 +751,33 @@ export function Contact() {
               </div>
 
               {/* Email Us */}
-              <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-orange-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
+              <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-red-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
                 {/* Animated gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 via-transparent to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                 <div className="relative flex flex-col h-full justify-between">
                   {/* Icon and Title - Horizontal Layout */}
                   <div className="flex items-center gap-3 mb-3">
                     <div className="relative w-8 h-8 flex-shrink-0">
-                      <div className="absolute inset-0 bg-orange-500/30 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="relative w-full h-full bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-md shadow-orange-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                      <div className="absolute inset-0 bg-red-500/30 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative w-full h-full bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-md shadow-red-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </div>
                     </div>
-                    <h4 className="font-bold text-gray-900 text-sm group-hover:text-orange-600 transition-colors">Email Us</h4>
+                    <h4 className="font-bold text-gray-900 text-sm group-hover:text-red-600 transition-colors">Email Us</h4>
                   </div>
 
                   {/* Content */}
                   <div className="flex-1 flex flex-col justify-center space-y-3">
-                    <a 
+                    <a
                       href="mailto:contact@sparkleknowledgeyard.com"
                       onClick={(e) => {
                         e.stopPropagation();
                         window.location.href = 'mailto:contact@sparkleknowledgeyard.com';
                       }}
-                      className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-800 text-[13px] hover:from-orange-700 hover:to-orange-900 transition-all block truncate font-bold cursor-pointer"
+                      className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-red-800 text-[13px] hover:from-red-700 hover:to-red-900 transition-all block truncate font-bold cursor-pointer"
                     >
                       contact@sparkleknowledgeyard.com
                     </a>
@@ -786,22 +786,22 @@ export function Contact() {
               </div>
 
               {/* Working Hours */}
-              <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-purple-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
+              <div className="group relative bg-white hover:bg-gray-50 p-4 rounded-xl border border-gray-200 hover:border-blue-400 hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col h-full min-h-[140px]">
                 {/* Animated gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                 <div className="relative flex flex-col h-full justify-between">
                   {/* Icon and Title - Horizontal Layout */}
                   <div className="flex items-center gap-3 mb-3">
                     <div className="relative w-8 h-8 flex-shrink-0">
-                      <div className="absolute inset-0 bg-purple-500/30 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="relative w-full h-full bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center shadow-md shadow-purple-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                      <div className="absolute inset-0 bg-blue-500/30 rounded-lg blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="relative w-full h-full bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md shadow-blue-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                         <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
                     </div>
-                    <h4 className="font-bold text-gray-900 text-sm group-hover:text-purple-600 transition-colors">Working Hours</h4>
+                    <h4 className="font-bold text-gray-900 text-sm group-hover:text-blue-600 transition-colors">Working Hours</h4>
                   </div>
 
                   {/* Content */}
@@ -809,17 +809,17 @@ export function Contact() {
                     <div className="space-y-2">
                       <div>
                         <div className="flex items-center gap-1.5 mb-0.5">
-                          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full animate-pulse"></div>
+                          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></div>
                           <span className="text-gray-600 text-[11px] font-semibold">Monday to Friday</span>
                         </div>
-                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-purple-900 text-[13px] font-bold pl-3">9:00 AM - 8:00 PM</p>
+                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-900 text-[13px] font-bold pl-3">9:00 AM - 8:00 PM</p>
                       </div>
                       <div>
                         <div className="flex items-center gap-1.5 mb-0.5">
-                          <div className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse"></div>
+                          <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
                           <span className="text-gray-600 text-[11px] font-semibold">Saturday to Sunday</span>
                         </div>
-                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-purple-900 text-[13px] font-bold pl-3">10:00 AM - 6:00 PM</p>
+                        <p className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-blue-900 text-[13px] font-bold pl-3">10:00 AM - 6:00 PM</p>
                       </div>
                     </div>
                   </div>

@@ -68,31 +68,31 @@ export function Footer() {
                             <li>
                                 <Link href="/#courses" onClick={(e) => handleAnchorClick(e, 'courses')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     Courses
-                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-red-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/#about" onClick={(e) => handleAnchorClick(e, 'about')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     About
-                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-red-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/#news" onClick={(e) => handleAnchorClick(e, 'news')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     News
-                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-red-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/#blog" onClick={(e) => handleAnchorClick(e, 'blog')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     Blog
-                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-red-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/#contact" onClick={(e) => handleAnchorClick(e, 'contact')} className="relative text-gray-700 font-bold hover:text-blue-600 transition-colors text-base group">
                                     Contact
-                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-red-600 transition-all duration-300 group-hover:w-full"></span>
                                 </Link>
                             </li>
                         </ul>
@@ -104,8 +104,8 @@ export function Footer() {
                         <ul className="space-y-5">
                             <li className="flex items-start gap-4">
                                 <div className="w-6 h-6 shrink-0 mt-0.5 relative">
-                                    <Image 
-                                        src="/google-maps.png" 
+                                    <Image
+                                        src="/google-maps.png"
                                         alt="Google Maps"
                                         fill
                                         className="object-contain"
@@ -119,8 +119,8 @@ export function Footer() {
                             </li>
                             <li className="flex items-center gap-4">
                                 <div className="w-5 h-5 shrink-0 relative">
-                                    <Image 
-                                        src="/telephone.png" 
+                                    <Image
+                                        src="/telephone.png"
                                         alt="Phone"
                                         fill
                                         className="object-contain"
@@ -130,8 +130,8 @@ export function Footer() {
                             </li>
                             <li className="flex items-center gap-4">
                                 <div className="w-5 h-5 shrink-0 relative">
-                                    <Image 
-                                        src="/gmail.png" 
+                                    <Image
+                                        src="/gmail.png"
                                         alt="Email"
                                         fill
                                         className="object-contain"

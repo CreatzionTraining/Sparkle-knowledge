@@ -12,7 +12,7 @@ export function PrivacyPolicy() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['introduction', 'information-collection', 'data-usage', 'data-protection', 'cookies', 'third-party', 'user-rights', 'contact'];
-      
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -63,7 +63,7 @@ export function PrivacyPolicy() {
       <div className="bg-white border-b border-gray-200 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 items-start lg:items-center">
-            
+
             {/* Left Side - Content */}
             <div className="px-6 sm:px-12 lg:px-16 py-8 sm:py-20 text-left order-2 lg:order-1 flex flex-col justify-center">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">
@@ -79,10 +79,10 @@ export function PrivacyPolicy() {
 
             {/* Right Side - Image (Fully Visible) */}
             <div className="relative h-[300px] sm:h-[400px] lg:h-full lg:min-h-[500px] order-1 lg:order-2 overflow-hidden bg-gray-100">
-              <Image 
-                src="/privacy-hero.png" 
-                alt="Professional woman representing data privacy and security" 
-                fill 
+              <Image
+                src="/privacy-hero.png"
+                alt="Professional woman representing data privacy and security"
+                fill
                 className="object-cover object-top"
                 priority
                 quality={100}
@@ -96,7 +96,7 @@ export function PrivacyPolicy() {
       {/* Main Content Area */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="lg:grid lg:grid-cols-12 lg:gap-12">
-          
+
           {/* Sidebar Navigation (Sticky) */}
           <div className="hidden lg:block lg:col-span-3">
             <nav className="sticky top-24 space-y-1">
@@ -104,13 +104,12 @@ export function PrivacyPolicy() {
                 <button
                   key={section.id}
                   onClick={() => scrollToSection(section.id)}
-                  className={`w-full text-left px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative overflow-hidden ${
-                    activeSection === section.id
+                  className={`w-full text-left px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 relative overflow-hidden ${activeSection === section.id
                       ? 'bg-gradient-to-r from-red-50 to-blue-50 text-blue-700 border-l-4 border-l-[#E63946] shadow-sm'
                       : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 border-l-4 border-transparent'
-                  }`}
+                    }`}
                 >
-                  <span className={`${activeSection === section.id ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] to-[#1D4ED8] font-bold' : ''}`}>
+                  <span className={`${activeSection === section.id ? 'text-transparent bg-clip-text bg-gradient-to-r from-[#1D4ED8] to-[#E63946] font-bold' : ''}`}>
                     {section.title}
                   </span>
                 </button>
@@ -129,15 +128,14 @@ export function PrivacyPolicy() {
                     <button
                       key={section.id}
                       onClick={() => scrollToSection(section.id)}
-                      className={`pb-3 text-sm font-medium transition-all relative whitespace-nowrap ${
-                        activeSection === section.id
+                      className={`pb-3 text-sm font-medium transition-all relative whitespace-nowrap ${activeSection === section.id
                           ? 'text-slate-900 font-semibold'
                           : 'text-slate-500 hover:text-slate-700'
-                      }`}
+                        }`}
                     >
                       {section.title.replace(/^\d+\.\s*/, '')}
                       {activeSection === section.id && (
-                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#E63946] to-[#1D4ED8] rounded-full" />
+                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#1D4ED8] to-[#E63946] rounded-full" />
                       )}
                     </button>
                   ))}
@@ -146,11 +144,11 @@ export function PrivacyPolicy() {
             </div>
 
             <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 sm:p-12 space-y-16">
-              
+
               {/* Section 1: Introduction */}
               <section id="introduction" className="space-y-4 scroll-mt-24">
                 <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#E63946] to-[#1D4ED8] text-white text-sm font-bold shadow-md shadow-blue-500/20">01</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#E63946] text-white text-sm font-bold shadow-md shadow-blue-500/20">01</span>
                   Introduction
                 </h2>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
@@ -166,7 +164,7 @@ export function PrivacyPolicy() {
               {/* Section 2: Information Collection */}
               <section id="information-collection" className="space-y-4 scroll-mt-24">
                 <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#E63946] to-[#1D4ED8] text-white text-sm font-bold shadow-md shadow-blue-500/20">02</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#E63946] text-white text-sm font-bold shadow-md shadow-blue-500/20">02</span>
                   Information We Collect
                 </h2>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
@@ -189,7 +187,7 @@ export function PrivacyPolicy() {
               {/* Section 3: Data Usage */}
               <section id="data-usage" className="space-y-4 scroll-mt-24">
                 <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#E63946] to-[#1D4ED8] text-white text-sm font-bold shadow-md shadow-blue-500/20">03</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#E63946] text-white text-sm font-bold shadow-md shadow-blue-500/20">03</span>
                   How We Use Your Information
                 </h2>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
@@ -220,7 +218,7 @@ export function PrivacyPolicy() {
               {/* Section 4: Data Protection */}
               <section id="data-protection" className="space-y-4 scroll-mt-24">
                 <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#E63946] to-[#1D4ED8] text-white text-sm font-bold shadow-md shadow-blue-500/20">04</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#E63946] text-white text-sm font-bold shadow-md shadow-blue-500/20">04</span>
                   Data Protection & Security
                 </h2>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
@@ -240,7 +238,7 @@ export function PrivacyPolicy() {
               {/* Section 5: Cookies */}
               <section id="cookies" className="space-y-4 scroll-mt-24">
                 <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#E63946] to-[#1D4ED8] text-white text-sm font-bold shadow-md shadow-blue-500/20">05</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#E63946] text-white text-sm font-bold shadow-md shadow-blue-500/20">05</span>
                   Cookies & Tracking Technologies
                 </h2>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
@@ -262,7 +260,7 @@ export function PrivacyPolicy() {
               {/* Section 6: Third-Party Services */}
               <section id="third-party" className="space-y-4 scroll-mt-24">
                 <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#E63946] to-[#1D4ED8] text-white text-sm font-bold shadow-md shadow-blue-500/20">06</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#E63946] text-white text-sm font-bold shadow-md shadow-blue-500/20">06</span>
                   Third-Party Services
                 </h2>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
@@ -284,7 +282,7 @@ export function PrivacyPolicy() {
               {/* Section 7: Your Rights */}
               <section id="user-rights" className="space-y-4 scroll-mt-24">
                 <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#E63946] to-[#1D4ED8] text-white text-sm font-bold shadow-md shadow-blue-500/20">07</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#E63946] text-white text-sm font-bold shadow-md shadow-blue-500/20">07</span>
                   Your Privacy Rights
                 </h2>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
@@ -315,7 +313,7 @@ export function PrivacyPolicy() {
               {/* Section 8: Contact Us */}
               <section id="contact" className="space-y-4 scroll-mt-24 pt-8 border-t border-gray-100">
                 <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#E63946] to-[#1D4ED8] text-white text-sm font-bold shadow-md shadow-blue-500/20">08</span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-[#1D4ED8] to-[#E63946] text-white text-sm font-bold shadow-md shadow-blue-500/20">08</span>
                   Contact Us About Privacy
                 </h2>
                 <div className="prose prose-slate max-w-none text-slate-600 leading-relaxed">
@@ -323,8 +321,8 @@ export function PrivacyPolicy() {
                     If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 mt-6 min-w-0">
-                    <a href="mailto:contact@sparkleknowledgeyard.com" className="inline-flex w-full sm:w-auto break-all items-center justify-center px-4 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-[#E63946] to-[#1D4ED8] hover:opacity-90 transition-all shadow-lg shadow-blue-500/20 hover:shadow-red-500/30">
-                       contact@sparkleknowledgeyard.com
+                    <a href="mailto:contact@sparkleknowledgeyard.com" className="inline-flex w-full sm:w-auto break-all items-center justify-center px-4 py-3 border border-transparent text-sm font-medium rounded-lg text-white bg-gradient-to-r from-[#1D4ED8] to-[#E63946] hover:opacity-90 transition-all shadow-lg shadow-blue-500/20 hover:shadow-red-500/30">
+                      contact@sparkleknowledgeyard.com
                     </a>
                     <button onClick={() => router.push('/#contact')} className="inline-flex w-full sm:w-auto items-center justify-center px-4 py-3 border border-gray-200 text-sm font-medium rounded-lg text-slate-700 bg-white hover:bg-gray-50 transition-colors cursor-pointer">
                       Visit Contact Page

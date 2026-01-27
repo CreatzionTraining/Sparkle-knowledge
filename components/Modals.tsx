@@ -14,17 +14,17 @@ export function Toast({ message, type, onClose }: ToastProps) {
     return () => clearTimeout(timer);
   }, [onClose]);
 
-  const bgColor = type === 'success' 
-    ? 'bg-gradient-to-r from-green-500 to-emerald-600' 
+  const bgColor = type === 'success'
+    ? 'bg-gradient-to-r from-blue-500 to-blue-600'
     : type === 'error'
-    ? 'bg-gradient-to-r from-red-500 to-rose-600'
-    : 'bg-gradient-to-r from-blue-500 to-indigo-600';
+      ? 'bg-gradient-to-r from-red-500 to-rose-600'
+      : 'bg-gradient-to-r from-blue-500 to-red-600';
 
-  const icon = type === 'success' 
-    ? '✓' 
+  const icon = type === 'success'
+    ? '✓'
     : type === 'error'
-    ? '✕'
-    : 'ℹ';
+      ? '✕'
+      : 'ℹ';
 
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] animate-slideDown">
@@ -53,12 +53,12 @@ export function ConfirmModal({ title, message, onConfirm, onCancel }: ConfirmMod
         <div className="bg-gradient-to-r from-blue-600 to-red-600 px-6 py-4">
           <h3 className="text-white font-bold text-lg md:text-xl">{title}</h3>
         </div>
-        
+
         {/* Body */}
         <div className="px-6 py-6">
           <p className="text-gray-700 text-sm md:text-base leading-relaxed">{message}</p>
         </div>
-        
+
         {/* Footer */}
         <div className="px-6 py-4 bg-gray-50 flex gap-3 justify-end">
           <button

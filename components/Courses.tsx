@@ -28,8 +28,8 @@ export function Courses() {
       duration: '6 – 8 weeks',
       type: 'image',
       image: '/courses/toefl.png',
-      color: 'from-blue-500 to-indigo-600',
-      badge: 'bg-blue-50 text-blue-600'
+      color: 'from-blue-600 to-indigo-700',
+      badge: 'bg-blue-50 text-blue-700'
     },
     {
       name: 'PTE Academic',
@@ -40,8 +40,8 @@ export function Courses() {
       duration: '6 – 8 weeks',
       type: 'image',
       image: '/courses/pte.png',
-      color: 'from-orange-500 to-amber-600',
-      badge: 'bg-orange-50 text-orange-600'
+      color: 'from-red-500 to-rose-600',
+      badge: 'bg-red-50 text-red-600'
     },
     {
       name: 'OET',
@@ -52,8 +52,8 @@ export function Courses() {
       duration: '8 – 12 weeks',
       type: 'image',
       image: '/courses/oet.png',
-      color: 'from-purple-500 to-violet-600',
-      badge: 'bg-purple-50 text-purple-600'
+      color: 'from-blue-500 to-blue-700',
+      badge: 'bg-blue-50 text-blue-700'
     },
     {
       name: 'Communicative English & Interview Preparation',
@@ -64,8 +64,8 @@ export function Courses() {
       duration: '6 – 12 weeks',
       type: 'image',
       image: '/courses/ChatGPT Image Jan 27, 2026, 02_15_21 PM.png',
-      color: 'from-emerald-500 to-teal-600',
-      badge: 'bg-emerald-50 text-emerald-600'
+      color: 'from-red-400 to-red-600',
+      badge: 'bg-red-50 text-red-600'
     },
     {
       name: 'Foreign Languages',
@@ -76,8 +76,8 @@ export function Courses() {
       duration: '3 – 6 months',
       type: 'image',
       image: '/courses/languages_final.png',
-      color: 'from-cyan-500 to-blue-600',
-      badge: 'bg-cyan-50 text-cyan-600'
+      color: 'from-blue-400 to-blue-600',
+      badge: 'bg-blue-50 text-blue-600'
     },
   ];
 
@@ -100,7 +100,7 @@ export function Courses() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl md:text-4xl font-black text-gray-900 mb-4 tracking-tight"
           >
-            Expert Training for <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-blue-600">Global Success</span>
+            Expert Training for <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">Global Success</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -154,21 +154,20 @@ function CourseCard({ course, index }: { course: any; index: number }) {
 
             {/* Header */}
             <div className="flex justify-between items-start mb-1 mt-0">
-                <div className={`relative ${
-                  course.name.includes('Interview')
-                    ? 'w-55 h-20 -mt-3 -ml-2' 
-                    : course.name.includes('Languages') 
-                        ? 'w-64 h-20 -mt-4 -ml-2' 
-                        : 'w-28 h-12'
+              <div className={`relative ${course.name.includes('Interview')
+                ? 'w-55 h-20 -mt-3 -ml-2'
+                : course.name.includes('Languages')
+                  ? 'w-64 h-20 -mt-4 -ml-2'
+                  : 'w-28 h-12'
                 }`}>
-                  <Image
-                    src={course.image}
-                    alt={`${course.name} Coaching Chennai - Sparkle Knowledge Yard`}
-                    fill
-                    className={course.name.includes('Interview') ? 'object-cover object-left' : 'object-contain object-left-top'}
-                  />
-                </div>
-                
+                <Image
+                  src={course.image}
+                  alt={`${course.name} Coaching Chennai - Sparkle Knowledge Yard`}
+                  fill
+                  className={course.name.includes('Interview') ? 'object-cover object-left' : 'object-contain object-left-top'}
+                />
+              </div>
+
               <div className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${course.badge}`}>
                 {course.duration}
               </div>
