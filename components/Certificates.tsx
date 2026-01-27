@@ -234,11 +234,11 @@ export function Certificates() {
 
                     {/* Dots */}
                     <div className="flex justify-center gap-2">
-                        {Array.from({ length: 5 }).map((_, idx) => (
+                        {certificates.map((_, idx) => (
                             <button
                                 key={idx}
-                                onClick={() => setCurrentIndex(idx)}
-                                className={`transition-all duration-300 rounded-full ${idx === currentIndex
+                                onClick={() => setCurrentIndex(certificates.length + idx)}
+                                className={`transition-all duration-300 rounded-full ${idx === currentIndex % certificates.length
                                     ? 'w-8 h-2 bg-gradient-to-r from-blue-600 to-pink-500'
                                     : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                                     }`}

@@ -48,7 +48,7 @@ export default function BlogPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50 overflow-x-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5 pointer-events-none">
           <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600 rounded-full filter blur-3xl"></div>
@@ -119,13 +119,13 @@ export default function BlogPage() {
   const recentPosts = posts.slice(1);
 
   if (!featuredPost) return (
-     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+     <div className="min-h-screen flex items-center justify-center bg-gray-50 overflow-x-hidden">
         <p className="text-gray-500">No posts found.</p>
      </div>
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-red-50 overflow-x-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none">
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600 rounded-full filter blur-3xl"></div>
@@ -133,7 +133,7 @@ export default function BlogPage() {
       </div>
 
       <Navbar />
-      <div className="relative z-10 pt-12 pb-12 md:pt-40 md:pb-20 px-4 md:px-4">
+      <div className="relative z-10 pt-4 pb-12 md:pt-40 md:pb-20 px-4 md:px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           {/* Header - Professional Redesign */}

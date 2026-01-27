@@ -6,7 +6,7 @@
   "alternateName": "Sparkle Academy",
   "url": "https://sparkleknowledgeyard.com",
   "logo": "https://sparkleknowledgeyard.com/sparkle_logo.png",
-  "description": "Sparkle Academy (Sparkle Knowledge Yard) is a leading language training and test preparation institute in Chennai, offering expert coaching for IELTS, OET, PTE, TOEFL, GRE, GMAT, and foreign languages including German, French, Spanish, and Japanese. We also provide spoken English and interview preparation for global careers and study abroad.",
+  "description": "Sparkle Academy (Sparkle Knowledge Yard) is a leading language training and test preparation institute in Chennai, offering expert coaching for IELTS, OET, PTE, TOEFL, PTE, and foreign languages including German, French, Spanish, and Japanese. We also provide spoken English and interview preparation for global careers and study abroad.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "2nd Floor, 331, Paper Mills Road, Bunder Garden",
@@ -46,16 +46,7 @@
       "name": "TOEFL Coaching",
       "description": "Expert TOEFL iBT preparation for international study and migration."
     },
-    {
-      "@type": "Course",
-      "name": "GRE Coaching",
-      "description": "GRE preparation for Verbal Reasoning, Quantitative Reasoning, and Analytical Writing."
-    },
-    {
-      "@type": "Course",
-      "name": "GMAT Coaching",
-      "description": "GMAT coaching for business school admissions and management programs."
-    },
+   
     {
       "@type": "Course",
       "name": "Spoken English & Interview Preparation",
