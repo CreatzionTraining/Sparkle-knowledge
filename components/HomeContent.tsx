@@ -130,7 +130,7 @@ export default function HomeContent() {
               </div>
 
               <p className="text-base md:text-xl text-gray-800 mb-8 md:mb-10 lg:mt-20 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium px-4 lg:px-0">
-                Expert coaching for IELTS, TOEFL, PTE, OET & foregin language training.
+                Expert coaching for IELTS, TOEFL, PTE, OET & foreign language training.
                 Your gateway to study abroad success and global career opportunities.
               </p>
 
