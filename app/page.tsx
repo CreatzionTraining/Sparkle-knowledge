@@ -4,7 +4,7 @@ import { Contact } from "@/components/Contact";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sparkle Knowledge Yard | IELTS, TOEFL, PTE Coaching in Chennai",
+  title: "Sparkle Knowledge Yard | IELTS, TOEFL, PTE, OET & Foreign Language Training in Chennai",
   description:
     "Sparkle Knowledge Yard is a leading study abroad consultancy and test preparation center in Perambur, Chennai.",
   alternates: {

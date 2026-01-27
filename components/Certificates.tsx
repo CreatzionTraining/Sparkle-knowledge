@@ -163,7 +163,7 @@ export function Certificates() {
                         transition={{ duration: 0.5, delay: 0.3 }}
                         className="text-gray-600 font-['Inter'] text-lg max-w-2xl mx-auto leading-relaxed"
                     >
-                        Celebrating the exceptional scores and verified milestones of our Sparkle Scholars in IELTS, TOEFL, PTE, and beyond.
+                        Celebrating the exceptional scores and verified milestones of our Sparkle Scholars in IELTS, TOEFL, PTE, OET and beyond.
                     </motion.p>
                 </div>
 
