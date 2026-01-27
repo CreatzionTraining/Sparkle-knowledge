@@ -37,7 +37,7 @@ export function Footer() {
                                 src="/WhatsApp_Image_2026-01-12_at_16.32.48_520b41db-removebg-preview.png"
                                 alt="Sparkle Academy"
                                 fill
-                                className="object-contain object-left"
+                                className="object-contain object-left-top"
                             />
                         </div>
                         <p className="text-sm leading-relaxed max-w-sm text-gray-700 font-medium">
@@ -62,7 +62,7 @@ export function Footer() {
                     </div>
 
                     {/* Quick Links */}
-                    <div className="md:pl-20">
+                    <div>
                         <h4 className="font-bold text-gray-900 text-base uppercase tracking-wider mb-6 [font-family:var(--font-outfit)]">Quick Links</h4>
                         <ul className="space-y-3.5">
                             <li>

@@ -83,14 +83,14 @@ export function Navbar() {
           lg:bg-transparent bg-transparent
           h-28 pointer-events-none`}
       >
-        <div className="w-full lg:max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 h-full">
+        <div className="w-full lg:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex justify-between items-center h-full">
 
             {/* Logo Section */}
             <div
               className={`flex-shrink-0 flex items-center ml-0 lg:ml-0 lg:mt-4 pointer-events-auto transition-all duration-300 ${isScrolled
-                  ? 'lg:opacity-0 lg:-translate-y-4 lg:pointer-events-none'
-                  : 'lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto'
+                ? 'lg:opacity-0 lg:-translate-y-4 lg:pointer-events-none'
+                : 'lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto'
                 }`}
             >
               <Link href="/" className="relative h-24 w-52 sm:h-32 sm:w-80 md:h-36 md:w-[360px] lg:h-48 lg:w-[280px] block transition-transform duration-300">
@@ -126,8 +126,8 @@ export function Navbar() {
               {/* Enquiry Button - Desktop (Hides on Scroll) */}
               <div
                 className={`hidden lg:flex items-center transition-all duration-300 ${isScrolled
-                    ? 'opacity-0 -translate-y-4 pointer-events-none'
-                    : 'opacity-100 translate-y-0 pointer-events-auto'
+                  ? 'opacity-0 -translate-y-4 pointer-events-none'
+                  : 'opacity-100 translate-y-0 pointer-events-auto'
                   }`}
               >
                 <Link href="/#contact" className="group relative px-6 py-2.5 bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave rounded-full text-white font-bold text-sm shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 overflow-hidden">
