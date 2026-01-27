@@ -50,6 +50,51 @@ const testimonials = [
         rating: 5,
         text: "Excellent coaching by Shanthini ma'am. It has been a wonderful and memorable journey. She gave personal attention to my son and helped him with IELTS and Visa interview. Her dedication is a class apart from usual coaching centers.",
         location: "Parent"
+    },
+    {
+        id: 6,
+        name: "Daniel Darwin",
+        role: "IELTS Student",
+        score: "Band 7.0",
+        rating: 5,
+        text: "I joined Sparkle Knowledge Centre for IELTS coaching... In my first mock test, my writing band was below 5... However, with proper guidance... In my final IELTS exam, I scored an overall band 7. A special thanks to Shanti Ma'am... Her feedback on writing was very detailed and practical... I strongly recommend Sparkle Knowledge Centre to anyone who feels their English is weak or average but dreams of achieving a good IELTS band.",
+        location: "Student"
+    },
+    {
+        id: 7,
+        name: "Ram Sanjay V S",
+        role: "IELTS Student",
+        score: "Improvement",
+        rating: 5,
+        text: "One of the best coaching experiences I’ve ever had. Over the past 2 months, my English-speaking fluency has improved a lot... The one-on-one sessions with flexible and comfortable timings made learning stress-free and highly effective. Shanthini ma’am is extremely experienced... I strongly recommend it to anyone who wants to improve their English and achieve a good IELTS band score.",
+        location: "Student"
+    },
+    {
+        id: 8,
+        name: "Merlin Victor",
+        role: "IELTS Student",
+        score: "One-on-One",
+        rating: 5,
+        text: "Learning IELTS at Sparkle Knowledge Yard has been a wonderful experience. The coaching provided here is one-on-one. The classes are arranged as per your convenience, which I found impressive. My mentor for IELTS was Mrs. Shanthini Williams. Thank you, ma'am, for the guidance. The Sparkle Knowledge Yard Institute at Perambur, Chennai, is recommended to those looking for the best coaching centres for IELTS.",
+        location: "Student"
+    },
+    {
+        id: 9,
+        name: "Tharani.N",
+        role: "IELTS Student",
+        score: "Success",
+        rating: 5,
+        text: "Sparkle IELTS coaching center, under the guidance of Shanthi Williams mam, has been an incredible learning experience for me. Her dedication and expertise have truly made a difference in my IELTS preparation. Her personalized approach, attention to detail, and effective teaching methods have helped me gain confidence in all four test sections. I highly recommend Sparkle to anyone aiming for success in their IELTS journey.",
+        location: "Student"
+    },
+    {
+        id: 10,
+        name: "Jonathan Stanley Williams",
+        role: "IELTS Student",
+        score: "Band Score",
+        rating: 5,
+        text: "Best coaching center for IELTS exam in Chennai. I am extremely grateful to have Mrs. Shanthini ma’am as my trainer. She is super friendly and talented teacher anyone could imagine. I recommend SPARKLE KNOWLEDGE YARD for everyone who aspires to get a good score in their very first attempt. The training provided was excellent and up to date... The course material were excellent and very helpful.",
+        location: "Student"
     }
 ];
 

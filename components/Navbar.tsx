@@ -66,7 +66,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: 'Home', link: '/' },
-    { name: 'Services', link: '/#courses' },
+    { name: 'Courses', link: '/#courses' },
     { name: 'Blog', link: '/blog' },
     { name: 'About', link: '/#about' },
     { name: 'Contact', link: '/#contact' }
@@ -113,7 +113,7 @@ export function Navbar() {
                     className="relative px-5 py-2.5 rounded-full text-[15px] font-semibold transition-all duration-300 group overflow-hidden text-slate-600 hover:text-white hover:shadow-lg hover:shadow-blue-500/30"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1D4ED8] via-[#8B44AC] to-[#E63946] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    <span className="relative z-10">{item.name}</span>
+                    <span className="relative z-10" suppressHydrationWarning>{item.name}</span>
                   </Link>
                 ))}
               </div>
@@ -133,7 +133,7 @@ export function Navbar() {
                 <Link href="/#contact" className="group relative px-6 py-2.5 bg-gradient-to-r from-[#1D4ED8] via-[#E63946] to-[#1D4ED8] bg-[length:200%_auto] animate-text-wave rounded-full text-white font-bold text-sm shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 overflow-hidden">
                   <div className="absolute inset-0 bg-white/20 group-hover:translate-x-full transition-transform duration-500 skew-x-12"></div>
                   <span className="relative flex items-center gap-2">
-                    Enquiry Now
+                    Enquire Now
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                   </span>
                 </Link>

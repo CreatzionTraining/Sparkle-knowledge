@@ -32,9 +32,11 @@ export async function GET() {
     const topics = [
       "IELTS exam",
       "TOEFL exam", 
-      "GRE exam",
-      "GMAT exam",
+      "PTE exam",
+      "OET exam", 
       "study abroad",
+      "student visa news",
+      "study abroad scholarships",
     ];
 
     const allNews: any[] = [];

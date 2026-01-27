@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { CheckCircle, ChevronRight, Clock, BookOpen, ChevronLeft } from 'lucide-react';
+import { CheckCircle, ChevronRight, Clock, BookOpen, ChevronLeft, Handshake, Languages as LanguagesIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function Courses() {
@@ -63,7 +63,7 @@ export function Courses() {
       modules: ['One-on-One Sessions', 'University Specifics', 'Body Language', 'Resume Review'],
       duration: '6 – 12 weeks',
       type: 'image',
-      image: '/courses/interview_fix.png',
+      image: '/courses/ChatGPT Image Jan 27, 2026, 02_15_21 PM.png',
       color: 'from-emerald-500 to-teal-600',
       badge: 'bg-emerald-50 text-emerald-600'
     },
@@ -75,8 +75,7 @@ export function Courses() {
       modules: ['A1-B2 Levels', 'Speaking Practice', 'Grammar Mastery', 'Listening Skills'],
       duration: '3 – 6 months',
       type: 'image',
-      image: '/courses/languages-removebg-preview _1.png',
-      textImage: '/courses/languages_text.png',
+      image: '/courses/languages_final.png',
       color: 'from-cyan-500 to-blue-600',
       badge: 'bg-cyan-50 text-cyan-600'
     },
@@ -155,38 +154,21 @@ function CourseCard({ course, index }: { course: any; index: number }) {
 
             {/* Header */}
             <div className="flex justify-between items-start mb-1 mt-0">
-              {course.textImage ? (
-                <div className="flex items-center gap-2 ml-0">
-                  <div className="relative w-20 h-15">
-                    <Image
-                      src={course.image}
-                      alt={`${course.name} Logo`}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="relative w-28 h-9">
-                    <Image
-                      src={course.textImage}
-                      alt={`${course.name} Text`}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-              ) : (
-                <div className={`relative ${course.image.includes('languages') ? 'w-15 h-15 -mt-2 -ml-2' :
-                  course.image.includes('interview') ? 'w-50 h-15 -mt-2 -ml-2' :
-                    'w-28 h-11'
-                  }`}>
+                <div className={`relative ${
+                  course.name.includes('Interview')
+                    ? 'w-55 h-20 -mt-3 -ml-2' 
+                    : course.name.includes('Languages') 
+                        ? 'w-64 h-20 -mt-4 -ml-2' 
+                        : 'w-28 h-12'
+                }`}>
                   <Image
                     src={course.image}
                     alt={`${course.name} Coaching Chennai - Sparkle Knowledge Yard`}
                     fill
-                    className="object-contain object-left-top"
+                    className={course.name.includes('Interview') ? 'object-cover object-left' : 'object-contain object-left-top'}
                   />
                 </div>
-              )}
+                
               <div className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${course.badge}`}>
                 {course.duration}
               </div>

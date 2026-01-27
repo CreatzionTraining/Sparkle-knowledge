@@ -158,8 +158,8 @@ export async function POST(request: NextRequest) {
     try {
       const notificationResult = await resend.emails.send({
         from: "noreply@sparkleknowledgeyard.com",
-        to: ['bhuvankumar13995@gmail.com'],
-        cc: ['creatziontraining@gmail.com'],
+        to: ['sparkleknowledgeyard@gmail.com'],
+        cc: ['contact@sparkleknowledgeyard.com'],
         subject: `👤 New Registration from ${name}`,
         html: adminNotificationHtml,
       });

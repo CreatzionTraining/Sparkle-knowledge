@@ -163,25 +163,26 @@ export function Certificates() {
                         transition={{ duration: 0.5, delay: 0.3 }}
                         className="text-gray-600 font-['Inter'] text-lg max-w-2xl mx-auto leading-relaxed"
                     >
-                        Celebrating the exceptional scores and verified milestones of our Sparkle Scholars in IELTS, TOEFL, GRE, and beyond.
+                        Celebrating the exceptional scores and verified milestones of our Sparkle Scholars in IELTS, TOEFL, PTE, and beyond.
                     </motion.p>
                 </div>
 
                 {/* Cards Container with Navigation */}
-                <div className="relative max-w-[1216px] mx-auto">
-                    {/* Left Arrow */}
+                {/* Cards Container with Navigation */}
+                <div className="relative max-w-[1216px] mx-auto mb-6 md:mb-0">
+                    {/* Left Arrow - Desktop Only */}
                     <button
                         onClick={handlePrev}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-10 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
+                        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-20 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
                         aria-label="Previous card"
                     >
                         <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" strokeWidth={2.5} />
                     </button>
 
-                    {/* Right Arrow */}
+                    {/* Right Arrow - Desktop Only */}
                     <button
                         onClick={handleNext}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-10 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
+                        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-20 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
                         aria-label="Next card"
                     >
                         <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" strokeWidth={2.5} />
@@ -221,19 +222,38 @@ export function Certificates() {
                     </div>
                 </div>
 
-                {/* Dots Indicator */}
-                <div className="flex justify-center gap-2 mt-8">
-                    {Array.from({ length: 5 }).map((_, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setCurrentIndex(idx)}
-                            className={`transition-all duration-300 rounded-full ${idx === currentIndex
-                                ? 'w-8 h-2 bg-gradient-to-r from-blue-600 to-pink-500'
-                                : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
-                                }`}
-                            aria-label={`Go to position ${idx + 1}`}
-                        />
-                    ))}
+                {/* Navigation Controls (Mobile: Inline with Dots, Desktop: Dots Only) */}
+                <div className="flex items-center justify-center gap-4 mt-2 md:mt-8">
+                    {/* Mobile Left Arrow */}
+                    <button
+                        onClick={handlePrev}
+                        className="md:hidden w-10 h-10 bg-white rounded-full shadow-md border border-gray-200 flex items-center justify-center text-gray-600 active:scale-95 transition-all"
+                    >
+                        <ChevronLeft className="w-5 h-5" />
+                    </button>
+
+                    {/* Dots */}
+                    <div className="flex justify-center gap-2">
+                        {Array.from({ length: 5 }).map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setCurrentIndex(idx)}
+                                className={`transition-all duration-300 rounded-full ${idx === currentIndex
+                                    ? 'w-8 h-2 bg-gradient-to-r from-blue-600 to-pink-500'
+                                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                                    }`}
+                                aria-label={`Go to position ${idx + 1}`}
+                            />
+                        ))}
+                    </div>
+
+                    {/* Mobile Right Arrow */}
+                    <button
+                        onClick={handleNext}
+                        className="md:hidden w-10 h-10 bg-white rounded-full shadow-md border border-gray-200 flex items-center justify-center text-gray-600 active:scale-95 transition-all"
+                    >
+                        <ChevronRight className="w-5 h-5" />
+                    </button>
                 </div>
             </div >
         </section >
@@ -312,7 +332,7 @@ function CertificateCard({ cert }: { cert: any }) {
                         </div>
 
                         {/* Click hint */}
-                        <p className="text-xs text-gray-400 mt-4 absolute bottom-4">Tap to Reveal</p>
+                        <p className="text-xs text-gray-400 mt-4 absolute bottom-4">Click to Flip</p>
                     </div>
                 </div>
 

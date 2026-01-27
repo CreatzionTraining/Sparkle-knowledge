@@ -97,10 +97,9 @@ export function Contact() {
     { value: 'ielts', label: 'IELTS' },
     { value: 'toefl', label: 'TOEFL' },
     { value: 'pte', label: 'PTE' },
-    { value: 'gre', label: 'GRE' },
-    { value: 'gmat', label: 'GMAT' },
+    { value: 'interview-prep', label: 'Interview Preparation' },
     { value: 'study-abroad', label: 'Study Abroad Counseling' },
-    { value: 'language', label: 'Language Training' }
+    { value: 'foreign-language', label: 'Foreign Language Training' }
   ];
 
   const countryCodes = [
