@@ -137,8 +137,8 @@ export default function BlogPage() {
           {/* Header - Professional Redesign */}
           <div className="text-center mb-12 md:mb-20">
             {/* Main Title - Split Color Animation */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 text-slate-900 tracking-tight leading-tight">
-              Sparkle <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] via-[#1D4ED8] to-[#E63946] animate-gradient-x bg-[length:200%_auto]">Blog</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-slate-900 tracking-tight leading-tight">
+              Sparkle <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] via-[#1D4ED8] to-[#E63946] animate-gradient-x bg-[length:200%_auto] font-extrabold">Blog</span>
             </h1>
             
             {/* Subtitle */}
