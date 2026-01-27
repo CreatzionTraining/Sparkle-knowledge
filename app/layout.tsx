@@ -19,8 +19,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sparkleknowledgeyard.com"),
-  title: "Sparkle Knowledge Yard | IELTS, TOEFL, PTE & Language Training in Chennai",
-  description: "Join Chennai's top-rated institute for IELTS, PTE, TOEFL, OET, PTE, and foreign language training (German, French, Spanish). Expert coaching with 95% success rate.",
+  title: "Sparkle Knowledge Yard | IELTS, TOEFL, PTE, OET & Foreign Language Training in Chennai",
+  description: "Join Chennai's top-rated institute for IELTS, PTE, TOEFL, OET, and foreign language training (German, French, Spanish). Expert coaching with 95% success rate.",
   keywords: [
     "Sparkle Knowledge Yard", 
     "Sparkle Academy", 
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Sparkle Knowledge Yard - Master Global Exams & Languages",
-    description: "Your gateway to global success. Expert coaching for IELTS, OET, PTE, and Foreign Languages in Chennai.",
+    description: "Your gateway to global success. Expert coaching for IELTS, OET, and Foreign Languages in Chennai.",
     url: "https://sparkleknowledgeyard.com",
     siteName: "Sparkle Knowledge Yard",
     images: [
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sparkle Knowledge Yard | IELTS, TOEFL, PTE & Language Training in Chennai",
-    description: "Join Chennai's top-rated institute for IELTS, PTE, TOEFL, OET, PTE, and foreign language training.",
+    description: "Join Chennai's top-rated institute for IELTS, PTE, TOEFL, OET, and foreign language training.",
     images: ["https://sparkleknowledgeyard.com/sparkle_logo.png"],
   },
   icons: {
