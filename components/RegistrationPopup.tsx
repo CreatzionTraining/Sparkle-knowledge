@@ -122,7 +122,7 @@ export default function RegistrationPopup() {
 
                     {/* Header */}
                     <div className="mb-6 text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-700 bg-clip-text text-transparent mb-3 leading-tight tracking-wide" style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
+                        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-red-500 to-red-600 bg-clip-text text-transparent mb-3 leading-tight tracking-wide" style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
                             Empower Your Academic Future
                         </h2>
                     </div>
@@ -150,7 +150,7 @@ export default function RegistrationPopup() {
                                 placeholder="John Doe"
                                 required
                                 autoComplete="name"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm md:text-base"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm md:text-base"
                             />
                         </div>
 
@@ -168,7 +168,7 @@ export default function RegistrationPopup() {
                                     <select
                                         value={countryCode}
                                         onChange={(e) => setCountryCode(e.target.value)}
-                                        className="w-[105px] md:w-[130px] pl-3 pr-8 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 font-medium cursor-pointer appearance-none hover:bg-gray-100 text-sm md:text-base h-full"
+                                        className="w-[105px] md:w-[130px] pl-3 pr-8 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 font-medium cursor-pointer appearance-none hover:bg-gray-100 text-sm md:text-base h-full"
                                     >
                                         <option value="+91">🇮🇳 +91</option>
                                         <option value="+1">🇺🇸 +1</option>
@@ -196,7 +196,7 @@ export default function RegistrationPopup() {
                                     required
                                     maxLength={15}
                                     autoComplete="tel"
-                                    className="flex-1 px-3 md:px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 font-medium text-sm md:text-base"
+                                    className="flex-1 px-3 md:px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 font-medium text-sm md:text-base"
                                 />
                             </div>
                         </div>
@@ -217,7 +217,7 @@ export default function RegistrationPopup() {
                                 placeholder="john.doe@example.com"
                                 required
                                 autoComplete="email"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm md:text-base"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm md:text-base"
                             />
                         </div>
 
@@ -225,7 +225,7 @@ export default function RegistrationPopup() {
                         <button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3.5 px-6 rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl tracking-wide"
+                            className="w-full bg-gradient-to-r from-blue-600 to-red-600 text-white font-bold py-3.5 px-6 rounded-lg hover:from-blue-700 hover:to-red-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl tracking-wide"
                         >
                             {showThankYou ? 'Thank you ✓' : (isSubmitting ? 'Processing...' : 'Take the First Step')}
                         </button>

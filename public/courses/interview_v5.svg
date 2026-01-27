@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80">
+  <defs>
+    <linearGradient id="gradInter" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10b981"/> <!-- Emerald-500 -->
+      <stop offset="100%" stop-color="#047857"/> <!-- Emerald-700 -->
+    </linearGradient>
+  </defs>
+
+  <!-- Left Illustration Section (Icon) -->
+  <g transform="translate(10, 5)">
+    <!-- Background Circle -->
+    <circle cx="35" cy="35" r="32" fill="#ecfdf5"/>
+    
+    <!-- Table Line -->
+    <path d="M15 60 L55 60" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Professional 1 (Interviewer) -->
+    <path d="M20 60 C 20 45 25 45 25 40 C 25 35 22 35 22 30 C 22 25 28 25 28 30 C 28 35 25 35 25 40 C 25 45 30 45 30 60" fill="#047857"/>
+    
+    <!-- Professional 2 (candidate) -->
+    <path d="M50 60 C 50 45 45 45 45 40 C 45 35 48 35 48 30 C 48 25 42 25 42 30 C 42 35 45 35 45 40 C 45 45 40 45 40 60" fill="#10b981"/>
+
+    <!-- Speech Bubble -->
+    <path d="M35 25 L35 15 L45 15 L45 25 L40 25 L35 30 L35 25 Z" fill="#ffffff" stroke="#059669" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M25 20 L25 10 L35 10 L35 20 L30 20 L25 25 L25 20 Z" fill="#ffffff" stroke="#047857" stroke-width="1.5" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Right Text Section -->
+  <g transform="translate(85, 0)">
+    <text x="0" y="30" font-family="'Inter', sans-serif" font-weight="900" font-size="22" fill="#064e3b" letter-spacing="-0.5">INTERVIEW</text>
+    <text x="0" y="55" font-family="'Inter', sans-serif" font-weight="700" font-size="22" fill="#10b981" letter-spacing="-0.5">PREPARATION</text>
+  </g>
+</svg>

@@ -147,14 +147,14 @@ export function Certificates() {
                         className="text-4xl md:text-5xl font-black mb-4 text-gray-900 tracking-tight"
                     >
                         Our{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-500 to-pink-600">Global Achievers</span>
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-red-500 to-red-600">Global Achievers</span>
                     </motion.h2>
                     <motion.div
                         initial={{ opacity: 0, scaleX: 0 }}
                         whileInView={{ opacity: 1, scaleX: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="w-24 h-1 bg-gradient-to-r from-purple-500 via-blue-600 to-blue-700 mx-auto mb-6"
+                        className="w-24 h-1 bg-gradient-to-r from-blue-500 via-red-400 to-red-600 mx-auto mb-6"
                     />
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -163,25 +163,26 @@ export function Certificates() {
                         transition={{ duration: 0.5, delay: 0.3 }}
                         className="text-gray-600 font-['Inter'] text-lg max-w-2xl mx-auto leading-relaxed"
                     >
-                        Celebrating the exceptional scores and verified milestones of our Sparkle Scholars in IELTS, TOEFL, GRE, and beyond.
+                        Celebrating the exceptional scores and verified milestones of our Sparkle Scholars in IELTS, TOEFL, PTE, and beyond.
                     </motion.p>
                 </div>
 
                 {/* Cards Container with Navigation */}
-                <div className="relative max-w-[1216px] mx-auto">
-                    {/* Left Arrow */}
+                {/* Cards Container with Navigation */}
+                <div className="relative max-w-[1216px] mx-auto mb-6 md:mb-0">
+                    {/* Left Arrow - Desktop Only */}
                     <button
                         onClick={handlePrev}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-10 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
+                        className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 z-20 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
                         aria-label="Previous card"
                     >
                         <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" strokeWidth={2.5} />
                     </button>
 
-                    {/* Right Arrow */}
+                    {/* Right Arrow - Desktop Only */}
                     <button
                         onClick={handleNext}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-10 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 flex items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
+                        className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 z-20 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl border border-gray-200 items-center justify-center text-gray-600 hover:text-blue-600 hover:scale-110 active:scale-95 transition-all duration-300 group"
                         aria-label="Next card"
                     >
                         <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" strokeWidth={2.5} />
@@ -221,19 +222,38 @@ export function Certificates() {
                     </div>
                 </div>
 
-                {/* Dots Indicator */}
-                <div className="flex justify-center gap-2 mt-8">
-                    {Array.from({ length: 5 }).map((_, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setCurrentIndex(idx)}
-                            className={`transition-all duration-300 rounded-full ${idx === currentIndex
-                                ? 'w-8 h-2 bg-gradient-to-r from-blue-600 to-pink-500'
-                                : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
-                                }`}
-                            aria-label={`Go to position ${idx + 1}`}
-                        />
-                    ))}
+                {/* Navigation Controls (Mobile: Inline with Dots, Desktop: Dots Only) */}
+                <div className="flex items-center justify-center gap-4 mt-2 md:mt-8">
+                    {/* Mobile Left Arrow */}
+                    <button
+                        onClick={handlePrev}
+                        className="md:hidden w-10 h-10 bg-white rounded-full shadow-md border border-gray-200 flex items-center justify-center text-gray-600 active:scale-95 transition-all"
+                    >
+                        <ChevronLeft className="w-5 h-5" />
+                    </button>
+
+                    {/* Dots */}
+                    <div className="flex justify-center gap-2">
+                        {certificates.map((_, idx) => (
+                            <button
+                                key={idx}
+                                onClick={() => setCurrentIndex(certificates.length + idx)}
+                                className={`transition-all duration-300 rounded-full ${idx === currentIndex % certificates.length
+                                    ? 'w-8 h-2 bg-gradient-to-r from-blue-600 to-red-500'
+                                    : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+                                    }`}
+                                aria-label={`Go to position ${idx + 1}`}
+                            />
+                        ))}
+                    </div>
+
+                    {/* Mobile Right Arrow */}
+                    <button
+                        onClick={handleNext}
+                        className="md:hidden w-10 h-10 bg-white rounded-full shadow-md border border-gray-200 flex items-center justify-center text-gray-600 active:scale-95 transition-all"
+                    >
+                        <ChevronRight className="w-5 h-5" />
+                    </button>
                 </div>
             </div >
         </section >
@@ -278,13 +298,13 @@ function CertificateCard({ cert }: { cert: any }) {
                     style={{ backfaceVisibility: 'hidden' }}
                 >
                     {/* Top Gradient Bar */}
-                    <div className="h-1.5 bg-gradient-to-r from-blue-600 to-pink-500" />
+                    <div className="h-1.5 bg-gradient-to-r from-blue-600 to-red-500" />
 
                     {/* Content Area */}
                     <div className="flex-1 flex flex-col items-center justify-center p-6 relative">
                         {/* Score Badge */}
                         <div className="absolute top-4 right-4">
-                            <div className="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-pink-500 rounded-xl shadow-md flex flex-col items-center">
+                            <div className="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-red-500 rounded-xl shadow-md flex flex-col items-center">
                                 <span className="text-[9px] font-bold uppercase tracking-wider text-white/80">Score</span>
                                 <span className="text-sm font-black text-white">
                                     {cert.score.replace(/[^0-9.]/g, '')}
@@ -294,7 +314,7 @@ function CertificateCard({ cert }: { cert: any }) {
 
                         {/* Name Section */}
                         <div className="text-center mt-8">
-                            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-pink-500 rounded-full mx-auto mb-4" />
+                            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-red-500 rounded-full mx-auto mb-4" />
                             <h3 className="text-xl font-['Outfit'] font-bold text-gray-900 mb-2 uppercase">
                                 {cert.name}
                             </h3>
@@ -312,7 +332,7 @@ function CertificateCard({ cert }: { cert: any }) {
                         </div>
 
                         {/* Click hint */}
-                        <p className="text-xs text-gray-400 mt-4 absolute bottom-4">Tap to Reveal</p>
+                        <p className="text-xs text-gray-400 mt-4 absolute bottom-4">Click to Flip</p>
                     </div>
                 </div>
 
@@ -322,11 +342,11 @@ function CertificateCard({ cert }: { cert: any }) {
                     style={{ backfaceVisibility: 'hidden', transform: 'rotateX(180deg)' }}
                 >
                     {/* Top Gradient Bar */}
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-purple-500 via-blue-600 to-blue-700" />
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-red-400 to-red-600" />
 
                     {/* Header */}
                     <div className="text-center mb-4 mt-2">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
                             <Award className="w-5 h-5 text-white" />
                         </div>
                         <h3 className="text-lg font-bold text-gray-900 mb-1 uppercase">{cert.name}</h3>
@@ -336,16 +356,16 @@ function CertificateCard({ cert }: { cert: any }) {
                     {/* Module Scores */}
                     <div className="flex-1 flex flex-col justify-center space-y-2.5">
                         {modules.map((mod: { label: string; score: string }, i: number) => (
-                            <div key={i} className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-2.5 flex items-center justify-between border border-blue-100">
+                            <div key={i} className="bg-gradient-to-r from-blue-50 to-red-50 rounded-lg p-2.5 flex items-center justify-between border border-blue-100">
                                 <span className="text-xs font-semibold text-gray-700">{mod.label}</span>
-                                <span className="text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">{mod.score}</span>
+                                <span className="text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-red-600">{mod.score}</span>
                             </div>
                         ))}
                     </div>
 
                     {/* Footer */}
                     <div className="mt-4 text-center">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-blue-600 to-red-600 rounded-full">
                             <Star className="w-3.5 h-3.5 text-yellow-300 fill-yellow-300" />
                             <span className="text-xs font-bold text-white">{cert.score}</span>
                         </div>

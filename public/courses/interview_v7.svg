@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80">
+  <defs>
+    <linearGradient id="suit1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="suit2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="100%" stop-color="#fee2e2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Illustration Group -->
+  <g transform="translate(10, 5)">
+    <!-- Desk Surface -->
+    <rect x="0" y="75" width="80" height="5" fill="#cbd5e1"/>
+    
+    <!-- Interviewer (Man) -->
+    <path d="M10 75 L10 45 Q 10 35 20 35 L 25 35 L 25 75 Z" fill="url(#suit1)"/>
+    <circle cx="18" cy="25" r="9" fill="url(#skin)"/> (Head)
+    <rect x="25" y="45" width="15" height="20" fill="white" transform="rotate(-10 25 45)"/> (Paper)
+
+    <!-- Candidate (Woman) -->
+    <path d="M70 75 L70 45 Q 70 35 60 35 L 55 35 L 55 75 Z" fill="url(#suit2)"/>
+    <circle cx="62" cy="25" r="9" fill="url(#skin)"/> (Head)
+    <!-- Hair -->
+    <path d="M58 25 Q 62 10 70 20 L 70 30" stroke="#0f172a" stroke-width="8" fill="none"/>
+    
+    <!-- Speech Bubbles (Interaction) -->
+     <path d="M25 15 L 35 15 L 35 25 L 30 25 Z" fill="#fff" stroke="#334155" stroke-width="1"/>
+     <path d="M55 15 L 45 15 L 45 25 L 50 25 Z" fill="#fff" stroke="#334155" stroke-width="1"/>
+  </g>
+
+  <!-- Typography Group -->
+  <g transform="translate(90, 0)">
+    <text x="0" y="32" font-family="Arial, sans-serif" font-weight="900" font-size="24" fill="#064e3b">INTERVIEW</text>
+    <text x="0" y="60" font-family="Arial, sans-serif" font-weight="bold" font-size="20" fill="#047857" letter-spacing="1">PREPARATION</text>
+  </g>
+</svg>

@@ -177,7 +177,7 @@ export function About() {
                         <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-6 lg:p-10 overflow-hidden">
                             {/* Abstract Decorative Elements */}
                             <div className="absolute -right-10 -top-10 w-24 h-24 lg:w-40 lg:h-40 bg-blue-100/50 rounded-full blur-3xl group-hover:bg-blue-200/50 transition-colors"></div>
-                            <div className="absolute -left-10 -bottom-10 w-24 h-24 lg:w-40 lg:h-40 bg-indigo-100/50 rounded-full blur-3xl group-hover:bg-indigo-200/50 transition-colors"></div>
+                            <div className="absolute -left-10 -bottom-10 w-24 h-24 lg:w-40 lg:h-40 bg-blue-100/50 rounded-full blur-3xl group-hover:bg-blue-200/50 transition-colors"></div>
 
                             {/* Watermark Text Removed */}
 
@@ -206,7 +206,7 @@ export function About() {
                         <div className="relative h-full bg-white rounded-[calc(2rem-2px)] p-6 lg:p-10 overflow-hidden">
                             {/* Abstract Decorative Elements */}
                             <div className="absolute -right-10 -top-10 w-24 h-24 lg:w-40 lg:h-40 bg-red-100/50 rounded-full blur-3xl group-hover:bg-red-200/50 transition-colors"></div>
-                            <div className="absolute -left-10 -bottom-10 w-24 h-24 lg:w-40 lg:h-40 bg-orange-100/50 rounded-full blur-3xl group-hover:bg-orange-200/50 transition-colors"></div>
+                            <div className="absolute -left-10 -bottom-10 w-24 h-24 lg:w-40 lg:h-40 bg-red-100/50 rounded-full blur-3xl group-hover:bg-red-200/50 transition-colors"></div>
 
                             {/* Watermark Text Removed */}
 

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80">
+  <defs>
+    <linearGradient id="suitDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="tieGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+    <linearGradient id="skinTone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8d7da"/>
+      <stop offset="100%" stop-color="#f1c0c5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Illustration Group -->
+  <g transform="translate(15, 5)">
+    <!-- Background Circle for contrast -->
+    <circle cx="35" cy="35" r="32" fill="#f8fafc"/>
+    
+    <!-- Professional Suit - High Detail Construction -->
+    <!-- Shoulders -->
+    <path d="M10 75 L 60 75 L 60 50 Q 60 40 50 40 L 45 38 L 25 38 L 20 40 Q 10 40 10 50 Z" fill="url(#suitDark)"/>
+    
+    <!-- Lapels (The "Coat" essence) -->
+    <path d="M25 40 L 35 60 L 35 75 L 20 75 L 18 55 Z" fill="#334155"/>
+    <path d="M45 40 L 35 60 L 35 75 L 50 75 L 52 55 Z" fill="#334155"/>
+    
+    <!-- Shirt -->
+    <path d="M27 38 L 35 30 L 43 38 L 35 48 Z" fill="#ffffff"/>
+    
+    <!-- Red Power Tie -->
+    <path d="M35 40 L 32 45 L 35 65 L 38 45 Z" fill="url(#tieGrad)"/>
+    
+    <!-- Head (Clean, abstract professional) -->
+    <path d="M35 32 Q 25 32 25 20 Q 25 8 35 8 Q 45 8 45 20 Q 45 32 35 32" fill="url(#skinTone)"/>
+    <rect x="30" y="30" width="10" height="10" fill="url(#skinTone)"/>
+    
+    <!-- Hair (Standard Professional Cut) -->
+    <path d="M25 18 Q 23 10 35 5 Q 47 10 45 18 L 45 15 Q 40 15 35 15 Q 30 15 25 15 Z" fill="#0f172a"/>
+  </g>
+
+  <!-- Typography Group -->
+  <g transform="translate(90, 0)">
+    <text x="0" y="32" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="24" fill="#0f172a">INTERVIEW</text>
+    <text x="0" y="58" font-family="'Segoe UI', Arial, sans-serif" font-weight="700" font-size="20" fill="#334155" letter-spacing="0.5">PREPARATION</text>
+  </g>
+</svg>

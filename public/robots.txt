@@ -1,6 +1,6 @@
 # ============================================
 # SPARKLE KNOWLEDGE YARD - ROBOTS.TXT
-# Educational Content for IELTS, TOEFL, PTE, GRE, GMAT
+# Educational Content for IELTS, TOEFL, PTE,
 # ============================================
 
 # Allow all search engines and AI crawlers
@@ -122,5 +122,5 @@ Sitemap: https://sparkleknowledgeyard.com/sitemap.xml
 # ============================================
 # Website: Sparkle Knowledge Yard
 # Domain: sparkleknowledgeyard.com
-# Content: IELTS, TOEFL, PTE, GRE, GMAT, Language Training
+# Content: IELTS, TOEFL, PTE, Language Training
 # Purpose: Educational resources for test preparation and study abroad

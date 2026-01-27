@@ -84,8 +84,8 @@ export default function NewsScrollBar() {
             title: "Welcome to Sparkle Knowledge - Your Gateway to Global Education",
             icon: "sparkles",
             link: "/contact",
-            gradient: "from-blue-500 via-indigo-500 to-purple-600",
-            lightGradient: "from-blue-400/10 to-indigo-500/10"
+            gradient: "from-blue-500 via-red-400 to-red-600",
+            lightGradient: "from-blue-400/10 to-red-500/10"
           }
         ]);
       }
@@ -99,8 +99,8 @@ export default function NewsScrollBar() {
           title: "Welcome to Sparkle Knowledge - Your Gateway to Global Education",
           icon: "sparkles",
           link: "/contact",
-          gradient: "from-blue-500 via-indigo-500 to-purple-600",
-          lightGradient: "from-blue-400/10 to-indigo-500/10"
+          gradient: "from-blue-500 via-red-400 to-red-600",
+          lightGradient: "from-blue-400/10 to-red-500/10"
         }
       ]);
     } finally {
@@ -124,7 +124,7 @@ export default function NewsScrollBar() {
 
   return (
     <div className="relative w-full py-2 md:py-4 overflow-hidden">
-      
+
       {/* Subtle Grid Background */}
 
 
@@ -139,7 +139,7 @@ export default function NewsScrollBar() {
               <NewsCard key={`set1-${item.id}-${index}`} item={item} />
             ))}
           </div>
-          
+
           {/* Second Set - Duplicate for seamless loop */}
           <div className="flex animate-scroll-infinite hover:pause-scroll items-center gap-3 md:gap-4">
             {news.map((item, index) => (
@@ -183,7 +183,7 @@ export default function NewsScrollBar() {
 // News Card Component
 function NewsCard({ item }: { item: NewsItem }) {
   const IconComponent = Icons[item.icon as keyof typeof Icons] || Icons.sparkles;
-  
+
   return (
     <div className="group/card flex-shrink-0 relative w-[280px] md:w-[340px] cursor-default">
       {/* Card */}
@@ -200,11 +200,11 @@ function NewsCard({ item }: { item: NewsItem }) {
       `}>
         {/* Gradient Border Glow on Hover */}
         <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 group-hover/card:opacity-5 transition-opacity duration-500 rounded-xl md:rounded-2xl`}></div>
-        
+
         {/* Card Content */}
         <div className="relative rounded-xl md:rounded-2xl p-3 md:p-4">
           <div className="flex items-center gap-3">
-            
+
             {/* Icon */}
             <div className={`
               flex-shrink-0 w-9 h-9 md:w-10 md:h-10

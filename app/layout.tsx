@@ -1,24 +1,26 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { type Metadata } from "next";
 import "./globals.css";
 import NewsTicker from "@/components/NewsTicker";
 import RegistrationPopup from "@/components/RegistrationPopup";
 import ClientLayout from "./ClientLayout";
+import { Outfit, Inter } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
   subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter", 
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sparkleknowledgeyard.com"),
   title: "Sparkle Knowledge Yard | IELTS, TOEFL, PTE & Language Training in Chennai",
-  description: "Join Chennai's top-rated institute for IELTS, PTE, TOEFL, OET, GRE, GMAT, and foreign language training (German, French, Spanish). Expert coaching with 95% success rate.",
+  description: "Join Chennai's top-rated institute for IELTS, PTE, TOEFL, OET, PTE, and foreign language training (German, French, Spanish). Expert coaching with 95% success rate.",
   keywords: [
     "Sparkle Knowledge Yard", 
     "Sparkle Academy", 
@@ -36,8 +38,6 @@ export const metadata: Metadata = {
     "Study abroad consultants Chennai", 
     "Overseas education consultants",
     "Visa consultancy services",
-    "GRE coaching Chennai",
-    "GMAT preparation",
     "Foreign language training institute",
     "Best coaching center in Perambur",
     "Top rated IELTS institute",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sparkle Knowledge Yard | IELTS, TOEFL, PTE & Language Training in Chennai",
-    description: "Join Chennai's top-rated institute for IELTS, PTE, TOEFL, OET, GRE, GMAT, and foreign language training.",
+    description: "Join Chennai's top-rated institute for IELTS, PTE, TOEFL, OET, PTE, and foreign language training.",
     images: ["https://sparkleknowledgeyard.com/sparkle_logo.png"],
   },
   icons: {
@@ -101,13 +101,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${outfit.variable} ${inter.variable} antialiased overflow-x-hidden font-sans`}
       >
         <ClientLayout>
           {children}

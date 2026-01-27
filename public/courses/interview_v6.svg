@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80">
+  <defs>
+    <!-- Professional Deep Blue Gradient -->
+    <linearGradient id="gradText" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#334155"/>
+    </linearGradient>
+    <linearGradient id="iconDeep" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left: Abstract Professional Icon (Handshake/Connection Symbol) -->
+  <g transform="translate(10, 5)">
+    <!-- Main Shape -->
+    <rect x="0" y="0" width="70" height="70" rx="12" fill="#ecfdf5"/>
+    
+    <!-- Stylized 'Human' Silhouette Abstract (Not cartoon) -->
+    <path d="M35 15 C 43 15 50 22 50 30 C 50 38 43 45 35 45 C 27 45 20 38 20 30 C 20 22 27 15 35 15" fill="none" stroke="url(#iconDeep)" stroke-width="3"/>
+    <path d="M15 60 C 15 50 25 42 35 42 C 45 42 55 50 55 60" fill="none" stroke="url(#iconDeep)" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Checkmark for Success -->
+    <circle cx="55" cy="20" r="10" fill="#10b981" stroke="#fff" stroke-width="2"/>
+    <path d="M51 20 L54 23 L59 17" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Right: Professional Typeface -->
+  <g transform="translate(90, 0)">
+    <text x="0" y="32" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="800" font-size="24" fill="#065f46" letter-spacing="-0.5">INTERVIEW</text>
+    <text x="0" y="58" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-weight="600" font-size="20" fill="#059669">PREPARATION</text>
+  </g>
+</svg>

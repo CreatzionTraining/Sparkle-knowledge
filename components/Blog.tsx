@@ -46,10 +46,10 @@ export default function Blog() {
         {/* Header */}
         <div className="mb-12 text-center">
           <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 tracking-tight">
-            Global <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] via-[#1D4ED8] to-[#E63946] animate-gradient-x bg-[length:200%_auto]">Success Stories</span>
+            Insights & <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E63946] via-[#1D4ED8] to-[#E63946] animate-gradient-x bg-[length:200%_auto]">Articles</span>
           </h2>
           <p className="text-slate-600 text-lg md:text-xl font-medium max-w-2xl mx-auto">
-            Celebrating achievements, academy updates, and expert study abroad guidance.
+            Expert insights, exam strategies, and informed perspectives on global education.
           </p>
         </div>
 
