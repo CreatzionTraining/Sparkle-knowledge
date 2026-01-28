@@ -1,1 +1,0 @@
-https://sparkle-knowledge-git-bhuvan-creatziontrainings-projects.vercel.app

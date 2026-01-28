@@ -1,1 +1,0 @@
-https://sparkle-knowledge-git-sakthi-creatziontrainings-projects.vercel.app

@@ -4,9 +4,11 @@
 
 ---
 
+[https://sparkleknowledgeyard.com ] => Creatzion Training gmail account and vercel account. GO-Daddy account was using Bhuvan Gmail account and password Jan 2027 renewal drive
+
 ## 📞 GOOGLE MEET CLIENT LINK
 
-[ https://meet.google.com/yvt-gxji-rec ]
+[ https://meet.google.com/yvt-gxji-rec ] => Bhuvan created meeting link
 
 
 ---
@@ -31,12 +33,13 @@
 ## 🚀 LIVE HOSTING URLS
 
 **Production URL** 
-[sparkleknowledge.vercel.app ]
+[https://sparkleknowledgeyard.com ] => Creatzion Training gmail account and vercel account 
 **Bhuvan – Dev URL** 
-
+https://sparkle-knowledge-git-bhuvan-creatziontrainings-projects.vercel.app
 **Sakthi – Dev URL** 
-
+https://sparkle-knowledge-git-sakthi-creatziontrainings-projects.vercel.app
 **Rubesh – Dev URL** 
+https://sparkle-knowledge-git-rubesh-creatziontrainings-projects.vercel.app
 
 
 ---
@@ -258,5 +261,10 @@ This plan is now:
 ✔ Proper team task split
 ✔ Professional & client-ready
 
+
+# RUN commands to run the program
+
+npm install
+npm run dev
 ---
 
