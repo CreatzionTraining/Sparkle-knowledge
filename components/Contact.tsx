@@ -420,7 +420,7 @@ export function Contact() {
             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
               Send Us a Message
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5" suppressHydrationWarning>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -443,7 +443,7 @@ export function Contact() {
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                     Phone Number
                   </label>
-                  <div className="relative">
+                  <div className="relative" suppressHydrationWarning>
                     {/* Country Code Dropdown Button - Inside Input */}
                     <button
                       type="button"

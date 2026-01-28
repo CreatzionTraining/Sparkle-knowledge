@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { CheckCircle, ChevronRight, Clock, BookOpen, ChevronLeft, Handshake, Languages as LanguagesIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -130,8 +132,22 @@ export function Courses() {
   );
 }
 
+
 function CourseCard({ course, index }: { course: any; index: number }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const router = useRouter();
+
+  const handleBookDemo = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    router.push('/#contact');
+    // Force scroll after a small delay to handle cases where we are already on the hash
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   return (
     <div className="h-[300px] group perspective-1000">
@@ -148,6 +164,7 @@ function CourseCard({ course, index }: { course: any; index: number }) {
         <div className="absolute inset-0 backface-hidden">
           {/* Card Container - Added rounded-t-[1.3rem] to inner gradient line to fix overflow issue */}
           <div className="h-full w-full bg-white rounded-[1.5rem] border border-gray-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-shadow duration-500 overflow-hidden flex flex-col p-5 relative">
+
 
             {/* Top Gradient Line - Fixed Overflow */}
             <div className={`absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r ${course.color} z-10`}></div>
@@ -224,8 +241,8 @@ function CourseCard({ course, index }: { course: any; index: number }) {
             {/* Bottom Action */}
             <div className="mt-auto relative z-10 flex items-center gap-3">
               <button
-                onClick={(e) => e.stopPropagation()}
-                className={`flex-1 py-2.5 rounded-lg bg-gradient-to-r ${course.color} text-white font-bold text-[9px] uppercase tracking-widest shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300`}
+                onClick={handleBookDemo}
+                className={`flex-1 py-2.5 rounded-lg bg-gradient-to-r ${course.color} text-white font-bold text-[9px] uppercase tracking-widest shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-center block`}
               >
                 Book Free Demo
               </button>
