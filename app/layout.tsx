@@ -88,6 +88,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/vercel.svg",
+    shortcut: "/vercel.svg",
+    apple: "/vercel.svg",
   },
   verification: {
     google: "google-site-verification-code", // You'll need to add your actual verification code
