@@ -71,11 +71,11 @@ export default function HomeContent() {
         <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-gradient-to-br from-[#1D4ED8]/30 to-[#2563EB]/20 blur-3xl animate-float -z-10"></div>
         <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#E63946]/30 to-[#FA8072]/20 blur-3xl animate-float-delayed -z-10"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
             {/* Hero Text */}
-            <div className="text-center lg:text-left z-10 lg:pl-4">
+            <div className="text-center lg:text-left z-10">
 
 
               <div className="relative h-[140px] md:h-[200px] mb-2 md:mb-8">
@@ -130,7 +130,7 @@ export default function HomeContent() {
               </div>
 
               <p className="text-base md:text-xl text-gray-800 mb-8 md:mb-10 lg:mt-20 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium px-4 lg:px-0">
-                Expert coaching for IELTS, TOEFL, PTE, OET & foreign language training.
+                Expert coaching for IELTS, TOEFL, PTE, OET & Foreign Language training.
                 Your gateway to study abroad success and global career opportunities.
               </p>
 
