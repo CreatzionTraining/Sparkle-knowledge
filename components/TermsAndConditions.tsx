@@ -188,7 +188,7 @@ export function TermsAndConditions() {
                     Your privacy is important to us. Our Privacy Policy explains how we collect, use, and protect your personal information. By using our services, you agree to the collection and use of information in accordance with this policy.
                   </p>
                   <p>
-                    We implement a variety of security measures to maintain the safety of your personal information when you place an order or enter, submit, or access your personal information.
+                    We implement a variety of security measures to maintain the safety of your personal information when you place an order or enter, submit, or access your personal information well maintained by Creatzion Technology
                   </p>
                 </div>
               </section>
