@@ -15,7 +15,7 @@ export function Toast({ message, type, onClose }: ToastProps) {
   }, [onClose]);
 
   const bgColor = type === 'success'
-    ? 'bg-gradient-to-r from-blue-500 to-blue-600'
+    ? 'bg-gradient-to-r from-blue-600 to-red-600'
     : type === 'error'
       ? 'bg-gradient-to-r from-red-500 to-rose-600'
       : 'bg-gradient-to-r from-blue-500 to-red-600';

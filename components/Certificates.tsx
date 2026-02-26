@@ -3,93 +3,36 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Award, Star, ChevronLeft, ChevronRight } from 'lucide-react';
-
-const certificates = [
-    {
-        id: 1,
-        name: 'SAIGURU SEKARAN',
-        role: 'IELTS Academic',
-        score: 'IELTS Band 8.0',
-        image: '',
-        breakdown: [
-            { label: 'Listening', score: '9.0' },
-            { label: 'Reading', score: '9.0' },
-            { label: 'Speaking', score: '7.0' },
-            { label: 'Writing', score: '7.0' }
-        ]
-    },
-    {
-        id: 2,
-        name: 'SHANIA JOSEPH',
-        role: 'IELTS Academic',
-        score: 'IELTS Band 8.0',
-        image: '',
-        breakdown: [
-            { label: 'Listening', score: '8.5' },
-            { label: 'Reading', score: '8.0' },
-            { label: 'Speaking', score: '8.0' },
-            { label: 'Writing', score: '7.0' }
-        ]
-    },
-    {
-        id: 3,
-        name: 'Shantanu Accha',
-        role: 'IELTS Academic',
-        score: 'IELTS Band 7.5',
-        image: '',
-        breakdown: [
-            { label: 'Listening', score: '8.0' },
-            { label: 'Reading', score: '8.0' },
-            { label: 'Speaking', score: '7.5' },
-            { label: 'Writing', score: '7.0' }
-        ]
-    },
-    {
-        id: 4,
-        name: 'Aakaash M',
-        role: 'IELTS Academic',
-        score: 'IELTS Band 7.5',
-        image: '',
-        breakdown: [
-            { label: 'Listening', score: '8.5' },
-            { label: 'Reading', score: '8.5' },
-            { label: 'Speaking', score: '6.5' },
-            { label: 'Writing', score: '7.0' }
-        ]
-    },
-    {
-        id: 5,
-        name: 'Evangeline Libertus',
-        role: 'IELTS Academic',
-        score: 'IELTS Band 7.5',
-        image: '',
-        breakdown: [
-            { label: 'Listening', score: '8.5' },
-            { label: 'Reading', score: '7.0' },
-            { label: 'Speaking', score: '7.5' },
-            { label: 'Writing', score: '6.5' }
-        ]
-    },
-    {
-        id: 6,
-        name: 'Jeeva S',
-        role: 'IELTS General',
-        score: 'IELTS Band 7.5',
-        image: '',
-        breakdown: [
-            { label: 'Listening', score: '8.5' },
-            { label: 'Reading', score: '6.5' },
-            { label: 'Speaking', score: '7.5' },
-            { label: 'Writing', score: '6.5' }
-        ]
-    },
-];
+import { initialCertificates } from '@/lib/certificatesData';
 
 export function Certificates() {
-    const [currentIndex, setCurrentIndex] = useState(certificates.length); // Start at first real set
+    const [certificates, setCertificates] = useState<any[]>(initialCertificates);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const [cardWidth, setCardWidth] = useState(280);
-    const gap = 24; // Gap between cards (6 * 4 = 24px)
+    const gap = 24;
+
+    useEffect(() => {
+        const fetchCerts = async () => {
+            try {
+                const res = await fetch('/api/certificates');
+                const data = await res.json();
+                if (data.success && data.certificates.length > 0) {
+                    setCertificates(data.certificates);
+                }
+            } catch (e) {
+                console.error("Failed to fetch certificates:", e);
+            }
+        };
+        fetchCerts();
+    }, []);
+
+    // Effect to correctly assign starting index after certificates exist
+    useEffect(() => {
+        if (certificates.length > 0) {
+            setCurrentIndex(certificates.length);
+        }
+    }, [certificates.length]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -111,6 +54,18 @@ export function Certificates() {
     // Create infinite loop by triplicating the array
     const infiniteCards = [...certificates, ...certificates, ...certificates];
 
+    const [flippedCards, setFlippedCards] = useState<{ [key: string]: boolean }>({});
+
+    const handleFlip = (certId: string) => {
+        setFlippedCards(prev => ({
+            ...prev,
+            [certId]: !prev[certId]
+        }));
+    };
+
+    // Determine how many cards are visible for drag constraints
+    const visibleCards = cardWidth === 280 ? 4 : 1;
+
     const handleNext = () => {
         setCurrentIndex(prev => prev + 1);
     };
@@ -130,9 +85,6 @@ export function Certificates() {
 
     // Calculate exact pixel offset
     const offset = currentIndex * (cardWidth + gap);
-
-    // Determine how many cards are visible for drag constraints
-    const visibleCards = cardWidth === 280 ? 4 : 1;
 
     return (
         <section className="py-20 bg-gradient-to-b from-white to-blue-50/30">
@@ -191,23 +143,20 @@ export function Certificates() {
                     {/* Carousel Container */}
                     <div className="overflow-hidden" ref={containerRef}>
                         <motion.div
-                            className="flex gap-6"
+                            className="flex gap-6 relative"
                             drag="x"
                             dragConstraints={{ left: -(infiniteCards.length - visibleCards) * (cardWidth + gap), right: 0 }}
                             dragElastic={0.1}
                             onDragEnd={(e, { offset, velocity }) => {
                                 const swipe = offset.x * velocity.x;
-                                const threshold = 50; // Minimum drag distance to trigger navigation
+                                const threshold = 50;
 
-                                // If dragged more than threshold to the left, go next
                                 if (offset.x < -threshold) {
                                     handleNext();
                                 }
-                                // If dragged more than threshold to the right, go prev
                                 else if (offset.x > threshold) {
                                     handlePrev();
                                 }
-                                // Otherwise, snap back to current position (handled by animate prop)
                             }}
                             animate={{ x: -offset }}
                             onAnimationComplete={handleTransitionEnd}
@@ -215,7 +164,11 @@ export function Certificates() {
                         >
                             {infiniteCards.map((cert, index) => (
                                 <div key={`${cert.id}-${index}`} className="flex-shrink-0" style={{ width: `${cardWidth}px` }}>
-                                    <CertificateCard cert={cert} />
+                                    <CertificateCard
+                                        cert={cert}
+                                        isFlipped={!!flippedCards[cert.id]}
+                                        onFlip={() => handleFlip(String(cert.id))}
+                                    />
                                 </div>
                             ))}
                         </motion.div>
@@ -238,7 +191,7 @@ export function Certificates() {
                             <button
                                 key={idx}
                                 onClick={() => setCurrentIndex(certificates.length + idx)}
-                                className={`transition-all duration-300 rounded-full ${idx === currentIndex % certificates.length
+                                className={`transition-all duration-300 rounded-full ${currentIndex % certificates.length === idx
                                     ? 'w-8 h-2 bg-gradient-to-r from-blue-600 to-red-500'
                                     : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
                                     }`}
@@ -260,9 +213,7 @@ export function Certificates() {
     );
 }
 
-function CertificateCard({ cert }: { cert: any }) {
-    const [isFlipped, setIsFlipped] = useState(false);
-
+function CertificateCard({ cert, isFlipped, onFlip }: { cert: any; isFlipped: boolean; onFlip: () => void }) {
     // Dynamic modules based on score type
     const getModules = (scoreText: string) => {
         if (scoreText.includes('IELTS') || scoreText.includes('PTE') || scoreText.includes('TOEFL') || scoreText.includes('OET')) return [
@@ -284,7 +235,7 @@ function CertificateCard({ cert }: { cert: any }) {
         <div
             className="relative w-full h-[373px] cursor-pointer"
             style={{ perspective: '1000px' }}
-            onClick={() => setIsFlipped(!isFlipped)}
+            onClick={onFlip}
         >
             <motion.div
                 className="relative w-full h-full"

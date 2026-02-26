@@ -15,10 +15,10 @@ const DB_PUBLIC_ID = 'sparkle_posts_db.json';
 export async function uploadToCloudinary(file: File): Promise<string> {
   const arrayBuffer = await file.arrayBuffer();
   const buffer = new Uint8Array(arrayBuffer);
-  
+
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload_stream({
-      folder: 'sparkle-knowledge', 
+      folder: 'sparkle-knowledge',
     }, (error, result) => {
       if (error) {
         reject(error);
@@ -54,7 +54,7 @@ export async function savePostsToCloud(posts: any[]): Promise<string> {
         }
       }
     );
-    
+
     // Create a readable stream from the buffer
     const stream = new Readable();
     stream.push(buffer);
@@ -70,16 +70,16 @@ export async function getPostsFromCloud(): Promise<any[] | null> {
       `sparkle-knowledge/${DB_PUBLIC_ID}`,
       { resource_type: 'raw' }
     );
-    
+
     console.log('Cloudinary resource found:', resource.secure_url);
-    
+
     // Fetch the actual JSON content
     const res = await fetch(resource.secure_url + `?t=${Date.now()}`);
     if (!res.ok) {
       console.error('Failed to fetch JSON:', res.status, res.statusText);
       return null;
     }
-    
+
     const data = await res.json();
     console.log('Successfully loaded posts from cloud:', data.length, 'posts');
     return data;
@@ -94,6 +94,103 @@ export async function getPostsFromCloud(): Promise<any[] | null> {
   }
 }
 
+export async function saveTestimonialsToCloud(testimonials: any[]): Promise<string> {
+  console.log('Saving', testimonials.length, 'testimonials to Cloudinary...');
+  const jsonString = JSON.stringify(testimonials, null, 2);
+  const buffer = Buffer.from(jsonString);
+
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        resource_type: 'raw',
+        public_id: 'sparkle_testimonials_db.json',
+        folder: 'sparkle-knowledge',
+        overwrite: true,
+      },
+      (error, result) => {
+        if (error) {
+          console.error('Failed to save testimonials to cloud:', error);
+          reject(error);
+        } else {
+          console.log('Successfully saved testimonials to cloud:', result?.secure_url);
+          resolve(result?.secure_url || '');
+        }
+      }
+    );
+
+    const stream = new Readable();
+    stream.push(buffer);
+    stream.push(null);
+    stream.pipe(uploadStream);
+  });
+}
+
+export async function getTestimonialsFromCloud(): Promise<any[] | null> {
+  try {
+    const resource = await cloudinary.api.resource(
+      `sparkle-knowledge/sparkle_testimonials_db.json`,
+      { resource_type: 'raw' }
+    );
+
+    const res = await fetch(resource.secure_url + `?t=${Date.now()}`);
+    if (!res.ok) return null;
+
+    return await res.json();
+  } catch (error: any) {
+    if (error.error?.http_code === 404 || error.http_code === 404) return null;
+    return null;
+  }
+}
+
+export async function saveCertificatesToCloud(certificates: any[]): Promise<string> {
+  console.log('Saving', certificates.length, 'certificates to Cloudinary...');
+  const jsonString = JSON.stringify(certificates, null, 2);
+  const buffer = Buffer.from(jsonString);
+
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        resource_type: 'raw',
+        public_id: 'sparkle_certificates_db.json',
+        folder: 'sparkle-knowledge',
+        overwrite: true,
+      },
+      (error, result) => {
+        if (error) {
+          console.error('Failed to save certificates to cloud:', error);
+          reject(error);
+        } else {
+          console.log('Successfully saved certificates to cloud:', result?.secure_url);
+          resolve(result?.secure_url || '');
+        }
+      }
+    );
+
+    const stream = new Readable();
+    stream.push(buffer);
+    stream.push(null);
+    stream.pipe(uploadStream);
+  });
+}
+
+export async function getCertificatesFromCloud(): Promise<any[] | null> {
+  try {
+    const resource = await cloudinary.api.resource(
+      `sparkle-knowledge/sparkle_certificates_db.json`,
+      { resource_type: 'raw' }
+    );
+
+    const res = await fetch(resource.secure_url + `?t=${Date.now()}`);
+    if (!res.ok) return null;
+
+    return await res.json();
+  } catch (error: any) {
+    if (error.error?.http_code === 404 || error.http_code === 404) return null;
+    return null;
+  }
+}
+
+
 // Get all images from Cloudinary folder
 export async function getAllImagesFromCloud(): Promise<string[]> {
   try {
@@ -103,7 +200,7 @@ export async function getAllImagesFromCloud(): Promise<string[]> {
       resource_type: 'image',
       max_results: 500
     });
-    
+
     return result.resources.map((resource: any) => resource.secure_url);
   } catch (error) {
     console.error('Error fetching images from cloud:', error);

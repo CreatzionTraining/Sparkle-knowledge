@@ -16,7 +16,7 @@ interface NewsItem {
 
 const BADGE_OPTIONS = [
   'New Batch',
-  'Achievement', 
+  'Achievement',
   'Admissions Open',
   'Free Webinar',
   'Limited Offer',
@@ -106,7 +106,7 @@ const GRADIENT_PRESETS = [
 export default function NewsManagementPage() {
   const [view, setView] = useState<'list' | 'create'>('list');
   const [news, setNews] = useState<NewsItem[]>([]);
-  
+
   // Form State
   const [badge, setBadge] = useState('New Batch');
   const [customBadge, setCustomBadge] = useState('');
@@ -115,7 +115,7 @@ export default function NewsManagementPage() {
   const [selectedGradient, setSelectedGradient] = useState(0);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [showPreview, setShowPreview] = useState(false);
-  
+
   // UI State
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
   const [confirmDialog, setConfirmDialog] = useState<{ title: string; message: string; onConfirm: () => void } | null>(null);
@@ -168,25 +168,25 @@ export default function NewsManagementPage() {
       setBadge('Other');
       setCustomBadge(item.badge);
     }
-    
+
     setTitle(item.title);
     setIcon(item.icon);
-    
+
     const gradientIndex = GRADIENT_PRESETS.findIndex(g => g.gradient === item.gradient);
     setSelectedGradient(gradientIndex >= 0 ? gradientIndex : 0);
-    
+
     setEditingId(item.id);
     setView('create');
   };
 
   const handlePublish = async () => {
     const finalBadge = badge === 'Other' ? customBadge : badge;
-    
+
     if (!finalBadge) { setToast({ message: 'Please select or enter a badge', type: 'error' }); return; }
     if (!title) { setToast({ message: 'Please enter a news title', type: 'error' }); return; }
 
     setLoadingMessage(editingId ? 'Updating news...' : 'Publishing news...');
-    
+
     const newsData = {
       id: editingId || Date.now(),
       badge: finalBadge,
@@ -204,21 +204,21 @@ export default function NewsManagementPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newsData)
       });
-      
+
       const data = await res.json();
-      
+
       if (!data.success) {
         throw new Error(data.error || 'Failed to publish');
       }
-      
+
       setToast({ message: editingId ? 'Updated Successfully!' : 'Published Successfully!', type: 'success' });
-      
+
       if (!editingId) {
         setView('list');
       }
-      
+
       fetchNews();
-      
+
       // Reset form only for new items
       if (!editingId) {
         setBadge('New Batch');
@@ -228,9 +228,9 @@ export default function NewsManagementPage() {
         setSelectedGradient(0);
       }
       setEditingId(null);
-    } catch (error: any) { 
+    } catch (error: any) {
       console.error('Publish error:', error);
-      setToast({ message: error.message || 'Failed to publish', type: 'error' }); 
+      setToast({ message: error.message || 'Failed to publish', type: 'error' });
     } finally {
       setLoadingMessage(null);
     }
@@ -268,7 +268,7 @@ export default function NewsManagementPage() {
             max-w-[340px]
           `}>
             <div className={`absolute inset-0 bg-gradient-to-r ${previewItem.gradient} opacity-5 rounded-xl`}></div>
-            
+
             <div className="relative bg-white/80 backdrop-blur-md rounded-xl p-4">
               <div className="flex items-center gap-3">
                 <div className={`
@@ -308,7 +308,7 @@ export default function NewsManagementPage() {
   // --- LIST VIEW ---
   if (view === 'list') {
     return (
-      <div className="min-h-screen bg-gray-50 flex justify-center font-sans text-gray-900 overflow-x-hidden">
+      <div className="h-screen overflow-y-auto w-full bg-gray-50 flex justify-center font-sans text-gray-900 overflow-x-hidden">
         <div className="w-full max-w-5xl p-4 md:p-6 lg:p-10">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 md:mb-6 lg:mb-10 border-b border-gray-200 pb-4 md:pb-6 gap-3 md:gap-4">
             <div className="w-full md:w-auto">
@@ -324,7 +324,7 @@ export default function NewsManagementPage() {
               >
                 ← Back to Admin
               </a>
-              <button 
+              <button
                 onClick={() => {
                   setBadge('New Batch');
                   setCustomBadge('');
@@ -368,7 +368,7 @@ export default function NewsManagementPage() {
                         </div>
                       </div>
                       <div className="flex items-center gap-2 w-full">
-                        <button 
+                        <button
                           onClick={() => handleEdit(item)}
                           className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-gray-200 text-gray-600 font-bold text-xs hover:bg-gray-50 hover:text-blue-600 transition-all"
                         >
@@ -377,8 +377,8 @@ export default function NewsManagementPage() {
                           </svg>
                           <span className="truncate">Edit</span>
                         </button>
-                        <button 
-                          onClick={() => handleDelete(item.id)} 
+                        <button
+                          onClick={() => handleDelete(item.id)}
                           className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-red-100 text-red-600 bg-red-50 font-bold text-xs hover:bg-red-100 transition-all"
                         >
                           <svg className="w-3.5 h-3.5 md:w-4 md:h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -423,129 +423,128 @@ export default function NewsManagementPage() {
   // --- CREATE VIEW ---
   return (
     <>
-    <div className="min-h-screen bg-gray-50 pb-20 font-sans text-gray-900 overflow-x-hidden">
-      {/* Top Navigation Bar */}
-      <div className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 px-3 md:px-6 lg:px-8 py-2.5 md:py-3 lg:py-4 flex justify-between items-center shadow-sm">
-        <button 
-          onClick={() => setView('list')}
-          className="bg-white border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-500 w-9 h-9 md:w-auto md:h-auto md:px-4 lg:px-5 md:py-2 rounded-full font-bold text-xs md:text-sm flex items-center justify-center gap-1.5 md:gap-2 transition-all shadow-sm flex-shrink-0"
-        >
-          <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-          <span className="hidden md:inline">Back to List</span>
-        </button>
-        <button 
-          onClick={handlePublish}
-          className="bg-gradient-to-r from-blue-600 to-red-600 text-white px-4 md:px-6 lg:px-8 py-1.5 md:py-2 lg:py-2.5 rounded-full text-xs md:text-sm font-bold transition-all shadow-lg hover:shadow-xl hover:opacity-90 flex items-center gap-1 md:gap-2 transform active:scale-95 whitespace-nowrap"
-        >
-          <span className="hidden sm:inline">{editingId ? 'Update News' : 'Publish News'}</span>
-          <span className="sm:hidden">{editingId ? 'Update' : 'Publish'}</span>
-        </button>
-      </div>
+      <div className="h-screen overflow-y-auto w-full bg-gray-50 pb-20 font-sans text-gray-900 overflow-x-hidden">
+        {/* Top Navigation Bar */}
+        <div className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-gray-200 px-3 md:px-6 lg:px-8 py-2.5 md:py-3 lg:py-4 flex justify-between items-center shadow-sm">
+          <button
+            onClick={() => setView('list')}
+            className="bg-white border border-gray-200 text-gray-600 hover:text-blue-600 hover:border-blue-500 w-9 h-9 md:w-auto md:h-auto md:px-4 lg:px-5 md:py-2 rounded-full font-bold text-xs md:text-sm flex items-center justify-center gap-1.5 md:gap-2 transition-all shadow-sm flex-shrink-0"
+          >
+            <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            <span className="hidden md:inline">Back to List</span>
+          </button>
+          <button
+            onClick={handlePublish}
+            className="bg-gradient-to-r from-blue-600 to-red-600 text-white px-4 md:px-6 lg:px-8 py-1.5 md:py-2 lg:py-2.5 rounded-full text-xs md:text-sm font-bold transition-all shadow-lg hover:shadow-xl hover:opacity-90 flex items-center gap-1 md:gap-2 transform active:scale-95 whitespace-nowrap"
+          >
+            <span className="hidden sm:inline">{editingId ? 'Update News' : 'Publish News'}</span>
+            <span className="sm:hidden">{editingId ? 'Update' : 'Publish'}</span>
+          </button>
+        </div>
 
-      <div className="max-w-4xl mx-auto px-3 md:px-4 lg:px-6 py-4 md:py-6 lg:py-10">
-        <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-600 to-red-600 h-2 w-full"></div>
+        <div className="max-w-4xl mx-auto px-3 md:px-4 lg:px-6 py-4 md:py-6 lg:py-10">
+          <div className="bg-white rounded-2xl md:rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
+            <div className="bg-gradient-to-r from-blue-600 to-red-600 h-2 w-full"></div>
 
-          <div className="p-3 md:p-6 lg:p-10 xl:p-12 space-y-5 md:space-y-8 lg:space-y-10">
-            
-            {/* Badge */}
-            <div>
-              <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">
-                Badge Category <span className="text-red-500">*</span>
-              </label>
-              <select 
-                value={badge}
-                onChange={(e) => setBadge(e.target.value)}
-                className="w-full bg-gray-50 px-3 md:px-4 py-2.5 md:py-3 rounded-xl border-none font-bold text-sm md:text-base text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                {BADGE_OPTIONS.map(b => <option key={b} value={b}>{b}</option>)}
-              </select>
-              {badge === 'Other' && (
-                <input 
-                  type="text" 
-                  value={customBadge}
-                  onChange={(e) => setCustomBadge(e.target.value)}
-                  className="mt-3 w-full bg-blue-50 px-3 md:px-4 py-2.5 md:py-3 rounded-xl border border-blue-200 font-bold text-sm md:text-base text-blue-800 outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter custom badge text"
+            <div className="p-3 md:p-6 lg:p-10 xl:p-12 space-y-5 md:space-y-8 lg:space-y-10">
+
+              {/* Badge */}
+              <div>
+                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">
+                  Badge Category <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={badge}
+                  onChange={(e) => setBadge(e.target.value)}
+                  className="w-full bg-gray-50 px-3 md:px-4 py-2.5 md:py-3 rounded-xl border-none font-bold text-sm md:text-base text-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  {BADGE_OPTIONS.map(b => <option key={b} value={b}>{b}</option>)}
+                </select>
+                {badge === 'Other' && (
+                  <input
+                    type="text"
+                    value={customBadge}
+                    onChange={(e) => setCustomBadge(e.target.value)}
+                    className="mt-3 w-full bg-blue-50 px-3 md:px-4 py-2.5 md:py-3 rounded-xl border border-blue-200 font-bold text-sm md:text-base text-blue-800 outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter custom badge text"
+                  />
+                )}
+              </div>
+
+              {/* Title */}
+              <div>
+                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">
+                  News Headline <span className="text-red-500">*</span>
+                </label>
+                <p className="text-xs text-gray-500 mb-2">Write a clear, engaging headline for your news announcement</p>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  className="w-full text-xl md:text-2xl lg:text-3xl font-bold placeholder-gray-300 border-none focus:ring-0 p-0 outline-none text-gray-900 leading-tight"
+                  placeholder="e.g., IELTS Intensive Batch Starting Jan 25th"
                 />
-              )}
-            </div>
-
-            {/* Title */}
-            <div>
-              <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-2 md:mb-3">
-                News Headline <span className="text-red-500">*</span>
-              </label>
-              <p className="text-xs text-gray-500 mb-2">Write a clear, engaging headline for your news announcement</p>
-              <input 
-                type="text" 
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full text-xl md:text-2xl lg:text-3xl font-bold placeholder-gray-300 border-none focus:ring-0 p-0 outline-none text-gray-900 leading-tight"
-                placeholder="e.g., IELTS Intensive Batch Starting Jan 25th"
-              />
-            </div>
-
-            {/* Icon */}
-            <div className="pt-6 md:pt-8 border-t border-gray-100">
-              <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3 md:mb-4">Select Icon</label>
-              <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
-                {ICON_OPTIONS.map((iconOption) => (
-                  <button
-                    key={iconOption.value}
-                    type="button"
-                    onClick={() => setIcon(iconOption.value)}
-                    className={`p-3 md:p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-2 ${
-                      icon === iconOption.value 
-                        ? 'border-blue-600 bg-blue-50 ring-4 ring-blue-100' 
-                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    <span className="text-3xl md:text-4xl">{iconOption.icon}</span>
-                    <span className="text-xs font-bold text-gray-700">{iconOption.label}</span>
-                  </button>
-                ))}
               </div>
-            </div>
 
-            {/* Color Gradient */}
-            <div className="pt-6 md:pt-8 border-t border-gray-100">
-              <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3 md:mb-4">Color Theme</label>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-                {GRADIENT_PRESETS.map((preset, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    onClick={() => setSelectedGradient(index)}
-                    className={`p-3 md:p-4 rounded-xl border-2 transition-all ${selectedGradient === index ? 'border-blue-600 ring-4 ring-blue-100' : 'border-gray-200 hover:border-gray-300'}`}
-                  >
-                    <div className={`h-10 md:h-12 rounded-lg bg-gradient-to-r ${preset.gradient} mb-2`}></div>
-                    <p className="text-xs font-bold text-gray-700">{preset.name}</p>
-                  </button>
-                ))}
+              {/* Icon */}
+              <div className="pt-6 md:pt-8 border-t border-gray-100">
+                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3 md:mb-4">Select Icon</label>
+                <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
+                  {ICON_OPTIONS.map((iconOption) => (
+                    <button
+                      key={iconOption.value}
+                      type="button"
+                      onClick={() => setIcon(iconOption.value)}
+                      className={`p-3 md:p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-2 ${icon === iconOption.value
+                          ? 'border-blue-600 bg-blue-50 ring-4 ring-blue-100'
+                          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                        }`}
+                    >
+                      <span className="text-3xl md:text-4xl">{iconOption.icon}</span>
+                      <span className="text-xs font-bold text-gray-700">{iconOption.label}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
+
+              {/* Color Gradient */}
+              <div className="pt-6 md:pt-8 border-t border-gray-100">
+                <label className="block text-xs font-extrabold text-blue-600 uppercase tracking-widest mb-3 md:mb-4">Color Theme</label>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+                  {GRADIENT_PRESETS.map((preset, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => setSelectedGradient(index)}
+                      className={`p-3 md:p-4 rounded-xl border-2 transition-all ${selectedGradient === index ? 'border-blue-600 ring-4 ring-blue-100' : 'border-gray-200 hover:border-gray-300'}`}
+                    >
+                      <div className={`h-10 md:h-12 rounded-lg bg-gradient-to-r ${preset.gradient} mb-2`}></div>
+                      <p className="text-xs font-bold text-gray-700">{preset.name}</p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Preview */}
+              <PreviewNews />
+
             </div>
-
-            {/* Preview */}
-            <PreviewNews />
-
           </div>
         </div>
+
+        {/* Modals */}
+        {toast && (
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            onClose={() => setToast(null)}
+          />
+        )}
+
+        {loadingMessage && (
+          <LoadingModal message={loadingMessage} />
+        )}
       </div>
-
-      {/* Modals */}
-      {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(null)}
-        />
-      )}
-
-      {loadingMessage && (
-        <LoadingModal message={loadingMessage} />
-      )}
-    </div>
     </>
   );
 }

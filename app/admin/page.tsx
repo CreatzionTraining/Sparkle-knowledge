@@ -381,12 +381,26 @@ export default function AdminPage() {
               </h1>
               <p className="text-gray-500 font-medium mt-1 md:mt-2 text-xs md:text-sm lg:text-base">Manage your blog content professionally</p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-2 md:gap-3 w-full md:w-auto">
+            <div className="flex flex-wrap items-center gap-2 mt-3 md:mt-0 w-full sm:w-auto justify-end">
+              <a
+                href="/admin/testimonials"
+                className="flex-auto sm:flex-initial bg-gradient-to-r from-amber-400 to-orange-500 text-white px-3 md:px-4 py-2 rounded-xl font-bold text-xs md:text-sm shadow font-sans hover:shadow-md transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95"
+              >
+                <span className="text-sm">⭐</span>
+                <span>Testimonials</span>
+              </a>
+              <a
+                href="/admin/certificates"
+                className="flex-auto sm:flex-initial bg-gradient-to-r from-emerald-400 to-teal-500 text-white px-3 md:px-4 py-2 rounded-xl font-bold text-xs md:text-sm shadow font-sans hover:shadow-md transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95"
+              >
+                <span className="text-sm">🥇</span>
+                <span>Certificates</span>
+              </a>
               <a
                 href="/admin/news"
-                className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white px-4 md:px-5 lg:px-6 py-2 md:py-2.5 rounded-full font-bold text-sm md:text-base shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2"
+                className="flex-auto sm:flex-initial bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 md:px-4 py-2 rounded-xl font-bold text-xs md:text-sm shadow font-sans hover:shadow-md transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95"
               >
-                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                 </svg>
                 <span>Manage News</span>
@@ -403,9 +417,12 @@ export default function AdminPage() {
                   setCategory('');
                   setFeaturedImage('');
                 }}
-                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-red-600 hover:opacity-90 text-white px-5 md:px-6 lg:px-8 py-2.5 md:py-3 rounded-full font-bold text-sm md:text-base shadow-lg transform hover:scale-105 transition-all flex items-center justify-center gap-2"
+                className="flex-auto sm:flex-initial bg-gradient-to-r from-blue-600 to-red-600 text-white px-4 md:px-5 py-2 rounded-xl font-bold text-xs md:text-sm shadow hover:shadow-md transition-all flex items-center justify-center gap-1.5 whitespace-nowrap active:scale-95"
               >
-                <span className="text-lg">＋</span> <span>Create New Post</span>
+                <svg className="w-3.5 h-3.5 md:w-4 md:h-4 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                <span>Create Post</span>
               </button>
             </div>
           </div>
@@ -837,8 +854,8 @@ export default function AdminPage() {
 
               {/* Dynamic Width Container */}
               <div className={`${previewMode === 'mobile'
-                  ? 'w-[400px] h-[800px] border-[12px] border-gray-900 rounded-[3rem] overflow-hidden bg-white shadow-2xl my-auto'
-                  : 'w-full min-h-full bg-transparent'
+                ? 'w-[400px] h-[800px] border-[12px] border-gray-900 rounded-[3rem] overflow-hidden bg-white shadow-2xl my-auto'
+                : 'w-full min-h-full bg-transparent'
                 } transition-all duration-300`}>
 
                 {/* Simulated Viewport - Content Wrapper */}
