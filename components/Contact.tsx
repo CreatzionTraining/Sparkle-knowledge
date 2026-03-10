@@ -835,7 +835,7 @@ export function Contact() {
               className="group relative block bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden h-56 sm:h-64 lg:h-72 cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
             >
               <iframe
-                src="https://maps.google.com/maps?q=Sparkle%20Knowledge%20Yard,%20331,%20Paper%20Mills%20Road,%20Bunder%20Garden,%20Perambur,%20Chennai&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Sparkle+Knowledge+Yard,+331,+Paper+Mills+Road,+Bunder+Garden,+Perambur,+Chennai+600011&t=&z=17&ie=UTF8&iwloc=B&output=embed"
                 width="100%"
                 height="100%"
                 className="pointer-events-none"
