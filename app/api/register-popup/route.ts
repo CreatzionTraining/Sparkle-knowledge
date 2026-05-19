@@ -10,15 +10,27 @@ const redis = new Redis({
   token: process.env.KV_REST_API_TOKEN!,
 });
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+const getErrorMessage = (error: unknown) =>
+  error instanceof Error ? error.message : 'Unknown error';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone } = body;
+    const { name, email, phone, interestedIn } = body;
+    const normalizedInterestedIn = String(interestedIn || '').trim();
 
     // Validation
-    if (!name || !email || !phone) {
+    if (!name || !email || !phone || !normalizedInterestedIn) {
       return NextResponse.json(
-        { error: 'Missing required fields: name, email, and phone are required' },
+        { error: 'Missing required fields: name, email, phone, and interestedIn are required' },
         { status: 400 }
       );
     }
@@ -48,6 +60,11 @@ export async function POST(request: NextRequest) {
       second: '2-digit'
     });
     const timestamp = `${date} ${time}`;
+    const safeName = escapeHtml(String(name));
+    const safeEmail = escapeHtml(String(email));
+    const safePhone = escapeHtml(String(phone));
+    const safeInterestedIn = escapeHtml(normalizedInterestedIn);
+    const subjectName = String(name);
 
     // Admin notification email HTML - Mobile Responsive
     const adminNotificationHtml = `
@@ -101,7 +118,7 @@ export async function POST(request: NextRequest) {
                         <tr>
                           <td style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; padding: 14px;">
                             <p style="margin: 0 0 4px 0; color: #64748b; font-size: 10px; font-weight: 700; text-transform: uppercase;">👤 Full Name</p>
-                            <p style="margin: 0; color: #1e293b; font-size: 15px; font-weight: 700;">${name}</p>
+                            <p style="margin: 0; color: #1e293b; font-size: 15px; font-weight: 700;">${safeName}</p>
                           </td>
                         </tr>
                       </table>
@@ -111,7 +128,7 @@ export async function POST(request: NextRequest) {
                         <tr>
                           <td style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; padding: 14px;">
                             <p style="margin: 0 0 4px 0; color: #64748b; font-size: 10px; font-weight: 700; text-transform: uppercase;">📧 Email</p>
-                            <p style="margin: 0;"><a href="mailto:${email}" style="color: #1D4ED8; font-size: 14px; font-weight: 600; text-decoration: none; word-break: break-all;">${email}</a></p>
+                            <p style="margin: 0;"><a href="mailto:${safeEmail}" style="color: #1D4ED8; font-size: 14px; font-weight: 600; text-decoration: none; word-break: break-all;">${safeEmail}</a></p>
                           </td>
                         </tr>
                       </table>
@@ -121,7 +138,17 @@ export async function POST(request: NextRequest) {
                         <tr>
                           <td style="background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 8px; padding: 14px;">
                             <p style="margin: 0 0 4px 0; color: #64748b; font-size: 10px; font-weight: 700; text-transform: uppercase;">📞 Phone</p>
-                            <p style="margin: 0;"><a href="tel:${phone}" style="color: #1D4ED8; font-size: 15px; font-weight: 700; text-decoration: none;">${phone}</a></p>
+                            <p style="margin: 0;"><a href="tel:${safePhone}" style="color: #1D4ED8; font-size: 15px; font-weight: 700; text-decoration: none;">${safePhone}</a></p>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Interested In -->
+                      <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 20px;">
+                        <tr>
+                          <td style="background: #eef6ff; border: 2px solid #bfdbfe; border-radius: 8px; padding: 14px;">
+                            <p style="margin: 0 0 4px 0; color: #1D4ED8; font-size: 10px; font-weight: 700; text-transform: uppercase;">🎯 Interested In</p>
+                            <p style="margin: 0; color: #1e293b; font-size: 15px; font-weight: 800;">${safeInterestedIn}</p>
                           </td>
                         </tr>
                       </table>
@@ -130,8 +157,8 @@ export async function POST(request: NextRequest) {
                       <div style="text-align: center; margin-top: 20px;">
                         <p style="margin: 0 0 12px 0; color: #475569; font-size: 12px; font-weight: 600;">Quick Actions</p>
                         <div class="button-container">
-                          <a href="mailto:${email}" class="button" style="display: inline-block; background: linear-gradient(135deg, #E63946 0%, #1D4ED8 100%); color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; font-size: 12px; margin: 0 4px;">Reply via Email</a>
-                          <a href="tel:${phone}" class="button" style="display: inline-block; background: #ffffff; color: #1e293b; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; font-size: 12px; border: 2px solid #cbd5e1; margin: 0 4px;">Call Now</a>
+                          <a href="mailto:${safeEmail}" class="button" style="display: inline-block; background: linear-gradient(135deg, #E63946 0%, #1D4ED8 100%); color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; font-size: 12px; margin: 0 4px;">Reply via Email</a>
+                          <a href="tel:${safePhone}" class="button" style="display: inline-block; background: #ffffff; color: #1e293b; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; font-size: 12px; border: 2px solid #cbd5e1; margin: 0 4px;">Call Now</a>
                         </div>
                       </div>
                     </td>
@@ -160,13 +187,13 @@ export async function POST(request: NextRequest) {
         from: "noreply@sparkleknowledgeyard.com",
         to: ['sparkleknowledgeyard@gmail.com'],
         cc: ['contact@sparkleknowledgeyard.com'],
-        subject: `👤 New Registration from ${name}`,
+        subject: `👤 New Registration from ${subjectName}`,
         html: adminNotificationHtml,
       });
       console.log('Admin notification sent successfully:', notificationResult);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Failed to send admin notification:', error);
-      throw new Error(`Failed to send notification: ${error.message}`);
+      throw new Error(`Failed to send notification: ${getErrorMessage(error)}`);
     }
 
     // 2. Save to Redis Queue (for Registration tab in Google Sheets)
@@ -181,6 +208,7 @@ export async function POST(request: NextRequest) {
         name,
         email,
         phone,
+        interestedIn: normalizedInterestedIn,
         attempts: 0,
         createdAt: new Date().toISOString(),
         type: 'registration', // Mark as registration type
@@ -190,8 +218,8 @@ export async function POST(request: NextRequest) {
       await redis.set(`registration:${submissionId}`, registrationData);
       
       console.log(`✅ Registration ${submissionId} added to queue successfully`);
-    } catch (queueError: any) {
-      console.error('⚠️ Failed to add to queue:', queueError.message);
+    } catch (queueError: unknown) {
+      console.error('⚠️ Failed to add to queue:', getErrorMessage(queueError));
       // Even if queue fails, user still gets confirmation
     }
 
@@ -204,12 +232,12 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Registration error:', error);
     return NextResponse.json(
       {
         error: 'Failed to process registration',
-        details: error.message,
+        details: getErrorMessage(error),
       },
       { status: 500 }
     );

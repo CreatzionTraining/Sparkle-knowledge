@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, ChevronDown } from 'lucide-react';
+import { Check, X, ChevronDown } from 'lucide-react';
+import { courseOptions, getCourseLabel } from '@/lib/courseOptions';
 
 export default function RegistrationPopup() {
     const [isVisible, setIsVisible] = useState(false);
@@ -9,9 +10,13 @@ export default function RegistrationPopup() {
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [countryCode, setCountryCode] = useState('+91');
+    const [selectedCourse, setSelectedCourse] = useState('');
+    const [isCourseDropdownOpen, setIsCourseDropdownOpen] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [showThankYou, setShowThankYou] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+
+    const selectedCourseLabel = selectedCourse ? getCourseLabel(selectedCourse) : '';
 
     useEffect(() => {
         // Check if user has already registered
@@ -43,6 +48,7 @@ export default function RegistrationPopup() {
                     name: fullName,
                     email: email,
                     phone: `${countryCode}${phoneNumber}`,
+                    interestedIn: selectedCourseLabel,
                 }),
             });
 
@@ -54,6 +60,7 @@ export default function RegistrationPopup() {
                 localStorage.setItem('user-name', fullName);
                 localStorage.setItem('user-email', email);
                 localStorage.setItem('user-phone', `${countryCode}${phoneNumber}`);
+                localStorage.setItem('user-interested-in', selectedCourseLabel);
 
                 // Show "Thank you" message
                 setShowThankYou(true);
@@ -95,6 +102,11 @@ export default function RegistrationPopup() {
         localStorage.setItem('user-registered', 'true');
     };
 
+    const handleCourseSelect = (value: string) => {
+        setSelectedCourse(value);
+        setIsCourseDropdownOpen(false);
+    };
+
     if (!isVisible) return null;
 
     return (
@@ -106,9 +118,9 @@ export default function RegistrationPopup() {
             />
 
             {/* Popup Modal */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 pointer-events-none">
                 <div
-                    className={`bg-white rounded-2xl shadow-2xl w-full max-w-md p-3 md:p-8 pointer-events-auto relative transition-all duration-500 ${isClosing ? 'opacity-0 scale-95' : 'animate-slideUp'}`}
+                    className={`bg-white rounded-2xl shadow-2xl w-full max-w-[400px] max-h-[calc(100svh-1.5rem)] overflow-visible px-5 py-5 md:px-7 md:py-6 pointer-events-auto relative transition-all duration-500 ${isClosing ? 'opacity-0 scale-95' : 'animate-slideUp'}`}
                     onClick={(e) => e.stopPropagation()}
                 >
                     {/* Close Button */}
@@ -121,19 +133,19 @@ export default function RegistrationPopup() {
                     </button>
 
                     {/* Header */}
-                    <div className="mb-6 text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 via-red-500 to-red-600 bg-clip-text text-transparent mb-3 leading-tight tracking-wide" style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
+                    <div className="mb-4 text-center pr-5">
+                        <h2 className="text-[28px] md:text-[34px] font-bold bg-gradient-to-r from-blue-600 via-red-500 to-red-600 bg-clip-text text-transparent leading-[1.12] tracking-normal" style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
                             Empower Your Academic Future
                         </h2>
                     </div>
 
                     {/* Form */}
-                    <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+                    <form onSubmit={handleSubmit} className="space-y-3">
                         {/* Full Name Field */}
                         <div>
                             <label
                                 htmlFor="fullName"
-                                className="block text-sm font-medium text-gray-700 mb-2"
+                                className="block text-[13px] font-semibold text-gray-700 mb-1.5"
                             >
                                 Full Name
                             </label>
@@ -150,7 +162,7 @@ export default function RegistrationPopup() {
                                 placeholder="John Doe"
                                 required
                                 autoComplete="name"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm md:text-base"
+                                className="w-full h-11 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm"
                             />
                         </div>
 
@@ -158,17 +170,17 @@ export default function RegistrationPopup() {
                         <div>
                             <label
                                 htmlFor="phoneNumber"
-                                className="block text-sm font-medium text-gray-700 mb-2"
+                                className="block text-[13px] font-semibold text-gray-700 mb-1.5"
                             >
                                 Mobile Number
                             </label>
-                            <div className="flex gap-2 md:gap-3">
+                            <div className="flex gap-2">
                                 {/* Country Code Dropdown */}
                                 <div className="relative">
                                     <select
                                         value={countryCode}
                                         onChange={(e) => setCountryCode(e.target.value)}
-                                        className="w-[105px] md:w-[130px] pl-3 pr-8 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 font-medium cursor-pointer appearance-none hover:bg-gray-100 text-sm md:text-base h-full"
+                                        className="h-11 w-[104px] pl-3 pr-8 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 font-semibold cursor-pointer appearance-none hover:bg-white text-sm"
                                     >
                                         <option value="+91">🇮🇳 +91</option>
                                         <option value="+1">🇺🇸 +1</option>
@@ -196,7 +208,7 @@ export default function RegistrationPopup() {
                                     required
                                     maxLength={15}
                                     autoComplete="tel"
-                                    className="flex-1 px-3 md:px-4 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 font-medium text-sm md:text-base"
+                                    className="h-11 min-w-0 flex-1 px-3 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 font-medium text-sm"
                                 />
                             </div>
                         </div>
@@ -205,7 +217,7 @@ export default function RegistrationPopup() {
                         <div>
                             <label
                                 htmlFor="email"
-                                className="block text-sm font-medium text-gray-700 mb-2"
+                                className="block text-[13px] font-semibold text-gray-700 mb-1.5"
                             >
                                 Email Address
                             </label>
@@ -217,15 +229,80 @@ export default function RegistrationPopup() {
                                 placeholder="john.doe@example.com"
                                 required
                                 autoComplete="email"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm md:text-base"
+                                className="w-full h-11 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder:text-gray-400 caret-black text-sm"
                             />
+                        </div>
+
+                        {/* Course Dropdown */}
+                        <div>
+                            <label
+                                id="course-label"
+                                className="block text-[13px] font-semibold text-gray-700 mb-1.5"
+                            >
+                                Interested In
+                            </label>
+                            <div className="relative">
+                                <button
+                                    type="button"
+                                    aria-haspopup="listbox"
+                                    aria-expanded={isCourseDropdownOpen}
+                                    aria-label={selectedCourseLabel || 'Select a course'}
+                                    onClick={() => setIsCourseDropdownOpen((isOpen) => !isOpen)}
+                                    className={`w-full h-11 px-4 bg-gray-50 border rounded-lg outline-none transition-all text-left flex items-center justify-between gap-3 hover:bg-white ${isCourseDropdownOpen
+                                        ? 'border-blue-500 ring-2 ring-blue-500/20 shadow-sm'
+                                        : 'border-gray-200 hover:border-gray-300'
+                                        }`}
+                                >
+                                    <span className={`text-sm font-medium truncate ${selectedCourseLabel ? 'text-gray-900' : 'text-gray-400'}`}>
+                                        {selectedCourseLabel || 'Select a course'}
+                                    </span>
+                                    <ChevronDown className={`w-4 h-4 shrink-0 text-gray-500 transition-transform duration-300 ${isCourseDropdownOpen ? 'rotate-180 text-blue-600' : ''}`} />
+                                </button>
+
+                                {isCourseDropdownOpen && (
+                                    <>
+                                        <div
+                                            className="fixed inset-0 z-[55] bg-transparent"
+                                            onClick={() => setIsCourseDropdownOpen(false)}
+                                        />
+                                        <div
+                                            role="listbox"
+                                            aria-labelledby="course-label"
+                                            className="absolute left-0 right-0 bottom-full z-[60] mb-2 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/15"
+                                        >
+                                            <div className="py-1">
+                                                {courseOptions.map((option) => {
+                                                    const isSelected = selectedCourse === option.value;
+
+                                                    return (
+                                                        <button
+                                                            key={option.value}
+                                                            type="button"
+                                                            role="option"
+                                                            aria-selected={isSelected}
+                                                            onClick={() => handleCourseSelect(option.value)}
+                                                            className={`w-full px-4 py-2.5 text-left flex items-center justify-between gap-3 text-sm transition-colors ${isSelected
+                                                                ? 'bg-blue-50 text-blue-700 font-semibold'
+                                                                : 'text-gray-700 font-medium hover:bg-gray-50'
+                                                                }`}
+                                                        >
+                                                            <span>{option.label}</span>
+                                                            {isSelected && <Check className="w-4 h-4 shrink-0 text-blue-600" />}
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
                         </div>
 
                         {/* Submit Button */}
                         <button
                             type="submit"
-                            disabled={isSubmitting}
-                            className="w-full bg-gradient-to-r from-blue-600 to-red-600 text-white font-bold py-3.5 px-6 rounded-lg hover:from-blue-700 hover:to-red-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl tracking-wide"
+                            disabled={isSubmitting || !selectedCourseLabel}
+                            className="w-full h-12 bg-gradient-to-r from-blue-600 to-red-600 text-white font-bold px-6 rounded-lg hover:from-blue-700 hover:to-red-700 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl tracking-wide"
                         >
                             {showThankYou ? 'Thank you ✓' : (isSubmitting ? 'Processing...' : 'Take the First Step')}
                         </button>

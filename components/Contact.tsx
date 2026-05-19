@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import NewsTicker from './NewsTicker';
+import { courseOptions } from '@/lib/courseOptions';
 
 // Icon components (inline SVG)
 const MapPin = ({ className }: { className?: string }) => (
@@ -92,15 +93,6 @@ export function Contact() {
       localStorage.setItem('contactFormData', JSON.stringify(formData));
     }
   }, [formData]);
-
-  const courseOptions = [
-    { value: 'ielts', label: 'IELTS' },
-    { value: 'toefl', label: 'TOEFL' },
-    { value: 'pte', label: 'PTE' },
-    { value: 'interview-prep', label: 'Interview Preparation' },
-    { value: 'study-abroad', label: 'Study Abroad Counseling' },
-    { value: 'foreign-language', label: 'Foreign Language Training' }
-  ];
 
   const countryCodes = [
     { code: '+93', country: 'Afghanistan', flag: '🇦🇫' },

@@ -145,17 +145,23 @@ async function saveToGoogleSheets(data: any, type: string = 'submission'): Promi
     // Determine which sheet tab and what data to save
     let range: string;
     let values: any[];
+    let registrationInterestedIn = '';
     
     if (type === 'registration') {
-      // Save to Sheet2 (Registration tab) - only 6 columns
-      range = 'Sheet2!A:F';
+      registrationInterestedIn = String(
+        data.interestedIn || data.course || data.interest || data.selectedCourse || 'Not specified'
+      ).trim();
+
+      // Save to Sheet2 (Registration tab)
+      range = 'Sheet2!A:G';
       values = [[
         data.id,
         data.date,
         data.time,
         data.name,
         data.email,
-        data.phone || 'Not provided'
+        data.phone || 'Not provided',
+        registrationInterestedIn || 'Not specified'
       ]];
     } else {
       // Save to Sheet1 (Contact Form) - 8 columns
@@ -172,14 +178,34 @@ async function saveToGoogleSheets(data: any, type: string = 'submission'): Promi
       ]];
     }
     
-    await sheets.spreadsheets.values.append({
+    const appendResponse = await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
       range: range,
       valueInputOption: 'RAW',
+      insertDataOption: 'INSERT_ROWS',
       requestBody: {
         values: values,
       },
     });
+
+    if (type === 'registration' && registrationInterestedIn) {
+      const updatedRange = appendResponse.data.updates?.updatedRange || '';
+      const rowMatch = updatedRange.match(/![A-Z]+(\d+)(?::[A-Z]+\d+)?$/);
+      const rowNumber = rowMatch?.[1];
+      const [sheetName, columnRange] = range.split('!');
+      const interestedInColumn = columnRange?.split(':')[1];
+
+      if (rowNumber && sheetName && interestedInColumn) {
+        await sheets.spreadsheets.values.update({
+          spreadsheetId: process.env.GOOGLE_SHEET_ID,
+          range: `${sheetName}!${interestedInColumn}${rowNumber}`,
+          valueInputOption: 'RAW',
+          requestBody: {
+            values: [[registrationInterestedIn]],
+          },
+        });
+      }
+    }
     
     return true;
   } catch (error: any) {
