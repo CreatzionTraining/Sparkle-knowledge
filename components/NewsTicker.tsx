@@ -11,6 +11,51 @@ interface NewsItem {
   imageUrl?: string | null;
 }
 
+const FALLBACK_NEWS: NewsItem[] = [
+  {
+    title: "IELTS Exam 2024: Key Updates and Changes You Need to Know",
+    link: "https://www.britishcouncil.org/exam/ielts",
+    pubDate: new Date().toISOString(),
+    source: "British Council",
+    description: "Stay updated with the latest IELTS exam format changes and preparation tips for 2024.",
+  },
+  {
+    title: "TOEFL iBT: New Score Requirements for Top Universities",
+    link: "https://www.ets.org/toefl",
+    pubDate: new Date().toISOString(),
+    source: "ETS",
+    description: "Universities worldwide update their TOEFL score requirements. Find out what you need to qualify.",
+  },
+  {
+    title: "PTE Academic: Tips to Score 79+ in All Sections",
+    link: "https://www.pearsonpte.com",
+    pubDate: new Date().toISOString(),
+    source: "Pearson PTE",
+    description: "Expert strategies to achieve a high band score in PTE Academic exam across all four sections.",
+  },
+  {
+    title: "Study Abroad 2024: Top Destinations for Indian Students",
+    link: "https://www.studyabroad.com",
+    pubDate: new Date().toISOString(),
+    source: "Study Abroad",
+    description: "UK, Canada, Australia and Germany remain top picks for Indian students seeking international education.",
+  },
+  {
+    title: "Canada Student Visa: New Rules and Processing Times",
+    link: "https://www.canada.ca/en/immigration-refugees-citizenship.html",
+    pubDate: new Date().toISOString(),
+    source: "IRCC Canada",
+    description: "Latest updates on Canada study permit applications and what students need to prepare.",
+  },
+  {
+    title: "OET Exam: Everything Healthcare Professionals Need to Know",
+    link: "https://www.occupationalenglishtest.org",
+    pubDate: new Date().toISOString(),
+    source: "OET Centre",
+    description: "Comprehensive guide for nurses, doctors and allied health professionals preparing for OET.",
+  },
+];
+
 export default function NewsTicker() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,12 +64,17 @@ export default function NewsTicker() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const res = await fetch('/api/google-news');
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 8000); // 8s timeout
+        const res = await fetch('/api/google-news', { signal: controller.signal });
+        clearTimeout(timeout);
         const data = await res.json();
         console.log('News data:', data);
-        setNews(data.news || []);
+        const fetched = data.news || [];
+        setNews(fetched.length > 0 ? fetched : FALLBACK_NEWS);
       } catch (err) {
-        console.error("Failed to load news", err);
+        console.error("Failed to load news, using fallback", err);
+        setNews(FALLBACK_NEWS);
       } finally {
         setLoading(false);
       }

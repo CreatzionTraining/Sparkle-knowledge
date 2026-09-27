@@ -4,6 +4,7 @@ import NewsTicker from "@/components/NewsTicker";
 import RegistrationPopup from "@/components/RegistrationPopup";
 import ClientLayout from "./ClientLayout";
 import { Outfit, Inter } from "next/font/google";
+import Script from "next/script";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -106,6 +107,19 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${inter.variable} antialiased overflow-x-hidden font-sans`}
       >
+        {/* Google Ads Tag */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-762685546"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-762685546');
+          `}
+        </Script>
         <ClientLayout>
           {children}
         </ClientLayout>
