@@ -64,10 +64,7 @@ export default function NewsTicker() {
   useEffect(() => {
     async function fetchNews() {
       try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 8000); // 8s timeout
-        const res = await fetch('/api/google-news', { signal: controller.signal });
-        clearTimeout(timeout);
+        const res = await fetch('/api/google-news');
         const data = await res.json();
         console.log('News data:', data);
         const fetched = data.news || [];
